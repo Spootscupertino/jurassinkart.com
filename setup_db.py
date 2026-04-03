@@ -31,7 +31,7 @@ SEED_SPECIES = [
     ("Pteranodon",          "Pteranodon",  "Cretaceous", "Piscivore", "Large",   "Large pterosaur (not a dinosaur, but a classic)",None),
     ("Spinosaurus",         "Spinosaurus", "Cretaceous", "Piscivore", "Massive", "Sail-backed semi-aquatic predator",
      "closed mouth option, low-slung quadrupedal stance, crocodilian body proportions, "
-     "sail vertebrae scientifically accurate, based on Ibrahim 2020 reconstruction"),
+     "deep muscular sail along spine"),
     ("Parasaurolophus",     "Para",        "Cretaceous", "Herbivore", "Large",   "Crested hadrosaur",                              None),
     ("Dilophosaurus",       "Dilopho",     "Jurassic",   "Carnivore", "Medium",  "Double-crested early theropod",                  None),
 ]
@@ -54,7 +54,7 @@ SEED_PARAMETERS = [
         "volumetric atmosphere, photojournalism composition"
     ), 1.2),
     ("style", "ink_etching",      "detailed ink etching, crosshatching, natural history plate",       1.0),
-    ("style", "paleontology_art", "scientific paleoart, skeletal accuracy, field museum illustration", 1.1),
+    ("style", "paleontology_art", "scientific paleoart, anatomically precise, detailed natural history illustration", 1.1),
 
     # --- lighting: MJ responds strongly to lighting cues ---
     ("lighting", "golden_hour",     "golden hour, warm low-angle sunlight, long shadows, lens flare", 1.0),
@@ -97,10 +97,10 @@ NEGATIVE_PROMPT = (
 )
 
 SEED_GLOBAL_RULES = [
-    ("accuracy", "peer-reviewed palaeontology accuracy",  "Ensures outputs reflect current scientific consensus"),
-    ("accuracy", "based on latest fossil evidence",       "Grounds depiction in actual fossil record"),
-    ("accuracy", "no movie inaccuracies",                 "Excludes Hollywood tropes and pop-culture errors"),
     ("accuracy", "correct posture and locomotion",        "Enforces horizontal spine, erect gait, proper tail carriage"),
+    ("accuracy", "living animal in natural habitat",      "Animal rendered as a wild creature, not a specimen or reconstruction"),
+    ("accuracy", "accurate period-correct flora",         "Vegetation matches geological period, no anachronistic plants"),
+    ("accuracy", "wildlife documentary realism",          "Framed as wildlife nature photography, not museum or concept art"),
 ]
 
 SEED_PROMPTS = [
@@ -110,7 +110,7 @@ SEED_PROMPTS = [
         "positive": (
             "A Tyrannosaurus rex standing on a rocky bluff at sunrise, "
             "silhouetted against an orange sky, feathers visible on arms, "
-            "scientifically accurate, dramatic scale"
+            "living animal, dramatic scale"
         ),
         "negative": "cartoon, anime, toy, blurry, watermark, text",
         "tags": "sunrise,silhouette,feathered",
@@ -120,7 +120,7 @@ SEED_PROMPTS = [
         "title": "Raptor pack hunt",
         "positive": (
             "Two Velociraptors with full feather plumage hunting in a fern-covered "
-            "Cretaceous forest, dappled light through tree canopy, scientifically accurate"
+            "Cretaceous forest, dappled light through tree canopy, anatomically correct living animals"
         ),
         "negative": "scaly skin only, cartoon, Jurassic Park inaccurate",
         "tags": "pack,hunting,feathered,forest",

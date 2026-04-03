@@ -30,3 +30,7 @@ env/
 
 # macOS
 .DS_Store
+.fuse_hidden*
+
+# Claude Code internal files
+.claude/
