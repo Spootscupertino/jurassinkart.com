@@ -120,6 +120,17 @@ SEED_PARAMETERS = [
     ), 1.2),
 ]
 
+# Skin texture corrections for species whose skin_texture_type was seeded outside
+# migrate_scientific.py and still contained fossil/specimen language.
+# Applied as UPDATEs during seeding so they override any stale DB values.
+SEED_SKIN_CORRECTIONS = {
+    "Allosaurus fragilis":             "rough pebbly scales across neck and back, crocodilian-textured hide",
+    "Argentinosaurus huinculensis":    "rough armoured skin plates covering body, textured titanosaur hide",
+    "Carnotaurus sastrei":             "oval pebbly scales across body, rows of larger conical raised bumps along flanks",
+    "Pachycephalosaurus wyomingensis": "smooth scales across body, rows of spiky knobs framing the domed skull",
+    "Therizinosaurus cheloniformis":   "feathering probable, dense feather coat across body, quill bases at skin surface",
+}
+
 # Species-specific required parameters: (species_name, parameter_name)
 SEED_SPECIES_PARAMETERS = [
     ("Velociraptor", "full_body_accuracy"),
@@ -235,6 +246,13 @@ def seed_data(conn: sqlite3.Connection) -> None:
                 (sid[0], pid[0]),
             )
     print(f"  Seeded {len(SEED_SPECIES_PARAMETERS)} species_parameters rows")
+
+    for species_name, skin_texture in SEED_SKIN_CORRECTIONS.items():
+        cur.execute(
+            "UPDATE species SET skin_texture_type = ? WHERE name = ?",
+            (skin_texture, species_name),
+        )
+    print(f"  Applied {len(SEED_SKIN_CORRECTIONS)} skin texture corrections")
 
     conn.commit()
 
