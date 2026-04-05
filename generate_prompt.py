@@ -555,6 +555,52 @@ def make_environment_fix_prompt(species, environment: str, weather_param, lighti
     return f"{core} {flags}"
 
 
+def make_mouth_fix_prompt(species, mj_style: str, stylize: int = 20) -> str:
+    """Vary Region prompt for mouth/teeth. Paint over the mouth area, paste this prompt."""
+    diet    = species["diet"] or ""
+    habitat = species["habitat"] or "terrestrial"
+    name    = species["name"]
+
+    if habitat == "marine":
+        # Marine species — jaw emerging from water, water interaction prominent
+        core = (
+            f"extreme close-up of {name} jaw at water surface, "
+            "teeth individually different lengths and curvature, "
+            "waterline crossing lower jaw, water droplets beading on chin scales, "
+            "green algae staining on jaw skin, debris and grit caught between teeth, "
+            "wet pink gum tissue visible at tooth bases, gum line receded and raw, "
+            "flies resting on nostril edge and lip fold, animal unbothered, "
+            "real wildlife photograph, saltwater crocodile jaw reference"
+        )
+    elif diet in ("Carnivore", "Piscivore"):
+        core = (
+            f"extreme close-up of {name} open jaw, "
+            "each tooth a different length and curvature, "
+            "yellowed and stained at base fading to off-white tip, "
+            "brown decay discolouration at gum line on several teeth, "
+            "fragment of bone or twig wedged between two teeth, "
+            "wet pink gum tissue, gum pockets raw and slightly receded, "
+            "heavy saliva stranding between upper and lower jaw, "
+            "single strand of saliva catching light, "
+            "flies on lip fold and nostril, animal unbothered, "
+            "water or moisture glistening on chin and lower jaw skin, "
+            "real wildlife photograph, saltwater crocodile jaw reference"
+        )
+    else:
+        core = (
+            f"extreme close-up of {name} mouth, "
+            "grinding teeth worn flat with brown staining, "
+            "uneven wear across tooth row, some teeth shorter than neighbours, "
+            "wet pink gum tissue, saliva pooling at jaw hinge, "
+            "plant fibre caught between molars, "
+            "moisture on lips and chin, flies on nostril edge, "
+            "real wildlife photograph"
+        )
+
+    flags = f"--no {NEGATIVE_PROMPT} --style {mj_style} --stylize {stylize}"
+    return f"{core}, telephoto macro, shallow depth of field, muted colour, film grain {flags}"
+
+
 # ---------------------------------------------------------------------------
 # Prompt assembly
 # ---------------------------------------------------------------------------
@@ -962,6 +1008,17 @@ def main() -> None:
     print_prompt_box(env_fix_clean)
     print(f"\n  {hdr('/imagine prompt:')}")
     print(f"  {C.BRIGHT_WHITE}{env_fix_clean}{C.RESET}\n")
+
+    # STEP 4 — Mouth fix
+    mouth_fix_prompt = make_mouth_fix_prompt(species, mj_style=args.style)
+    mouth_fix_clean  = strip_mj_params(mouth_fix_prompt)
+    validate_prompt(mouth_fix_clean, allow_mj_params=False, label="STEP 4 mouth fix")
+    print(f"{C.BOLD_CYAN}{'═' * 64}{C.RESET}")
+    print(f"  {C.BOLD_CYAN}STEP 4 — MOUTH FIX{C.RESET}  {C.DIM}[Vary Region → paint over mouth/jaw]{C.RESET}")
+    print(f"{C.BOLD_CYAN}{'═' * 64}{C.RESET}")
+    print_prompt_box(mouth_fix_clean)
+    print(f"\n  {hdr('/imagine prompt:')}")
+    print(f"  {C.BRIGHT_WHITE}{mouth_fix_clean}{C.RESET}\n")
 
     # --- Save ---
     saved_param_ids = (
