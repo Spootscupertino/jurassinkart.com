@@ -1313,6 +1313,7 @@ def part2_db_migration():
         ("primary_fossil_sites",     "TEXT"),
         ("key_papers",               "TEXT"),
         ("last_scientific_update",   "INTEGER"),
+        ("habitat",                  "TEXT DEFAULT 'terrestrial'"),
     ]
 
     for col_name, col_type in new_columns:
@@ -1328,6 +1329,19 @@ def part2_db_migration():
                 msg = f"ALTER TABLE error for {col_name}: {exc}"
                 errors.append(msg)
                 print(f"  ERROR: {msg}")
+
+    # ------------------------------------------------------------------
+    # 2a2. ALTER TABLE parameters — add habitats column
+    # ------------------------------------------------------------------
+    try:
+        cur.execute("ALTER TABLE parameters ADD COLUMN habitats TEXT DEFAULT 'terrestrial,marine,aerial'")
+        conn.commit()
+        print("  Added column: parameters.habitats")
+    except sqlite3.OperationalError as exc:
+        if "duplicate column name" in str(exc).lower():
+            print("  Column exists: parameters.habitats (skipped)")
+        else:
+            print(f"  ERROR: {exc}")
 
     # ------------------------------------------------------------------
     # 2b. CREATE TABLE research_notes + index
@@ -1446,6 +1460,24 @@ def part2_db_migration():
                 msg = f"INSERT research_notes error [{species_name}]: {exc}"
                 errors.append(msg)
                 print(f"  ERROR: {msg}")
+
+    # ------------------------------------------------------------------
+    # 2f. UPDATE habitat for non-terrestrial species
+    # ------------------------------------------------------------------
+    print("\n--- 2e: UPDATE habitat for non-terrestrial species ---")
+    HABITAT_OVERRIDES = {
+        "Pteranodon": "aerial",
+        "Spinosaurus": "marine",
+    }
+    for species_name, hab in HABITAT_OVERRIDES.items():
+        if species_name in species_map:
+            try:
+                cur.execute("UPDATE species SET habitat = ? WHERE id = ?",
+                            (hab, species_map[species_name]))
+                conn.commit()
+                print(f"  Updated habitat: {species_name} -> {hab}")
+            except sqlite3.Error as exc:
+                print(f"  ERROR: habitat update for {species_name}: {exc}")
 
     conn.close()
     return columns_added, notes_inserted, errors

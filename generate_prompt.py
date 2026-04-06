@@ -90,6 +90,121 @@ ENVIRONMENTS = {
 
 CATEGORIES = ["lighting", "camera", "mood", "condition"]
 
+# ---------------------------------------------------------------------------
+# Lighting → Weather compatibility
+# Each lighting has a sky state; each weather lists which sky states it fits.
+# "any" means always shown regardless of lighting.
+# ---------------------------------------------------------------------------
+
+LIGHTING_SKY = {
+    # clear sky — direct sun visible
+    "golden_hour":         "clear",
+    "harsh_midday":        "clear",
+    "blue_hour":           "clear",
+    "backlit_haze":        "clear",
+    "dawn_first_light":    "clear",
+    "sunset_warm":         "clear",
+    "high_noon_flat":      "clear",
+    "moonlit":             "clear",
+    # overcast — no direct sun
+    "overcast":            "overcast",
+    "broken_cloud":        "mixed",
+    "pre_storm":           "overcast",
+    "dappled_canopy":      "mixed",
+    "fog_diffuse":         "overcast",
+    "twilight_fade":       "overcast",
+    "dust_glow":           "mixed",
+    "forest_floor_shade":  "overcast",
+    # storm
+    "stormy":              "storm",
+    "dramatic_rim":        "mixed",
+    # marine
+    "underwater_caustics": "clear",
+    "deep_water_fade":     "overcast",
+    "surface_dapple":      "clear",
+    "bioluminescent":      "overcast",
+    "noon_column":         "clear",
+    "reef_scatter":        "clear",
+    "murk_glow":           "overcast",
+    "dawn_surface":        "clear",
+    "moonlit_surface":     "clear",
+    # aerial
+    "open_sky_flat":       "overcast",
+    "cloud_shadow":        "mixed",
+    "reflected_ground":    "clear",
+    "halo_backlit":        "clear",
+    "storm_flash":         "storm",
+    "thermal_shimmer":     "clear",
+    "fog_top_layer":       "overcast",
+    "rain_scatter":        "storm",
+}
+
+WEATHER_SKY_COMPAT = {
+    # terrestrial
+    "clear_pristine":       ("clear", "mixed"),
+    "heat_haze":            ("clear",),
+    "ground_mist":          ("clear", "overcast", "mixed"),
+    "storm_approaching":    ("overcast", "storm", "mixed"),
+    "monsoon_heavy":        ("storm", "overcast"),
+    "post_storm_clearing":  ("overcast", "mixed", "storm"),
+    "light_snowfall":       ("overcast", "mixed"),
+    "arctic_freeze":        ("clear", "overcast", "mixed"),
+    "volcanic_ash_fall":    ("any",),
+    "wildfire_smoke":       ("any",),
+    "dust_storm":           ("clear", "mixed"),
+    "humid_haze":           ("clear", "overcast", "mixed"),
+    "cold_fog":             ("overcast", "mixed"),
+    "drizzle_steady":       ("overcast", "mixed"),
+    "wind_gusts_dry":       ("clear", "mixed"),
+    "frost_dawn":           ("clear",),
+    "rain_clearing":        ("overcast", "mixed"),
+    "hot_still_air":        ("clear",),
+    "late_afternoon_cool":  ("clear", "mixed"),
+    "overcast_flat":        ("overcast",),
+    # marine
+    "calm_surface":         ("clear", "mixed"),
+    "choppy_swell":         ("overcast", "storm", "mixed"),
+    "ocean_storm":          ("storm",),
+    "murky_green":          ("overcast", "mixed"),
+    "clear_tropical":       ("clear",),
+    "deep_current_cold":    ("any",),
+    "surface_chop":         ("mixed", "overcast"),
+    "tidal_surge":          ("storm", "mixed"),
+    "plankton_bloom":       ("any",),
+    "thermocline_shift":    ("any",),
+    "underwater_haze":      ("overcast", "mixed"),
+    "kelp_drift":           ("clear", "mixed"),
+    "warm_shallows":        ("clear",),
+    "storm_surge_murk":     ("storm",),
+    "dawn_glass":           ("clear",),
+    "twilight_surface":     ("overcast", "mixed"),
+    "moonlit_calm":         ("clear",),
+    "rain_on_surface":      ("storm", "overcast"),
+    "volcanic_vent_warm":   ("any",),
+    "reef_current":         ("clear", "mixed"),
+    # aerial
+    "high_altitude_clear":  ("clear",),
+    "cloud_layer_below":    ("clear", "mixed"),
+    "thermal_column":       ("clear", "mixed"),
+    "coastal_wind":         ("clear", "overcast", "mixed"),
+    "headwind_strong":      ("mixed", "overcast"),
+    "tailwind_fast":        ("clear", "mixed"),
+    "rain_curtain":         ("storm", "overcast"),
+    "ice_crystal_air":      ("clear",),
+    "updraft_turbulence":   ("mixed", "overcast"),
+    "haze_layer":           ("overcast", "mixed"),
+    "storm_anvil_top":      ("storm",),
+    "sunset_altitude":      ("clear",),
+    "dawn_horizon":         ("clear",),
+    "crosswind_shear":      ("mixed", "overcast"),
+    "sea_spray_altitude":   ("mixed", "overcast"),
+    "dust_plume_below":     ("clear", "mixed"),
+    "calm_dead_air":        ("clear", "overcast"),
+    "mountain_wave":        ("mixed",),
+    "fog_bank_below":       ("overcast", "mixed"),
+    "clear_cold_high":      ("clear",),
+}
+
 # Style is always hyperrealism — never ask the user
 HYPERREALISM_STYLE = {
     "id":    24,
@@ -110,15 +225,66 @@ MOUTH_TEETH_HERBIVORE = (
 )
 
 # ---------------------------------------------------------------------------
-# Ground interaction — feet/claws as a spatial relationship block, not anatomy.
-# Kept separate from the subject section so MJ reads it as contact with ground.
+# Habitat-specific interaction blocks — replaces the old single GROUND_INTERACTION.
+# Each habitat gets its own physics/contact language so MJ renders the right
+# relationship between the animal and its medium.
 # ---------------------------------------------------------------------------
 
-GROUND_INTERACTION = (
-    "feet fully weight-bearing, each toe contacting ground at a different angle, "
-    "visible pressure on toe pads, natural keratin wear on claw tips, "
-    "packed dirt between digits, knuckle joints slightly bent under load"
-)
+HABITAT_INTERACTION = {
+    "terrestrial": (
+        "feet fully weight-bearing, each toe contacting ground at a different angle, "
+        "visible pressure on toe pads, natural keratin wear on claw tips, "
+        "packed dirt between digits, knuckle joints slightly bent under load"
+    ),
+    "marine": (
+        "body partially submerged, waterline crossing torso, water surface tension "
+        "visible against skin, light refraction on submerged limbs, "
+        "ripples radiating from body movement, wet skin above waterline glistening"
+    ),
+    "aerial": (
+        "wing membrane taut and translucent against light, individual finger bones "
+        "visible as structural ridges, air current shaping membrane surface, "
+        "body suspended in open sky, no ground contact"
+    ),
+}
+
+# ---------------------------------------------------------------------------
+# Habitat-specific realism style anchors — appended to HYPERREALISM_STYLE
+# to push MJ toward the right kind of wildlife photography per domain.
+# ---------------------------------------------------------------------------
+
+HABITAT_REALISM = {
+    "terrestrial": (
+        "National Geographic wildlife photography, telephoto bokeh, "
+        "muted natural colour, film grain, dust particles in air"
+    ),
+    "marine": (
+        "National Geographic ocean wildlife photography, underwater caustics, "
+        "water surface refraction, natural ocean colour, water droplets on lens, "
+        "wet skin detail, marine biology documentary"
+    ),
+    "aerial": (
+        "National Geographic bird-in-flight photography, atmospheric haze, "
+        "thermal shimmer, open sky negative space, motion-sharp wings, "
+        "raptor flight documentary"
+    ),
+}
+
+# ---------------------------------------------------------------------------
+# Habitat-specific negative prompt additions — appended to base NEGATIVE_PROMPT
+# ---------------------------------------------------------------------------
+
+HABITAT_NEGATIVE = {
+    "terrestrial": "",
+    "marine": (
+        "dry land, standing on ground, desert, forest floor, "
+        "no water, dry skin, dusty"
+    ),
+    "aerial": (
+        "standing on ground, walking, sitting, grounded, "
+        "feet on dirt, terrestrial pose, folded wings"
+    ),
+}
 
 # ---------------------------------------------------------------------------
 # Canvas print mode constants
@@ -174,6 +340,7 @@ OUTPUT_MODES: dict[str, dict] = {
         "canvas_print":  False,
         "full_body":     False,
         "needs_placement": False,
+        "habitats":      ["terrestrial", "marine", "aerial"],
     },
     "canvas": {
         "display":       "Full body canvas print",
@@ -183,6 +350,7 @@ OUTPUT_MODES: dict[str, dict] = {
         "canvas_print":  True,
         "full_body":     True,
         "needs_placement": True,
+        "habitats":      ["terrestrial", "marine", "aerial"],
     },
     "environmental": {
         "display":       "Environmental wide shot",
@@ -192,6 +360,7 @@ OUTPUT_MODES: dict[str, dict] = {
         "canvas_print":  False,
         "full_body":     True,
         "needs_placement": False,
+        "habitats":      ["terrestrial", "marine", "aerial"],
     },
     "extreme_closeup": {
         "display":       "Extreme detail close-up",
@@ -201,6 +370,7 @@ OUTPUT_MODES: dict[str, dict] = {
         "canvas_print":  False,
         "full_body":     False,
         "needs_placement": False,
+        "habitats":      ["terrestrial", "marine", "aerial"],
     },
     "action_freeze": {
         "display":       "Action freeze frame",
@@ -210,6 +380,7 @@ OUTPUT_MODES: dict[str, dict] = {
         "canvas_print":  False,
         "full_body":     False,
         "needs_placement": False,
+        "habitats":      ["terrestrial", "marine", "aerial"],
     },
     "silhouette": {
         "display":       "Silhouette against sky",
@@ -219,6 +390,7 @@ OUTPUT_MODES: dict[str, dict] = {
         "canvas_print":  False,
         "full_body":     True,
         "needs_placement": False,
+        "habitats":      ["terrestrial", "aerial"],
     },
     "tracking_side": {
         "display":       "Tracking side profile",
@@ -228,6 +400,7 @@ OUTPUT_MODES: dict[str, dict] = {
         "canvas_print":  False,
         "full_body":     True,
         "needs_placement": False,
+        "habitats":      ["terrestrial", "marine"],
     },
     "ground_level": {
         "display":       "Ground-level upward",
@@ -237,6 +410,7 @@ OUTPUT_MODES: dict[str, dict] = {
         "canvas_print":  False,
         "full_body":     True,
         "needs_placement": False,
+        "habitats":      ["terrestrial"],
     },
     "aerial_overhead": {
         "display":       "Aerial overhead",
@@ -246,6 +420,7 @@ OUTPUT_MODES: dict[str, dict] = {
         "canvas_print":  False,
         "full_body":     True,
         "needs_placement": False,
+        "habitats":      ["terrestrial", "marine"],
     },
     "dusk_long_exp": {
         "display":       "Dusk long exposure",
@@ -255,6 +430,49 @@ OUTPUT_MODES: dict[str, dict] = {
         "canvas_print":  False,
         "full_body":     False,
         "needs_placement": False,
+        "habitats":      ["terrestrial", "marine"],
+    },
+    # --- Marine-specific modes ---
+    "surface_break": {
+        "display":       "Surface break",
+        "desc":          "animal breaking water surface, half submerged",
+        "fixed_camera":  "Canon EOS R5 400mm f/2.8, water-level camera, split waterline",
+        "composition":   "animal breaching water surface, waterline bisecting frame, sky above water below",
+        "canvas_print":  False,
+        "full_body":     False,
+        "needs_placement": False,
+        "habitats":      ["marine"],
+    },
+    "underwater": {
+        "display":       "Underwater",
+        "desc":          "fully submerged, caustics, murky depth",
+        "fixed_camera":  "Canon EOS R5 in underwater housing, 16-35mm f/2.8, natural light from above",
+        "composition":   "fully submerged, light filtering from surface above, murky water depth",
+        "canvas_print":  False,
+        "full_body":     True,
+        "needs_placement": False,
+        "habitats":      ["marine"],
+    },
+    # --- Aerial-specific modes ---
+    "soaring_thermal": {
+        "display":       "Soaring on thermal",
+        "desc":          "wings spread, thermal soaring, shot from below",
+        "fixed_camera":  "Canon EOS R5 600mm f/4, upward angle, bird-in-flight tracking",
+        "composition":   "wings fully extended, thermal soaring, shot from below against sky",
+        "canvas_print":  False,
+        "full_body":     True,
+        "needs_placement": False,
+        "habitats":      ["aerial"],
+    },
+    "dive_strike": {
+        "display":       "Dive / strike",
+        "desc":          "steep dive, wings tucked, speed lines implied",
+        "fixed_camera":  "Canon EOS R5 400mm f/2.8, 1/4000s freeze, tracking downward",
+        "composition":   "steep diving angle, wings partially folded, speed and gravity implied",
+        "canvas_print":  False,
+        "full_body":     True,
+        "needs_placement": False,
+        "habitats":      ["aerial"],
     },
 }
 
@@ -272,15 +490,23 @@ def connect(db_path: Path) -> sqlite3.Connection:
     return conn
 
 
-def fetch_species(conn: sqlite3.Connection) -> list:
+def fetch_species(conn: sqlite3.Connection, habitat: str = "terrestrial") -> list:
     return conn.execute(
-        "SELECT id, name, common_name, period, diet, size_class, description, notes, habitat FROM species ORDER BY name"
+        "SELECT id, name, common_name, period, diet, size_class, description, notes, habitat "
+        "FROM species WHERE habitat = ? ORDER BY name",
+        (habitat,),
     ).fetchall()
 
 
-def fetch_parameters_by_category(conn: sqlite3.Connection, category: str) -> list:
+def fetch_parameters_by_category(conn: sqlite3.Connection, category: str, habitat: str = None) -> list:
+    if habitat:
+        return conn.execute(
+            "SELECT id, name, value, weight FROM parameters "
+            "WHERE category = ? AND habitats LIKE ? ORDER BY id",
+            (category, f"%{habitat}%"),
+        ).fetchall()
     return conn.execute(
-        "SELECT id, name, value, weight FROM parameters WHERE category = ? ORDER BY name",
+        "SELECT id, name, value, weight FROM parameters WHERE category = ? ORDER BY id",
         (category,),
     ).fetchall()
 
@@ -378,9 +604,30 @@ def pick(label: str, rows: list, display_fn) -> object:
         print(f"  {err(f'Please enter a number between 1 and {len(rows)}.')}")
 
 
-def select_mode() -> str:
-    """Present the 10 output modes and return the chosen mode key."""
-    keys = list(OUTPUT_MODES.keys())
+def select_habitat() -> str:
+    """Present the 3 habitat types and return the chosen key."""
+    HABITATS = [
+        ("terrestrial", "Terrestrial", "land-based dinosaurs — ground, forest, plains"),
+        ("marine",      "Marine",      "ocean and water-dwelling species — submerged, surface"),
+        ("aerial",      "Aerial",      "flying species — pterosaurs, in-flight, soaring"),
+    ]
+    print(f"\n  {hdr('Select habitat type')}")
+    print(f"  {C.DIM}" + "─" * 60 + C.RESET)
+    for i, (_, label, desc) in enumerate(HABITATS, 1):
+        print(f"  {C.DIM}{i:>2}.{C.RESET}  {C.BRIGHT_WHITE}{label:<16}{C.RESET}  {dim(desc)}")
+    print()
+    while True:
+        raw = input(f"  {C.BOLD_CYAN}Choose 1–{len(HABITATS)}:{C.RESET} ").strip()
+        if raw.isdigit() and 1 <= int(raw) <= len(HABITATS):
+            key, label, _ = HABITATS[int(raw) - 1]
+            print(f"  {ok('✓')} {ok(label)}\n")
+            return key
+        print(f"  {err(f'Please enter a number between 1 and {len(HABITATS)}.')}")
+
+
+def select_mode(habitat: str) -> str:
+    """Present output modes filtered by habitat and return the chosen mode key."""
+    keys = [k for k, v in OUTPUT_MODES.items() if habitat in v.get("habitats", ["terrestrial"])]
     print(f"\n  {hdr('Select output mode')}")
     print(f"  {C.DIM}" + "─" * 60 + C.RESET)
     for i, key in enumerate(keys, 1):
@@ -439,10 +686,10 @@ def select_canvas_placement() -> tuple[str, str]:
         print(f"  {err(f'Please enter a number between 1 and {len(OPTIONS)}.')}")
 
 
-def pick_species(conn: sqlite3.Connection):
-    rows = fetch_species(conn)
+def pick_species(conn: sqlite3.Connection, habitat: str = "terrestrial"):
+    rows = fetch_species(conn, habitat)
     if not rows:
-        sys.exit("No species found. Run setup_db.py to seed the database.")
+        sys.exit(f"No {habitat} species found. Run setup_db.py to seed the database.")
 
     def fmt(r):
         size = f"[{r['size_class']}]" if r["size_class"] else ""
@@ -450,13 +697,19 @@ def pick_species(conn: sqlite3.Connection):
         common = f" / {r['common_name']}" if r["common_name"] else ""
         return f"{r['name']}{common}  {size} {period}"
 
+    if len(rows) == 1:
+        chosen = rows[0]
+        print(f"\n  {hdr('Select a dinosaur species')}")
+        print(f"  {ok('✓')} {ok(fmt(chosen))}  {dim('(only species for this habitat)')}\n")
+        return chosen
+
     return pick("Select a dinosaur species", rows, fmt)
 
 
-def pick_parameter(conn: sqlite3.Connection, category: str, name_only: bool = False):
-    rows = fetch_parameters_by_category(conn, category)
+def pick_parameter(conn: sqlite3.Connection, category: str, name_only: bool = False, habitat: str = None):
+    rows = fetch_parameters_by_category(conn, category, habitat=habitat)
     if not rows:
-        sys.exit(f"No parameters found for category '{category}'. Run setup_db.py.")
+        sys.exit(f"No {habitat or ''} parameters found for category '{category}'. Run setup_db.py.")
 
     label = f"Select {category.upper()}"
 
@@ -469,6 +722,26 @@ def pick_parameter(conn: sqlite3.Connection, category: str, name_only: bool = Fa
             return f"{r['name']:<22} — {r['value']}{weight_tag}"
 
     return pick(label, rows, fmt)
+
+
+def pick_weather(conn: sqlite3.Connection, lighting_param, habitat: str = None):
+    """Pick weather, filtered by lighting compatibility."""
+    all_weather = fetch_parameters_by_category(conn, "weather", habitat=habitat)
+    sky = LIGHTING_SKY.get(lighting_param["name"], "mixed")
+
+    compatible = []
+    for w in all_weather:
+        compat = WEATHER_SKY_COMPAT.get(w["name"], ("any",))
+        if "any" in compat or sky in compat:
+            compatible.append(w)
+
+    if not compatible:
+        compatible = all_weather  # fallback: show everything
+
+    def fmt(r):
+        return r["name"].replace("_", " ")
+
+    return pick(f"Select WEATHER (for {lighting_param['name'].replace('_', ' ')} lighting)", compatible, fmt)
 
 
 # ---------------------------------------------------------------------------
@@ -498,7 +771,7 @@ def strip_mj_params(prompt: str) -> str:
 
 
 def make_feet_fix_prompt(species, mj_style: str, stylize: int = 20) -> str:
-    """Vary Region prompt for feet/claws. Paint over feet, paste this prompt."""
+    """Vary Region prompt for feet/claws/flippers/wings. Paint over extremity, paste this prompt."""
     diet    = species["diet"] or ""
     habitat = species["habitat"] or "terrestrial"
     name    = species["name"]
@@ -508,6 +781,14 @@ def make_feet_fix_prompt(species, mj_style: str, stylize: int = 20) -> str:
             f"extreme close-up of {name} flipper, paddle limb, "
             "individual digit bones visible under skin tension, wet glistening skin, "
             "natural wear on flipper tip, real wildlife photograph"
+        )
+    elif habitat == "aerial":
+        core = (
+            f"extreme close-up of {name} wing membrane, "
+            "finger bones visible as structural ridges stretching taut membrane, "
+            "translucent membrane with visible blood vessels backlit by sky, "
+            "natural wear and small tears at trailing edge, "
+            "pycnofibre texture on forearm, real wildlife photograph of bat wing reference"
         )
     elif diet in ("Carnivore", "Piscivore"):
         core = (
@@ -624,6 +905,7 @@ def assemble_prompt(
     output_mode: str = "portrait",
     placement: tuple[str, str] = ("", ""),  # (subject_side, space_side) from select_placement()
     has_sref: bool = False,
+    habitat: str = "terrestrial",
 ) -> str:
     mode_cfg     = OUTPUT_MODES.get(output_mode, OUTPUT_MODES["portrait"])
     full_body    = mode_cfg["full_body"]
@@ -680,18 +962,21 @@ def assemble_prompt(
     # Hyperrealism style anchor — appended last so it applies to the whole subject block
     subject_parts.append(style_param["value"])
 
+    # Habitat-specific realism anchor
+    habitat_realism = HABITAT_REALISM.get(habitat, HABITAT_REALISM["terrestrial"])
+    subject_parts.append(habitat_realism)
+
     subject = ", ".join(p for p in subject_parts if p)
 
     # ── SECTION 2: INTERACTION ────────────────────────────────────────────────
-    # Feet/claws as a spatial relationship with the ground, not anatomy.
-    # Shorter than subject — focused on contact mechanics only.
-    interaction = GROUND_INTERACTION
+    # Habitat-specific contact/physics block.
+    # Terrestrial: feet/ground. Marine: water surface. Aerial: wing/air.
+    interaction = HABITAT_INTERACTION.get(habitat, HABITAT_INTERACTION["terrestrial"])
 
     # ── SECTION 3: ENVIRONMENT ────────────────────────────────────────────────
     # Habitat and period setting. Composition framing appended here.
     # No subject descriptors, no lighting language.
-    habitat = species["habitat"] or "terrestrial"
-    period  = species["period"] or "Other"
+    period = species["period"] or "Other"
     if habitat in ("marine", "aerial"):
         env_key = f"{habitat}_{period}"
         environment = ENVIRONMENTS.get(env_key, ENVIRONMENTS.get(f"{habitat}_Other", ENVIRONMENTS["Other"]))
@@ -736,7 +1021,11 @@ def assemble_prompt(
     prose = ", ".join(deduped_clauses)
 
     # ── MJ FLAGS ──────────────────────────────────────────────────────────────
-    flags = f"--no {NEGATIVE_PROMPT} --style {mj_style} --stylize {stylize} --q {quality:g}"
+    neg = NEGATIVE_PROMPT
+    habitat_neg = HABITAT_NEGATIVE.get(habitat, "")
+    if habitat_neg:
+        neg = f"{neg}, {habitat_neg}"
+    flags = f"--no {neg} --style {mj_style} --stylize {stylize} --q {quality:g}"
     if chaos > 0:
         flags += f" --chaos {chaos}"
 
@@ -881,16 +1170,19 @@ def main() -> None:
     # --- Startup: reference image scan ---
     display_reference_scan()
 
-    # --- Mode selection (first thing the user sees) ---
-    output_mode = select_mode()
+    # --- Habitat selection (first thing the user sees) ---
+    habitat = select_habitat()
+
+    # --- Mode selection (filtered by habitat) ---
+    output_mode = select_mode(habitat)
     mode_cfg    = OUTPUT_MODES[output_mode]
 
     placement: tuple[str, str] = ("", "")
     if mode_cfg["needs_placement"]:
         placement = select_canvas_placement()
 
-    # --- Species ---
-    species = pick_species(conn)
+    # --- Species (filtered by habitat) ---
+    species = pick_species(conn, habitat)
     science = fetch_species_science(conn, species["id"])
     notes   = fetch_research_notes(conn, species["id"])
     display_science_brief(species, science, notes)
@@ -911,11 +1203,11 @@ def main() -> None:
 
     # Style is always hyperrealism — hardcoded, not user-selectable
     style_param    = HYPERREALISM_STYLE
-    lighting_param = pick_parameter(conn, "lighting")
+    lighting_param = pick_parameter(conn, "lighting", name_only=True, habitat=habitat)
 
     # Camera: only ask if the mode doesn't fix its own camera
     if mode_cfg["fixed_camera"] is None:
-        camera_param = pick_parameter(conn, "camera", name_only=True)
+        camera_param = pick_parameter(conn, "camera", name_only=True, habitat=habitat)
     else:
         camera_param = None
         mode_display = mode_cfg["display"]
@@ -923,10 +1215,12 @@ def main() -> None:
         print(f"  {hdr('CAMERA')} {dim(f'(fixed for {mode_display})')}")
         print(f"  {dim(cam_preview)}\n")
 
-    mood_param      = pick_parameter(conn, "mood")
-    condition_param = pick_parameter(conn, "condition")
-    behavior_param  = pick_parameter(conn, "behavior", name_only=True)
-    weather_param   = pick_parameter(conn, "weather")
+    mood_param      = pick_parameter(conn, "mood", name_only=True, habitat=habitat)
+    condition_param = pick_parameter(conn, "condition", name_only=True, habitat=habitat)
+    behavior_param  = pick_parameter(conn, "behavior", name_only=True, habitat=habitat)
+
+    # Weather filtered by lighting compatibility
+    weather_param   = pick_weather(conn, lighting_param, habitat=habitat)
 
     # --- Build prompt ---
     prompt_text = assemble_prompt(
@@ -943,6 +1237,7 @@ def main() -> None:
         output_mode=output_mode,
         placement=placement,
         has_sref=bool(args.sref),
+        habitat=habitat,
     )
 
     title = make_title(species, mood_param, output_mode=output_mode)
@@ -957,8 +1252,7 @@ def main() -> None:
         prompt_text += f" --cref {args.cref}"
 
     # --- Build fix prompts ---
-    habitat = species["habitat"] or "terrestrial"
-    period  = species["period"] or "Other"
+    period = species["period"] or "Other"
     if habitat in ("marine", "aerial"):
         env_key     = f"{habitat}_{period}"
         environment = ENVIRONMENTS.get(env_key, ENVIRONMENTS.get(f"{habitat}_Other", ENVIRONMENTS["Other"]))
@@ -974,8 +1268,9 @@ def main() -> None:
     mode_label = mode_cfg["display"].upper()
 
     # STEP 1 — Main prompt
+    habitat_label = habitat.upper()
     print(f"\n{C.BOLD_CYAN}{'═' * 64}{C.RESET}")
-    print(f"  {C.BOLD_CYAN}STEP 1 — MAIN PROMPT{C.RESET}  {C.DIM}[{mode_label}]{C.RESET}")
+    print(f"  {C.BOLD_CYAN}STEP 1 — MAIN PROMPT{C.RESET}  {C.DIM}[{habitat_label} / {mode_label}]{C.RESET}")
     print(f"{C.BOLD_CYAN}{'═' * 64}{C.RESET}")
     print(f"\n  {C.WHITE}Title :{C.RESET} {C.BRIGHT_WHITE}{title}{C.RESET}")
     print(f"  {C.WHITE}Tags  :{C.RESET} {dim(tags)}")
@@ -989,11 +1284,13 @@ def main() -> None:
     print(f"\n  {hdr('/imagine prompt:')}")
     print(f"  {C.BRIGHT_WHITE}{prompt_text}{C.RESET}\n")
 
-    # STEP 2 — Feet fix
+    # STEP 2 — Extremity fix (feet / flipper / wing)
+    step2_labels = {"terrestrial": ("FEET FIX", "feet"), "marine": ("FLIPPER FIX", "flippers"), "aerial": ("WING FIX", "wings")}
+    step2_title, step2_region = step2_labels.get(habitat, step2_labels["terrestrial"])
     feet_fix_clean = strip_mj_params(feet_fix_prompt)
-    validate_prompt(feet_fix_clean, allow_mj_params=False, label="STEP 2 feet fix")
+    validate_prompt(feet_fix_clean, allow_mj_params=False, label=f"STEP 2 {step2_region} fix")
     print(f"{C.BOLD_CYAN}{'═' * 64}{C.RESET}")
-    print(f"  {C.BOLD_CYAN}STEP 2 — FEET FIX{C.RESET}  {C.DIM}[Vary Region → paint over feet]{C.RESET}")
+    print(f"  {C.BOLD_CYAN}STEP 2 — {step2_title}{C.RESET}  {C.DIM}[Vary Region → paint over {step2_region}]{C.RESET}")
     print(f"{C.BOLD_CYAN}{'═' * 64}{C.RESET}")
     print_prompt_box(feet_fix_clean)
     print(f"\n  {hdr('/imagine prompt:')}")

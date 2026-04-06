@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS species (
     size_class               TEXT CHECK(size_class IN ('Tiny', 'Small', 'Medium', 'Large', 'Massive')),
     description              TEXT,
     notes                    TEXT,
+    habitat                  TEXT CHECK(habitat IN ('terrestrial', 'marine', 'aerial')) DEFAULT 'terrestrial',
     -- Scientific accuracy data
     body_length_m            REAL,
     body_mass_kg             REAL,
@@ -36,6 +37,7 @@ CREATE TABLE IF NOT EXISTS parameters (
     value        TEXT NOT NULL,   -- the actual token/phrase injected into prompts
     weight       REAL DEFAULT 1.0 CHECK(weight BETWEEN 0.0 AND 2.0),
     description  TEXT,
+    habitats     TEXT DEFAULT 'terrestrial,marine,aerial',  -- comma-separated habitat list
     UNIQUE(category, name)
 );
 
