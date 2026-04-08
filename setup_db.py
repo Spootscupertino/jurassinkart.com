@@ -37,8 +37,8 @@ SEED_SPECIES = [
     ("Parasaurolophus",     "Para",        "Cretaceous", "Herbivore", "Large",   "Crested hadrosaur",                              None, "terrestrial"),
     ("Dilophosaurus",       "Dilopho",     "Jurassic",   "Carnivore", "Medium",  "Double-crested early theropod",                  None, "terrestrial"),
     # Marine species
-    ("Mosasaurus",          "Mosasaur",    "Cretaceous", "Carnivore", "Massive", "Apex marine predator, massive elongated jaw, powerful tail fluke",
-     "fully aquatic, no legs visible, flippers only, crocodilian-scaled body, bilobed tail fluke like a shark", "marine"),
+    ("Mosasaurus",          "Mosasaur",    "Cretaceous", "Carnivore", "Massive", "Large marine reptile, elongated body, four short flippers, deep laterally compressed tail",
+     "fully aquatic, keeled scales along back, rounded snout, conical teeth varying in size, loose jaw hinge allowing wide gape, barrel-shaped torso tapering to crescent tail fin", "marine"),
     ("Elasmosaurus",        "Elasmosaur",  "Cretaceous", "Piscivore", "Large",   "Extremely long-necked plesiosaur, small head, four broad flippers",
      "fully aquatic, neck longer than body, small head with needle-like teeth, four paddle-shaped flippers", "marine"),
     ("Ichthyosaurus",       "Ichthyosaur", "Jurassic",   "Piscivore", "Medium",  "Dolphin-shaped marine reptile, large eyes, streamlined body",
@@ -47,6 +47,42 @@ SEED_SPECIES = [
      "fully aquatic, enormous head relative to body, four large flippers, powerful bite, robust body", "marine"),
     ("Kronosaurus",         "Kronosaurus", "Cretaceous", "Carnivore", "Large",   "Giant pliosaur, massive jaws, short neck, powerful build",
      "fully aquatic, enormous skull, short thick neck, four broad flippers, barrel-shaped body", "marine"),
+    # Marine — sharks
+    ("Megalodon",           "Megalodon",   "Miocene",    "Carnivore", "Massive", "Largest predatory shark, broad heavy body, massive triangular teeth",
+     "fully aquatic, great white shark body plan scaled up, thick conical snout, dark eyes set wide, "
+     "serrated triangular teeth each the size of a human hand, powerful crescent tail, "
+     "heavy scarring on snout from prey, countershaded grey above white below", "marine"),
+    ("Cretoxyrhina",        "Ginsu Shark", "Cretaceous", "Carnivore", "Large",   "Fast open-ocean predator shark, sleek and muscular",
+     "fully aquatic, streamlined torpedo body, large dark eye, smooth skin, "
+     "rows of blade-like teeth with no serrations, powerful tail fin, "
+     "mako shark body plan, built for speed and ambush", "marine"),
+    ("Helicoprion",         "Helicoprion", "Permian",    "Carnivore", "Large",   "Bizarre shark-relative with spiral tooth whorl in lower jaw",
+     "fully aquatic, ratfish-like body, single spiral whorl of teeth curling under lower jaw like a circular saw, "
+     "older smaller teeth at centre of spiral and newest largest teeth at outer edge, "
+     "no upper teeth, smooth cartilaginous body, deep ocean dweller", "marine"),
+    # Marine — fish
+    ("Dunkleosteus",        "Dunkleosteus","Devonian",   "Carnivore", "Large",   "Armored predatory fish with bony head plates and guillotine jaw",
+     "fully aquatic, massive bony head shield with interlocking plates, "
+     "no true teeth but self-sharpening bony jaw blades, heavy armored front half, "
+     "unarmored muscular rear half, broad flat head, small eyes set forward", "marine"),
+    ("Xiphactinus",         "Bulldog Fish","Cretaceous", "Piscivore", "Large",   "Large predatory bony fish with upturned jaw and fangs",
+     "fully aquatic, elongated torpedo body up to 6m, large upturned lower jaw with prominent fangs, "
+     "bulldog-like underbite, forked tail, silvery scaled body, large pectoral fins", "marine"),
+    ("Leedsichthys",        "Leedsichthys","Jurassic",   "Filter-feeder", "Massive", "Largest bony fish ever, whale-sized filter feeder",
+     "fully aquatic, enormous body up to 16m, wide gaping mouth for filter feeding, "
+     "gill rakers instead of teeth, broad paddle-like pectoral fins, "
+     "dark mottled skin, whale shark-like feeding posture", "marine"),
+    # Marine — other
+    ("Archelon",            "Archelon",    "Cretaceous", "Omnivore",  "Large",   "Giant sea turtle with leathery shell and wide flippers",
+     "fully aquatic, leathery skin-covered shell not hard scutes, "
+     "massive front flippers for open-ocean swimming, hooked beak, "
+     "shell up to 4m wide, barnacles and algae growing on shell, "
+     "resembles oversized leatherback turtle", "marine"),
+    ("Ammonite",            "Ammonite",    "Jurassic",   "Carnivore", "Medium",  "Spiral-shelled cephalopod with tentacles and iridescent shell",
+     "fully aquatic, coiled chambered shell with ribbed surface, "
+     "soft tentacles extending from shell opening, large intelligent eye, "
+     "iridescent nacre sheen on shell surface, jet propulsion swimming, "
+     "squid-like body inside shell, shell patterns vary — ridged and knobbed", "marine"),
     # Aerial species
     ("Quetzalcoatlus",      "Quetzal",     "Cretaceous", "Carnivore", "Massive", "Largest known flying animal, giraffe-sized pterosaur with enormous wingspan",
      "enormous wingspan, long stiff neck, toothless pointed beak, walked quadrupedally on ground, launched from all fours", "aerial"),
@@ -54,6 +90,67 @@ SEED_SPECIES = [
      "long bony tail with diamond vane at tip, forward-pointing interlocking teeth for fish catching, compact body", "aerial"),
     ("Dimorphodon",         "Dimorphodon", "Jurassic",   "Piscivore", "Small",   "Early pterosaur with oversized head and deep puffin-like beak",
      "disproportionately large skull, deep narrow beak, short wings, long tail, compact body", "aerial"),
+    # Arthropod species
+    ("Meganeura",           "Meganeura",   "Carboniferous","Carnivore","Large",  "Giant dragonfly with 70cm wingspan, largest flying insect ever",
+     "enormous transparent wings with visible venation, elongated abdomen, large compound eyes, "
+     "six legs tucked under thorax in flight, iridescent wing surface, predatory flight posture", "arthropod"),
+    ("Arthropleura",        "Arthropleura","Carboniferous","Herbivore","Massive","Giant millipede up to 2.5m long, largest land invertebrate ever",
+     "segmented armored body, dozens of paired legs, dark chitinous exoskeleton, "
+     "each segment with textured plates, rounded body cross-section, antennae at head", "arthropod"),
+    ("Jaekelopterus",       "Sea Scorpion","Devonian",    "Carnivore", "Large",  "Giant sea scorpion up to 2.5m, largest arthropod ever",
+     "elongated body with segmented tail, large forward-facing pincers, "
+     "compound eyes, paddle-like rear legs for swimming, chitinous exoskeleton, "
+     "telson (tail spike) at rear", "arthropod"),
+    ("Pulmonoscorpius",     "Giant Scorpion","Carboniferous","Carnivore","Medium","Giant scorpion up to 70cm, largest true scorpion",
+     "classic scorpion body plan scaled up, large pincers, segmented curving tail with stinger, "
+     "eight walking legs, dark glossy exoskeleton, multiple pairs of eyes on head", "arthropod"),
+    ("Megarachne",          "Giant Spider","Carboniferous","Carnivore","Medium", "Giant arachnid relative, one of the largest spider-like creatures",
+     "robust body with large cephalothorax, eight thick legs with visible joint segments, "
+     "dark hairy exoskeleton, multiple eyes, fangs visible at front", "arthropod"),
+    ("Anomalocaris",        "Anomalocaris","Cambrian",    "Carnivore", "Large",  "Apex predator of the Cambrian seas, shrimp-like with grasping appendages",
+     "flattened oval body, large stalked compound eyes, two curved grasping appendages at front, "
+     "circular mouth with tooth-like plates, lateral swimming flaps along body, "
+     "translucent exoskeleton", "arthropod"),
+    ("Eurypterus",          "Eurypterid",  "Silurian",    "Carnivore", "Medium", "Common sea scorpion with paddle-shaped rear legs",
+     "flattened body with segmented tail, small pincers, large paddle-like sixth leg pair, "
+     "compound eyes, chitinous brown exoskeleton, triangular telson", "arthropod"),
+    ("Megalograptus",       "Megalograptus","Ordovician",  "Carnivore", "Medium", "Early sea scorpion with long spiny grasping arms",
+     "elongated spiny front appendages for prey capture, segmented body, "
+     "compound eyes, swimming paddles, dark armored exoskeleton", "arthropod"),
+    # Plant species
+    ("Lepidodendron",       "Scale Tree",  "Carboniferous","Herbivore","Massive","Giant club moss tree up to 40m tall with diamond-patterned bark",
+     "tall straight trunk covered in diamond-shaped leaf scars, "
+     "crown of grass-like leaves only at very top, no branches until crown, "
+     "trunk surface like reptile scales, swamp-dwelling", "plant"),
+    ("Calamites",           "Giant Horsetail","Carboniferous","Herbivore","Large","Giant horsetail tree up to 20m with jointed segmented trunk",
+     "tall jointed trunk with visible nodes like bamboo, "
+     "whorls of thin needle-like branches at each node, "
+     "ribbed trunk surface, swamp forest understory", "plant"),
+    ("Glossopteris",        "Glossopteris","Permian",      "Herbivore","Large",  "Seed fern with tongue-shaped leaves, dominated Southern Hemisphere",
+     "broad tongue-shaped leaves with prominent central vein, "
+     "dense leaf canopy, deciduous, thick woody trunk, "
+     "leaves with net-like venation pattern", "plant"),
+    ("Williamsonia",        "Bennettitale","Jurassic",     "Herbivore","Medium", "Cycad-like plant with flower-like reproductive structures",
+     "short thick trunk covered in old leaf bases, "
+     "crown of palm-like fronds at top, "
+     "large flower-like cone structures between fronds, "
+     "resembles a stocky palm or cycad", "plant"),
+    ("Araucaria",           "Monkey Puzzle","Jurassic",    "Herbivore","Massive","Ancient conifer with symmetrical spiral branching, still alive today",
+     "tall straight trunk with horizontal branches in tiers, "
+     "triangular stiff overlapping scale-like leaves covering branches, "
+     "large round seed cones, deeply furrowed bark", "plant"),
+    ("Archaefructus",       "First Flower","Cretaceous",   "Herbivore","Small",  "One of the earliest known flowering plants, aquatic",
+     "slender aquatic stems, small simple flowers with visible stamens, "
+     "narrow dissected leaves along stem, "
+     "shallow freshwater habitat, no petals on flowers", "plant"),
+    ("Wattieza",            "First Tree",  "Devonian",     "Herbivore","Large",  "One of Earth's first trees, fernlike crown on straight trunk",
+     "tall slender trunk with no branches, "
+     "crown of fern-like fronds splaying outward at top only, "
+     "trunk surface with diamond-shaped patterns from fallen frond bases", "plant"),
+    ("Sigillaria",          "Seal Tree",   "Carboniferous","Herbivore","Massive","Giant club moss tree with vertical rows of leaf scars on trunk",
+     "tall columnar trunk with vertical rows of hexagonal leaf scars, "
+     "grass-like leaf tufts at very top only, "
+     "often forked trunk near crown, swamp forest canopy tree", "plant"),
 ]
 
 SEED_PARAMETERS = [

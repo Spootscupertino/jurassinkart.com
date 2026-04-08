@@ -9,6 +9,7 @@ Usage:
 """
 
 import argparse
+import json
 import sqlite3
 import sys
 from pathlib import Path
@@ -71,21 +72,38 @@ OUTDATED_THRESHOLD = 2020  # flag species whose last_scientific_update is before
 
 # Period → evocative environment phrase (one tight setting, no stacked sub-clauses)
 ENVIRONMENTS = {
-    # Terrestrial
-    "Triassic":            "arid Triassic floodplain, sparse conifers and ferns",
-    "Jurassic":            "lush Jurassic forest, towering conifers, morning mist",
-    "Cretaceous":          "Late Cretaceous river delta, open floodplain, flowering plants",
-    "Other":               "ancient prehistoric landscape",
-    # Marine
-    "marine_Jurassic":     "warm shallow Jurassic sea, turquoise water, sunlit upper ocean",
-    "marine_Cretaceous":   "Late Cretaceous Western Interior Seaway, open ocean, surface light above",
-    "marine_Triassic":     "ancient Triassic shallow sea, clear tropical water",
-    "marine_Other":        "ancient prehistoric ocean, open deep water",
-    # Aerial
-    "aerial_Jurassic":     "vast Jurassic sky, forest canopy below, warm thermals",
-    "aerial_Cretaceous":   "Late Cretaceous sky, open floodplain below, horizon stretching wide",
-    "aerial_Triassic":     "open Triassic sky, sparse land far below",
-    "aerial_Other":        "vast prehistoric sky, open aerial expanse",
+    # Terrestrial — real-location language, no fantasy adjectives
+    "Triassic":            "dry floodplain, cracked mud, scattered ferns, low scrubby conifers",
+    "Jurassic":            "dense conifer forest, fallen logs, fern undergrowth, muddy ground, mist between trees",
+    "Cretaceous":          "river delta, sandy bank, low flowering shrubs, still water in background",
+    "Other":               "open scrubland, rocky ground, scattered vegetation",
+    # Marine — real ocean photography language
+    "marine_Devonian":     "warm shallow Devonian sea, murky green water, reef rubble on sandy bottom, algae-covered rocks",
+    "marine_Permian":      "dark Permian ocean, cold deep water, dim light from far above, empty open water",
+    "marine_Triassic":     "shallow coastal water, sandy bottom visible, light ripple patterns on seafloor",
+    "marine_Jurassic":     "shallow tropical sea, murky green water, particulate suspended in water column",
+    "marine_Cretaceous":   "open ocean, grey-green water, light filtering from surface above, sediment haze",
+    "marine_Miocene":      "warm coastal ocean, blue-green water, sunlight penetrating from above, kelp strands drifting",
+    "marine_Other":        "open ocean, deep water, dim ambient light from above",
+    # Aerial — real sky photography language
+    "aerial_Jurassic":     "overcast sky, distant tree line below, hazy horizon",
+    "aerial_Cretaceous":   "open sky, flat land far below, clouds at altitude, distant river visible",
+    "aerial_Triassic":     "pale sky, barren land below, heat distortion at low altitude",
+    "aerial_Other":        "open sky, distant ground, atmospheric haze at horizon",
+    # Arthropod — forest floor / swamp / underwater depending on species
+    "arthropod_Cambrian":  "shallow Cambrian sea floor, sandy bottom, microbial mat, murky water",
+    "arthropod_Ordovician":"shallow Ordovician sea, rocky bottom, scattered shells, dim filtered light",
+    "arthropod_Silurian":  "warm Silurian coastal water, sandy substrate, early coral formations",
+    "arthropod_Devonian":  "dark Devonian coastal shallows, rocky reef, murky green water",
+    "arthropod_Carboniferous":"dense Carboniferous swamp forest floor, giant ferns, fallen logs, humid mist, rotting vegetation",
+    "arthropod_Other":     "prehistoric forest floor, damp leaf litter, rotting logs, fern undergrowth",
+    # Plant — forest / swamp environments
+    "plant_Devonian":      "early Devonian floodplain, bare rocky soil, scattered pioneer vegetation, shallow pools",
+    "plant_Carboniferous": "dense Carboniferous coal swamp, standing water between roots, thick humid air, fern undergrowth",
+    "plant_Permian":       "dry Permian floodplain, sandy soil, scattered vegetation, seasonal drought",
+    "plant_Jurassic":      "lush Jurassic forest, dense fern undergrowth, dappled light, rich soil",
+    "plant_Cretaceous":    "Cretaceous river bank, sandy alluvial soil, early flowering ground cover, warm humid air",
+    "plant_Other":         "prehistoric landscape, rich soil, scattered vegetation",
 }
 
 CATEGORIES = ["lighting", "camera", "mood", "condition"]
@@ -217,6 +235,17 @@ MARINE_LIGHTING_BY_SPECIES = {
     "Liopleurodon":  ["murk_glow",           "deep_water_fade",    "underwater_caustics", "bioluminescent",    "sun_shaft_angle"],
     "Kronosaurus":   ["underwater_caustics", "murk_glow",          "surface_dapple",      "storm_dark_above",  "noon_column"],
     "Spinosaurus":   ["surface_dapple",      "dawn_surface",       "overcast",            "broken_cloud",      "golden_hour"],
+    # Sharks
+    "Megalodon":     ["noon_column",         "surface_dapple",     "sun_shaft_angle",    "underwater_caustics","storm_dark_above"],
+    "Cretoxyrhina":  ["underwater_caustics", "noon_column",        "surface_dapple",      "sun_shaft_angle",   "reef_scatter"],
+    "Helicoprion":   ["deep_water_fade",     "murk_glow",          "bioluminescent",      "twilight_depth",    "sun_shaft_angle"],
+    # Fish
+    "Dunkleosteus":  ["murk_glow",           "deep_water_fade",    "underwater_caustics", "reef_scatter",      "storm_dark_above"],
+    "Xiphactinus":   ["noon_column",         "underwater_caustics", "surface_dapple",     "sun_shaft_angle",   "reef_scatter"],
+    "Leedsichthys":  ["noon_column",         "sun_shaft_angle",    "surface_dapple",      "underwater_caustics","dawn_surface"],
+    # Other
+    "Archelon":      ["surface_dapple",      "noon_column",        "dawn_surface",        "underwater_caustics","reef_scatter"],
+    "Ammonite":      ["reef_scatter",        "underwater_caustics", "bioluminescent",     "murk_glow",         "noon_column"],
 }
 
 MARINE_LIGHTING_BY_MODE = {
@@ -277,6 +306,17 @@ MARINE_CONDITION_BY_SPECIES = {
     "Liopleurodon":  ["battle_scarred",   "dominant_prime",    "shark_bite_scar",   "belly_scars",        "tooth_missing_jaw"],
     "Kronosaurus":   ["battle_scarred",   "shark_bite_scar",   "dominant_prime",    "barnacle_growth",    "belly_scars"],
     "Spinosaurus":   ["blood_on_muzzle",  "algae_on_hide",     "moulting_skin",     "battle_scarred",     "barnacle_growth"],
+    # Sharks
+    "Megalodon":     ["battle_scarred",   "dominant_prime",    "shark_bite_scar",   "belly_scars",        "weathered_adult"],
+    "Cretoxyrhina":  ["dominant_prime",   "battle_scarred",    "shark_bite_scar",   "pristine_juvenile",  "salt_crust"],
+    "Helicoprion":   ["weathered_adult",  "algae_on_hide",     "dominant_prime",    "salt_crust",         "coral_scrape"],
+    # Fish
+    "Dunkleosteus":  ["battle_scarred",   "dominant_prime",    "algae_on_hide",     "coral_scrape",       "weathered_adult"],
+    "Xiphactinus":   ["dominant_prime",   "battle_scarred",    "pristine_juvenile", "shark_bite_scar",    "salt_crust"],
+    "Leedsichthys":  ["barnacle_growth",  "algae_on_hide",     "remora_attached",   "weathered_adult",    "coral_scrape"],
+    # Other
+    "Archelon":      ["barnacle_growth",  "algae_on_hide",     "weathered_adult",   "coral_scrape",       "shark_bite_scar"],
+    "Ammonite":      ["algae_on_hide",    "coral_scrape",      "pristine_juvenile", "barnacle_growth",    "weathered_adult"],
 }
 
 MARINE_CAMERA_BY_MODE = {
@@ -690,6 +730,7 @@ AERIAL_LIGHTING_BY_SPECIES = {
 AERIAL_LIGHTING_BY_MODE = {
     "soaring_thermal":["thermal_shimmer", "backlit_haze",     "halo_backlit",      "open_sky_flat",     "golden_hour"],
     "dive_strike":    ["storm_flash",     "dramatic_rim",     "backlit_haze",      "halo_backlit",      "golden_hour"],
+    "perched":        ["golden_hour",     "dawn_first_light", "overcast",          "dramatic_rim",      "dappled_canopy"],
 }
 
 AERIAL_MOOD_BY_LIGHTING = {
@@ -756,6 +797,7 @@ AERIAL_CAMERA_BY_MODE = {
     "aerial_overhead": ["above_down_dorsal","distant_speck",  "thermal_circle",    "cloud_frame",       "flight_tracking"],
     "tracking_side":   ["parallel_flight", "flight_tracking", "banking_turn",      "distant_speck",     "full_body_profile"],
     "dusk_long_exp":   ["sunrise_silhouette","distant_speck", "cloud_frame",       "thermal_circle",    "flight_tracking"],
+    "perched":         ["cliff_perch",     "closeup_portrait","wing_detail",       "tight_head",        "medium_shot"],
 }
 
 AERIAL_WEATHER_BY_MOOD = {
@@ -830,6 +872,24 @@ AERIAL_MODE_COMBO_BLOCKS = {
             "perched_alert":       "dive strike mode — can't be in perched mood",
             "thermal_drift":       "dive strike mode — diving steeply, not drifting",
             "dusk_roost_approach": "dive strike mode — striking, not roosting",
+        },
+    },
+    "perched": {
+        "behavior": {
+            "thermal_soaring":    "perched mode — not in flight",
+            "diving_strike":      "perched mode — not in flight",
+            "level_cruise":       "perched mode — not in flight",
+            "fish_snatch":        "perched mode — not in flight",
+            "flapping_climb":     "perched mode — not in flight",
+            "banking_turn":       "perched mode — not in flight",
+            "headwind_struggle":  "perched mode — not in flight",
+            "wind_correction":    "perched mode — not in flight",
+        },
+        "mood": {
+            "thermal_drift":      "perched mode — not thermaling",
+            "effortless_cruise":  "perched mode — not cruising",
+            "wind_buffet":        "perched mode — not in wind buffet",
+            "hunting_scan":       "perched mode — not in active aerial hunt",
         },
     },
 }
@@ -943,7 +1003,7 @@ def get_blocked(category: str, context: dict) -> dict:
 HYPERREALISM_STYLE = {
     "id":    24,
     "name":  "hyperrealism",
-    "value": "hyperrealistic, anatomically accurate, living animal skin texture, subsurface scattering, 8K texture",
+    "value": "hyperrealistic, anatomically accurate, living animal skin texture, natural imperfections, photographed in the wild",
 }
 
 # ---------------------------------------------------------------------------
@@ -971,14 +1031,27 @@ HABITAT_INTERACTION = {
         "packed dirt between digits, knuckle joints slightly bent under load"
     ),
     "marine": (
-        "body partially submerged, waterline crossing torso, water surface tension "
-        "visible against skin, light refraction on submerged limbs, "
+        "body partially submerged, waterline crossing torso, "
+        "body above waterline sharp and dry with water beading on skin, "
+        "body below waterline colour-shifted blue-green and slightly distorted by refraction, "
+        "water surface tension visible against skin, "
         "ripples radiating from body movement, wet skin above waterline glistening"
     ),
     "aerial": (
         "wing membrane taut and translucent against light, individual finger bones "
         "visible as structural ridges, air current shaping membrane surface, "
         "body suspended in open sky, no ground contact"
+    ),
+    "arthropod": (
+        "legs gripping surface, visible joint articulation, "
+        "exoskeleton reflecting ambient light, chitin texture detail, "
+        "body segments clearly defined, antennae or sensory organs visible"
+    ),
+    "plant": (
+        "rooted in soil, trunk base widening at ground, "
+        "visible root buttresses or root flare, "
+        "leaf litter and fallen fronds around base, "
+        "moss or lichen growing on lower bark"
     ),
 }
 
@@ -1002,6 +1075,16 @@ HABITAT_REALISM = {
         "thermal shimmer, open sky negative space, motion-sharp wings, "
         "raptor flight documentary"
     ),
+    "arthropod": (
+        "National Geographic macro insect photography, extreme shallow depth of field, "
+        "visible chitin texture, iridescent exoskeleton detail, "
+        "muted forest floor colours, entomology field photograph"
+    ),
+    "plant": (
+        "National Geographic botanical photography, natural light filtering through canopy, "
+        "shallow depth of field, bark texture detail, leaf venation visible, "
+        "botanical field photograph, muted natural colour"
+    ),
 }
 
 # ---------------------------------------------------------------------------
@@ -1017,6 +1100,14 @@ HABITAT_NEGATIVE = {
     "aerial": (
         "standing on ground, walking, sitting, grounded, "
         "feet on dirt, terrestrial pose, folded wings"
+    ),
+    "arthropod": (
+        "mammal, dinosaur, vertebrate, furry, feathered, "
+        "cartoon bug, cute insect, anime, chibi"
+    ),
+    "plant": (
+        "animal, dinosaur, insect, mammal, "
+        "cartoon plant, anime, potted plant, houseplant, modern garden"
     ),
 }
 
@@ -1050,7 +1141,11 @@ NEGATIVE_PROMPT = (
     "dinosaur fossil, fossil record, prehistoric bones, mineralized, stone cast, "
     "osteoderms, osteoderm, "
     # Indoor / built environment blockers
-    "indoors, interior, building, warehouse, arena, concrete floor"
+    "indoors, interior, building, warehouse, arena, concrete floor, "
+    # CGI / digital environment blockers
+    "digital matte painting, rendered background, CGI environment, concept art, "
+    "illustration, painted background, 3D render, Unreal Engine, volumetric god rays, "
+    "hyper-saturated, fantasy landscape, perfect symmetry, smooth gradient sky"
 )
 
 # Species-specific additions that only apply in canvas / full-body modes
@@ -1074,7 +1169,7 @@ OUTPUT_MODES: dict[str, dict] = {
         "canvas_print":  False,
         "full_body":     False,
         "needs_placement": False,
-        "habitats":      ["terrestrial", "marine", "aerial"],
+        "habitats":      ["terrestrial", "marine", "aerial", "arthropod", "plant"],
     },
     "canvas": {
         "display":       "Full body canvas print",
@@ -1084,27 +1179,27 @@ OUTPUT_MODES: dict[str, dict] = {
         "canvas_print":  True,
         "full_body":     True,
         "needs_placement": True,
-        "habitats":      ["terrestrial", "marine", "aerial"],
+        "habitats":      ["terrestrial", "marine", "aerial", "arthropod", "plant"],
     },
     "environmental": {
         "display":       "Environmental wide shot",
-        "desc":          "animal small in vast landscape, habitat dominant",
-        "fixed_camera":  "Canon EOS R5 16-35mm f/2.8, ultra-wide, animal under 20% of frame",
-        "composition":   "animal small in vast prehistoric landscape, habitat dominant",
+        "desc":          "subject small in vast landscape, habitat dominant",
+        "fixed_camera":  "Canon EOS R5 16-35mm f/2.8, ultra-wide, subject under 20% of frame",
+        "composition":   "subject small in vast prehistoric landscape, habitat dominant",
         "canvas_print":  False,
         "full_body":     True,
         "needs_placement": False,
-        "habitats":      ["terrestrial", "marine", "aerial"],
+        "habitats":      ["terrestrial", "marine", "aerial", "arthropod", "plant"],
     },
     "extreme_closeup": {
         "display":       "Extreme detail close-up",
         "desc":          "macro, single surface dominant, texture abstracted",
         "fixed_camera":  "Canon EOS R5 100mm macro f/8, razor-thin depth of field",
-        "composition":   "single anatomical surface fills frame, texture dominant",
+        "composition":   "single surface fills frame, texture dominant",
         "canvas_print":  False,
         "full_body":     False,
         "needs_placement": False,
-        "habitats":      ["terrestrial", "marine", "aerial"],
+        "habitats":      ["terrestrial", "marine", "aerial", "arthropod", "plant"],
     },
     "action_freeze": {
         "display":       "Action freeze frame",
@@ -1203,6 +1298,16 @@ OUTPUT_MODES: dict[str, dict] = {
         "desc":          "steep dive, wings tucked, speed lines implied",
         "fixed_camera":  "Canon EOS R5 400mm f/2.8, 1/4000s freeze, tracking downward",
         "composition":   "steep diving angle, wings partially folded, speed and gravity implied",
+        "canvas_print":  False,
+        "full_body":     True,
+        "needs_placement": False,
+        "habitats":      ["aerial"],
+    },
+    "perched": {
+        "display":       "Perched on cliff / roost",
+        "desc":          "perched on rock or cliff edge, wings folded, grounded detail",
+        "fixed_camera":  "Canon EOS R5 600mm f/4, telephoto, cliff-level angle",
+        "composition":   "perched on rocky outcrop or cliff edge, wings folded at sides, talons gripping rock",
         "canvas_print":  False,
         "full_body":     True,
         "needs_placement": False,
@@ -1377,11 +1482,13 @@ def pick(label: str, rows: list, display_fn, suggestions=None, blocked=None, sug
 
 
 def select_habitat() -> str:
-    """Present the 3 habitat types and return the chosen key."""
+    """Present the habitat types and return the chosen key."""
     HABITATS = [
         ("terrestrial", "Terrestrial", "land-based dinosaurs — ground, forest, plains"),
-        ("marine",      "Marine",      "ocean and water-dwelling species — submerged, surface"),
+        ("marine",      "Marine",      "ocean and water-dwelling species — sharks, reptiles, fish"),
         ("aerial",      "Aerial",      "flying species — pterosaurs, in-flight, soaring"),
+        ("arthropod",   "Arthropods",  "prehistoric insects, arachnids, and giant invertebrates"),
+        ("plant",       "Plants",      "prehistoric flora — ferns, cycads, conifers, early flowers"),
     ]
     print(f"\n  {hdr('Select habitat type')}")
     print(f"  {C.DIM}" + "─" * 60 + C.RESET)
@@ -1471,11 +1578,73 @@ def pick_species(conn: sqlite3.Connection, habitat: str = "terrestrial"):
 
     if len(rows) == 1:
         chosen = rows[0]
-        print(f"\n  {hdr('Select a dinosaur species')}")
+        label = _species_label(habitat)
+        print(f"\n  {hdr(label)}")
         print(f"  {ok('✓')} {ok(fmt(chosen))}  {dim('(only species for this habitat)')}\n")
         return chosen
 
-    return pick("Select a dinosaur species", rows, fmt)
+    # Group by diet for terrestrial and marine, show section headers
+    if habitat == "terrestrial":
+        groups = [("Carnivore", "CARNIVORES"), ("Herbivore", "HERBIVORES")]
+    elif habitat == "marine":
+        groups = [("Carnivore", "PREDATORS"), ("Piscivore", "FISH-EATERS"),
+                  ("Filter-feeder", "FILTER FEEDERS"), ("Omnivore", "OMNIVORES")]
+    else:
+        groups = []
+
+    label = _species_label(habitat)
+    if groups:
+        return _pick_grouped(label, rows, fmt, groups)
+    return pick(label, rows, fmt)
+
+
+def _species_label(habitat):
+    labels = {
+        "terrestrial": "Select a dinosaur species",
+        "marine":      "Select a marine species",
+        "aerial":      "Select an aerial species",
+        "plant":       "Select a plant species",
+        "arthropod":   "Select an arthropod species",
+    }
+    return labels.get(habitat, "Select a species")
+
+
+def _pick_grouped(label, rows, display_fn, groups):
+    """Numbered menu with diet group headers. Numbers are continuous across groups."""
+    print(f"\n  {hdr(label)}")
+    print(f"  {C.DIM}" + "─" * 60 + C.RESET)
+
+    ordered = []
+    for diet_val, group_label in groups:
+        members = [r for r in rows if (r["diet"] or "") == diet_val]
+        if members:
+            print(f"  {C.BOLD_CYAN}  {group_label}{C.RESET}")
+            for r in members:
+                idx = len(ordered) + 1
+                ordered.append(r)
+                print(f"  {C.DIM}{idx:>2}.{C.RESET}  {opt(display_fn(r))}")
+    # Any remaining species not in a group
+    grouped_names = {r["name"] for dv, _ in groups for r in rows if (r["diet"] or "") == dv}
+    remaining = [r for r in rows if r["name"] not in {o["name"] for o in ordered}]
+    if remaining:
+        print(f"  {C.BOLD_CYAN}  OTHER{C.RESET}")
+        for r in remaining:
+            idx = len(ordered) + 1
+            ordered.append(r)
+            print(f"  {C.DIM}{idx:>2}.{C.RESET}  {opt(display_fn(r))}")
+
+    print()
+    while True:
+        try:
+            raw = input(f"  {C.BOLD_CYAN}Choose 1–{len(ordered)}:{C.RESET} ").strip()
+            choice = int(raw)
+            if 1 <= choice <= len(ordered):
+                chosen = ordered[choice - 1]
+                print(f"  {ok('✓')} {ok(display_fn(chosen))}\n")
+                return chosen
+        except (ValueError, EOFError):
+            pass
+        print(f"  {warn('Invalid choice — try again')}")
 
 
 def pick_parameter(conn: sqlite3.Connection, category: str, name_only: bool = False, habitat: str = None,
@@ -1551,7 +1720,14 @@ def make_feet_fix_prompt(species, mj_style: str, stylize: int = 20) -> str:
     habitat = species["habitat"] or "terrestrial"
     name    = species["name"]
 
-    if habitat == "marine":
+    if habitat == "arthropod":
+        core = (
+            f"extreme close-up of {name} legs, jointed exoskeleton limbs, "
+            "chitinous segments with natural scratches and wear, "
+            "fine sensory hairs along leg segments, "
+            "tarsal claws gripping surface, real macro insect photography"
+        )
+    elif habitat == "marine":
         core = (
             f"extreme close-up of {name} flipper, paddle limb, "
             "individual digit bones visible under skin tension, wet glistening skin, "
@@ -1606,7 +1782,8 @@ def make_environment_fix_prompt(species, environment: str, weather_param, lighti
         "no animal in frame, habitat only"
     )
 
-    neg = "painted sky, gradient sky, CGI sky, illustration, studio background, digital art, animal, dinosaur"
+    neg = ("painted sky, gradient sky, CGI sky, illustration, studio background, digital art, "
+           "animal, dinosaur, 3D render, concept art, matte painting, hyper-saturated, volumetric god rays")
     flags = f"--no {neg} --style {mj_style} --stylize {stylize}"
     return f"{core} {flags}"
 
@@ -1617,18 +1794,58 @@ def make_mouth_fix_prompt(species, mj_style: str, stylize: int = 20) -> str:
     habitat = species["habitat"] or "terrestrial"
     name    = species["name"]
 
-    if habitat == "marine":
-        # Marine species — jaw emerging from water, water interaction prominent
+    if habitat == "marine" and name in ("Megalodon", "Cretoxyrhina"):
+        # Sharks — rows of triangular teeth, no gums like reptiles
+        core = (
+            f"extreme close-up of {name} open mouth, "
+            "multiple rows of triangular teeth, serrated edges visible, "
+            "teeth white at tip darkening toward root, replacement teeth behind front row, "
+            "pink gum tissue receding at tooth base, water streaming through open jaw, "
+            "real wildlife photograph, great white shark jaw reference"
+        )
+    elif habitat == "marine" and name == "Helicoprion":
+        # Spiral tooth whorl — totally unique
+        core = (
+            f"extreme close-up of {name} lower jaw, "
+            "spiral whorl of teeth curling under jaw like a circular saw, "
+            "smallest oldest teeth at centre, largest newest at outer edge, "
+            "individual teeth conical and sharp, whorl wet and glistening, "
+            "no upper teeth visible, cartilaginous jaw smooth, "
+            "real wildlife photograph"
+        )
+    elif habitat == "marine" and name == "Dunkleosteus":
+        # Bony jaw blades — no true teeth
+        core = (
+            f"extreme close-up of {name} jaw, "
+            "self-sharpening bony jaw blades instead of teeth, "
+            "blades interlocking like shears, worn and chipped edges, "
+            "algae growing in crevices of bony plates, "
+            "armored head plates visible around jaw, water dripping from jaw edge, "
+            "real wildlife photograph"
+        )
+    elif habitat == "marine" and name in ("Archelon", "Ammonite"):
+        # Beaked species — no teeth
+        core = (
+            f"extreme close-up of {name} mouth, "
+            "hooked beak with worn keratin edges, "
+            "algae and mineral staining on beak surface, "
+            "wet skin around mouth, water dripping, "
+            "real wildlife photograph, sea turtle mouth reference"
+        )
+    elif habitat == "marine":
+        # Default marine reptiles — jaw split by waterline
         core = (
             f"extreme close-up of {name} jaw at water surface, "
+            "waterline crossing lower jaw, "
+            "upper jaw above water sharp and dry with water droplets beading on scales, "
+            "lower jaw below waterline visibly distorted by refraction, colour shifted blue-green, "
+            "slightly blurred and warped through water surface, "
             "teeth individually different lengths and curvature, "
-            "waterline crossing lower jaw, water droplets beading on chin scales, "
             "green algae staining on jaw skin, debris and grit caught between teeth, "
             "wet pink gum tissue visible at tooth bases, gum line receded and raw, "
-            "flies resting on nostril edge and lip fold, animal unbothered, "
             "real wildlife photograph, saltwater crocodile jaw reference"
         )
-    elif diet in ("Carnivore", "Piscivore"):
+    elif diet in ("Carnivore", "Piscivore", "Filter-feeder"):
         core = (
             f"extreme close-up of {name} open jaw, "
             "each tooth a different length and curvature, "
@@ -1746,7 +1963,27 @@ def assemble_prompt(
     # ── SECTION 2: INTERACTION ────────────────────────────────────────────────
     # Habitat-specific contact/physics block.
     # Terrestrial: feet/ground. Marine: water surface. Aerial: wing/air.
-    interaction = HABITAT_INTERACTION.get(habitat, HABITAT_INTERACTION["terrestrial"])
+    # Mode overrides prevent repetitive compositions.
+    if output_mode == "perched":
+        interaction = (
+            "talons gripping rocky edge, each digit wrapped around stone, "
+            "wings folded tight against body, visible wing joint angles, "
+            "weight settled on feet, perched posture"
+        )
+    elif output_mode == "underwater":
+        interaction = (
+            "fully submerged, water pressing against body from all sides, "
+            "light filtering from surface above, suspended in open water, "
+            "particulate and sediment drifting past"
+        )
+    elif output_mode == "surface_break":
+        interaction = (
+            "body erupting through water surface, spray and foam around torso, "
+            "water sheeting off skin, split between air and water, "
+            "surface tension breaking around body"
+        )
+    else:
+        interaction = HABITAT_INTERACTION.get(habitat, HABITAT_INTERACTION["terrestrial"])
 
     # ── SECTION 3: ENVIRONMENT ────────────────────────────────────────────────
     # Habitat and period setting. Composition framing appended here.
@@ -1757,6 +1994,9 @@ def assemble_prompt(
         environment = ENVIRONMENTS.get(env_key, ENVIRONMENTS.get(f"{habitat}_Other", ENVIRONMENTS["Other"]))
     else:
         environment = ENVIRONMENTS.get(period, ENVIRONMENTS["Other"])
+
+    # Anti-CGI anchor — force real-location photography feel on every background
+    environment = f"{environment}, real outdoor location, imperfect natural detail, uneven terrain"
 
     comp_template = mode_cfg["composition"]
     if comp_template == "PLACEMENT":
@@ -1797,7 +2037,11 @@ def assemble_prompt(
 
     # ── MJ FLAGS ──────────────────────────────────────────────────────────────
     neg = NEGATIVE_PROMPT
-    habitat_neg = HABITAT_NEGATIVE.get(habitat, "")
+    if output_mode == "perched":
+        # Perched mode: don't block folded wings or grounded poses
+        habitat_neg = ""
+    else:
+        habitat_neg = HABITAT_NEGATIVE.get(habitat, "")
     if habitat_neg:
         neg = f"{neg}, {habitat_neg}"
     flags = f"--no {neg} --style {mj_style} --stylize {stylize} --q {quality:g}"
@@ -1919,6 +2163,55 @@ def print_prompt_box(prompt_text: str) -> None:
     print(border_bottom)
 
 
+SREF_FILE = Path(__file__).parent / "sref_urls.json"
+
+
+def load_sref_urls() -> dict:
+    """Load species → [url, ...] mapping from sref_urls.json."""
+    if not SREF_FILE.exists():
+        return {}
+    with open(SREF_FILE) as f:
+        return json.load(f)
+
+
+def prompt_sref_suggestion(species_name: str):
+    """After species select, offer known --sref URLs if any exist. Returns URL or None."""
+    urls = load_sref_urls()
+    species_urls = urls.get(species_name, [])
+    if not species_urls:
+        return None
+
+    print(f"\n  {hdr(f'STYLE REFERENCES — {species_name}')}")
+    print(f"  {C.DIM}" + "─" * 60 + C.RESET)
+    for i, entry in enumerate(species_urls, 1):
+        if isinstance(entry, dict):
+            label = entry.get("label", f"Reference {i}")
+            url = entry["url"]
+        else:
+            label = f"Reference {i}"
+            url = entry
+        short_url = url[:50] + "…" if len(url) > 50 else url
+        print(f"  {C.DIM}{i:>2}.{C.RESET}  {C.BRIGHT_WHITE}{label}{C.RESET}")
+        print(f"      {dim(short_url)}")
+    print(f"  {C.DIM} 0.{C.RESET}  {C.WHITE}Skip — no style reference{C.RESET}")
+
+    while True:
+        try:
+            raw = input(f"\n  {hdr('Choose 0–' + str(len(species_urls)) + ':')}  ").strip()
+            choice = int(raw)
+            if choice == 0:
+                return None
+            if 1 <= choice <= len(species_urls):
+                entry = species_urls[choice - 1]
+                url = entry["url"] if isinstance(entry, dict) else entry
+                label = entry.get("label", f"Reference {choice}") if isinstance(entry, dict) else f"Reference {choice}"
+                print(f"  {ok('✓')} {ok(label)}")
+                return url
+        except (ValueError, EOFError):
+            pass
+        print(f"  {warn('Invalid choice — try again')}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Interactively build a Midjourney dinosaur art prompt."
@@ -1961,6 +2254,12 @@ def main() -> None:
     science = fetch_species_science(conn, species["id"])
     notes   = fetch_research_notes(conn, species["id"])
     display_science_brief(species, science, notes)
+
+    # --- Style reference suggestion (only if --sref not already passed) ---
+    if not args.sref:
+        suggested_sref = prompt_sref_suggestion(species["name"])
+        if suggested_sref:
+            args.sref = suggested_sref
 
     required_params = fetch_species_required_params(conn, species["id"])
     if required_params:
@@ -2010,21 +2309,28 @@ def main() -> None:
         print(f"  {hdr('CAMERA')} {dim(f'(fixed for {mode_display})')}")
         print(f"  {dim(cam_preview)}\n")
 
-    mood_param = _cpick("mood", f"for {lighting_param['name'].replace('_', ' ')} lighting")
-    ctx["mood"] = mood_param["name"]
+    # Plants skip mood/behavior/condition — they don't have animal states
+    if habitat == "plant":
+        mood_param      = {"id": 0, "name": "still", "value": "motionless, no wind, static"}
+        condition_param = {"id": 0, "name": "healthy", "value": "healthy growth, no damage"}
+        behavior_param  = {"id": 0, "name": "growing", "value": "natural growth posture"}
+        print(f"  {dim('(mood/behavior/condition skipped for plants)')}\n")
+    else:
+        mood_param = _cpick("mood", f"for {lighting_param['name'].replace('_', ' ')} lighting")
+        ctx["mood"] = mood_param["name"]
 
-    condition_param = _cpick("condition", f"for {species['name']} · {mood_param['name'].replace('_', ' ')}")
-    ctx["condition"] = condition_param["name"]
+        condition_param = _cpick("condition", f"for {species['name']} · {mood_param['name'].replace('_', ' ')}")
+        ctx["condition"] = condition_param["name"]
 
-    behavior_param = _cpick("behavior", f"for {mood_param['name'].replace('_', ' ')} mood")
-    ctx["behavior"] = behavior_param["name"]
+        behavior_param = _cpick("behavior", f"for {mood_param['name'].replace('_', ' ')} mood")
+        ctx["behavior"] = behavior_param["name"]
 
     # Weather: filtered by lighting sky-state + context-reactive suggestions + blocking
     weather_sug = get_suggestions("weather", ctx)
     weather_blk = get_blocked("weather", ctx)
     weather_param = pick_weather(conn, lighting_param, habitat=habitat,
                                  suggestions=weather_sug, blocked=weather_blk,
-                                 suggest_label=f"for {mood_param['name'].replace('_', ' ')} mood")
+                                 suggest_label=f"for {(mood_param['name'] or '').replace('_', ' ')} mood")
     ctx["weather"] = weather_param["name"]
 
     # --- Build prompt ---
@@ -2058,13 +2364,13 @@ def main() -> None:
 
     # --- Build fix prompts ---
     period = species["period"] or "Other"
-    if habitat in ("marine", "aerial"):
+    if habitat in ("marine", "aerial", "arthropod", "plant"):
         env_key     = f"{habitat}_{period}"
         environment = ENVIRONMENTS.get(env_key, ENVIRONMENTS.get(f"{habitat}_Other", ENVIRONMENTS["Other"]))
     else:
         environment = ENVIRONMENTS.get(period, ENVIRONMENTS["Other"])
 
-    feet_fix_prompt = make_feet_fix_prompt(species, mj_style=args.style)
+    feet_fix_prompt = None if habitat == "plant" else make_feet_fix_prompt(species, mj_style=args.style)
     env_fix_prompt  = make_environment_fix_prompt(
         species, environment, weather_param, lighting_param, mj_style=args.style
     )
@@ -2089,17 +2395,21 @@ def main() -> None:
     print(f"\n  {hdr('/imagine prompt:')}")
     print(f"  {C.BRIGHT_WHITE}{prompt_text}{C.RESET}\n")
 
-    # STEP 2 — Extremity fix (feet / flipper / wing)
-    step2_labels = {"terrestrial": ("FEET FIX", "feet"), "marine": ("FLIPPER FIX", "flippers"), "aerial": ("WING FIX", "wings")}
-    step2_title, step2_region = step2_labels.get(habitat, step2_labels["terrestrial"])
-    feet_fix_clean = strip_mj_params(feet_fix_prompt)
-    validate_prompt(feet_fix_clean, allow_mj_params=False, label=f"STEP 2 {step2_region} fix")
-    print(f"{C.BOLD_CYAN}{'═' * 64}{C.RESET}")
-    print(f"  {C.BOLD_CYAN}STEP 2 — {step2_title}{C.RESET}  {C.DIM}[Vary Region → paint over {step2_region}]{C.RESET}")
-    print(f"{C.BOLD_CYAN}{'═' * 64}{C.RESET}")
-    print_prompt_box(feet_fix_clean)
-    print(f"\n  {hdr('/imagine prompt:')}")
-    print(f"  {C.BRIGHT_WHITE}{feet_fix_clean}{C.RESET}\n")
+    # STEP 2 — Extremity fix (feet / flipper / wing / legs) — skipped for plants
+    if feet_fix_prompt:
+        step2_labels = {
+            "terrestrial": ("FEET FIX", "feet"), "marine": ("FLIPPER FIX", "flippers"),
+            "aerial": ("WING FIX", "wings"), "arthropod": ("LEGS/APPENDAGE FIX", "legs"),
+        }
+        step2_title, step2_region = step2_labels.get(habitat, step2_labels["terrestrial"])
+        feet_fix_clean = strip_mj_params(feet_fix_prompt)
+        validate_prompt(feet_fix_clean, allow_mj_params=False, label=f"STEP 2 {step2_region} fix")
+        print(f"{C.BOLD_CYAN}{'═' * 64}{C.RESET}")
+        print(f"  {C.BOLD_CYAN}STEP 2 — {step2_title}{C.RESET}  {C.DIM}[Vary Region → paint over {step2_region}]{C.RESET}")
+        print(f"{C.BOLD_CYAN}{'═' * 64}{C.RESET}")
+        print_prompt_box(feet_fix_clean)
+        print(f"\n  {hdr('/imagine prompt:')}")
+        print(f"  {C.BRIGHT_WHITE}{feet_fix_clean}{C.RESET}\n")
 
     # STEP 3 — Environment fix
     env_fix_clean = strip_mj_params(env_fix_prompt)
@@ -2111,16 +2421,17 @@ def main() -> None:
     print(f"\n  {hdr('/imagine prompt:')}")
     print(f"  {C.BRIGHT_WHITE}{env_fix_clean}{C.RESET}\n")
 
-    # STEP 4 — Mouth fix
-    mouth_fix_prompt = make_mouth_fix_prompt(species, mj_style=args.style)
-    mouth_fix_clean  = strip_mj_params(mouth_fix_prompt)
-    validate_prompt(mouth_fix_clean, allow_mj_params=False, label="STEP 4 mouth fix")
-    print(f"{C.BOLD_CYAN}{'═' * 64}{C.RESET}")
-    print(f"  {C.BOLD_CYAN}STEP 4 — MOUTH FIX{C.RESET}  {C.DIM}[Vary Region → paint over mouth/jaw]{C.RESET}")
-    print(f"{C.BOLD_CYAN}{'═' * 64}{C.RESET}")
-    print_prompt_box(mouth_fix_clean)
-    print(f"\n  {hdr('/imagine prompt:')}")
-    print(f"  {C.BRIGHT_WHITE}{mouth_fix_clean}{C.RESET}\n")
+    # STEP 4 — Mouth fix — skipped for plants
+    if habitat != "plant":
+        mouth_fix_prompt = make_mouth_fix_prompt(species, mj_style=args.style)
+        mouth_fix_clean  = strip_mj_params(mouth_fix_prompt)
+        validate_prompt(mouth_fix_clean, allow_mj_params=False, label="STEP 4 mouth fix")
+        print(f"{C.BOLD_CYAN}{'═' * 64}{C.RESET}")
+        print(f"  {C.BOLD_CYAN}STEP 4 — MOUTH FIX{C.RESET}  {C.DIM}[Vary Region → paint over mouth/jaw]{C.RESET}")
+        print(f"{C.BOLD_CYAN}{'═' * 64}{C.RESET}")
+        print_prompt_box(mouth_fix_clean)
+        print(f"\n  {hdr('/imagine prompt:')}")
+        print(f"  {C.BRIGHT_WHITE}{mouth_fix_clean}{C.RESET}\n")
 
     # --- Save ---
     saved_param_ids = (
