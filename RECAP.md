@@ -44,6 +44,8 @@ No category bleed between sections. Earlier = richer, later = shorter/supportive
    - Terrestrial: feet weight-bearing, toe contact, claw wear
    - Marine: body submerged, waterline crossing torso, water tension against skin
    - Aerial: wing membrane taut, finger bones as structural ridges, translucent membrane
+   - Arthropod: massive body weight pressing into ground, legs thick as branches, towering over ferns, ground-level camera looking up
+   - Plant: rooted in soil, trunk base widening, root buttresses, leaf litter, moss on bark
 3. **Environment** — period + habitat setting, composition framing
 4. **Lighting** — one lighting condition + one weather phrase
 5. **Camera** — lens spec only
@@ -54,14 +56,14 @@ Deduplication pass strips exact repeated clauses before final join.
 - **Terrestrial:** National Geographic wildlife photography, telephoto bokeh
 - **Marine:** National Geographic ocean wildlife photography, underwater caustics, water surface refraction
 - **Aerial:** National Geographic bird-in-flight photography, atmospheric haze
-- **Arthropod:** National Geographic macro insect photography, extreme detail, shallow depth of field
+- **Arthropod:** National Geographic wildlife photography (NOT macro — treats them as large animals), telephoto bokeh
 - **Plant:** National Geographic botanical photography, natural forest light
 
 ### Habitat-Specific Negative Prompts (`HABITAT_NEGATIVE`)
 - **Terrestrial:** (base negative only)
 - **Marine:** dry land, standing on ground, desert, forest floor, no water, dry skin, dusty
 - **Aerial:** standing on ground, walking, sitting, grounded, feet on dirt, terrestrial pose, folded wings
-- **Arthropod:** vertebrate anatomy, fur, feathers, mammal, dinosaur, bones, endoskeleton
+- **Arthropod:** vertebrate anatomy, fur, feathers, mammal, small insect, tiny bug, macro photography of small creature, normal sized, modern insect
 - **Plant:** animal, creature, dinosaur, insect, moving, walking, eyes, mouth
 
 ### Lighting → Weather Compatibility
@@ -74,6 +76,7 @@ Deduplication pass strips exact repeated clauses before final join.
 - **Style:** `"hyperrealistic, anatomically accurate, living animal skin texture, subsurface scattering, 8K texture"`
 - **Mouth (carnivore):** `"yellowed uneven teeth, wet interior mouth, heavy saliva stranding between teeth"`
 - **Mouth (herbivore):** `"wet lips parted, grinding teeth worn flat, saliva catching light along jaw"`
+- **Mouth (arthropod):** `"mandibles or chelicerae visible, no vertebrate mouth"` — skips teeth/saliva entirely
 - **Negative prompt:** anatomy errors, studio blockers, fossil/skeleton blockers, indoor blockers + habitat-specific
 
 ### Modular Vary Region Workflow — 4 Steps
@@ -83,9 +86,9 @@ Every run outputs four labeled prompts. MJ flags stripped from Steps 2–4 (past
 | Step | Target | Stylize | Notes |
 |------|--------|---------|-------|
 | **STEP 1** | Full image | 100 (default) | Includes all MJ flags. Paste into `/imagine`. |
-| **STEP 2** | Feet/flippers/wings | 20 | Habitat + diet aware. Terrestrial → talons/elephant feet. Marine → flipper. Aerial → wing membrane. |
+| **STEP 2** | Feet/flippers/wings/legs | 20 | Habitat + diet aware. Terrestrial → talons/elephant feet. Marine → flipper. Aerial → wing membrane. Arthropod → jointed exoskeleton legs. |
 | **STEP 3** | Background | 30 | Uses same lighting + weather as main. Specifies no animal in frame. |
-| **STEP 4** | Mouth/jaw | 20 | Diet + habitat aware. Carnivore → tooth decay, debris, flies, saliva strand, croc jaw ref. Marine → jaw at waterline, algae, water beading. Herbivore → worn molars, plant fibre. |
+| **STEP 4** | Mouth/jaw/mouthparts | 20 | Diet + habitat aware. Carnivore → tooth decay, debris, flies, saliva strand, croc jaw ref. Marine → jaw at waterline, algae, water beading. Herbivore → worn molars, plant fibre. Arthropod → species-specific (chelicerae for scorpions, circular mouth for Anomalocaris, mandibles for others). |
 
 ### Schema Validator
 `validate_prompt(prompt, allow_mj_params, label)`:
@@ -328,8 +331,18 @@ Every menu now shows a `★ SUGGESTED` banner (5 picks, highlighted in the numbe
 - Added **Plant** habitat: 8 prehistoric plants (Lepidodendron, Calamites, Glossopteris, Williamsonia, Araucaria, Archaefructus, Wattieza, Sigillaria)
 - Both habitats have full ENVIRONMENTS, HABITAT_INTERACTION, HABITAT_REALISM, and HABITAT_NEGATIVE entries
 - All terrestrial-compatible parameters extended to include arthropod and plant habitats
-- Arthropod feet fix: jointed exoskeleton legs, chitinous segments, tarsal claws, macro insect photography
+- Arthropod feet fix: jointed exoskeleton legs, chitinous segments, tarsal claws
 - Plants skip mood/behavior/condition selection (no animal behavior), skip Step 2 (feet fix) and Step 4 (mouth fix)
+
+#### Arthropod Scale Fix (tested → looked like normal-sized modern bugs)
+- **Root cause 1: "macro insect photography"** in realism anchor told MJ to shoot them like tiny bugs under a macro lens. Changed to **"wildlife photography, photographed like a large animal not a small insect"**
+- **Root cause 2: No environmental scale cues** in descriptions. "Giant scorpion up to 70cm" means nothing to MJ. Rewrote all 8 arthropod descriptions with size comparisons: *"as large as an eagle"*, *"longer than a car"*, *"as long as a crocodile"*, *"pincers the size of human fists"*, *"standing among ferns that barely reach its back"*
+- **Root cause 3: Vertebrate mouth language** injected into arthropods ("yellowed teeth, saliva stranding"). Replaced with `"mandibles or chelicerae visible, no vertebrate mouth"` in subject block
+- Added species-specific arthropod mouth fix prompts (Step 4): chelicerae for scorpions/eurypterids, circular tooth-plate mouth for Anomalocaris, mandibles for insects
+- Step 4 label changes to "MOUTHPART FIX" / "mandibles/chelicerae" for arthropods
+- Interaction block rewritten with weight/mass language: "massive body weight pressing into ground, legs thick as branches, towering over surrounding ferns"
+- Negative prompt expanded: added "small insect, tiny bug, macro photography of small creature, normal sized, modern insect, house bug"
+- Notes rewritten from "Use macro photography" to "Photograph like a bird of prey / large reptile / alligator-sized predator"
 
 #### Diet-Grouped Species Menus
 - Terrestrial species menu now grouped by **Carnivore** / **Herbivore** with section headers
@@ -350,23 +363,30 @@ Every menu now shows a `★ SUGGESTED` banner (5 picks, highlighted in the numbe
 - **--sref suggestion system:** Live — prompts user after species select when URLs are available in `sref_urls.json`
 - **Perched mode:** Active for aerial species — unblocks perched behaviors, blocks flight behaviors
 - **Marine waterline refraction:** Explicit above/below visual difference in interaction and mouth fix prompts
-- **Context-reactive branching:** Fully implemented across all 3 habitats
-- **Invalid combo blocking:** Active across all 3 habitats
-- **Modular 4-step workflow:** All 4 steps still output per run, now with species-specific mouth fixes
-- **Images looking very close to real wildlife photography** — Triceratops and Kronosaurus validated
-- **42 species** across 5 habitats with diet-grouped menus
+- **Context-reactive branching:** Fully implemented for terrestrial, marine, aerial — **arthropod and plant use generic fallback** (no suggestions or blocking yet)
+- **Invalid combo blocking:** Active for terrestrial, marine, aerial — not yet implemented for arthropod/plant
+- **Modular 4-step workflow:** All 4 steps output per run; arthropods get species-specific mouthpart fixes; plants skip Steps 2 and 4
+- **Diet-grouped menus:** Terrestrial (Carnivore/Herbivore) and Marine (Predators/Fish-Eaters/Filter Feeders/Omnivores) species menus have section headers
+- **Arthropod scale fix applied** — environmental scale cues, wildlife photography framing, no vertebrate mouth language
+- **Arthropod results:** First test showed Megalograptus and Pulmonoscorpius looking like normal-sized modern bugs. Scale fix committed but **not yet re-tested**
+
+## Known Issues
+- **Arthropod scale not yet validated** — scale fix (environmental comparisons, wildlife photography realism, anti-macro negatives) committed but needs re-testing with MJ
+- **Plant habitat untested** — no MJ outputs generated yet for any plant species
+- **Arthropod/plant have no context-reactive suggestions** — `get_suggestions()` and `get_blocked()` fall through to empty defaults for these habitats
+- **Git LFS not installed** — pushes require `--no-verify` to bypass LFS pre-push hook; `.gitattributes` tracks site assets via LFS
 
 ## Next Priorities
-1. **Test arthropod habitat** — run Meganeura, Arthropleura, Jaekelopterus and check anatomy/realism
+1. **Re-test arthropods with scale fix** — run Pulmonoscorpius, Megalograptus, Arthropleura again and compare to pre-fix results
 2. **Test plant habitat** — run Lepidodendron, Araucaria, Wattieza and verify botanical photography feel
-3. **Add arthropod/plant-specific suggestions and blocking** — context-reactive branching for new habitats (currently uses generic fallback)
-4. **Printify automation** — user needs to regenerate API key, then build folder-watcher → upscale → upload → draft pipeline
-5. **Populate `sref_urls.json`** — upload real animal analogue photos to Discord, collect URLs per species
-6. **Add terrestrial species** — Pachycephalosaurus, Carnotaurus, Therizinosaurus, Allosaurus
+3. **Add arthropod/plant-specific suggestions and blocking** — context-reactive branching for new habitats (species-specific lighting, mood-driven behavior, invalid combo rules)
+4. **Add terrestrial species** — Pachycephalosaurus, Carnotaurus, Therizinosaurus, Allosaurus
+5. **Printify automation** — user needs to regenerate API key, then build folder-watcher → upscale → upload → draft pipeline
+6. **Populate `sref_urls.json`** — upload real animal analogue photos to Discord, collect URLs per species
 7. **Build batch mode** — generate N prompts unattended with randomized selections for variety
 8. **Canvas print formatting script** — upscale + bleed margins for Printify canvas sizes (8×10, 12×18, 20×24, 24×32)
 9. **Add scene composition presets** — "predator/prey encounter", "herd at waterhole", "two species sharing habitat" for multi-subject scenes
-10. **Add arthropod-specific mouth fix** — mandibles, chelicerae, spiral proboscis depending on species
+10. **Install Git LFS** — `brew install git-lfs && git lfs install` to stop needing `--no-verify` on every push
 
 ## Reference Photos to Use as `--sref`
 - Komodo dragon foot (digits separated, claws at different angles, leathery pads)
@@ -378,3 +398,7 @@ Every menu now shows a `★ SUGGESTED` banner (5 picks, highlighted in the numbe
 - **Nautilus shell** (spiral pattern, iridescent nacre, ribbed surface) — for Ammonite
 - **Leatherback turtle** (leathery shell, barnacles, massive flippers) — for Archelon
 - **Whale shark** (filter-feeding posture, mottled skin, wide mouth) — for Leedsichthys
+- **Emperor scorpion** (glossy exoskeleton, pedipalps, segmented tail) — for Pulmonoscorpius
+- **Horseshoe crab** (broad flat body, compound eyes, paddle legs) — for Jaekelopterus/Eurypterus
+- **Giant millipede** (segmented plates, paired legs, rounded body) — for Arthropleura
+- **Dragonfly in flight** (veined wings, compound eyes, elongated abdomen) — for Meganeura
