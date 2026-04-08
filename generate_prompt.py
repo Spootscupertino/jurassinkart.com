@@ -1043,9 +1043,10 @@ HABITAT_INTERACTION = {
         "body suspended in open sky, no ground contact"
     ),
     "arthropod": (
-        "legs gripping surface, visible joint articulation, "
-        "exoskeleton reflecting ambient light, chitin texture detail, "
-        "body segments clearly defined, antennae or sensory organs visible"
+        "massive body weight pressing into ground, legs thick as branches, "
+        "exoskeleton scratched and weathered from age, "
+        "body segments clearly defined, towering over surrounding ferns and plants, "
+        "photographed at ground level looking up at the creature"
     ),
     "plant": (
         "rooted in soil, trunk base widening at ground, "
@@ -1076,9 +1077,10 @@ HABITAT_REALISM = {
         "raptor flight documentary"
     ),
     "arthropod": (
-        "National Geographic macro insect photography, extreme shallow depth of field, "
+        "National Geographic wildlife photography, telephoto bokeh, "
         "visible chitin texture, iridescent exoskeleton detail, "
-        "muted forest floor colours, entomology field photograph"
+        "muted natural colour, film grain, "
+        "photographed like a large animal not a small insect"
     ),
     "plant": (
         "National Geographic botanical photography, natural light filtering through canopy, "
@@ -1103,7 +1105,10 @@ HABITAT_NEGATIVE = {
     ),
     "arthropod": (
         "mammal, dinosaur, vertebrate, furry, feathered, "
-        "cartoon bug, cute insect, anime, chibi"
+        "cartoon bug, cute insect, anime, chibi, "
+        "small insect, tiny bug, macro photography of small creature, "
+        "petri dish, lab specimen, pin mounted, entomology collection, "
+        "normal sized, modern insect, house bug"
     ),
     "plant": (
         "animal, dinosaur, insect, mammal, "
@@ -1845,6 +1850,33 @@ def make_mouth_fix_prompt(species, mj_style: str, stylize: int = 20) -> str:
             "wet pink gum tissue visible at tooth bases, gum line receded and raw, "
             "real wildlife photograph, saltwater crocodile jaw reference"
         )
+    elif habitat == "arthropod":
+        # Arthropod mouthparts — mandibles, chelicerae, pincers depending on species
+        if name in ("Pulmonoscorpius", "Jaekelopterus", "Eurypterus", "Megalograptus"):
+            core = (
+                f"extreme close-up of {name} chelicerae and pedipalps, "
+                "pincer tips worn and scratched from use, "
+                "chitinous exoskeleton detail on mouthparts, "
+                "small sensory hairs along pincer edges, "
+                "prey remains caught between pincer plates, "
+                "real wildlife photograph, scorpion mouthparts reference"
+            )
+        elif name == "Anomalocaris":
+            core = (
+                f"extreme close-up of {name} circular mouth and grasping appendages, "
+                "ring of overlapping tooth-like plates forming circular jaw, "
+                "flexible grasping appendages with spiny inner edges, "
+                "translucent body visible near mouth, "
+                "real wildlife photograph, mantis shrimp appendage reference"
+            )
+        else:
+            core = (
+                f"extreme close-up of {name} mandibles, "
+                "paired jaw-like mandibles with worn cutting edges, "
+                "maxillae and labium visible behind mandibles, "
+                "chitinous mouthpart detail, natural scratches and wear, "
+                "real wildlife photograph, beetle mandible reference"
+            )
     elif diet in ("Carnivore", "Piscivore", "Filter-feeder"):
         core = (
             f"extreme close-up of {name} open jaw, "
@@ -1940,9 +1972,12 @@ def assemble_prompt(
     if science and science["skin_texture_type"]:
         subject_parts.append(science["skin_texture_type"])
 
-    # Mouth / teeth (body surface — diet-aware)
+    # Mouth / teeth (body surface — diet-aware, skipped for arthropods and plants)
     diet = species["diet"] or ""
-    subject_parts.append(MOUTH_TEETH_CARNIVORE if diet in ("Carnivore", "Piscivore") else MOUTH_TEETH_HERBIVORE)
+    if habitat == "arthropod":
+        subject_parts.append("mandibles or chelicerae visible, no vertebrate mouth")
+    elif habitat != "plant":
+        subject_parts.append(MOUTH_TEETH_CARNIVORE if diet in ("Carnivore", "Piscivore") else MOUTH_TEETH_HERBIVORE)
 
     # Behavior (what the animal is doing — pose/action)
     subject_parts.append(behavior_param["value"])
@@ -2426,8 +2461,10 @@ def main() -> None:
         mouth_fix_prompt = make_mouth_fix_prompt(species, mj_style=args.style)
         mouth_fix_clean  = strip_mj_params(mouth_fix_prompt)
         validate_prompt(mouth_fix_clean, allow_mj_params=False, label="STEP 4 mouth fix")
+        step4_label = "MOUTHPART FIX" if habitat == "arthropod" else "MOUTH FIX"
+        step4_region = "mandibles/chelicerae" if habitat == "arthropod" else "mouth/jaw"
         print(f"{C.BOLD_CYAN}{'═' * 64}{C.RESET}")
-        print(f"  {C.BOLD_CYAN}STEP 4 — MOUTH FIX{C.RESET}  {C.DIM}[Vary Region → paint over mouth/jaw]{C.RESET}")
+        print(f"  {C.BOLD_CYAN}STEP 4 — {step4_label}{C.RESET}  {C.DIM}[Vary Region → paint over {step4_region}]{C.RESET}")
         print(f"{C.BOLD_CYAN}{'═' * 64}{C.RESET}")
         print_prompt_box(mouth_fix_clean)
         print(f"\n  {hdr('/imagine prompt:')}")

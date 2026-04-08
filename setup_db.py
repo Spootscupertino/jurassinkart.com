@@ -90,33 +90,31 @@ SEED_SPECIES = [
      "long bony tail with diamond vane at tip, forward-pointing interlocking teeth for fish catching, compact body", "aerial"),
     ("Dimorphodon",         "Dimorphodon", "Jurassic",   "Piscivore", "Small",   "Early pterosaur with oversized head and deep puffin-like beak",
      "disproportionately large skull, deep narrow beak, short wings, long tail, compact body", "aerial"),
-    # Arthropod species
-    ("Meganeura",           "Meganeura",   "Carboniferous","Carnivore","Large",  "Giant dragonfly with 70cm wingspan, largest flying insect ever",
-     "enormous transparent wings with visible venation, elongated abdomen, large compound eyes, "
-     "six legs tucked under thorax in flight, iridescent wing surface, predatory flight posture", "arthropod"),
-    ("Arthropleura",        "Arthropleura","Carboniferous","Herbivore","Massive","Giant millipede up to 2.5m long, largest land invertebrate ever",
-     "segmented armored body, dozens of paired legs, dark chitinous exoskeleton, "
-     "each segment with textured plates, rounded body cross-section, antennae at head", "arthropod"),
-    ("Jaekelopterus",       "Sea Scorpion","Devonian",    "Carnivore", "Large",  "Giant sea scorpion up to 2.5m, largest arthropod ever",
-     "elongated body with segmented tail, large forward-facing pincers, "
-     "compound eyes, paddle-like rear legs for swimming, chitinous exoskeleton, "
-     "telson (tail spike) at rear", "arthropod"),
-    ("Pulmonoscorpius",     "Giant Scorpion","Carboniferous","Carnivore","Medium","Giant scorpion up to 70cm, largest true scorpion",
-     "classic scorpion body plan scaled up, large pincers, segmented curving tail with stinger, "
-     "eight walking legs, dark glossy exoskeleton, multiple pairs of eyes on head", "arthropod"),
-    ("Megarachne",          "Giant Spider","Carboniferous","Carnivore","Medium", "Giant arachnid relative, one of the largest spider-like creatures",
-     "robust body with large cephalothorax, eight thick legs with visible joint segments, "
-     "dark hairy exoskeleton, multiple eyes, fangs visible at front", "arthropod"),
-    ("Anomalocaris",        "Anomalocaris","Cambrian",    "Carnivore", "Large",  "Apex predator of the Cambrian seas, shrimp-like with grasping appendages",
-     "flattened oval body, large stalked compound eyes, two curved grasping appendages at front, "
-     "circular mouth with tooth-like plates, lateral swimming flaps along body, "
-     "translucent exoskeleton", "arthropod"),
-    ("Eurypterus",          "Eurypterid",  "Silurian",    "Carnivore", "Medium", "Common sea scorpion with paddle-shaped rear legs",
-     "flattened body with segmented tail, small pincers, large paddle-like sixth leg pair, "
-     "compound eyes, chitinous brown exoskeleton, triangular telson", "arthropod"),
-    ("Megalograptus",       "Megalograptus","Ordovician",  "Carnivore", "Medium", "Early sea scorpion with long spiny grasping arms",
-     "elongated spiny front appendages for prey capture, segmented body, "
-     "compound eyes, swimming paddles, dark armored exoskeleton", "arthropod"),
+    # Arthropod species — descriptions use environmental scale cues so MJ renders them huge
+    ("Meganeura",           "Meganeura",   "Carboniferous","Carnivore","Large",
+     "prehistoric dragonfly as large as an eagle, 70cm wingspan casting shadow over ferns below, veined transparent wings, large compound eyes the size of golf balls, elongated abdomen with segmented exoskeleton",
+     "Photograph like a bird of prey not an insect. Low angle looking up. Iridescent wing veins, bristled legs thick as pencils.", "arthropod"),
+    ("Arthropleura",        "Arthropleura","Carboniferous","Herbivore","Massive",
+     "prehistoric millipede longer than a car at 2.6 metres, segmented armored body plates each the size of a dinner plate, dozens of thick paired legs, rounded head with antennae, body filling the forest floor path between trees",
+     "Photograph like a large reptile not a bug. Ground-level perspective showing it dwarfing surrounding vegetation. Dark chitinous segments with natural wear.", "arthropod"),
+    ("Jaekelopterus",       "Sea Scorpion","Devonian",    "Carnivore", "Large",
+     "prehistoric sea scorpion as long as a crocodile at 2.5 metres, broad flattened body, massive chelicerae pincers each longer than a human arm, compound eyes, paddle-like swimming legs, segmented tail",
+     "Photograph like an alligator-sized predator. Low water-level angle. Dark exoskeleton with natural scratches and battle scars.", "arthropod"),
+    ("Pulmonoscorpius",     "Giant Scorpion","Carboniferous","Carnivore","Medium",
+     "prehistoric scorpion as long as a dog at 70cm, robust pedipalps with pincers the size of human fists, segmented metasoma tail with curved stinger, eight thick walking legs, standing among ferns that barely reach its back",
+     "Photograph like a medium-sized animal not a small bug. Eye-level ground perspective. Glossy dark exoskeleton.", "arthropod"),
+    ("Megarachne",          "Giant Spider","Carboniferous","Carnivore","Medium",
+     "prehistoric eurypterid the size of a large dog, broad oval armored body, strong walking legs thick as fingers, small chelicerae, compound eyes, standing on forest floor dwarfing leaf litter",
+     "Originally thought to be a giant spider — actually a eurypterid. Photograph at ground level showing scale against vegetation. Dark segmented exoskeleton.", "arthropod"),
+    ("Anomalocaris",        "Anomalocaris","Cambrian",    "Carnivore", "Large",
+     "Cambrian apex predator one metre long, flattened oval body with lateral swimming lobes rippling through water, two large grasping appendages at front each the length of a human forearm, stalked compound eyes, circular mouth with plates",
+     "Photograph like a large marine predator. Use mantis shrimp and cuttlefish colour reference. Translucent body showing internal structures.", "arthropod"),
+    ("Eurypterus",          "Eurypterid",  "Silurian",    "Carnivore", "Medium",
+     "prehistoric sea scorpion 30cm long, streamlined body, small chelicerae, paddle-shaped rear legs for swimming, telson tail spike, resting on rocks at water edge with body clearly visible against stone",
+     "Smallest of our eurypterids but still dramatic. Photograph like a horseshoe crab on a beach. Olive-brown exoskeleton.", "arthropod"),
+    ("Megalograptus",       "Megalograptus","Ordovician",  "Carnivore", "Medium",
+     "prehistoric sea scorpion over one metre long, distinctive long spiny claws extending forward like weapons, elongated body, compound eyes, swimming paddles, segmented tail, claws longer than a human hand",
+     "Photograph like a large lobster-sized predator. Low angle emphasizing the massive spiny claws. Use scorpion and lobster colour reference.", "arthropod"),
     # Plant species
     ("Lepidodendron",       "Scale Tree",  "Carboniferous","Herbivore","Massive","Giant club moss tree up to 40m tall with diamond-patterned bark",
      "tall straight trunk covered in diamond-shaped leaf scars, "
