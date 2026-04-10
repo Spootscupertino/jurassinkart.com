@@ -671,12 +671,57 @@ Built a complete per-species anatomy module system (`species/` Python package) w
 | Arthropod | 8 | Meganeura, Arthropleura, Jaekelopterus, Pulmonoscorpius, Megarachne, Anomalocaris, Eurypterus, Megalograptus |
 | Plant | 8 | Lepidodendron, Calamites, Glossopteris, Williamsonia, Araucaria, Archaefructus, Wattieza, Sigillaria |
 
+## Session 16 — CLIP-Optimized Shorthand + Budget System
+
+### What changed
+Rewrote the anatomy prompt builder to solve the core problem: Session 15's verbose anatomy data (2000-2700 chars, 55-65 clauses) was far beyond MJ's effective attention window (~60 words). Implemented three converging fixes: prompt compression (#1), hard budget system (#4), and CLIP-optimized shorthand (#5).
+
+### Budget system (`species/base.py`)
+- **`BUDGET_CLOSE = 350`** chars — all shorthand + size_comparison + coloration hint
+- **`BUDGET_MID = 250`** chars — silhouette + top shorthand phrases
+- **`BUDGET_WIDE = 120`** chars — silhouette + one key feature
+- **`_budget_join(phrases, budget)`** — fills phrases in priority order until cap reached; always includes first phrase (most visually distinctive)
+- Fallback path (`_fallback_prompt()`) for species without shorthand: priority-ranked field extraction (silhouette → texture → skull → teeth → size → unique feature → coloration)
+
+### `mj_shorthand` field
+Added `mj_shorthand: list[str]` to `SpeciesAnatomy` dataclass. Each species defines 5-8 CLIP-optimized phrases:
+- 2-5 words per phrase, visually concrete, no explanatory prose
+- Priority-ordered: index 0 = most visually distinctive feature
+- Examples:
+  - T. rex: `["massive deep skull with binocular eyes", "tiny two-fingered arms", "pebbly non-overlapping scales", "thick horizontal tail as counterbalance", "powerful pillar-like biped legs", "serrated banana-shaped teeth", "12m long bus-sized predator"]`
+  - Anomalocaris: `["two large spiny grasping frontal appendages", "circular pineapple-ring mouth", "stalked compound eyes 16000 lenses", "rippling lateral swimming lobes", "semi-translucent flattened oval body", "1m Cambrian apex predator"]`
+  - Lepidodendron: `["diamond-pattern bark from leaf cushions", "unbranched trunk 30m tall column", "crown of forking branches at very top only", "grass-like drooping leaves", "pale grey-green bark with geometric scars"]`
+
+### Compression results (close mode)
+| Species | Before | After | Reduction |
+|---|---|---|---|
+| T. rex | 2751 chars / 65 clauses | 299 chars / 43 words | 89% |
+| Velociraptor | 2595 / 55 | 273 / 43 | 89% |
+| Spinosaurus | 2579 / 61 | 239 / 29 | 91% |
+| Pteranodon | 2285 / 56 | 345 / 50 | 85% |
+| Mosasaurus | 2072 / 49 | 285 / 42 | 86% |
+
+### Validation
+- **126/126** combinations (42 species × 3 modes) pass budget — 0 violations
+- **37/42** species have banned flora negatives (5 marine species correctly have none)
+- `build_anatomy_prompt()` signature unchanged — `generate_prompt.py` integration untouched
+- Fixed Brachiosaurus silhouette (123 → 100 chars) to fit wide budget
+
+### Files modified
+- `species/base.py` — rewrote prompt builder section (budget constants, `_budget_join()`, new `build_anatomy_prompt()`, `_fallback_prompt()`, removed old `_collect_strings()`)
+- All 42 species modules — added `mj_shorthand` field
+- `species/brachiosaurus.py` — trimmed silhouette text
+- `generate_prompt.py` — updated comment block only
+- `.gitignore` — added `.env`, `*_backup.py`, `.gitattributes.bak`
+
+### Commit
+`e8cd39a` — pushed to `main`
+
 ---
 
-## Next 10 Priorities
+## Next Priorities
 
-### 1. Compress anatomy prompts for MJ's attention window
-**Critical.** MJ effectively processes ~60 words. Our close-mode anatomy outputs 55-65 clauses (2000-2700 chars). Most of that is ignored. `build_anatomy_prompt()` needs to output **6-10 high-impact phrases** per species — the visual cues MJ actually responds to (silhouette shape, key texture, one size anchor, one "don't do this" correction). Strip explanatory prose ("confirmed by quill knobs on ulna") that helps a human but means nothing to MJ's CLIP model.
+### ~~1. Compress anatomy prompts for MJ's attention window~~ ✅ Session 16
 
 ### 2. Audit prompts against MJ's CLIP tokenizer behavior
 MJ uses CLIP to parse prompts. CLIP tokenizes differently from natural language — comma-separated phrases are weighted roughly equally, early tokens get slight priority, and MJ's `--no` uses a different attention path. We need to restructure prompts around how CLIP *actually* reads them: front-load the 3-4 most visually distinctive features, use MJ-native weighting syntax where supported, and stop writing prose sentences that CLIP fragments into noise.
@@ -684,11 +729,9 @@ MJ uses CLIP to parse prompts. CLIP tokenizes differently from natural language 
 ### 3. Add MJ prompt notes to species_reference/ folders
 Each `species_reference/[species]/README.md` should include a "MJ Prompt Notes" section documenting: what phrases MJ responds to well for this species, what phrases cause mis-rendering (e.g. "crocodilian" triggers crocodile for Spinosaurus), tested `--sref` URLs that work, known failure modes, and optimal `--stylize` ranges. This is empirical data we build as we test.
 
-### 4. Build a prompt-length validator / budget system
-Add a character/word budget to `build_anatomy_prompt()` that hard-caps output at ~350 chars (roughly 60 MJ-effective words). Force each anatomy mode to prioritize within a budget rather than dumping all data. Close mode gets a larger budget than mid, wide stays minimal. The budget forces us to rank features by visual impact.
+### ~~4. Build a prompt-length validator / budget system~~ ✅ Session 16
 
-### 5. Create MJ-optimized "visual shorthand" per species
-Instead of long descriptive phrases ("massive deep skull, 1.5m long, broad at rear with powerful jaw muscles"), define 3-5 word MJ-optimized shorthand per species that CLIP actually keys on. Example: T. rex → `"massive skull, tiny two-fingered arms, pebbly scales, horizontal tail, biped"`. These shorthands should be tested in MJ and refined based on output quality.
+### ~~5. Create MJ-optimized "visual shorthand" per species~~ ✅ Session 16
 
 ### 6. Add `--sref` test results to species_reference/ folders
 Populate `species_reference/` folders with actual test data: screenshots of MJ outputs, the exact prompts that produced them, `--sref` URLs that worked, `--stylize` values that hit the sweet spot. Each species folder becomes a living quality database. This is the empirical feedback loop the system needs.
