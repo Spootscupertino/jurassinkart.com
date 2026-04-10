@@ -10,6 +10,7 @@ Usage:
 
 import argparse
 import json
+import random
 import sqlite3
 import sys
 from pathlib import Path
@@ -1727,7 +1728,198 @@ OUTPUT_MODES: dict[str, dict] = {
         "needs_placement": False,
         "habitats":      ["aerial"],
     },
+    # ─── MULTI-SUBJECT (Session 17) ─────────────────────────────────────────
+    "predator_prey": {
+        "display":       "Predator–prey encounter",
+        "desc":          "two species in frame, predator and prey, tension-filled moment",
+        "fixed_camera":  "Canon EOS R5 70-200mm f/2.8, telephoto, natural encounter distance",
+        "composition":   "two different species in frame, predator and prey, tension between them, natural spacing",
+        "canvas_print":  False,
+        "full_body":     True,
+        "needs_placement": False,
+        "habitats":      ["terrestrial", "marine"],
+    },
+    "ecosystem_diorama": {
+        "display":       "Ecosystem diorama — multiple species",
+        "desc":          "wide scene, 2-3 species coexisting, natural ecosystem snapshot",
+        "fixed_camera":  "Canon EOS R5 16-35mm f/2.8, ultra-wide, ecosystem framing",
+        "composition":   "wide ecosystem view, multiple species coexisting naturally, different animals at different distances, natural prehistoric habitat",
+        "canvas_print":  False,
+        "full_body":     True,
+        "needs_placement": False,
+        "habitats":      ["terrestrial", "marine"],
+    },
 }
+
+# ---------------------------------------------------------------------------
+# Multi-subject scene system (Session 17, Priority #8)
+# Period-compatible species pairings and interaction phrases.
+# ---------------------------------------------------------------------------
+
+MULTI_SUBJECT_MODES = {"predator_prey", "ecosystem_diorama"}
+
+# Predator → [prey species] pairings. All must share a geological period.
+PREDATOR_PREY_PAIRINGS = {
+    # Late Cretaceous
+    "Tyrannosaurus rex": ["Triceratops", "Parasaurolophus", "Ankylosaurus"],
+    "Velociraptor":      ["Parasaurolophus"],
+    # Early–Mid Cretaceous
+    "Spinosaurus":       ["Cretoxyrhina", "Xiphactinus"],
+    # Late Cretaceous marine
+    "Mosasaurus":        ["Ammonite", "Archelon", "Xiphactinus"],
+    "Kronosaurus":       ["Ammonite", "Ichthyosaurus"],
+    "Cretoxyrhina":      ["Xiphactinus", "Archelon"],
+    # Jurassic
+    "Dilophosaurus":     ["Stegosaurus"],
+    # Jurassic marine
+    "Liopleurodon":      ["Ichthyosaurus", "Ammonite"],
+    # Devonian
+    "Dunkleosteus":      ["Eurypterus"],
+    # Ordovician
+    "Megalograptus":     ["Eurypterus"],
+    # Miocene
+    "Megalodon":         ["Leedsichthys"],
+}
+
+# Ecosystem pairings: species that coexisted (not necessarily predator-prey).
+# Format: primary → [secondary species that share its period/habitat].
+ECOSYSTEM_PAIRINGS = {
+    "Tyrannosaurus rex": ["Triceratops", "Parasaurolophus", "Ankylosaurus", "Pteranodon"],
+    "Triceratops":       ["Tyrannosaurus rex", "Parasaurolophus", "Ankylosaurus", "Pteranodon"],
+    "Parasaurolophus":   ["Tyrannosaurus rex", "Triceratops", "Pteranodon"],
+    "Ankylosaurus":      ["Tyrannosaurus rex", "Triceratops", "Pteranodon"],
+    "Stegosaurus":       ["Brachiosaurus", "Dilophosaurus"],
+    "Brachiosaurus":     ["Stegosaurus", "Dilophosaurus"],
+    "Dilophosaurus":     ["Stegosaurus", "Brachiosaurus"],
+    "Mosasaurus":        ["Ammonite", "Archelon", "Xiphactinus", "Pteranodon"],
+    "Ichthyosaurus":     ["Ammonite", "Liopleurodon"],
+    "Liopleurodon":      ["Ichthyosaurus", "Ammonite"],
+    "Dunkleosteus":      ["Eurypterus"],
+    "Lepidodendron":     ["Calamites", "Sigillaria", "Arthropleura", "Meganeura", "Pulmonoscorpius"],
+    "Calamites":         ["Lepidodendron", "Sigillaria", "Arthropleura", "Meganeura"],
+    "Meganeura":         ["Arthropleura", "Pulmonoscorpius", "Lepidodendron", "Calamites"],
+    "Arthropleura":      ["Meganeura", "Pulmonoscorpius", "Lepidodendron", "Calamites"],
+}
+
+# Interaction phrases for predator-prey encounters.
+# Used to build the subject block when two species are in frame.
+PREDATOR_PREY_INTERACTIONS = {
+    "stalking":    "predator stalking prey at distance, tension, prey unaware",
+    "confrontation": "predator and prey face to face, standoff, frozen moment",
+    "chase":       "predator pursuing prey at full speed, chase in progress",
+    "ambush":      "predator lunging from concealment, prey startled, explosive moment",
+}
+
+
+def get_compatible_species(primary_name: str, mode: str) -> list[str]:
+    """Return list of species names compatible with the primary for multi-subject scenes."""
+    if mode == "predator_prey":
+        return PREDATOR_PREY_PAIRINGS.get(primary_name, [])
+    elif mode == "ecosystem_diorama":
+        return ECOSYSTEM_PAIRINGS.get(primary_name, [])
+    return []
+
+
+def pick_secondary_species(conn: sqlite3.Connection, primary: dict, output_mode: str):
+    """Pick a second species for multi-subject scenes. Returns species row or None."""
+    compatible = get_compatible_species(primary["name"], output_mode)
+    if not compatible:
+        pname = primary["name"]
+        print(f"  {warn(f'No compatible species pairings for {pname} in {output_mode} mode')}")
+        return None
+
+    all_species = conn.execute(
+        "SELECT id, name, common_name, period, diet, size_class, description, notes, habitat "
+        "FROM species WHERE name IN ({}) ORDER BY name".format(",".join("?" * len(compatible))),
+        compatible,
+    ).fetchall()
+
+    if not all_species:
+        return None
+
+    if output_mode == "predator_prey":
+        label = f"Select PREY species (predator: {primary['name']})"
+    else:
+        label = f"Select COMPANION species (primary: {primary['name']})"
+
+    print(f"\n  {hdr(label)}")
+    print(f"  {C.DIM}" + "─" * 60 + C.RESET)
+    for i, sp in enumerate(all_species, 1):
+        period = f"({sp['period']})" if sp["period"] else ""
+        common = f" / {sp['common_name']}" if sp["common_name"] else ""
+        sp_name = sp["name"]
+        print(f"  {C.DIM}{i:>2}.{C.RESET}  {opt(f'{sp_name}{common}  {period}')}")
+    print()
+    while True:
+        try:
+            raw = input(f"  {C.BOLD_CYAN}Choose 1–{len(all_species)}:{C.RESET} ").strip()
+            choice = int(raw)
+            if 1 <= choice <= len(all_species):
+                chosen = all_species[choice - 1]
+                print(f"  {ok('✓')} {ok(chosen['name'])}\n")
+                return dict(chosen)
+        except (ValueError, EOFError):
+            pass
+        print(f"  {warn('Invalid choice — try again')}")
+
+
+def pick_interaction_type() -> str:
+    """Pick the predator-prey interaction type."""
+    options = list(PREDATOR_PREY_INTERACTIONS.keys())
+    print(f"\n  {hdr('Select INTERACTION type')}")
+    print(f"  {C.DIM}" + "─" * 60 + C.RESET)
+    for i, key in enumerate(options, 1):
+        key_display = key.replace("_", " ")
+        desc = PREDATOR_PREY_INTERACTIONS[key]
+        print(f"  {C.DIM}{i:>2}.{C.RESET}  {opt(f'{key_display} — {desc}')}")
+    print()
+    while True:
+        try:
+            raw = input(f"  {C.BOLD_CYAN}Choose 1–{len(options)}:{C.RESET} ").strip()
+            choice = int(raw)
+            if 1 <= choice <= len(options):
+                chosen = options[choice - 1]
+                print(f"  {ok('✓')} {ok(chosen.replace('_', ' '))}\n")
+                return chosen
+        except (ValueError, EOFError):
+            pass
+        print(f"  {warn('Invalid choice — try again')}")
+
+
+def build_multi_subject_block(primary: dict, secondary: dict, interaction_type: str, output_mode: str) -> str:
+    """Build the subject section for multi-subject scenes.
+
+    Token allocation: primary species gets ~60% of subject budget,
+    secondary gets ~40%. Both use anatomy shorthand at 'mid' detail level
+    to fit within CLIP's 77-token window.
+    """
+    primary_anatomy = get_anatomy(primary["name"])
+    secondary_anatomy = get_anatomy(secondary["name"])
+
+    # Primary species — full name + mid-level shorthand
+    p_size = primary["size_class"].lower() if primary["size_class"] else ""
+    p_parts = [f"{p_size} {primary['name']}"]
+    if primary_anatomy:
+        p_text = build_anatomy_prompt(primary_anatomy, "mid")
+        if p_text:
+            p_parts.append(p_text)
+    primary_block = ", ".join(p for p in p_parts if p)
+
+    # Secondary species — name + minimal shorthand (wide level)
+    s_size = secondary["size_class"].lower() if secondary["size_class"] else ""
+    s_parts = [f"{s_size} {secondary['name']}"]
+    if secondary_anatomy:
+        s_text = build_anatomy_prompt(secondary_anatomy, "wide")
+        if s_text:
+            s_parts.append(s_text)
+    secondary_block = ", ".join(p for p in s_parts if p)
+
+    # Interaction phrase
+    if output_mode == "predator_prey":
+        interaction = PREDATOR_PREY_INTERACTIONS.get(interaction_type, "two species in natural encounter")
+        return f"{primary_block}, {interaction}, {secondary_block}"
+    else:
+        return f"{primary_block}, nearby {secondary_block}, coexisting naturally in shared habitat"
 
 
 # ---------------------------------------------------------------------------
@@ -2356,6 +2548,45 @@ def make_environment_fix_prompt(species, environment: str, weather_param, lighti
 
 
 # ---------------------------------------------------------------------------
+# CLIP tokenizer helpers (Session 17)
+# MJ uses CLIP ViT-L/14 which tokenizes text into ~77 tokens max.
+# These helpers optimize prompt text for CLIP's actual behavior:
+#   - Comma-separated short phrases get roughly equal weight
+#   - Early tokens get slight priority
+#   - Prose connector words ("the", "and", "with") waste token slots
+#   - Each comma-phrase is a separate attention unit
+# ---------------------------------------------------------------------------
+
+# Words that CLIP tokenizes but carry zero visual information.
+# Removing them frees token budget for actual visual descriptors.
+_CLIP_STOPWORDS = {
+    "the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "for",
+    "of", "with", "by", "from", "is", "are", "was", "were", "be", "been",
+    "being", "has", "have", "had", "do", "does", "did", "its", "it",
+    "that", "this", "these", "those", "very", "quite", "rather", "somewhat",
+}
+
+
+def _clip_clean(phrase: str) -> str:
+    """Strip prose connector words that waste CLIP tokens.
+    Keeps visual adjectives, nouns, and action verbs.
+    'head raised and eyes on middle distance' → 'head raised, eyes middle distance'
+    """
+    words = phrase.split()
+    cleaned = [w for w in words if w.lower() not in _CLIP_STOPWORDS]
+    return " ".join(cleaned)
+
+
+def _estimate_clip_tokens(text: str) -> int:
+    """Rough estimate of CLIP token count.
+    CLIP's BPE tokenizer averages ~1.3 tokens per word for English.
+    Comma-separated phrases each count as separate attention units.
+    Returns approximate token count (CLIP max is 77)."""
+    words = text.split()
+    return int(len(words) * 1.3)
+
+
+# ---------------------------------------------------------------------------
 # Prompt assembly
 # ---------------------------------------------------------------------------
 
@@ -2379,6 +2610,8 @@ def assemble_prompt(
     placement: tuple[str, str] = ("", ""),  # (subject_side, space_side) from select_placement()
     has_sref: bool = False,
     habitat: str = "terrestrial",
+    secondary_species: dict = None,         # Session 17: multi-subject scene support
+    interaction_type: str = None,           # Session 17: predator_prey interaction type
 ) -> str:
     mode_cfg     = OUTPUT_MODES.get(output_mode, OUTPUT_MODES["portrait"])
     full_body    = mode_cfg["full_body"]
@@ -2401,9 +2634,8 @@ def assemble_prompt(
     # Rule: no environment, no lighting, no camera language here.
 
     size = species["size_class"].lower() if species["size_class"] else ""
-    subject_parts = [f"{size} {species['name']}", species["description"] or ""]
 
-    # ── Species anatomy module system (Sessions 15-16) ─────────────────
+    # ── Species anatomy module system (Sessions 15-17) ─────────────────
     # Per-species anatomy modules provide CLIP-optimized shorthand phrases
     # (mj_shorthand) that MJ actually responds to, budget-capped per mode:
     #   "close" — up to 350 chars (all shorthand + size + coloration)
@@ -2413,7 +2645,19 @@ def assemble_prompt(
     #   "close" — full detail (skull, teeth, integument, limbs, coloration)
     #   "mid"   — moderate (integument, silhouette, key features)
     #   "wide"  — minimal (silhouette + 2 critical features only)
+    #
+    # Session 17 CLIP audit: when an anatomy module exists, species["description"]
+    # is redundant prose that wastes CLIP tokens. The mj_shorthand already
+    # covers the same ground but in CLIP-optimized comma-separated phrases.
+    # Drop it to avoid duplicate attention fragmentation.
     anatomy = get_anatomy(species["name"])
+
+    if anatomy:
+        # Anatomy module exists — lead with species name only, shorthand follows
+        subject_parts = [f"{size} {species['name']}"]
+    else:
+        # No anatomy module — keep DB description as fallback
+        subject_parts = [f"{size} {species['name']}", species["description"] or ""]
 
     # Map output mode to anatomy detail level
     CLOSE_MODES = {"portrait", "extreme_closeup", "eye_contact", "jaws_detail", "action_freeze"}
@@ -2484,12 +2728,18 @@ def assemble_prompt(
     # Behavior — FIRST PHRASE ONLY (Session 10). Action verbs were the main
     # source of "narrative clutter" the user flagged: "jaw working on prey,
     # fragments drifting" reads like an event, not a static portrait.
-    subject_parts.append(behavior_param["value"].split(", ")[0])
+    # Session 17 CLIP audit: strip prose connectors ("and", "with", "the")
+    # that CLIP fragments into noise tokens.
+    beh_phrase = behavior_param["value"].split(", ")[0]
+    beh_phrase = _clip_clean(beh_phrase)
+    subject_parts.append(beh_phrase)
 
     # Condition — skip entirely in wide modes (unresolvable at distance).
     # Otherwise first 2 phrases only (Session 10).
+    # Session 17 CLIP audit: clean prose connectors from condition phrases.
     if not wide_mode:
-        condition_short = ", ".join(condition_param["value"].split(", ")[:2])
+        cond_phrases = condition_param["value"].split(", ")[:2]
+        condition_short = ", ".join(_clip_clean(p) for p in cond_phrases)
         subject_parts.append(condition_short)
 
     # Mood is intentionally NOT injected into prose. It overlaps with behavior
@@ -2504,6 +2754,13 @@ def assemble_prompt(
     # through the function signature so save_prompt / tag wiring is intact.
 
     subject = ", ".join(p for p in subject_parts if p)
+
+    # Session 17: Multi-subject scene override — replaces single-species subject
+    # with a combined block containing both species and their interaction.
+    if secondary_species and output_mode in MULTI_SUBJECT_MODES:
+        subject = build_multi_subject_block(
+            species, secondary_species, interaction_type or "coexisting", output_mode
+        )
 
     # ── SECTION 2: INTERACTION ────────────────────────────────────────────────
     # Habitat-specific contact/physics block.
@@ -2809,6 +3066,534 @@ def prompt_sref_suggestion(species_name: str):
         print(f"  {warn('Invalid choice — try again')}")
 
 
+# ---------------------------------------------------------------------------
+# A/B Testing Framework (Session 17 — Priority #10)
+# ---------------------------------------------------------------------------
+# Generate two prompt variants differing on a single axis (lighting, mood,
+# condition, behavior, stylize, or output_mode).  Designed for systematic
+# testing: run both through MJ, score, and track which parameter combos
+# produce the best results for each species.
+#
+# Usage:  python generate_prompt.py --ab-test
+# ---------------------------------------------------------------------------
+
+AB_AXES = ["lighting", "mood", "condition", "behavior", "stylize", "output_mode"]
+
+
+def _ensure_ab_tables(conn: sqlite3.Connection) -> None:
+    """Create A/B testing tables if they don't exist (idempotent)."""
+    conn.executescript("""
+        CREATE TABLE IF NOT EXISTS ab_tests (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            species_id      INTEGER NOT NULL REFERENCES species(id) ON DELETE CASCADE,
+            variable_axis   TEXT NOT NULL,
+            control_value   TEXT NOT NULL,
+            variant_value   TEXT NOT NULL,
+            status          TEXT NOT NULL DEFAULT 'pending',
+            winner          TEXT,
+            notes           TEXT,
+            created_at      TEXT NOT NULL DEFAULT (datetime('now')),
+            scored_at       TEXT
+        );
+        CREATE TABLE IF NOT EXISTS ab_variants (
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            test_id         INTEGER NOT NULL REFERENCES ab_tests(id) ON DELETE CASCADE,
+            label           TEXT NOT NULL,
+            prompt_id       INTEGER REFERENCES prompts(id) ON DELETE SET NULL,
+            positive_prompt TEXT NOT NULL,
+            variable_value  TEXT NOT NULL,
+            rating          INTEGER,
+            notes           TEXT,
+            created_at      TEXT NOT NULL DEFAULT (datetime('now'))
+        );
+        CREATE INDEX IF NOT EXISTS idx_ab_variants_test ON ab_variants(test_id);
+        CREATE INDEX IF NOT EXISTS idx_ab_tests_species ON ab_tests(species_id);
+    """)
+
+
+def select_ab_axis() -> str:
+    """Let user pick which parameter axis to vary."""
+    print(f"\n  {hdr('SELECT VARIABLE AXIS')}")
+    print(f"  {C.DIM}" + "─" * 60 + C.RESET)
+    for i, axis in enumerate(AB_AXES, 1):
+        print(f"    {C.WHITE}[{i}]{C.RESET}  {axis}")
+    print()
+    while True:
+        try:
+            raw = input(f"  {C.CYAN}Vary which axis? [1-{len(AB_AXES)}]: {C.RESET}").strip()
+            idx = int(raw) - 1
+            if 0 <= idx < len(AB_AXES):
+                axis = AB_AXES[idx]
+                print(f"  {ok('✓')} Testing axis: {C.WHITE}{axis}{C.RESET}")
+                return axis
+        except (ValueError, EOFError):
+            pass
+        print(f"  {warn('Invalid choice — try again')}")
+
+
+def pick_ab_values(conn: sqlite3.Connection, axis: str, habitat: str,
+                   current_value: str) -> tuple:
+    """Pick A (control) and B (variant) values for the chosen axis.
+
+    Returns (control_value, variant_value, control_param, variant_param).
+    For 'stylize', returns (str(int), str(int), int, int).
+    """
+    if axis == "stylize":
+        print(f"\n  {hdr('STYLIZE A/B VALUES')}")
+        print(f"  {C.DIM}" + "─" * 60 + C.RESET)
+        print(f"  Current default: {C.WHITE}{current_value}{C.RESET}")
+        options = [50, 100, 150, 200, 300, 500, 750]
+        for i, val in enumerate(options, 1):
+            marker = " ← current" if str(val) == str(current_value) else ""
+            print(f"    {C.WHITE}[{i}]{C.RESET}  --stylize {val}{C.DIM}{marker}{C.RESET}")
+        print()
+
+        def _pick_stylize(label):
+            while True:
+                try:
+                    raw = input(f"  {C.CYAN}{label} value [1-{len(options)}]: {C.RESET}").strip()
+                    idx = int(raw) - 1
+                    if 0 <= idx < len(options):
+                        return options[idx]
+                except (ValueError, EOFError):
+                    pass
+                print(f"  {warn('Invalid choice — try again')}")
+
+        a_val = _pick_stylize("A (control)")
+        b_val = _pick_stylize("B (variant)")
+        while b_val == a_val:
+            print(f"  {warn('B must differ from A — pick again')}")
+            b_val = _pick_stylize("B (variant)")
+        return (str(a_val), str(b_val), a_val, b_val)
+
+    if axis == "output_mode":
+        modes = [m for m in OUTPUT_MODES if OUTPUT_MODES[m]["habitat"] == habitat]
+        print(f"\n  {hdr('OUTPUT MODE A/B VALUES')}")
+        print(f"  {C.DIM}" + "─" * 60 + C.RESET)
+        for i, m in enumerate(modes, 1):
+            marker = " ← current" if m == current_value else ""
+            print(f"    {C.WHITE}[{i}]{C.RESET}  {m}{C.DIM}{marker}{C.RESET}")
+        print()
+
+        def _pick_mode(label):
+            while True:
+                try:
+                    raw = input(f"  {C.CYAN}{label} [1-{len(modes)}]: {C.RESET}").strip()
+                    idx = int(raw) - 1
+                    if 0 <= idx < len(modes):
+                        return modes[idx]
+                except (ValueError, EOFError):
+                    pass
+                print(f"  {warn('Invalid choice — try again')}")
+
+        a_val = _pick_mode("A (control)")
+        b_val = _pick_mode("B (variant)")
+        while b_val == a_val:
+            print(f"  {warn('B must differ from A — pick again')}")
+            b_val = _pick_mode("B (variant)")
+        a_cfg = OUTPUT_MODES[a_val]
+        b_cfg = OUTPUT_MODES[b_val]
+        return (a_val, b_val, a_cfg, b_cfg)
+
+    # Standard parameter categories: lighting, mood, condition, behavior
+    params = fetch_parameters_by_category(conn, axis, habitat=habitat)
+    print(f"\n  {hdr(f'{axis.upper()} A/B VALUES')}")
+    print(f"  {C.DIM}" + "─" * 60 + C.RESET)
+    for i, p in enumerate(params, 1):
+        marker = " ← current" if p["name"] == current_value else ""
+        print(f"    {C.WHITE}[{i}]{C.RESET}  {p['name'].replace('_', ' ')}{C.DIM}{marker}{C.RESET}")
+    print()
+
+    def _pick_param(label):
+        while True:
+            try:
+                raw = input(f"  {C.CYAN}{label} [1-{len(params)}]: {C.RESET}").strip()
+                idx = int(raw) - 1
+                if 0 <= idx < len(params):
+                    return dict(params[idx])
+            except (ValueError, EOFError):
+                pass
+            print(f"  {warn('Invalid choice — try again')}")
+
+    a_param = _pick_param("A (control)")
+    b_param = _pick_param("B (variant)")
+    while b_param["name"] == a_param["name"]:
+        print(f"  {warn('B must differ from A — pick again')}")
+        b_param = _pick_param("B (variant)")
+    return (a_param["name"], b_param["name"], a_param, b_param)
+
+
+def save_ab_test(conn: sqlite3.Connection, species_id: int, axis: str,
+                 control_value: str, variant_value: str) -> int:
+    """Insert a new A/B test row and return its id."""
+    cur = conn.cursor()
+    cur.execute(
+        """INSERT INTO ab_tests (species_id, variable_axis, control_value, variant_value, status)
+           VALUES (?, ?, ?, ?, 'pending')""",
+        (species_id, axis, control_value, variant_value),
+    )
+    conn.commit()
+    return cur.lastrowid
+
+
+def save_ab_variant(conn: sqlite3.Connection, test_id: int, label: str,
+                    prompt_id: int, positive_prompt: str, variable_value: str) -> int:
+    """Insert an A/B variant row."""
+    cur = conn.cursor()
+    cur.execute(
+        """INSERT INTO ab_variants (test_id, label, prompt_id, positive_prompt, variable_value)
+           VALUES (?, ?, ?, ?, ?)""",
+        (test_id, label, prompt_id, positive_prompt, variable_value),
+    )
+    conn.commit()
+    return cur.lastrowid
+
+
+def score_ab_test(conn: sqlite3.Connection, test_id: int) -> None:
+    """Interactive scoring of an A/B test after MJ results are in."""
+    variants = conn.execute(
+        "SELECT id, label, variable_value FROM ab_variants WHERE test_id = ? ORDER BY label",
+        (test_id,),
+    ).fetchall()
+    if len(variants) < 2:
+        print(f"  {warn('Test has fewer than 2 variants — cannot score')}")
+        return
+
+    print(f"\n  {hdr('SCORE A/B TEST')}")
+    print(f"  {C.DIM}" + "─" * 60 + C.RESET)
+    for v in variants:
+        print(f"  {C.WHITE}[{v['label']}]{C.RESET}  {v['variable_value']}")
+
+    for v in variants:
+        while True:
+            try:
+                raw = input(f"  {C.CYAN}Rate {v['label']} ({v['variable_value']}) [1-5]: {C.RESET}").strip()
+                rating = int(raw)
+                if 1 <= rating <= 5:
+                    conn.execute(
+                        "UPDATE ab_variants SET rating = ? WHERE id = ?",
+                        (rating, v["id"]),
+                    )
+                    break
+            except (ValueError, EOFError):
+                pass
+            print(f"  {warn('Enter 1-5')}")
+
+    # Pick winner
+    print(f"\n  {C.CYAN}Winner? [A/B/tie]: {C.RESET}", end="")
+    while True:
+        try:
+            raw = input().strip().upper()
+            if raw in ("A", "B", "TIE"):
+                winner = raw.lower() if raw == "TIE" else raw
+                break
+        except EOFError:
+            pass
+        print(f"  {warn('Enter A, B, or tie')}")
+
+    # Optional notes
+    notes = input(f"  {C.CYAN}Notes (optional): {C.RESET}").strip() or None
+
+    conn.execute(
+        """UPDATE ab_tests SET status = 'scored', winner = ?, notes = ?,
+           scored_at = datetime('now') WHERE id = ?""",
+        (winner, notes, test_id),
+    )
+    conn.commit()
+    print(f"  {ok(f'✓ Scored — winner: {winner}')}")
+
+
+def show_ab_history(conn: sqlite3.Connection) -> None:
+    """Display past A/B test results."""
+    rows = conn.execute(
+        """SELECT t.id, s.name AS species, t.variable_axis, t.control_value,
+                  t.variant_value, t.winner, t.status, t.created_at
+           FROM ab_tests t JOIN species s ON s.id = t.species_id
+           ORDER BY t.created_at DESC LIMIT 20""",
+    ).fetchall()
+    if not rows:
+        print(f"\n  {dim('No A/B tests recorded yet.')}")
+        return
+
+    print(f"\n  {hdr('A/B TEST HISTORY (last 20)')}")
+    print(f"  {C.DIM}" + "─" * 80 + C.RESET)
+    hdr_fmt = f"  {C.WHITE}{'ID':>4}  {'Species':<20} {'Axis':<12} {'A':<15} {'B':<15} {'Win':>4}  {'Status':<8}{C.RESET}"
+    print(hdr_fmt)
+    print(f"  {C.DIM}" + "─" * 80 + C.RESET)
+    for r in rows:
+        win_display = r["winner"] or "–"
+        if win_display == "A":
+            win_color = C.GREEN
+        elif win_display == "B":
+            win_color = C.YELLOW
+        else:
+            win_color = C.DIM
+        ctrl = r["control_value"][:14]
+        var_ = r["variant_value"][:14]
+        print(f"  {C.DIM}{r['id']:>4}{C.RESET}  {C.WHITE}{r['species']:<20}{C.RESET} "
+              f"{dim(r['variable_axis'][:11]):<12} {ctrl:<15} {var_:<15} "
+              f"{win_color}{win_display:>4}{C.RESET}  {dim(r['status'])}")
+    print()
+
+
+def show_species_ab_summary(conn: sqlite3.Connection, species_id: int, species_name: str) -> None:
+    """Show winning parameter values for a species from scored A/B tests."""
+    rows = conn.execute(
+        """SELECT variable_axis,
+                  CASE WHEN winner = 'A' THEN control_value
+                       WHEN winner = 'B' THEN variant_value
+                       ELSE NULL END AS winning_value,
+                  winner, notes
+           FROM ab_tests
+           WHERE species_id = ? AND status = 'scored' AND winner IN ('A', 'B')
+           ORDER BY variable_axis, scored_at DESC""",
+        (species_id,),
+    ).fetchall()
+    if not rows:
+        return
+    print(f"\n  {hdr(f'A/B TEST WINS — {species_name}')}")
+    print(f"  {C.DIM}" + "─" * 60 + C.RESET)
+    for r in rows:
+        axis_label = r["variable_axis"].replace("_", " ")
+        r_notes = r["notes"]
+        if r_notes:
+            print(f"  {ok('★')} {dim(f'[{axis_label}]')} {C.WHITE}{r['winning_value']}{C.RESET}"
+                  f"  {dim(f'({r_notes})')}")
+        else:
+            print(f"  {ok('★')} {dim(f'[{axis_label}]')} {C.WHITE}{r['winning_value']}{C.RESET}")
+    print()
+
+
+def ab_test_main(args) -> None:
+    """A/B testing mode — generates two prompt variants for comparison."""
+    conn = connect(args.db)
+    _ensure_ab_tables(conn)
+    global_rules = fetch_global_rules(conn)
+
+    print(f"\n{C.BOLD_CYAN}{'═' * 64}{C.RESET}")
+    print(f"  {C.BOLD_CYAN}A/B TESTING MODE{C.RESET}")
+    print(f"{C.BOLD_CYAN}{'═' * 64}{C.RESET}")
+
+    # Check for --ab-score: score an existing test instead of creating one
+    if args.ab_score:
+        test_id = args.ab_score
+        test_row = conn.execute("SELECT id FROM ab_tests WHERE id = ?", (test_id,)).fetchone()
+        if not test_row:
+            print(f"  {warn(f'No A/B test found with id={test_id}')}")
+            return
+        score_ab_test(conn, test_id)
+        return
+
+    # Check for --ab-history: show past results
+    if args.ab_history:
+        show_ab_history(conn)
+        return
+
+    # --- Normal A/B test creation ---
+    habitat = select_habitat()
+    output_mode = select_mode(habitat)
+    mode_cfg = OUTPUT_MODES[output_mode]
+
+    placement = ("", "")
+    if mode_cfg["needs_placement"]:
+        placement = select_canvas_placement()
+
+    species = pick_species(conn, habitat)
+    science = fetch_species_science(conn, species["id"])
+    notes = fetch_research_notes(conn, species["id"])
+    display_science_brief(species, science, notes)
+
+    # Show prior A/B wins for this species
+    show_species_ab_summary(conn, species["id"], species["name"])
+
+    # Per-species stylize
+    anatomy = get_anatomy(species["name"])
+    if anatomy and anatomy.recommended_stylize:
+        s_low, s_default, s_high = anatomy.recommended_stylize
+        if args.stylize is None:
+            args.stylize = s_default
+    elif args.stylize is None:
+        args.stylize = 100
+
+    # Select axis to vary
+    axis = select_ab_axis()
+
+    # Build base context using auto-picks
+    style_param = CLADE_STYLE.get(habitat, CLADE_STYLE["terrestrial"])
+    ctx = {
+        "habitat": habitat, "species_name": species["name"],
+        "diet": species["diet"] or "", "size_class": species["size_class"] or "",
+        "output_mode": output_mode,
+        "lighting": None, "mood": None, "behavior": None,
+        "condition": None, "weather": None,
+    }
+
+    lighting_param = auto_pick_parameter(conn, "lighting", habitat, ctx)
+    ctx["lighting"] = lighting_param["name"]
+    camera_param = auto_pick_parameter(conn, "camera", habitat, ctx)
+
+    if habitat == "plant":
+        mood_param = {"id": 0, "name": "still", "value": "motionless, no wind, static"}
+        condition_param = {"id": 0, "name": "healthy", "value": "healthy growth, no damage"}
+        behavior_param = {"id": 0, "name": "growing", "value": "natural growth posture"}
+    else:
+        mood_sug = get_suggestions("mood", ctx)
+        mood_blk = get_blocked("mood", ctx)
+        mood_param = auto_pick_parameter(conn, "mood", habitat, ctx)
+        ctx["mood"] = mood_param["name"]
+
+        cond_sug = get_suggestions("condition", ctx)
+        cond_blk = get_blocked("condition", ctx)
+        condition_param = auto_pick_parameter(conn, "condition", habitat, ctx)
+        ctx["condition"] = condition_param["name"]
+
+        beh_sug = get_suggestions("behavior", ctx)
+        beh_blk = get_blocked("behavior", ctx)
+        behavior_param = auto_pick_parameter(conn, "behavior", habitat, ctx)
+        ctx["behavior"] = behavior_param["name"]
+
+    # Weather auto-pick
+    all_weather = fetch_parameters_by_category(conn, "weather", habitat=habitat)
+    sky = LIGHTING_SKY.get(lighting_param["name"], "mixed")
+    compatible_weather = [w for w in all_weather
+                         if "any" in WEATHER_SKY_COMPAT.get(w["name"], ("any",))
+                         or sky in WEATHER_SKY_COMPAT.get(w["name"], ())]
+    if not compatible_weather:
+        compatible_weather = all_weather
+    weather_param = dict(compatible_weather[0]) if compatible_weather else {"id": 0, "name": "clear", "value": "clear skies"}
+    ctx["weather"] = weather_param["name"]
+
+    # Current values for axis
+    current_values = {
+        "lighting": lighting_param["name"],
+        "mood": mood_param["name"],
+        "condition": condition_param["name"],
+        "behavior": behavior_param["name"],
+        "stylize": str(args.stylize),
+        "output_mode": output_mode,
+    }
+
+    # Pick A/B values
+    ctrl_val, var_val, ctrl_obj, var_obj = pick_ab_values(
+        conn, axis, habitat, current_values[axis]
+    )
+
+    print(f"\n  {hdr('GENERATING A/B VARIANTS')}")
+    print(f"  {C.DIM}" + "─" * 60 + C.RESET)
+    print(f"  Axis:    {C.WHITE}{axis}{C.RESET}")
+    print(f"  A:       {C.WHITE}{ctrl_val}{C.RESET}")
+    print(f"  B:       {C.WHITE}{var_val}{C.RESET}")
+    print()
+
+    # Save the test
+    test_id = save_ab_test(conn, species["id"], axis, ctrl_val, var_val)
+
+    # Build both prompts
+    required_params = fetch_species_required_params(conn, species["id"])
+    variant_labels = [("A", ctrl_val, ctrl_obj), ("B", var_val, var_obj)]
+    variant_prompts = []
+
+    for label, val, obj in variant_labels:
+        # Override the axis parameter
+        v_lighting = lighting_param
+        v_mood = mood_param
+        v_condition = condition_param
+        v_behavior = behavior_param
+        v_stylize = args.stylize
+        v_output_mode = output_mode
+        v_mode_cfg = mode_cfg
+        v_placement = placement
+
+        if axis == "lighting":
+            v_lighting = obj
+        elif axis == "mood":
+            v_mood = obj
+        elif axis == "condition":
+            v_condition = obj
+        elif axis == "behavior":
+            v_behavior = obj
+        elif axis == "stylize":
+            v_stylize = obj
+        elif axis == "output_mode":
+            v_output_mode = val
+            v_mode_cfg = OUTPUT_MODES[val]
+            if v_mode_cfg["needs_placement"] and placement == ("", ""):
+                v_placement = ("center", "center frame")
+
+        prompt_text = assemble_prompt(
+            species, science, style_param, v_lighting, camera_param, v_mood,
+            condition_param=v_condition,
+            behavior_param=v_behavior,
+            weather_param=weather_param,
+            required_params=required_params,
+            global_rules=global_rules,
+            mj_style=args.style,
+            stylize=v_stylize,
+            chaos=args.chaos,
+            quality=args.quality,
+            output_mode=v_output_mode,
+            placement=v_placement,
+            has_sref=bool(args.sref),
+            habitat=habitat,
+        )
+
+        if args.sref:
+            prompt_text += f" --sref {args.sref}"
+        if args.cref:
+            prompt_text += f" --cref {args.cref}"
+
+        title = make_title(species, v_mood, output_mode=v_output_mode)
+        tags = make_tags(species, style_param, v_lighting, camera_param, v_mood,
+                         condition_param=v_condition, behavior_param=v_behavior,
+                         weather_param=weather_param, output_mode=v_output_mode)
+
+        prompt_id = save_prompt(
+            conn,
+            species_id=species["id"],
+            title=f"[AB-{test_id}{label}] {title}",
+            positive_prompt=prompt_text,
+            tags=f"ab_test,test_{test_id},{tags}",
+            parameter_ids=[],
+        )
+
+        save_ab_variant(conn, test_id, label, prompt_id, prompt_text, val)
+        variant_prompts.append((label, val, prompt_text, prompt_id))
+
+    # Display both variants
+    for label, val, prompt_text, prompt_id in variant_prompts:
+        variant_marker = "CONTROL" if label == "A" else "VARIANT"
+        print(f"\n{C.BOLD_CYAN}{'═' * 64}{C.RESET}")
+        print(f"  {C.BOLD_CYAN}[{label}] {variant_marker}{C.RESET}  "
+              f"{C.DIM}[{axis} = {val}]{C.RESET}")
+        print(f"{C.BOLD_CYAN}{'═' * 64}{C.RESET}")
+        print_prompt_box(prompt_text)
+
+        prose_only = strip_mj_params(prompt_text)
+        clip_est = _estimate_clip_tokens(prose_only)
+        if clip_est > 77:
+            print(f"  {warn(f'⚠  CLIP tokens ≈ {clip_est}/77 — over budget')}")
+        else:
+            print(f"  {dim(f'CLIP tokens ≈ {clip_est}/77')}")
+
+        print(f"\n  {hdr('/imagine prompt:')}")
+        print(f"  {C.BRIGHT_WHITE}{prompt_text}{C.RESET}\n")
+
+    # Summary
+    print(f"{C.BOLD_CYAN}{'═' * 64}{C.RESET}")
+    print(f"  {C.BOLD_CYAN}A/B TEST #{test_id} — READY{C.RESET}")
+    print(f"{C.BOLD_CYAN}{'═' * 64}{C.RESET}")
+    print(f"  Species: {C.WHITE}{species['name']}{C.RESET}")
+    print(f"  Axis:    {C.WHITE}{axis}{C.RESET}")
+    print(f"  A:       {C.WHITE}{ctrl_val}{C.RESET}  (prompt id={variant_prompts[0][3]})")
+    print(f"  B:       {C.WHITE}{var_val}{C.RESET}  (prompt id={variant_prompts[1][3]})")
+    print()
+    print(f"  {dim('Run both prompts in Midjourney, then score:')}")
+    print(f"  {C.WHITE}python generate_prompt.py --ab-score {test_id}{C.RESET}")
+    print(f"  {dim('View all results:')}")
+    print(f"  {C.WHITE}python generate_prompt.py --ab-history{C.RESET}")
+    print()
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Interactively build a Midjourney dinosaur art prompt."
@@ -2822,7 +3607,16 @@ def main() -> None:
     parser.add_argument("--quality",  type=float, default=1.0,  choices=[0.25, 0.5, 1.0], help="--q (default: 1.0)")
     parser.add_argument("--sref",     type=str,   default=None, metavar="URL", help="Style reference image URL appended as --sref")
     parser.add_argument("--cref",     type=str,   default=None, metavar="URL", help="Character reference image URL appended as --cref")
+    # A/B testing (Session 17)
+    parser.add_argument("--ab-test",    action="store_true", help="Enter A/B testing mode")
+    parser.add_argument("--ab-score",   type=int,  default=None, metavar="ID", help="Score an existing A/B test by ID")
+    parser.add_argument("--ab-history", action="store_true", help="Show A/B test history")
     args = parser.parse_args()
+
+    # Route to A/B testing mode if any A/B flag is set
+    if args.ab_test or args.ab_score or args.ab_history:
+        ab_test_main(args)
+        return
 
     conn = connect(args.db)
     global_rules = fetch_global_rules(conn)
@@ -2874,6 +3668,21 @@ def main() -> None:
         for fail in anatomy.known_failures:
             print(f"  {C.YELLOW}⚠{C.RESET}  {C.WHITE}{fail}{C.RESET}")
         print()
+
+    # --- Show A/B test wins for this species (Session 17) ---
+    _ensure_ab_tables(conn)
+    show_species_ab_summary(conn, species["id"], species["name"])
+
+    # --- Multi-subject scene: pick secondary species (Session 17) ---
+    secondary_species = None
+    interaction_type = None
+    if output_mode in MULTI_SUBJECT_MODES:
+        secondary_species = pick_secondary_species(conn, species, output_mode)
+        if secondary_species:
+            if output_mode == "predator_prey":
+                interaction_type = pick_interaction_type()
+            else:
+                interaction_type = "coexisting"
 
     # --- Style reference suggestion (only if --sref not already passed) ---
     if not args.sref:
@@ -2993,6 +3802,8 @@ def main() -> None:
         placement=placement,
         has_sref=bool(args.sref),
         habitat=habitat,
+        secondary_species=secondary_species,
+        interaction_type=interaction_type,
     )
 
     title = make_title(species, mood_param, output_mode=output_mode)
@@ -3036,6 +3847,17 @@ def main() -> None:
     print()
     validate_prompt(prompt_text, allow_mj_params=True,  label="STEP 1 main")
     print_prompt_box(prompt_text)
+
+    # Session 17: CLIP token budget indicator
+    prose_only = strip_mj_params(prompt_text)
+    clip_est = _estimate_clip_tokens(prose_only)
+    if clip_est > 77:
+        print(f"  {warn(f'⚠  CLIP tokens ≈ {clip_est}/77 — over budget, MJ will truncate tail phrases')}")
+    elif clip_est > 60:
+        print(f"  {dim(f'CLIP tokens ≈ {clip_est}/77 — approaching limit')}")
+    else:
+        print(f"  {dim(f'CLIP tokens ≈ {clip_est}/77')}")
+
     print(f"\n  {hdr('/imagine prompt:')}")
     print(f"  {C.BRIGHT_WHITE}{prompt_text}{C.RESET}\n")
 

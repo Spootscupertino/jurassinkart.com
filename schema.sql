@@ -116,6 +116,34 @@ CREATE TABLE IF NOT EXISTS global_rules (
     created_at  TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
+-- A/B testing framework (Session 17)
+CREATE TABLE IF NOT EXISTS ab_tests (
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    species_id      INTEGER NOT NULL REFERENCES species(id) ON DELETE CASCADE,
+    variable_axis   TEXT NOT NULL,  -- which parameter was varied: 'lighting', 'mood', 'condition', 'behavior', 'stylize', 'output_mode'
+    control_value   TEXT NOT NULL,  -- the "A" value
+    variant_value   TEXT NOT NULL,  -- the "B" value
+    status          TEXT NOT NULL DEFAULT 'pending' CHECK(status IN ('pending', 'tested', 'scored', 'archived')),
+    winner          TEXT CHECK(winner IN ('A', 'B', 'tie', NULL)),
+    notes           TEXT,
+    created_at      TEXT NOT NULL DEFAULT (datetime('now')),
+    scored_at       TEXT
+);
+
+CREATE TABLE IF NOT EXISTS ab_variants (
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    test_id         INTEGER NOT NULL REFERENCES ab_tests(id) ON DELETE CASCADE,
+    label           TEXT NOT NULL CHECK(label IN ('A', 'B')),
+    prompt_id       INTEGER REFERENCES prompts(id) ON DELETE SET NULL,
+    positive_prompt TEXT NOT NULL,
+    variable_value  TEXT NOT NULL,  -- the actual parameter value used
+    rating          INTEGER CHECK(rating BETWEEN 1 AND 5),
+    notes           TEXT,
+    created_at      TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE INDEX IF NOT EXISTS idx_ab_variants_test ON ab_variants(test_id);
+CREATE INDEX IF NOT EXISTS idx_ab_tests_species ON ab_tests(species_id);
+
 -- Indexes for common query patterns
 CREATE INDEX IF NOT EXISTS idx_prompts_species   ON prompts(species_id);
 CREATE INDEX IF NOT EXISTS idx_prompts_parent    ON prompts(parent_id);
