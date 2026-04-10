@@ -14,6 +14,14 @@ import sqlite3
 import sys
 from pathlib import Path
 
+from species import get_anatomy, build_anatomy_prompt, build_anatomy_negative
+
+WIDE_SCALE_VARIANTS = ["wide shot"]
+
+# Output modes that are inherently wide/landscape-dominant.
+# These auto-activate wide_mode in assemble_prompt() so the subject reads
+# small in frame and the environment dominates — critical for canvas prints.
+WIDE_MODES = {"environmental", "valley_panorama", "ridgeline_silhouette", "river_crossing", "misty_dawn", "storm_front"}
 
 # ---------------------------------------------------------------------------
 # Terminal color constants (ANSI escape codes)
@@ -328,6 +336,12 @@ MARINE_CAMERA_BY_MODE = {
     "action_freeze":  ["breach_freeze",   "jaw_level",         "chase_behind",      "deep_telephoto",     "murk_emerge"],
     "tracking_side":  ["swim_alongside",  "deep_telephoto",    "chase_behind",      "full_body_profile",  "murk_emerge"],
     "extreme_closeup":["detail_abstract", "jaw_level",         "belly_underneath",  "reef_foreground",    "closeup_portrait"],
+    "eye_contact":    ["closeup_portrait","jaw_level",         "murk_emerge",       "tight_head",         "detail_abstract"],
+    "jaws_detail":    ["jaw_level",       "closeup_portrait",  "below_looking_up",  "murk_emerge",        "detail_abstract"],
+    "confrontation":  ["jaw_level",       "murk_emerge",       "below_looking_up",  "chase_behind",       "closeup_portrait"],
+    "valley_panorama":["distant_surface", "above_looking_down","underwater_wide",   "split_waterline",    "swim_alongside"],
+    "misty_dawn":     ["distant_surface", "above_looking_down","swim_alongside",    "split_waterline",    "underwater_wide"],
+    "storm_front":    ["distant_surface", "split_waterline",   "above_looking_down","surface_skim",       "breach_freeze"],
     "aerial_overhead":["above_looking_down","distant_surface", "swim_alongside",    "split_waterline",    "full_body_profile"],
     "dusk_long_exp":  ["distant_surface", "split_waterline",   "surface_skim",      "swim_alongside",     "above_looking_down"],
 }
@@ -560,9 +574,17 @@ TERRESTRIAL_CAMERA_BY_MODE = {
     "canvas":           ["full_body_profile","rear_three_quarter","epic_wide",          "trail_camera",      "waterhole_edge"],
     "environmental":    ["epic_wide",        "aerial_above",      "trail_camera",       "telephoto_compress","waterhole_edge"],
     "extreme_closeup":  ["detail_abstract",  "tight_head",        "dust_level",         "closeup_portrait",  "telephoto_compress"],
+    "eye_contact":      ["closeup_portrait", "tight_head",        "telephoto_compress", "hidden_blind",      "detail_abstract"],
+    "jaws_detail":      ["tight_head",       "closeup_portrait",  "dynamic_low",        "detail_abstract",   "ground_level_up"],
     "action_freeze":    ["dynamic_low",      "tracking_pan",      "walking_toward",     "ground_level_up",   "dust_level"],
     "tracking_side":    ["tracking_pan",     "telephoto_compress","full_body_profile",  "trail_camera",      "dust_level"],
     "ground_level":     ["ground_level_up",  "dynamic_low",       "dust_level",         "walking_toward",    "trail_camera"],
+    "confrontation":    ["walking_toward",   "dynamic_low",       "ground_level_up",    "closeup_portrait",  "dust_level"],
+    "valley_panorama":  ["epic_wide",        "aerial_above",      "telephoto_compress", "waterhole_edge",    "silhouette_ridge"],
+    "ridgeline_silhouette":["silhouette_ridge","epic_wide",       "telephoto_compress", "trail_camera",      "waterhole_edge"],
+    "river_crossing":   ["epic_wide",        "waterhole_edge",    "trail_camera",       "telephoto_compress","tracking_pan"],
+    "misty_dawn":       ["epic_wide",        "telephoto_compress","trail_camera",       "hidden_blind",      "waterhole_edge"],
+    "storm_front":      ["epic_wide",        "silhouette_ridge",  "trail_camera",       "telephoto_compress","aerial_above"],
     "aerial_overhead":  ["aerial_above",     "canopy_gap_down",   "epic_wide",          "telephoto_compress","silhouette_ridge"],
     "dusk_long_exp":    ["silhouette_ridge", "waterhole_edge",    "telephoto_compress", "epic_wide",         "trail_camera"],
 }
@@ -790,10 +812,15 @@ AERIAL_CAMERA_BY_MODE = {
     "portrait":        ["closeup_portrait","tight_head",      "wing_detail",       "cliff_perch",       "detail_abstract"],
     "canvas":          ["full_body_profile","flight_tracking","below_up_wings",    "parallel_flight",   "distant_speck"],
     "environmental":   ["distant_speck",   "cloud_frame",     "thermal_circle",    "flight_tracking",   "sunrise_silhouette"],
+    "eye_contact":     ["closeup_portrait","tight_head",      "cliff_perch",       "wing_detail",       "detail_abstract"],
     "soaring_thermal": ["below_up_wings",  "thermal_circle",  "flight_tracking",   "sunrise_silhouette","cloud_frame"],
     "dive_strike":     ["stoop_above",     "head_on_approach","banking_turn",      "flight_tracking",   "below_up_wings"],
     "action_freeze":   ["stoop_above",     "head_on_approach","banking_turn",      "below_up_wings",    "parallel_flight"],
     "extreme_closeup": ["wing_detail",     "detail_abstract", "tight_head",        "cliff_perch",       "closeup_portrait"],
+    "valley_panorama": ["distant_speck",   "cloud_frame",     "thermal_circle",    "sunrise_silhouette","flight_tracking"],
+    "ridgeline_silhouette":["sunrise_silhouette","distant_speck","cloud_frame",    "thermal_circle",    "below_up_wings"],
+    "misty_dawn":      ["distant_speck",   "cloud_frame",     "sunrise_silhouette","thermal_circle",    "flight_tracking"],
+    "storm_front":     ["distant_speck",   "cloud_frame",     "sunrise_silhouette","stoop_above",       "thermal_circle"],
     "aerial_overhead": ["above_down_dorsal","distant_speck",  "thermal_circle",    "cloud_frame",       "flight_tracking"],
     "tracking_side":   ["parallel_flight", "flight_tracking", "banking_turn",      "distant_speck",     "full_body_profile"],
     "dusk_long_exp":   ["sunrise_silhouette","distant_speck", "cloud_frame",       "thermal_circle",    "flight_tracking"],
@@ -1202,9 +1229,10 @@ CANVAS_SPECIES_EXTRAS = {
 # ---------------------------------------------------------------------------
 
 OUTPUT_MODES: dict[str, dict] = {
+    # ─── CLOSE-UP / DETAIL (5) ──────────────────────────────────────────────
     "portrait": {
         "display":       "Portrait close-up",
-        "desc":          "telephoto, tight framing, mood-focused",
+        "desc":          "telephoto head/shoulders, mood-focused, shallow depth of field",
         "fixed_camera":  None,
         "composition":   "",
         "canvas_print":  False,
@@ -1212,28 +1240,8 @@ OUTPUT_MODES: dict[str, dict] = {
         "needs_placement": False,
         "habitats":      ["terrestrial", "marine", "aerial", "arthropod", "plant"],
     },
-    "canvas": {
-        "display":       "Full body canvas print",
-        "desc":          "mid-range lens, 60/40 negative space, print-ready",
-        "fixed_camera":  "Canon EOS R5 24-70mm f/4",
-        "composition":   "PLACEMENT",
-        "canvas_print":  True,
-        "full_body":     True,
-        "needs_placement": True,
-        "habitats":      ["terrestrial", "marine", "aerial", "arthropod", "plant"],
-    },
-    "environmental": {
-        "display":       "Environmental wide shot",
-        "desc":          "subject small in vast landscape, habitat dominant",
-        "fixed_camera":  "Canon EOS R5 16-35mm f/2.8, ultra-wide, subject under 20% of frame",
-        "composition":   "subject small in vast prehistoric landscape, habitat dominant",
-        "canvas_print":  False,
-        "full_body":     True,
-        "needs_placement": False,
-        "habitats":      ["terrestrial", "marine", "aerial", "arthropod", "plant"],
-    },
     "extreme_closeup": {
-        "display":       "Extreme detail close-up",
+        "display":       "Extreme detail macro",
         "desc":          "macro, single surface dominant, texture abstracted",
         "fixed_camera":  "Canon EOS R5 100mm macro f/8, razor-thin depth of field",
         "composition":   "single surface fills frame, texture dominant",
@@ -1241,6 +1249,26 @@ OUTPUT_MODES: dict[str, dict] = {
         "full_body":     False,
         "needs_placement": False,
         "habitats":      ["terrestrial", "marine", "aerial", "arthropod", "plant"],
+    },
+    "eye_contact": {
+        "display":       "Eye contact intimate",
+        "desc":          "locked gaze, eye fills centre frame, iris detail",
+        "fixed_camera":  None,
+        "composition":   "direct eye contact with camera, eye and face dominant, intimate gaze",
+        "canvas_print":  False,
+        "full_body":     False,
+        "needs_placement": False,
+        "habitats":      ["terrestrial", "marine", "aerial", "arthropod"],
+    },
+    "jaws_detail": {
+        "display":       "Teeth & jaws detail",
+        "desc":          "open mouth, teeth dominant, threat display",
+        "fixed_camera":  None,
+        "composition":   "mouth open, teeth and jaw dominate frame, threat or feeding display",
+        "canvas_print":  False,
+        "full_body":     False,
+        "needs_placement": False,
+        "habitats":      ["terrestrial", "marine", "aerial"],
     },
     "action_freeze": {
         "display":       "Action freeze frame",
@@ -1252,15 +1280,16 @@ OUTPUT_MODES: dict[str, dict] = {
         "needs_placement": False,
         "habitats":      ["terrestrial", "marine", "aerial"],
     },
-    "silhouette": {
-        "display":       "Silhouette against sky",
-        "desc":          "backlit, form only, no surface detail",
-        "fixed_camera":  "Canon EOS R5, exposed for bright background, strong rim light",
-        "composition":   "pure silhouette against sky, stark contrast, form only",
-        "canvas_print":  False,
+    # ─── MID-RANGE / FULL BODY (5) ──────────────────────────────────────────
+    "canvas": {
+        "display":       "Full body canvas print",
+        "desc":          "mid-range, 60/40 negative space, gallery print-ready",
+        "fixed_camera":  "Canon EOS R5 24-70mm f/4",
+        "composition":   "PLACEMENT",
+        "canvas_print":  True,
         "full_body":     True,
-        "needs_placement": False,
-        "habitats":      ["terrestrial", "aerial"],
+        "needs_placement": True,
+        "habitats":      ["terrestrial", "marine", "aerial", "arthropod", "plant"],
     },
     "tracking_side": {
         "display":       "Tracking side profile",
@@ -1274,17 +1303,99 @@ OUTPUT_MODES: dict[str, dict] = {
     },
     "ground_level": {
         "display":       "Ground-level upward",
-        "desc":          "camera at ground, animal towers above lens",
+        "desc":          "camera at dirt, animal towers above lens, dramatic scale",
         "fixed_camera":  "Canon EOS R5 24mm f/2.8, camera at ground, extreme upward angle",
         "composition":   "ground-level upward, animal towers overhead, sky behind",
         "canvas_print":  False,
         "full_body":     True,
         "needs_placement": False,
+        "habitats":      ["terrestrial", "arthropod"],
+    },
+    "camera_trap": {
+        "display":       "Camera trap / trail cam",
+        "desc":          "off-centre, candid, motion-triggered framing",
+        "fixed_camera":  "trail camera, fixed wide angle, off-centre framing, subject unaware of lens",
+        "composition":   "candid camera trap angle, subject off-centre, motion-triggered moment, natural unposed framing",
+        "canvas_print":  False,
+        "full_body":     True,
+        "needs_placement": False,
+        "habitats":      ["terrestrial", "arthropod", "plant"],
+    },
+    "confrontation": {
+        "display":       "Confrontation — walking toward camera",
+        "desc":          "head-on approach, animal filling lower frame, intimidating",
+        "fixed_camera":  None,
+        "composition":   "animal walking directly toward camera, head-on angle, slightly low camera, imposing presence filling frame",
+        "canvas_print":  False,
+        "full_body":     True,
+        "needs_placement": False,
+        "habitats":      ["terrestrial", "marine", "arthropod"],
+    },
+    # ─── EPIC WIDE / LANDSCAPE (6) ──────────────────────────────────────────
+    "environmental": {
+        "display":       "Environmental wide — classic landscape",
+        "desc":          "animal small in vast flat landscape, habitat dominant",
+        "fixed_camera":  "Canon EOS R5 16-35mm f/2.8, ultra-wide",
+        "composition":   "subject small in vast prehistoric landscape, habitat dominant",
+        "canvas_print":  False,
+        "full_body":     True,
+        "needs_placement": False,
+        "habitats":      ["terrestrial", "marine", "aerial", "arthropod", "plant"],
+    },
+    "valley_panorama": {
+        "display":       "Valley overlook panorama",
+        "desc":          "camera high on ridge looking down into valley, animal below in distance",
+        "fixed_camera":  "Canon EOS R5 24mm f/8, elevated vantage point",
+        "composition":   "camera on elevated ridge looking down into wide valley, animal small below in middle distance, layers of terrain receding to horizon",
+        "canvas_print":  False,
+        "full_body":     True,
+        "needs_placement": False,
+        "habitats":      ["terrestrial", "aerial", "plant"],
+    },
+    "ridgeline_silhouette": {
+        "display":       "Ridgeline silhouette — epic backlit",
+        "desc":          "animal on ridge/hilltop, backlit by sun or sky, silhouette with rim light",
+        "fixed_camera":  "Canon EOS R5 70-200mm, exposed for bright sky",
+        "composition":   "animal standing on ridgeline or hilltop, strong backlight, silhouette with bright rim light, dramatic sky behind, landscape falling away below",
+        "canvas_print":  False,
+        "full_body":     True,
+        "needs_placement": False,
+        "habitats":      ["terrestrial", "aerial"],
+    },
+    "river_crossing": {
+        "display":       "River crossing epic",
+        "desc":          "animal at water crossing, wide river, landscape stretching beyond",
+        "fixed_camera":  "Canon EOS R5 24-70mm f/4, low water-level angle",
+        "composition":   "animal mid-stride crossing wide shallow river, water splashing at legs, vast open landscape stretching to horizon on both banks",
+        "canvas_print":  False,
+        "full_body":     True,
+        "needs_placement": False,
         "habitats":      ["terrestrial"],
     },
+    "misty_dawn": {
+        "display":       "Misty dawn landscape",
+        "desc":          "animal emerging from fog layers, layered atmospheric depth, cool light",
+        "fixed_camera":  "Canon EOS R5 70-200mm f/2.8, dawn light through fog, layered depth",
+        "composition":   "animal emerging from layered morning mist, vast foggy landscape, atmospheric depth, cool blue dawn light",
+        "canvas_print":  False,
+        "full_body":     True,
+        "needs_placement": False,
+        "habitats":      ["terrestrial", "marine", "aerial", "arthropod", "plant"],
+    },
+    "storm_front": {
+        "display":       "Storm front approach",
+        "desc":          "massive storm clouds dominate sky, animal small below, dramatic light",
+        "fixed_camera":  "Canon EOS R5 16-35mm f/2.8, ultra-wide",
+        "composition":   "enormous storm clouds filling upper two-thirds of frame, dramatic light breaking through, animal small below against vast threatening sky",
+        "canvas_print":  False,
+        "full_body":     True,
+        "needs_placement": False,
+        "habitats":      ["terrestrial", "marine", "aerial"],
+    },
+    # ─── SPECIALTY / ATMOSPHERIC (4) ────────────────────────────────────────
     "aerial_overhead": {
-        "display":       "Aerial overhead",
-        "desc":          "direct overhead, dorsal surface visible, habitat below",
+        "display":       "Aerial overhead — drone view",
+        "desc":          "direct overhead, dorsal surface visible, habitat pattern below",
         "fixed_camera":  "Canon EOS R5 35mm, directly overhead, dorsal surface",
         "composition":   "overhead view, dorsal surface centred, habitat visible around animal",
         "canvas_print":  False,
@@ -1294,7 +1405,7 @@ OUTPUT_MODES: dict[str, dict] = {
     },
     "dusk_long_exp": {
         "display":       "Dusk long exposure",
-        "desc":          "motion blur, ambient light only, atmospheric",
+        "desc":          "motion blur, ambient light only, atmospheric and painterly",
         "fixed_camera":  "Canon EOS R5 50mm f/5.6, tripod, long exposure at dusk",
         "composition":   "long exposure, moving elements blurred, static elements sharp",
         "canvas_print":  False,
@@ -1302,7 +1413,27 @@ OUTPUT_MODES: dict[str, dict] = {
         "needs_placement": False,
         "habitats":      ["terrestrial", "marine"],
     },
-    # --- Marine-specific modes ---
+    "shoreline": {
+        "display":       "Shoreline / water edge",
+        "desc":          "subject at water transition, half-wet half-dry, horizon line",
+        "fixed_camera":  "Canon EOS R5 200mm f/4, low water-level angle, telephoto bokeh",
+        "composition":   "subject at edge of water, transition zone between dry and wet, horizon visible",
+        "canvas_print":  False,
+        "full_body":     True,
+        "needs_placement": False,
+        "habitats":      ["terrestrial", "marine", "plant"],
+    },
+    "group_herd": {
+        "display":       "Group / herd scene",
+        "desc":          "multiple animals, social grouping, natural spacing across landscape",
+        "fixed_camera":  "Canon EOS R5 70-200mm f/2.8, mid-range telephoto, group framing",
+        "composition":   "multiple individuals of same species in frame, natural spacing, social grouping across landscape",
+        "canvas_print":  False,
+        "full_body":     True,
+        "needs_placement": False,
+        "habitats":      ["terrestrial", "marine", "aerial", "arthropod", "plant"],
+    },
+    # ─── MARINE-SPECIFIC ────────────────────────────────────────────────────
     "surface_break": {
         "display":       "Surface break",
         "desc":          "animal breaking water surface, half submerged",
@@ -1323,7 +1454,7 @@ OUTPUT_MODES: dict[str, dict] = {
         "needs_placement": False,
         "habitats":      ["marine"],
     },
-    # --- Aerial-specific modes ---
+    # ─── AERIAL-SPECIFIC ────────────────────────────────────────────────────
     "soaring_thermal": {
         "display":       "Soaring on thermal",
         "desc":          "wings spread, thermal soaring, shot from below",
@@ -1353,57 +1484,6 @@ OUTPUT_MODES: dict[str, dict] = {
         "full_body":     True,
         "needs_placement": False,
         "habitats":      ["aerial"],
-    },
-    # --- Cross-clade additions (gives arthropod + plant a richer menu) ---
-    "shoreline": {
-        "display":       "Shoreline / water edge",
-        "desc":          "subject at water transition, half-wet half-dry",
-        "fixed_camera":  "Canon EOS R5 200mm f/4, low water-level angle, telephoto bokeh",
-        "composition":   "subject at edge of water, transition zone between dry and wet, horizon visible",
-        "canvas_print":  False,
-        "full_body":     True,
-        "needs_placement": False,
-        "habitats":      ["terrestrial", "marine", "plant"],
-    },
-    "camera_trap": {
-        "display":       "Camera trap / trail cam",
-        "desc":          "off-centre, candid, motion-triggered framing",
-        "fixed_camera":  "trail camera, fixed wide angle, off-centre framing, subject unaware of lens",
-        "composition":   "candid camera trap angle, subject off-centre, motion-triggered moment, natural unposed framing",
-        "canvas_print":  False,
-        "full_body":     True,
-        "needs_placement": False,
-        "habitats":      ["terrestrial", "arthropod", "plant"],
-    },
-    "canopy_upward": {
-        "display":       "Canopy upward",
-        "desc":          "looking straight up, branches frame sky",
-        "fixed_camera":  "Canon EOS R5 14mm f/2.8, vertical upward angle, deep depth of field",
-        "composition":   "camera pointed straight up, canopy and sky overhead, subject framed against light from above",
-        "canvas_print":  False,
-        "full_body":     False,
-        "needs_placement": False,
-        "habitats":      ["terrestrial", "plant", "arthropod", "aerial"],
-    },
-    "misty_dawn": {
-        "display":       "Misty dawn",
-        "desc":          "soft fog, atmospheric depth, cool early light",
-        "fixed_camera":  "Canon EOS R5 70-200mm f/2.8, dawn light through fog, layered depth",
-        "composition":   "subject emerging from morning mist, layered atmospheric depth, cool blue light",
-        "canvas_print":  False,
-        "full_body":     True,
-        "needs_placement": False,
-        "habitats":      ["terrestrial", "marine", "aerial", "arthropod", "plant"],
-    },
-    "group_cluster": {
-        "display":       "Group / cluster",
-        "desc":          "two or more subjects in frame, social or natural grouping",
-        "fixed_camera":  "Canon EOS R5 200mm f/2.8, mid-range telephoto, group framing",
-        "composition":   "multiple individuals of same species in frame, natural spacing, social grouping or grove cluster",
-        "canvas_print":  False,
-        "full_body":     True,
-        "needs_placement": False,
-        "habitats":      ["terrestrial", "marine", "aerial", "arthropod", "plant"],
     },
 }
 
@@ -1601,9 +1681,24 @@ def select_mode(habitat: str) -> str:
     keys = [k for k, v in OUTPUT_MODES.items() if habitat in v.get("habitats", ["terrestrial"])]
     print(f"\n  {hdr('Select output mode')}")
     print(f"  {C.DIM}" + "─" * 60 + C.RESET)
+
+    # Group labels injected before certain mode keys for readability
+    GROUP_HEADERS = {
+        "portrait":              "CLOSE-UP / DETAIL",
+        "canvas":                "MID-RANGE / FULL BODY",
+        "environmental":         "EPIC WIDE / LANDSCAPE  🏔️",
+        "aerial_overhead":       "SPECIALTY / ATMOSPHERIC",
+        "surface_break":         "MARINE",
+        "soaring_thermal":       "AERIAL",
+    }
     for i, key in enumerate(keys, 1):
         cfg = OUTPUT_MODES[key]
-        print(f"  {C.DIM}{i:>2}.{C.RESET}  {C.BRIGHT_WHITE}{cfg['display']}{C.RESET}")
+        header = GROUP_HEADERS.get(key)
+        if header:
+            print(f"    {C.CYAN}{header}{C.RESET}")
+        landscape_tag = f"  {C.GREEN}🏔️{C.RESET}" if key in WIDE_MODES else ""
+        print(f"  {C.DIM}{i:>2}.{C.RESET}  {C.BRIGHT_WHITE}{cfg['display']}{C.RESET}{landscape_tag}")
+        print(f"      {C.DIM}{cfg['desc']}{C.RESET}")
     print()
     while True:
         raw = input(f"  {C.BOLD_CYAN}Choose 1–{len(keys)}:{C.RESET} ").strip()
@@ -1762,6 +1857,31 @@ def pick_parameter(conn: sqlite3.Connection, category: str, name_only: bool = Fa
     return pick(label, rows, fmt, suggestions=suggestions, blocked=blocked, suggest_label=suggest_label)
 
 
+def auto_pick_parameter(conn: sqlite3.Connection, category: str, habitat: str,
+                        ctx: dict) -> dict:
+    """Auto-select the best parameter for a category using the suggestion system.
+    Picks the top suggestion that isn't blocked. Falls back to the first
+    unblocked DB row if no suggestions exist for the habitat/species."""
+    suggestions = get_suggestions(category, ctx)
+    blocked = get_blocked(category, ctx)
+    rows = fetch_parameters_by_category(conn, category, habitat=habitat)
+    if not rows:
+        sys.exit(f"No {habitat or ''} parameters for '{category}'. Run setup_db.py.")
+
+    # Try suggestion order first
+    if suggestions:
+        for sug_name in suggestions:
+            for r in rows:
+                if r["name"] == sug_name and r["name"] not in blocked:
+                    return dict(r)
+
+    # Fallback: first unblocked row
+    for r in rows:
+        if r["name"] not in blocked:
+            return dict(r)
+    return dict(rows[0])
+
+
 def pick_weather(conn: sqlite3.Connection, lighting_param, habitat: str = None,
                  suggestions=None, blocked=None, suggest_label: str = ""):
     """Pick weather, filtered by lighting compatibility."""
@@ -1821,7 +1941,7 @@ def make_feet_fix_prompt(species, mj_style: str, stylize: int = 20) -> str:
             f"extreme close-up of {name} legs, jointed exoskeleton limbs, "
             "chitinous segments with natural scratches and wear, "
             "fine sensory hairs along leg segments, "
-            "tarsal claws gripping surface, real macro insect photography"
+            "tarsal claws gripping surface, real macro insect photography",
         )
     elif habitat == "marine":
         core = (
@@ -1884,11 +2004,7 @@ def make_environment_fix_prompt(species, environment: str, weather_param, lighti
     return f"{core} {flags}"
 
 
-def make_mouth_fix_prompt(species, mj_style: str, stylize: int = 20) -> str:
-    """Vary Region prompt for mouth/teeth. Paint over the mouth area, paste this prompt."""
-    diet    = species["diet"] or ""
-    habitat = species["habitat"] or "terrestrial"
-    name    = species["name"]
+
 
     if habitat == "marine" and name in ("Megalodon", "Cretoxyrhina"):
         # Sharks — rows of triangular teeth, no gums like reptiles
@@ -2025,12 +2141,17 @@ def assemble_prompt(
     mode_cfg     = OUTPUT_MODES.get(output_mode, OUTPUT_MODES["portrait"])
     full_body    = mode_cfg["full_body"]
     canvas_print = mode_cfg["canvas_print"]
-    # Wide-scale placement variant: detected from the placement sentinel so
-    # it works regardless of the mode's composition template (canvas, underwater,
-    # environmental, etc). When active: subject becomes small in frame,
-    # environment dominant, full-body language is suppressed. No camera
-    # language is added. Other placement modes are unaffected.
-    wide_mode = bool(placement) and placement[0] == "wide"
+    # Session 12+13: framing override system. Two flag families.
+    #   wide_mode — distant-subject framings, suppress full-body language
+    #   multi_species_mode — interspecies scene, keeps body detail visible
+    # Both work regardless of the mode's composition template.
+    # Session 13: wide_mode now also triggers for inherently wide output modes
+    # (environmental, silhouette, aerial_overhead, etc.) so the subject always
+    # reads small in frame with environment-dominant composition — essential
+    # for premium canvas prints.
+    placement_wide = bool(placement) and placement[0] in WIDE_SCALE_VARIANTS
+    wide_mode = placement_wide or output_mode in WIDE_MODES
+    multi_species_mode = bool(placement) and placement[0] == "multi_species"
 
     # ── SECTION 1: SUBJECT ───────────────────────────────────────────────────
     # Anatomy, pose, skin, mouth, behavior, condition, mood.
@@ -2040,22 +2161,52 @@ def assemble_prompt(
     size = species["size_class"].lower() if species["size_class"] else ""
     subject_parts = [f"{size} {species['name']}", species["description"] or ""]
 
-    if species["notes"]:
-        subject_parts.append(species["notes"])
+    # ── Species anatomy module system (Session 15) ────────────────────────
+    # Replaces the old science-table fields (feathering_coverage, tail_posture,
+    # skin_texture_type, known_coloration_evidence) with rich per-species
+    # anatomy data from species/ modules. Each module knows skull shape,
+    # dentition, integument, body proportions, coloration evidence, limb
+    # structure, locomotion, unique features, and common inaccuracies.
+    # build_anatomy_prompt() returns detail scaled to mode_type:
+    #   "close" — full detail (skull, teeth, integument, limbs, coloration)
+    #   "mid"   — moderate (integument, silhouette, key features)
+    #   "wide"  — minimal (silhouette + 2 critical features only)
+    anatomy = get_anatomy(species["name"])
 
-    # Anatomy from science table
-    if science and science["feathering_coverage"] and science["feathering_coverage"].lower() != "none":
-        subject_parts.append(science["feathering_coverage"])
-    if science and science["tail_posture"] and science["tail_posture"].lower() not in ("not applicable — pterosaur", ""):
-        subject_parts.append(science["tail_posture"])  # no "tail posture:" label — reads as descriptor
-    if science and science["known_coloration_evidence"]:
-        ce = science["known_coloration_evidence"]
-        if not any(ce.lower().startswith(p) for p in ("no direct", "no known", "unknown")):
-            subject_parts.append(ce)
+    # Map output mode to anatomy detail level
+    CLOSE_MODES = {"portrait", "extreme_closeup", "eye_contact", "jaws_detail", "action_freeze"}
+    if wide_mode:
+        anatomy_mode = "wide"
+    elif output_mode in CLOSE_MODES:
+        anatomy_mode = "close"
+    else:
+        anatomy_mode = "mid"
 
-    # Required species params (e.g. raptor sickle claw accuracy)
-    for rp in required_params:
-        subject_parts.append(rp["value"])
+    if anatomy:
+        # Inject rich anatomy data — replaces old science fields
+        anatomy_text = build_anatomy_prompt(anatomy, anatomy_mode)
+        if anatomy_text:
+            subject_parts.append(anatomy_text)
+
+        if not wide_mode:
+            # Required species params (e.g. raptor sickle claw accuracy)
+            for rp in required_params:
+                subject_parts.append(rp["value"])
+    else:
+        # Fallback: no anatomy module — use old science table fields
+        if not wide_mode:
+            if species["notes"]:
+                subject_parts.append(species["notes"])
+            if science and science["feathering_coverage"] and science["feathering_coverage"].lower() != "none":
+                subject_parts.append(science["feathering_coverage"])
+            if science and science["tail_posture"] and science["tail_posture"].lower() not in ("not applicable — pterosaur", ""):
+                subject_parts.append(science["tail_posture"])
+            if science and science["known_coloration_evidence"]:
+                ce = science["known_coloration_evidence"]
+                if not any(ce.lower().startswith(p) for p in ("no direct", "no known", "unknown")):
+                    subject_parts.append(ce)
+            for rp in required_params:
+                subject_parts.append(rp["value"])
 
     # Canvas species extras (pose specifics for full-body modes).
     # Wide-scale variant suppresses "full body visible head to tail" because
@@ -2067,32 +2218,37 @@ def assemble_prompt(
                 subject_parts.append(extra)
         subject_parts.append("full body visible head to tail")
 
-    # Skin texture (body surface — belongs in subject)
-    if science and science["skin_texture_type"]:
-        subject_parts.append(science["skin_texture_type"])
+    # Session 13: in wide modes the subject is small/distant in frame.
+    # Fine anatomical detail (skin texture, teeth, condition scars) can't be
+    # resolved at that scale and their presence in early tokens pulls MJ
+    # toward close-up composition. Skip them entirely for wide_mode.
+    if not wide_mode and not anatomy:
+        # Skin texture — only when no anatomy module (anatomy module already covers integument)
+        if science and science["skin_texture_type"]:
+            subject_parts.append(science["skin_texture_type"])
 
-    # Mouth / teeth (body surface — diet-aware, skipped for arthropods, plants,
-    # and toothless beaked species like pterosaurs / Archelon / Ammonite —
-    # injecting "yellowed uneven teeth" on a toothless beak is a contradiction).
+        # Mouth / teeth — only when no anatomy module (anatomy module already covers dentition)
+        diet = species["diet"] or ""
+        desc_blob = ((species["description"] or "") + " " + (species["notes"] or "")).lower()
+        is_toothless = "toothless" in desc_blob or ("beak" in desc_blob and "tooth" not in desc_blob)
+        if habitat == "arthropod":
+            subject_parts.append("mandibles or chelicerae visible, no vertebrate mouth")
+        elif habitat != "plant" and not is_toothless:
+            subject_parts.append(MOUTH_TEETH_CARNIVORE if diet in ("Carnivore", "Piscivore") else MOUTH_TEETH_HERBIVORE)
+    elif wide_mode:
+        pass  # anatomy module handles wide mode detail level
     diet = species["diet"] or ""
-    desc_blob = ((species["description"] or "") + " " + (species["notes"] or "")).lower()
-    is_toothless = "toothless" in desc_blob or ("beak" in desc_blob and "tooth" not in desc_blob)
-    if habitat == "arthropod":
-        subject_parts.append("mandibles or chelicerae visible, no vertebrate mouth")
-    elif habitat != "plant" and not is_toothless:
-        subject_parts.append(MOUTH_TEETH_CARNIVORE if diet in ("Carnivore", "Piscivore") else MOUTH_TEETH_HERBIVORE)
 
     # Behavior — FIRST PHRASE ONLY (Session 10). Action verbs were the main
     # source of "narrative clutter" the user flagged: "jaw working on prey,
     # fragments drifting" reads like an event, not a static portrait.
     subject_parts.append(behavior_param["value"].split(", ")[0])
 
-    # Condition — first 2 phrases only (Session 10). Multi-injury chains like
-    # "healed bite scars on ribcage, claw marks on neck, torn eyelid, powerful
-    # survivor" overstate character. Two phrases gives anatomy wear without
-    # turning every shot into a war veteran portrait.
-    condition_short = ", ".join(condition_param["value"].split(", ")[:2])
-    subject_parts.append(condition_short)
+    # Condition — skip entirely in wide modes (unresolvable at distance).
+    # Otherwise first 2 phrases only (Session 10).
+    if not wide_mode:
+        condition_short = ", ".join(condition_param["value"].split(", ")[:2])
+        subject_parts.append(condition_short)
 
     # Mood is intentionally NOT injected into prose. It overlaps with behavior
     # and was the single biggest source of redundant action language. Mood is
@@ -2132,10 +2288,11 @@ def assemble_prompt(
     else:
         environment = ENVIRONMENTS.get(period, ENVIRONMENTS["Other"])
 
-    # Cap environment to first 3 phrases — the dict has some 4-phrase entries
-    # and the trailing phrase is usually filler ("dim ambient light from above"
-    # duplicates lighting; "still water in background" overlaps interaction).
-    environment = ", ".join(environment.split(", ")[:3])
+    # Cap environment phrases. Wide modes get the full environment (up to 5
+    # phrases) so the landscape dominates the prompt for epic canvas prints.
+    # Non-wide modes keep 3 to avoid filler phrases duplicating lighting.
+    env_cap = 5 if wide_mode else 3
+    environment = ", ".join(environment.split(", ")[:env_cap])
 
     # (Anti-CGI anchor removed — was 3 phrases of bloat per prompt.
     # The negative prompt + style anchor already cover the same ground.)
@@ -2146,12 +2303,13 @@ def assemble_prompt(
     marine_underwater = habitat == "marine" and output_mode not in ("shoreline", "surface_break")
     horizon_phrase = "" if marine_underwater else ", horizon visible"
     if wide_mode:
-        # Wide-scale framing block — overrides whatever the mode's
-        # composition template would have produced. Pure scale language,
-        # no camera/lens phrasing.
-        wide_comp = ("subject small in frame, environment dominant, "
-                     "large negative space, distant subject, "
-                     "scale emphasized over detail")
+        # Session 13: Wide-scale framing block — forceful landscape-dominant
+        # language for premium canvas prints. Subject must read as a small
+        # element within a vast prehistoric world.
+        wide_comp = ("ultra-wide angle, vast sweeping landscape, "
+                     "single animal small but clearly visible in frame, "
+                     "large negative space, deep layered depth, "
+                     "epic sense of scale, landscape dominant")
         environment = f"{environment}, {wide_comp}{horizon_phrase}"
     elif comp_template == "PLACEMENT":
         subject_phrase, space_side = placement
@@ -2179,12 +2337,25 @@ def assemble_prompt(
     # ── SECTION 5: CAMERA ─────────────────────────────────────────────────────
     # Session 11: camera brands and lens specs stripped from active output —
     # they were pushing MJ toward staged product-shot/specimen framing.
-    # mode_cfg["fixed_camera"] + camera_param are still consulted upstream
-    # for tag/save-record purposes; nothing flows into the prose.
-    camera = ""
+    # Session 13: EXCEPTION for wide modes — ultra-wide lens language is
+    # essential to force MJ into landscape-dominant composition for canvas
+    # prints. Without it, MJ defaults to mid-range framing every time.
+    if wide_mode:
+        camera = "shot on ultra-wide 16mm lens, deep depth of field, everything in focus"
+    else:
+        camera = ""
 
     # ── ASSEMBLE ──────────────────────────────────────────────────────────────
-    sections = [subject, interaction, environment, lighting, camera]
+    # Session 13 v2: Subject name must still lead — MJ needs to know WHAT
+    # creature to draw. But in wide modes the subject block is lean (name +
+    # silhouette-level detail only), followed immediately by environment +
+    # camera framing language so the landscape dominates composition.
+    # The interaction block is appended last — it's a grounding cue, not
+    # a composition driver.
+    if wide_mode:
+        sections = [subject, camera, environment, lighting, interaction]
+    else:
+        sections = [subject, interaction, environment, lighting, camera]
     if canvas_print:
         sections.append(CANVAS_PRINT)
 
@@ -2214,10 +2385,24 @@ def assemble_prompt(
         neg = ", ".join(base_blocks)
     else:
         neg = build_negative_prompt(habitat)
+    # Session 13: wide modes get additional negative prompt blockers to
+    # prevent MJ from drifting back toward portrait/close-up composition.
+    if wide_mode:
+        wide_neg = (", close-up, portrait, headshot, tight crop, macro, "
+                    "face filling frame, telephoto compression, "
+                    "shallow depth of field, bokeh background, "
+                    "detail shot, extreme close-up")
+        neg = neg + wide_neg
+    # Session 15: species anatomy module — banned flora (e.g. "grass" for
+    # Jurassic species) injected into negative prompt to prevent MJ from
+    # adding anachronistic vegetation.
+    if anatomy:
+        anatomy_neg = build_anatomy_negative(anatomy)
+        if anatomy_neg:
+            neg = neg + ", " + anatomy_neg
     flags = f"--no {neg} --style {mj_style} --stylize {stylize} --q {quality:g}"
     if chaos > 0:
         flags += f" --chaos {chaos}"
-
     return f"{prose} {flags}"
 
 
@@ -2468,18 +2653,12 @@ def main() -> None:
         return pick_parameter(conn, category, name_only=True, habitat=habitat,
                               suggestions=sug, blocked=blk, suggest_label=slabel)
 
-    lighting_param = _cpick("lighting", f"for {species['name']}")
+    # --- Lighting: auto-selected from suggestion system (Session 14) ---
+    lighting_param = auto_pick_parameter(conn, "lighting", habitat, ctx)
     ctx["lighting"] = lighting_param["name"]
 
-    # Camera: only ask if the mode doesn't fix its own camera
-    if mode_cfg["fixed_camera"] is None:
-        camera_param = _cpick("camera", f"for {mode_cfg['display'].lower()} mode")
-    else:
-        camera_param = None
-        mode_display = mode_cfg["display"]
-        cam_preview  = mode_cfg["fixed_camera"][:80]
-        print(f"  {hdr('CAMERA')} {dim(f'(fixed for {mode_display})')}")
-        print(f"  {dim(cam_preview)}\n")
+    # --- Camera: auto-selected from suggestion system (Session 14) ---
+    camera_param = auto_pick_parameter(conn, "camera", habitat, ctx)
 
     # Plants skip mood/behavior/condition — they don't have animal states
     if habitat == "plant":
@@ -2497,13 +2676,41 @@ def main() -> None:
         behavior_param = _cpick("behavior", f"for {mood_param['name'].replace('_', ' ')} mood")
         ctx["behavior"] = behavior_param["name"]
 
-    # Weather: filtered by lighting sky-state + context-reactive suggestions + blocking
+    # --- Weather: auto-selected with sky-compat filtering (Session 14) ---
+    all_weather = fetch_parameters_by_category(conn, "weather", habitat=habitat)
+    sky = LIGHTING_SKY.get(lighting_param["name"], "mixed")
+    compatible_weather = [w for w in all_weather
+                         if "any" in WEATHER_SKY_COMPAT.get(w["name"], ("any",))
+                         or sky in WEATHER_SKY_COMPAT.get(w["name"], ())]
+    if not compatible_weather:
+        compatible_weather = all_weather
     weather_sug = get_suggestions("weather", ctx)
     weather_blk = get_blocked("weather", ctx)
-    weather_param = pick_weather(conn, lighting_param, habitat=habitat,
-                                 suggestions=weather_sug, blocked=weather_blk,
-                                 suggest_label=f"for {(mood_param['name'] or '').replace('_', ' ')} mood")
+    weather_param = None
+    if weather_sug:
+        for sug_name in weather_sug:
+            for w in compatible_weather:
+                if w["name"] == sug_name and w["name"] not in weather_blk:
+                    weather_param = dict(w)
+                    break
+            if weather_param:
+                break
+    if not weather_param:
+        for w in compatible_weather:
+            if w["name"] not in weather_blk:
+                weather_param = dict(w)
+                break
+    if not weather_param:
+        weather_param = dict(compatible_weather[0])
     ctx["weather"] = weather_param["name"]
+
+    # --- Display all auto-applied scene settings together ---
+    print(f"\n  {hdr('SCENE SETTINGS (auto-applied)')}")
+    print(f"  {C.DIM}" + "─" * 60 + C.RESET)
+    print(f"    {ok('+')} {dim('[lighting]')} {C.WHITE}{lighting_param['name'].replace('_', ' ')}{C.RESET}")
+    print(f"    {ok('+')} {dim('[camera]')}   {C.WHITE}{camera_param['name'].replace('_', ' ')}{C.RESET}")
+    print(f"    {ok('+')} {dim('[weather]')}  {C.WHITE}{weather_param['name'].replace('_', ' ')}{C.RESET}")
+    print()
 
     # --- Build prompt ---
     prompt_text = assemble_prompt(

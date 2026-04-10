@@ -547,41 +547,163 @@ Banned-phrase audit on Elasmosaurus / underwater: `anatomically accurate`, `livi
 
 ## Current Status
 - **42 species** across 5 habitats — 8 terrestrial, 14 marine, 4 aerial, 8 arthropod, 8 plant
-- **Lean prompt mode (Sessions 9 + 10 + 11):** Marine underwater now ~18 clauses (was ~80). Realism stack **eradicated** from prose path: no `style_param` injection, no `HABITAT_REALISM` injection, no camera brands/lens specs, no `wildlife photography`, no `anatomically accurate`, no `living animal skin texture`, no `animal centred / symmetrical`. Behavior cut to 1 phrase, condition to 2. CANVAS_PRINT block removed. Marine interaction defaults to *underwater*, not waterline. Mood + weather still selected for context-reactive branching but never injected into prose. Style + camera params still passed through `assemble_prompt` for save_prompt / tag wiring.
-- **Wide-scale placement variant:** `("wide", "all")` added to `select_canvas_placement` — works for any mode (not just `canvas`) via top-level `wide_mode` flag. Suppresses `"full body visible head to tail"`, overrides environment composition with the five-phrase wide-scale block. No camera language added. Other placement options unaffected.
+- **Species anatomy module system (Session 15):** `species/` Python package with per-species anatomy modules containing skull, dentition, limb structure, integument, body proportions, coloration evidence, locomotion, flora associations, and key inaccuracy notes for all 42 species. Integrated into `assemble_prompt()` — replaces old basic science-table fields with rich anatomy data scaled to output mode (close/mid/wide). Banned-flora negatives auto-injected into `--no` to prevent anachronistic vegetation.
+- **Lean prompt mode (Sessions 9–11):** Realism stack eradicated from prose path: no `style_param` injection, no `HABITAT_REALISM` injection, no camera brands/lens specs, no `wildlife photography`, no `anatomically accurate`, no `living animal skin texture`. Behavior cut to 1 phrase, condition to 2. CANVAS_PRINT block removed. Marine interaction defaults to *underwater*. Mood + weather still selected for context-reactive branching but never injected into prose.
+- **25 output modes (Session 14):** redesigned from 20 to 25, including 6 epic wide landscape options (environmental, valley_panorama, ridgeline_silhouette, river_crossing, misty_dawn, storm_front) with auto-triggered wide_mode.
+- **Auto-selected scene settings (Session 14):** Lighting, camera, and weather are auto-applied based on mode/habitat/species — no longer shown as user menus.
+- **Wide-mode composition system (Sessions 13–14):** WIDE_MODES auto-trigger ultra-wide framing with landscape-dominant composition, subject reads small in frame, anatomy detail suppressed, close-up blockers in `--no`.
 - **Clade-aware everything:** style anchor, negative prompt, mouth/teeth, interaction block, realism block — all picked from per-clade dicts.
-- **Toothless beak guard:** Quetzalcoatlus / Pteranodon / Archelon / Ammonite no longer get tooth language injected over their toothless anatomy.
-- **Mode-aware horizon strip:** marine canvas/portrait/underwater never inject "horizon visible"; marine shoreline/surface_break do.
-- **--sref suggestion system:** Live — prompts user after species select when URLs are available in `sref_urls.json`.
-- **Perched mode:** Active for aerial species — unblocks perched behaviors, blocks flight behaviors.
-- **Context-reactive branching:** Fully implemented for terrestrial, marine, aerial — **arthropod and plant use generic fallback** (no suggestions or blocking yet).
+- **Context-reactive branching:** Fully implemented for terrestrial, marine, aerial — **arthropod and plant use generic fallback**.
 - **Invalid combo blocking:** Active for terrestrial, marine, aerial — not yet implemented for arthropod/plant.
 - **Modular 4-step workflow:** All 4 steps output per run; arthropods get species-specific mouthpart fixes; plants skip Steps 2 and 4.
-- **Diet-grouped menus:** Terrestrial (Carnivore/Herbivore) and Marine (Predators/Fish-Eaters/Filter Feeders/Omnivores) species menus have section headers.
-- **Validated MJ outputs (Sessions 7–8):** Calamites (plant), Megarachne (arthropod), Ammonite (marine), Elasmosaurus (marine underwater).
+
+### Species Anatomy Module System (Session 15)
+
+#### Architecture
+```
+species/
+├── __init__.py          # Registry: SPECIES_REGISTRY dict + get_anatomy() lookup
+├── base.py              # Dataclasses + build_anatomy_prompt() / build_anatomy_negative()
+├── tyrannosaurus_rex.py # Per-species ANATOMY object (one per species)
+├── velociraptor.py
+├── ... (42 species modules total)
+└── sigillaria.py
+```
+
+#### Dataclasses (base.py)
+- **SkullAnatomy** — overall_shape, distinctive_features, eye_description, nostril_position, crest_or_horn, beak
+- **DentitionProfile** — tooth_shape, tooth_count_note, jaw_mechanics, bite_force_note, visible_teeth
+- **LimbStructure** — forelimb, hindlimb, wing_or_flipper, stance, digit_count, special_appendage
+- **Integument** — primary_covering, texture_detail, special_structures, membrane, armor
+- **BodyProportions** — body_length_m, body_mass_kg, build, neck, tail, silhouette, size_comparison
+- **ColorationEvidence** — likely_pattern, display_structures, fossil_evidence, additional_notes
+- **LocomotionProfile** — primary_mode, swimming, flight, gait_detail, speed_note, special
+- **FloraAssociation** — primary_flora, ground_cover, canopy, water_plants, banned_flora
+- **SpeciesAnatomy** — master class holding all sub-dataclasses plus species_name, common_name, period, habitat, unique_features[]
+
+#### Prompt Builders
+- **`build_anatomy_prompt(anatomy, mode_type)`** — generates MJ-ready anatomy string:
+  - `"close"` — full detail: skull, teeth, integument, limbs, body, coloration, locomotion, 3 unique features
+  - `"mid"` — moderate: skull shape, tooth shape, integument, silhouette+build+size_comparison, 1 limb detail, coloration, 3 unique features
+  - `"wide"` — minimal: silhouette + 2 unique features only
+- **`build_anatomy_negative(anatomy)`** — returns banned flora for `--no` (e.g. "grass" for Jurassic species, "flowering plants" for Carboniferous)
+
+#### Mode Mapping in assemble_prompt()
+| anatomy_mode | Output modes |
+|---|---|
+| `"close"` | portrait, extreme_closeup, eye_contact, jaws_detail, action_freeze |
+| `"mid"` | canvas, tracking_side, ground_level, camera_trap, confrontation, shoreline, group_herd, etc. |
+| `"wide"` | environmental, valley_panorama, ridgeline_silhouette, river_crossing, misty_dawn, storm_front |
+
+#### Current Prompt Lengths (anatomy only, before environment/interaction/flags)
+| Species | close | mid | wide |
+|---|---|---|---|
+| T. rex | 2751 chars / 65 clauses | 1444 / 35 | 263 / 8 |
+| Velociraptor | 2595 / 55 | 1443 / 30 | 312 / 7 |
+| Spinosaurus | 2579 / 61 | 1305 / 29 | 306 / 4 |
+| Pteranodon | 2285 / 56 | 1103 / 27 | 235 / 7 |
+| Mosasaurus | 2072 / 49 | 1219 / 28 | 279 / 6 |
+| Lepidodendron | 975 / 16 | 830 / 14 | 269 / 5 |
+
+**⚠️ Close/mid anatomy prompts are currently too long for MJ.** MJ performs best with ~60-word prompts. Close mode at 55-65 clauses is massively over-token and will cause MJ to ignore later clauses. This is the #1 priority for Session 16.
 
 ## Known Issues
-- **Sessions 10 + 11 lean output not yet validated visually in MJ** — smoke-tested in Python and passes contradiction + banned-phrase sweeps; needs visual confirmation that ~18-clause prompts still produce wildlife-photo quality (and that the realism stack removal didn't go *too* far in the other direction).
-- **`condition` param values can leak surface language underwater** — observed: Elasmosaurus underwater output included `"head raised vertically above surface"` because the first phrase of the condition param contained surface language. Session 11 caps to first 2 phrases at injection but doesn't filter for mode-incompatible content. Possible fix: tag condition params with `mode_compat` and skip if incompatible, or sanitize the DB rows.
-- **`condition` param values often pile multiple states** in the underlying DB — Session 11 truncates at injection but a DB cleanup pass would let context-reactive branching pick from cleaner single-state entries.
-- **`behavior` param values similar pattern** — Session 11 caps to first 1 phrase. DB cleanup opportunity, not blocking.
-- **Arthropod/plant have no context-reactive suggestions** — `get_suggestions()` and `get_blocked()` fall through to empty defaults for these habitats.
-- **Some lighting param values lead with time-of-day language** (`dawn_first_light` → `"first light before sunrise"`) — fine but reads as a time phrase not a lighting effect. DB cleanup opportunity, not blocking.
-- **Plant species notes column sometimes contains directive sentences** ("Use modern horsetail as reference but scaled up massively.") that read awkwardly when injected into prose. Pre-existing.
-- **Git LFS not installed** — pushes require `--no-verify` to bypass LFS pre-push hook; `.gitattributes` tracks site assets via LFS.
-- **`style_param` and `camera_param` are now dead inputs to the prose path** — they still pass through the `assemble_prompt` signature and are saved as tags, but their `value` columns are no longer read for prose. If we want the prose to ever pull from them again, the assembly path needs to be re-wired (not just the constants).
+- **Anatomy prompts too verbose for MJ** — close mode outputs 2000-2700 chars (55-65 clauses) of anatomy data. MJ's effective attention window is ~60 words / ~350 chars. Everything beyond that is increasingly ignored. The `build_anatomy_prompt()` function needs aggressive compression to output 6-10 high-impact phrases per species, not 30-65.
+- **`species_reference/` folders are mostly empty** — READMEs exist with guidance but no actual reference images, skeletal diagrams, or scientific PDFs have been added. These folders should also contain MJ-specific prompt notes (what works, what doesn't for each species).
+- **Sessions 13-14 lean output not yet validated with the new anatomy system** — the anatomy module injection replaces the old science fields but hasn't been visually tested in MJ yet.
+- **Arthropod/plant have no context-reactive suggestions** — `get_suggestions()` and `get_blocked()` fall through to empty defaults.
+- **`condition` param values can leak surface language underwater** — observed: Elasmosaurus underwater included `"head raised vertically above surface"` because condition param contained surface language.
+- **Git LFS not installed** — pushes require `--no-verify` to bypass LFS pre-push hook.
+- **`style_param` and `camera_param` are dead inputs to the prose path** — still pass through `assemble_prompt` signature for tag wiring but values are never read for prose.
 
-## Next Priorities
-1. **Visually validate Session 11 lean prompts in MJ** — re-run Elasmosaurus underwater (with and without `wide`), T. rex canvas, Calamites canvas + wide, Megarachne portrait, Quetzalcoatlus soaring/perched and confirm the trimmed-and-stripped prompts still produce wildlife-photo quality. **Critical: did the realism stack removal go too far?** If outputs now look painterly/illustrated, we may need to re-introduce one or two specific cues — but as deliberate single phrases, not as a stack.
-2. **A/B test the wide variant** — pull the same species + mode, generate one with default placement and one with `wide`, compare scale-of-subject readability.
-3. **Mode-aware condition filtering** — strip condition phrases that contradict mode (e.g. `"head raised above surface"` should not survive `output_mode == "underwater"`). Either tag DB rows with `mode_compat` or run a post-injection regex pass.
-4. **Add arthropod/plant-specific suggestions and blocking** — context-reactive branching for the new habitats.
-5. **Per-species "winning combo" cache** — save lighting + behavior + condition + mode sets that produced confirmed-good outputs to a `winning_combos` table; surface as `★ KNOWN GOOD` in menus.
-6. **Vision-feedback fix loop** — pass MJ output through Claude vision to score scientific accuracy and auto-suggest which Vary-Region step to apply.
-7. **Add terrestrial species** — Pachycephalosaurus, Carnotaurus, Therizinosaurus, Allosaurus.
-8. **Printify automation** — user needs to regenerate API key, then build folder-watcher → upscale → upload → draft pipeline.
-9. **Populate `sref_urls.json`** — upload real animal analogue photos to Discord, collect URLs per species.
-10. **Install Git LFS** — `brew install git-lfs && git lfs install` to stop needing `--no-verify` on every push.
+## Session 12 — Wide Shot Composition Fix
+*(see "All Changes By Session" above for Sessions 1-11)*
+
+### Trigger
+User found wide shot modes were producing close-up portraits instead of epic landscape canvas prints. The animal filled the frame when it should have been a small figure in a vast environment.
+
+### Root cause
+MJ heavily weights early tokens. The subject block (species name + anatomy + pose + condition) was ~20 clauses appearing before environment, so MJ prioritized the animal over the landscape. The word "wide" in composition wasn't enough to override the anatomical detail pull.
+
+### Fix
+- Created `WIDE_MODES` set: `{environmental, valley_panorama, ridgeline_silhouette, river_crossing, misty_dawn, storm_front}`
+- Wide mode detection: `wide_mode = placement_wide or output_mode in WIDE_MODES`
+- When `wide_mode` is active:
+  - Subject block stripped to name + description only (no anatomy, no required params, no skin texture, no teeth, no condition)
+  - Ultra-wide camera injection: `"shot on ultra-wide 16mm lens, deep depth of field, everything in focus"`
+  - Environment overridden with wide composition block: `"ultra-wide angle, vast sweeping landscape, single animal small but clearly visible in frame, large negative space, deep layered depth, epic sense of scale, landscape dominant"`
+  - Section order flipped: Subject → Camera → Environment → Lighting → Interaction (camera early = composition driver)
+  - Close-up blockers added to `--no`: `"close-up, portrait, headshot, tight crop, macro, face filling frame, telephoto compression, shallow depth of field, bokeh background, detail shot, extreme close-up"`
+
+## Session 13 — (merged into Session 12 above)
+
+## Session 14 — Output Mode Redesign + Auto Scene Settings
+
+### Output Mode Overhaul (20 → 25)
+Redesigned all output modes with clear intent separation. Added 6 epic wide landscape modes, specialty atmospheric modes, and ensured every habitat has meaningful options.
+
+### Auto-Selected Scene Settings
+Lighting, camera, and weather are now automatically selected based on mode/habitat/species context rather than presented as separate user menus. User flow simplified to: Habitat → Mode → Species → Mood → Behavior → Condition.
+
+## Session 15 — Species Anatomy Module System
+
+### What changed
+Built a complete per-species anatomy module system (`species/` Python package) with scientifically accurate data for all 42 species. Each module defines skull, dentition, limbs, integument, body proportions, coloration evidence, locomotion, flora associations, and unique features as structured Python dataclasses.
+
+### Files created
+- `species/base.py` — 8 anatomy dataclasses + `build_anatomy_prompt()` and `build_anatomy_negative()` helpers
+- `species/__init__.py` — registry mapping all 42 DB species names to anatomy module objects
+- 42 individual species modules (`species/tyrannosaurus_rex.py` through `species/sigillaria.py`)
+
+### Integration
+- `generate_prompt.py` imports `get_anatomy`, `build_anatomy_prompt`, `build_anatomy_negative` from `species`
+- In `assemble_prompt()`, anatomy data replaces old science-table fields (feathering_coverage, tail_posture, skin_texture_type, known_coloration_evidence)
+- Anatomy detail level scales with output mode: close (full detail), mid (moderate), wide (silhouette only)
+- Banned flora from anatomy modules injected into `--no` negative prompt (prevents anachronistic vegetation)
+- Graceful fallback to old science-table fields if anatomy module somehow missing
+
+### Species covered (42 total)
+| Habitat | Count | Species |
+|---|---|---|
+| Terrestrial | 8 | T. rex, Velociraptor, Triceratops, Stegosaurus, Brachiosaurus, Ankylosaurus, Parasaurolophus, Dilophosaurus |
+| Marine | 14 | Mosasaurus, Elasmosaurus, Ichthyosaurus, Liopleurodon, Kronosaurus, Spinosaurus, Megalodon, Cretoxyrhina, Helicoprion, Dunkleosteus, Xiphactinus, Leedsichthys, Archelon, Ammonite |
+| Aerial | 4 | Pteranodon, Quetzalcoatlus, Rhamphorhynchus, Dimorphodon |
+| Arthropod | 8 | Meganeura, Arthropleura, Jaekelopterus, Pulmonoscorpius, Megarachne, Anomalocaris, Eurypterus, Megalograptus |
+| Plant | 8 | Lepidodendron, Calamites, Glossopteris, Williamsonia, Araucaria, Archaefructus, Wattieza, Sigillaria |
+
+---
+
+## Next 10 Priorities
+
+### 1. Compress anatomy prompts for MJ's attention window
+**Critical.** MJ effectively processes ~60 words. Our close-mode anatomy outputs 55-65 clauses (2000-2700 chars). Most of that is ignored. `build_anatomy_prompt()` needs to output **6-10 high-impact phrases** per species — the visual cues MJ actually responds to (silhouette shape, key texture, one size anchor, one "don't do this" correction). Strip explanatory prose ("confirmed by quill knobs on ulna") that helps a human but means nothing to MJ's CLIP model.
+
+### 2. Audit prompts against MJ's CLIP tokenizer behavior
+MJ uses CLIP to parse prompts. CLIP tokenizes differently from natural language — comma-separated phrases are weighted roughly equally, early tokens get slight priority, and MJ's `--no` uses a different attention path. We need to restructure prompts around how CLIP *actually* reads them: front-load the 3-4 most visually distinctive features, use MJ-native weighting syntax where supported, and stop writing prose sentences that CLIP fragments into noise.
+
+### 3. Add MJ prompt notes to species_reference/ folders
+Each `species_reference/[species]/README.md` should include a "MJ Prompt Notes" section documenting: what phrases MJ responds to well for this species, what phrases cause mis-rendering (e.g. "crocodilian" triggers crocodile for Spinosaurus), tested `--sref` URLs that work, known failure modes, and optimal `--stylize` ranges. This is empirical data we build as we test.
+
+### 4. Build a prompt-length validator / budget system
+Add a character/word budget to `build_anatomy_prompt()` that hard-caps output at ~350 chars (roughly 60 MJ-effective words). Force each anatomy mode to prioritize within a budget rather than dumping all data. Close mode gets a larger budget than mid, wide stays minimal. The budget forces us to rank features by visual impact.
+
+### 5. Create MJ-optimized "visual shorthand" per species
+Instead of long descriptive phrases ("massive deep skull, 1.5m long, broad at rear with powerful jaw muscles"), define 3-5 word MJ-optimized shorthand per species that CLIP actually keys on. Example: T. rex → `"massive skull, tiny two-fingered arms, pebbly scales, horizontal tail, biped"`. These shorthands should be tested in MJ and refined based on output quality.
+
+### 6. Add `--sref` test results to species_reference/ folders
+Populate `species_reference/` folders with actual test data: screenshots of MJ outputs, the exact prompts that produced them, `--sref` URLs that worked, `--stylize` values that hit the sweet spot. Each species folder becomes a living quality database. This is the empirical feedback loop the system needs.
+
+### 7. Implement per-species `--stylize` recommendations
+Different species render better at different `--stylize` values. Highly detailed species (T. rex, Triceratops) may need lower stylize (50-100) to preserve anatomy accuracy. Simpler silhouette species (Brachiosaurus, Lepidodendron) may benefit from higher stylize (250-500) for artistic quality. Add a `recommended_stylize` field to anatomy modules and surface it in the generator.
+
+### 8. Add multi-subject scene support
+The `group_herd` mode currently duplicates a single species. Build proper multi-species scene support: predator-prey interactions (T. rex + Triceratops), herd scenes with juveniles, ecosystem dioramas. Each combination needs its own anatomy-weight balance (which species gets more prompt tokens).
+
+### 9. Implement arthropod/plant context-reactive suggestions + blocking
+These two habitats still fall through to empty defaults for `get_suggestions()` and `get_blocked()`. Build the branching logic: e.g. Carboniferous arthropods should suggest coal-swamp lighting/weather, Cambrian species should block terrestrial vegetation, plants should suggest time-of-day lighting that emphasizes bark/leaf texture.
+
+### 10. Build a prompt A/B testing framework
+Create a systematic way to generate prompt variants (with/without specific anatomy phrases, different clause ordering, different `--stylize` values) and track which versions produce better MJ output. Store results in the DB with image hashes, scores, and notes. This turns the generator from a static system into a learning system.
 
 ## Reference Photos to Use as `--sref`
 - Komodo dragon foot (digits separated, claws at different angles, leathery pads)
