@@ -74,4 +74,12 @@ ANATOMY = SpeciesAnatomy(
         "smooth countershaded marine hide",
         "14m plesiosaur neck over half body length",
     ],
+
+    recommended_stylize=(100, 150, 300),
+
+    known_failures=[
+        "swan-neck pose — could NOT raise neck high out of water; neck moved horizontally",
+        "Loch Ness monster pose — classic humped pose is physically impossible",
+        "on land — fully aquatic, could not move on land",
+    ],
 )

@@ -80,3 +80,34 @@ Image format: minimum 4K resolution; RAW preferred; TIF for scans.
 - RAW preferred for museum photography
 - TIF for skeletal and vertebra diagram scans
 - Scale reference shots critical given the enormous body size
+
+## MJ Prompt Notes — Brachiosaurus
+
+### CLIP-Optimized Shorthand
+These comma-separated phrases are what the anatomy module injects into prompts:
+```
+  giraffe-proportioned sauropod forequarters higher than rear
+  extremely long steep-angled neck
+  arched nasal crest above eyes
+  columnar elephant-like legs
+  small spatulate-toothed head
+  22m long 56-tonne giant
+```
+
+### Recommended --stylize Range
+| Low | Default | High |
+|-----|---------|------|
+| 100 | **175** | 400 |
+
+Use `--stylize 175` as a starting point. Lower values (100) preserve more anatomical accuracy. Higher values (400) allow more MJ artistic interpretation.
+
+### Known MJ Failures
+Watch for these common misrenders:
+- ❌ level back — forequarters must be HIGHER than hindquarters (giraffe proportions)
+- ❌ Diplodocus-like neck angle — Brachiosaurus neck was steep/upward, not horizontal
+- ❌ forelimbs shorter than hindlimbs — opposite: forelimbs LONGER than hindlimbs
+
+### --sref Test Results
+| sref URL | Stylize | Result | Notes |
+|----------|---------|--------|-------|
+| *(add test results here)* | | | |

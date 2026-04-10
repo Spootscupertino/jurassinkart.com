@@ -47,4 +47,11 @@ ANATOMY = SpeciesAnatomy(
         "fallen tongue leaves covering ground",
         "25m Permian Gondwanan forest dominant",
     ],
+
+    recommended_stylize=(150, 250, 500),
+
+    known_failures=[
+        "fern — NOT a true fern; a seed fern with tongue-shaped LEAVES not fronds",
+        "tropical palm — deciduous temperate-style tree, not tropical",
+    ],
 )

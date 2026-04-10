@@ -81,4 +81,13 @@ ANATOMY = SpeciesAnatomy(
         "tiny body 7m wingspan 25kg",
         "quadrupedal on ground folded wings",
     ],
+
+    recommended_stylize=(75, 125, 250),
+
+    known_failures=[
+        "teeth — Pteranodon is TOOTHLESS; name literally means 'toothless wing'",
+        "bat wings — membrane attaches to single elongated fourth finger, not between multiple fingers",
+        "bipedal running — quadrupedal launch from all fours; walked on folded wings",
+        "dinosaur — NOT a dinosaur; a pterosaur, completely separate lineage",
+    ],
 )

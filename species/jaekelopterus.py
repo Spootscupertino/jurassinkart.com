@@ -77,4 +77,11 @@ ANATOMY = SpeciesAnatomy(
         "dark scarred chitinous exoskeleton",
         "2.5m largest arthropod predator ever",
     ],
+
+    recommended_stylize=(75, 125, 250),
+
+    known_failures=[
+        "small scorpion — must be crocodile-SIZED, shot like an alligator-sized predator",
+        "modern scorpion shape — eurypterid body plan is FLAT and broad, not curved-tail scorpion",
+    ],
 )

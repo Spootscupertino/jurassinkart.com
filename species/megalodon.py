@@ -78,4 +78,11 @@ ANATOMY = SpeciesAnatomy(
         "powerful crescent caudal fin",
         "school-bus-sized 15m apex shark",
     ],
+
+    recommended_stylize=(100, 175, 350),
+
+    known_failures=[
+        "smooth skin — shark skin is rough sandpaper-like dermal denticles",
+        "whale shape — body plan is great white shark scaled up, not whale-shaped",
+    ],
 )

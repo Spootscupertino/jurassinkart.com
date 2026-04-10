@@ -48,4 +48,11 @@ ANATOMY = SpeciesAnatomy(
         "rooted in shallow lake sediment",
         "50cm earliest known flowering plant",
     ],
+
+    recommended_stylize=(175, 300, 600),
+
+    known_failures=[
+        "large tree — tiny aquatic herb (50cm), grows IN water not on land",
+        "showy flowers — flowers are tiny and primitive, not large colorful blooms",
+    ],
 )

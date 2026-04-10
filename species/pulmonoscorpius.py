@@ -77,4 +77,11 @@ ANATOMY = SpeciesAnatomy(
         "smooth glossy chitinous exoskeleton",
         "70cm largest terrestrial scorpion",
     ],
+
+    recommended_stylize=(75, 125, 250),
+
+    known_failures=[
+        "tiny scorpion — must be dog-SIZED, shot like a medium animal",
+        "hairy — smooth glossy chitin, not hairy like tarantula",
+    ],
 )

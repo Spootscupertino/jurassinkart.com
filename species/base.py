@@ -121,6 +121,20 @@ class SpeciesAnatomy:
     # Priority order: [0] is the most visually distinctive feature.
     mj_shorthand: list[str] = field(default_factory=list)
 
+    # ── Per-species stylize recommendation (Session 17) ──────────────
+    # Different species render best at different MJ --stylize values.
+    # Highly detailed species (T. rex, Triceratops) need lower stylize
+    # to preserve anatomy accuracy. Simpler silhouettes (Brachiosaurus,
+    # plants) can tolerate higher stylize for artistic quality.
+    # (low, default, high) — the generator uses 'default' and surfaces
+    # the range as a recommendation to the user.
+    recommended_stylize: tuple[int, int, int] = (75, 100, 250)
+
+    # ── Known MJ failure modes (Session 17) ──────────────────────────
+    # Phrases that cause MJ to misrender this species. Used for prompt
+    # notes and to actively avoid these terms in prompt assembly.
+    known_failures: list[str] = field(default_factory=list)
+
 
 # ── Prompt builders ──────────────────────────────────────────────────
 

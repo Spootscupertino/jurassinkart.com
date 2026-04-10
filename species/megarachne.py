@@ -74,4 +74,11 @@ ANATOMY = SpeciesAnatomy(
         "dog-sized dwarfing leaf litter",
         "NOT a spider no web no spinnerets",
     ],
+
+    recommended_stylize=(100, 150, 300),
+
+    known_failures=[
+        "spider — NOT a spider; a eurypterid (sea scorpion relative)",
+        "web — no web, no spinnerets; completely different from spiders",
+    ],
 )

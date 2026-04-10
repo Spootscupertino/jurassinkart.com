@@ -47,4 +47,11 @@ ANATOMY = SpeciesAnatomy(
         "large round seed cones on branches",
         "50m tall Mesozoic monkey puzzle conifer",
     ],
+
+    recommended_stylize=(150, 250, 500),
+
+    known_failures=[
+        "pine tree — NOT a pine; Araucaria has distinctive tiered symmetrical form",
+        "deciduous — evergreen conifer, never drops leaves seasonally",
+    ],
 )

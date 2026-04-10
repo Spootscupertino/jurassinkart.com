@@ -44,3 +44,32 @@ for specific body regions and surface qualities:
 - RAW (.CR3, .ARW, .NEF) preferred for fossil and museum photography
 - TIF (16-bit, uncompressed) for flatbed scans of skeletal diagrams
 - PDF acceptable for published skeletal reconstructions
+
+## MJ Prompt Notes — Rhamphorhynchus
+
+### CLIP-Optimized Shorthand
+These comma-separated phrases are what the anatomy module injects into prompts:
+```
+  long bony tail with diamond vane tip
+  forward-projecting interlocking needle teeth
+  leathery wing membrane to ankles
+  dense pycnofiber body fuzz
+  crow-sized 1.8m wingspan pterosaur
+```
+
+### Recommended --stylize Range
+| Low | Default | High |
+|-----|---------|------|
+| 100 | **150** | 300 |
+
+Use `--stylize 150` as a starting point. Lower values (100) preserve more anatomical accuracy. Higher values (300) allow more MJ artistic interpretation.
+
+### Known MJ Failures
+Watch for these common misrenders:
+- ❌ no tail — long bony tail with diamond vane is THE defining feature
+- ❌ bat wings — membrane on elongated fourth finger, not between multiple fingers
+
+### --sref Test Results
+| sref URL | Stylize | Result | Notes |
+|----------|---------|--------|-------|
+| *(add test results here)* | | | |

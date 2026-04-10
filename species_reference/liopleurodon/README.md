@@ -41,3 +41,33 @@ for specific body regions and surface qualities:
 - RAW (.CR3, .ARW, .NEF) preferred for fossil and museum photography
 - TIF (16-bit, uncompressed) for flatbed scans of skeletal diagrams
 - PDF acceptable for published skeletal reconstructions
+
+## MJ Prompt Notes — Liopleurodon
+
+### CLIP-Optimized Shorthand
+These comma-separated phrases are what the anatomy module injects into prompts:
+```
+  massive head quarter of body length
+  short thick neck barrel body
+  four powerful hydrofoil flippers
+  robust conical gripping teeth
+  smooth hydrodynamic marine hide
+  6-7m short-necked pliosaur
+```
+
+### Recommended --stylize Range
+| Low | Default | High |
+|-----|---------|------|
+| 100 | **150** | 300 |
+
+Use `--stylize 150` as a starting point. Lower values (100) preserve more anatomical accuracy. Higher values (300) allow more MJ artistic interpretation.
+
+### Known MJ Failures
+Watch for these common misrenders:
+- ❌ 25m size — Walking With Dinosaurs MASSIVELY exaggerated; real size was 6-7m
+- ❌ long neck — Liopleurodon is a SHORT-necked pliosaur, opposite of Elasmosaurus
+
+### --sref Test Results
+| sref URL | Stylize | Result | Notes |
+|----------|---------|--------|-------|
+| *(add test results here)* | | | |

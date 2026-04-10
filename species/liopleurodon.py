@@ -75,4 +75,11 @@ ANATOMY = SpeciesAnatomy(
         "smooth hydrodynamic marine hide",
         "6-7m short-necked pliosaur",
     ],
+
+    recommended_stylize=(100, 150, 300),
+
+    known_failures=[
+        "25m size — Walking With Dinosaurs MASSIVELY exaggerated; real size was 6-7m",
+        "long neck — Liopleurodon is a SHORT-necked pliosaur, opposite of Elasmosaurus",
+    ],
 )

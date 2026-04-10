@@ -75,3 +75,34 @@ Image format: minimum 4K resolution; RAW preferred; TIF for scans.
 - RAW preferred for fossil photography
 - TIF for skeletal and plate diagram scans
 - Photograph plate surfaces at raking light angle to reveal vascular groove texture
+
+## MJ Prompt Notes — Stegosaurus
+
+### CLIP-Optimized Shorthand
+These comma-separated phrases are what the anatomy module injects into prompts:
+```
+  staggered diamond dorsal plates alternating left-right
+  four tail spikes thagomizer
+  absurdly tiny head held low
+  arched back peaking over hips
+  pebbly scales with embedded osteoderms
+  bus-sized quadruped sloping forward
+```
+
+### Recommended --stylize Range
+| Low | Default | High |
+|-----|---------|------|
+| 75 | **125** | 250 |
+
+Use `--stylize 125` as a starting point. Lower values (75) preserve more anatomical accuracy. Higher values (250) allow more MJ artistic interpretation.
+
+### Known MJ Failures
+Watch for these common misrenders:
+- ❌ paired symmetrical plates — plates alternate LEFT-RIGHT, not paired side-by-side
+- ❌ too many tail spikes — exactly four spikes (thagomizer), not six or eight
+- ❌ head held high — tiny head should be held very low near ground level
+
+### --sref Test Results
+| sref URL | Stylize | Result | Notes |
+|----------|---------|--------|-------|
+| *(add test results here)* | | | |

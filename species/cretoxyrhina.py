@@ -72,4 +72,11 @@ ANATOMY = SpeciesAnatomy(
         "hydrodynamic smooth denticle skin",
         "great-white-sized 6m Cretaceous shark",
     ],
+
+    recommended_stylize=(100, 150, 300),
+
+    known_failures=[
+        "serrated teeth — teeth are smooth and UNserrated, blade-like",
+        "bulky body — sleek and torpedo-shaped like a mako, not bulky like a great white",
+    ],
 )

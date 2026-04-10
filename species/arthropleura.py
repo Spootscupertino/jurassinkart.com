@@ -75,4 +75,11 @@ ANATOMY = SpeciesAnatomy(
         "2.6m longest land arthropod ever",
         "low ground-level dwarfing ferns",
     ],
+
+    recommended_stylize=(75, 125, 250),
+
+    known_failures=[
+        "small bug — must be car-length, shot like a large reptile not a small millipede",
+        "centipede — Arthropleura is a MILLIPEDE (two leg pairs per segment), not centipede",
+    ],
 )

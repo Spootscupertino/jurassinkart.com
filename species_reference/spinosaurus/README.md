@@ -83,3 +83,35 @@ Image format: minimum 4K resolution; RAW preferred; TIF for scans.
 - RAW preferred for museum and field photography
 - TIF for skeletal and vertebra diagram scans
 - Underwater photography reference (crocodilians) useful for aquatic pose reference
+
+## MJ Prompt Notes — Spinosaurus
+
+### CLIP-Optimized Shorthand
+These comma-separated phrases are what the anatomy module injects into prompts:
+```
+  massive dorsal sail 1.7m tall neural spines
+  elongated crocodile-like narrow snout
+  deep paddle-shaped eel-like tail fin
+  conical unserrated fish-catching teeth
+  low quadrupedal stance small hindlimbs
+  14m semi-aquatic sail-backed predator
+```
+
+### Recommended --stylize Range
+| Low | Default | High |
+|-----|---------|------|
+| 50 | **100** | 200 |
+
+Use `--stylize 100` as a starting point. Lower values (50) preserve more anatomical accuracy. Higher values (200) allow more MJ artistic interpretation.
+
+### Known MJ Failures
+Watch for these common misrenders:
+- ❌ crocodilian body — 'crocodilian' triggers crocodile rendering; use 'crocodile-like snout' only
+- ❌ bipedal stance — hindlimbs too short; quadrupedal on land, swimming in water
+- ❌ no sail — sail is THE defining feature, must always be prominent
+- ❌ serrated teeth — teeth are conical and UNserrated, for catching fish
+
+### --sref Test Results
+| sref URL | Stylize | Result | Notes |
+|----------|---------|--------|-------|
+| *(add test results here)* | | | |

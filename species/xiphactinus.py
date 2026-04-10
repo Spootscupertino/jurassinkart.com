@@ -72,4 +72,11 @@ ANATOMY = SpeciesAnatomy(
         "large forked caudal fin",
         "6m largest Cretaceous bony fish",
     ],
+
+    recommended_stylize=(100, 150, 300),
+
+    known_failures=[
+        "shark body — Xiphactinus is a bony fish with scales, not a shark",
+        "smooth skin — has silvery cycloid scales, not smooth skin",
+    ],
 )

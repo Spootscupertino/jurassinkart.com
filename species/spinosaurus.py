@@ -84,4 +84,13 @@ ANATOMY = SpeciesAnatomy(
         "low quadrupedal stance small hindlimbs",
         "14m semi-aquatic sail-backed predator",
     ],
+
+    recommended_stylize=(50, 100, 200),
+
+    known_failures=[
+        "crocodilian body — 'crocodilian' triggers crocodile rendering; use 'crocodile-like snout' only",
+        "bipedal stance — hindlimbs too short; quadrupedal on land, swimming in water",
+        "no sail — sail is THE defining feature, must always be prominent",
+        "serrated teeth — teeth are conical and UNserrated, for catching fish",
+    ],
 )

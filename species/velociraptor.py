@@ -82,4 +82,13 @@ ANATOMY = SpeciesAnatomy(
         "long rigid bony-rod tail",
         "desert-camouflage plumage",
     ],
+
+    recommended_stylize=(50, 100, 175),
+
+    known_failures=[
+        "scaly Velociraptor — MJ defaults to Jurassic Park scaly version; must specify feathered",
+        "human-sized — MJ renders too large; must specify turkey-sized",
+        "arms held straight out — correct is folded bird-like at rest",
+        "Jurassic Park frill — Velociraptor had no frill or display structures",
+    ],
 )

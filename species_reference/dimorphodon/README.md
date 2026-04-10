@@ -43,3 +43,33 @@ for specific body regions and surface qualities:
 - RAW (.CR3, .ARW, .NEF) preferred for fossil and museum photography
 - TIF (16-bit, uncompressed) for flatbed scans of skeletal diagrams
 - PDF acceptable for published skeletal reconstructions
+
+## MJ Prompt Notes — Dimorphodon
+
+### CLIP-Optimized Shorthand
+These comma-separated phrases are what the anatomy module injects into prompts:
+```
+  oversized deep puffin-like skull
+  two tooth types large front fangs small rear
+  short broad maneuverable wings
+  pycnofiber-covered compact body
+  long stiffened bony tail
+  pigeon-sized 1.4m wingspan early pterosaur
+```
+
+### Recommended --stylize Range
+| Low | Default | High |
+|-----|---------|------|
+| 100 | **150** | 300 |
+
+Use `--stylize 150` as a starting point. Lower values (100) preserve more anatomical accuracy. Higher values (300) allow more MJ artistic interpretation.
+
+### Known MJ Failures
+Watch for these common misrenders:
+- ❌ normal-sized head — head must appear OVERSIZED relative to body
+- ❌ no tail — has a long stiffened bony tail
+
+### --sref Test Results
+| sref URL | Stylize | Result | Notes |
+|----------|---------|--------|-------|
+| *(add test results here)* | | | |

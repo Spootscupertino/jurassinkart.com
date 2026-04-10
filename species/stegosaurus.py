@@ -80,4 +80,12 @@ ANATOMY = SpeciesAnatomy(
         "pebbly scales with embedded osteoderms",
         "bus-sized quadruped sloping forward",
     ],
+
+    recommended_stylize=(75, 125, 250),
+
+    known_failures=[
+        "paired symmetrical plates — plates alternate LEFT-RIGHT, not paired side-by-side",
+        "too many tail spikes — exactly four spikes (thagomizer), not six or eight",
+        "head held high — tiny head should be held very low near ground level",
+    ],
 )

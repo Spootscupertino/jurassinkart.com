@@ -78,4 +78,12 @@ ANATOMY = SpeciesAnatomy(
         "small spatulate-toothed head",
         "22m long 56-tonne giant",
     ],
+
+    recommended_stylize=(100, 175, 400),
+
+    known_failures=[
+        "level back — forequarters must be HIGHER than hindquarters (giraffe proportions)",
+        "Diplodocus-like neck angle — Brachiosaurus neck was steep/upward, not horizontal",
+        "forelimbs shorter than hindlimbs — opposite: forelimbs LONGER than hindlimbs",
+    ],
 )

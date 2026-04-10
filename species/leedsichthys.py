@@ -70,4 +70,11 @@ ANATOMY = SpeciesAnatomy(
         "gentle slow-cruising giant",
         "16m whale-sized bony fish",
     ],
+
+    recommended_stylize=(125, 200, 400),
+
+    known_failures=[
+        "shark shape — Leedsichthys is a bony fish, not a shark; different fin structure",
+        "teeth — has gill rakers for filter feeding, no predatory teeth",
+    ],
 )

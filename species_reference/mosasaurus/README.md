@@ -45,3 +45,34 @@ for specific body regions and surface qualities:
 - RAW (.CR3, .ARW, .NEF) preferred for fossil and museum photography
 - TIF (16-bit, uncompressed) for flatbed scans of skeletal diagrams
 - PDF acceptable for published skeletal reconstructions
+
+## MJ Prompt Notes — Mosasaurus
+
+### CLIP-Optimized Shorthand
+These comma-separated phrases are what the anatomy module injects into prompts:
+```
+  keeled overlapping snake-like scales
+  rounded conical snout with loose jaw hinge
+  deep crescent tail fluke
+  four short paddle flippers
+  conical recurved gripping teeth
+  13m elongated barrel-bodied marine lizard
+```
+
+### Recommended --stylize Range
+| Low | Default | High |
+|-----|---------|------|
+| 75 | **125** | 250 |
+
+Use `--stylize 125` as a starting point. Lower values (75) preserve more anatomical accuracy. Higher values (250) allow more MJ artistic interpretation.
+
+### Known MJ Failures
+Watch for these common misrenders:
+- ❌ crocodile head — MJ renders crocodilian snout; Mosasaurus has a rounded monitor-lizard-like snout
+- ❌ eel-like tail — tail has a crescent FLUKE like a shark, not an eel undulation
+- ❌ dry land — fully aquatic, never on land
+
+### --sref Test Results
+| sref URL | Stylize | Result | Notes |
+|----------|---------|--------|-------|
+| *(add test results here)* | | | |

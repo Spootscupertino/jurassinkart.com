@@ -2575,7 +2575,7 @@ def main() -> None:
     # --version intentionally removed: set MJ model version in Midjourney settings
     parser.add_argument("--style",    default="raw",  choices=["raw", "default"], help="--style flag (default: raw)")
     # --ar intentionally removed: set aspect ratio globally in Midjourney settings
-    parser.add_argument("--stylize",  type=int,   default=100,  metavar="N",   help="--stylize 0-1000 (default: 100)")
+    parser.add_argument("--stylize",  type=int,   default=None,  metavar="N",   help="--stylize 0-1000 (default: species-specific)")
     parser.add_argument("--chaos",    type=int,   default=0,    metavar="N",   help="--chaos 0-100 (default: 0)")
     parser.add_argument("--quality",  type=float, default=1.0,  choices=[0.25, 0.5, 1.0], help="--q (default: 1.0)")
     parser.add_argument("--sref",     type=str,   default=None, metavar="URL", help="Style reference image URL appended as --sref")
@@ -2609,6 +2609,29 @@ def main() -> None:
     science = fetch_species_science(conn, species["id"])
     notes   = fetch_research_notes(conn, species["id"])
     display_science_brief(species, science, notes)
+
+    # --- Per-species stylize recommendation (Session 17) ---
+    anatomy = get_anatomy(species["name"])
+    if anatomy and anatomy.recommended_stylize:
+        s_low, s_default, s_high = anatomy.recommended_stylize
+        if args.stylize is None:
+            # No user override — use species-recommended default
+            args.stylize = s_default
+            print(f"  {ok('AUTO-APPLIED')} {dim('[stylize]')} {C.WHITE}--stylize {s_default}{C.RESET}")
+            print(f"    {dim(f'Species range: {s_low} (low) / {s_default} (default) / {s_high} (high)')}")
+        else:
+            print(f"  {dim(f'User override: --stylize {args.stylize}  (species default: {s_default}, range {s_low}–{s_high})')}")
+    elif args.stylize is None:
+        args.stylize = 100  # global fallback
+
+    # --- Display known failure modes (Session 17) ---
+    if anatomy and anatomy.known_failures:
+        sp_name = species["name"]
+        print(f"\n  {hdr(f'⚠  KNOWN MJ FAILURE MODES — {sp_name}')}")
+        print(f"  {C.DIM}" + "─" * 60 + C.RESET)
+        for fail in anatomy.known_failures:
+            print(f"  {C.YELLOW}⚠{C.RESET}  {C.WHITE}{fail}{C.RESET}")
+        print()
 
     # --- Style reference suggestion (only if --sref not already passed) ---
     if not args.sref:

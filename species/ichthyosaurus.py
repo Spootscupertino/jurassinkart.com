@@ -76,4 +76,12 @@ ANATOMY = SpeciesAnatomy(
         "crescent tail fluke vertebrae bend down",
         "2m dolphin-sized marine reptile",
     ],
+
+    recommended_stylize=(100, 150, 300),
+
+    known_failures=[
+        "scales — smooth scaleless skin, NOT scaly like a lizard",
+        "no dorsal fin — dorsal fin is soft-tissue only but DID exist",
+        "upward tail bend — vertebrae bend DOWNWARD into lower fluke lobe",
+    ],
 )

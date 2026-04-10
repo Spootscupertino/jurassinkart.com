@@ -79,3 +79,33 @@ Image format: minimum 4K resolution; RAW preferred; TIF for scans.
 - RAW preferred for museum photography
 - TIF for skeletal and crest cross-section diagram scans
 - CT scan data of ROM 768 crest (published) is useful reference for crest interior
+
+## MJ Prompt Notes — Parasaurolophus
+
+### CLIP-Optimized Shorthand
+These comma-separated phrases are what the anatomy module injects into prompts:
+```
+  long backward-sweeping hollow tubular crest
+  broad flat duck-billed beak
+  pebbly uniform polygonal scales
+  robust hadrosaur body deep tail
+  facultative biped browsing on all fours
+  9.5m long herd animal
+```
+
+### Recommended --stylize Range
+| Low | Default | High |
+|-----|---------|------|
+| 75 | **125** | 250 |
+
+Use `--stylize 125` as a starting point. Lower values (75) preserve more anatomical accuracy. Higher values (250) allow more MJ artistic interpretation.
+
+### Known MJ Failures
+Watch for these common misrenders:
+- ❌ upward crest — crest sweeps BACKWARD over neck, not pointing upward
+- ❌ teeth visible — beak covers front of mouth, no visible teeth from outside
+
+### --sref Test Results
+| sref URL | Stylize | Result | Notes |
+|----------|---------|--------|-------|
+| *(add test results here)* | | | |

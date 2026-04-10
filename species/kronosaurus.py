@@ -74,4 +74,11 @@ ANATOMY = SpeciesAnatomy(
         "smooth scarred marine predator skin",
         "10m truck-sized pliosaur",
     ],
+
+    recommended_stylize=(100, 150, 300),
+
+    known_failures=[
+        "too many vertebrae — original Harvard mount was over-reconstructed",
+        "long neck — short-necked pliosaur, not a plesiosaur",
+    ],
 )

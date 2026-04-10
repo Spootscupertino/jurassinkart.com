@@ -46,4 +46,11 @@ ANATOMY = SpeciesAnatomy(
         "feathery tiered canopy silhouette",
         "20m giant Carboniferous horsetail",
     ],
+
+    recommended_stylize=(150, 250, 500),
+
+    known_failures=[
+        "bamboo — similar but NOT bamboo; Calamites is a giant horsetail with distinct nodes",
+        "modern horsetail — must be TREE-sized (20m), not small modern horsetail",
+    ],
 )

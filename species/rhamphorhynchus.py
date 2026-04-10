@@ -76,4 +76,11 @@ ANATOMY = SpeciesAnatomy(
         "dense pycnofiber body fuzz",
         "crow-sized 1.8m wingspan pterosaur",
     ],
+
+    recommended_stylize=(100, 150, 300),
+
+    known_failures=[
+        "no tail — long bony tail with diamond vane is THE defining feature",
+        "bat wings — membrane on elongated fourth finger, not between multiple fingers",
+    ],
 )

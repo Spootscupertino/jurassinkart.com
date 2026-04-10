@@ -46,4 +46,11 @@ ANATOMY = SpeciesAnatomy(
         "cycad-like palm-like overall form",
         "3m stocky Mesozoic bennettitale",
     ],
+
+    recommended_stylize=(150, 250, 500),
+
+    known_failures=[
+        "palm tree — NOT a palm; bennettitalean with stout trunk and flower-like structures",
+        "modern cycad — similar but with large flower-like reproductive organs unlike cycads",
+    ],
 )

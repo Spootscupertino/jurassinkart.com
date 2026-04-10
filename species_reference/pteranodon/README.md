@@ -82,3 +82,35 @@ Image format: minimum 4K resolution; RAW preferred; TIF for scans.
 - RAW preferred for museum photography
 - TIF for wing membrane and skeletal diagram scans
 - Transmitted or raking light useful for wing membrane specimen photography
+
+## MJ Prompt Notes — Pteranodon
+
+### CLIP-Optimized Shorthand
+These comma-separated phrases are what the anatomy module injects into prompts:
+```
+  long backward-sweeping bony cranial crest
+  toothless pointed beak pelican-like
+  taut wing membrane to ankles
+  fuzzy pycnofiber body covering
+  tiny body 7m wingspan 25kg
+  quadrupedal on ground folded wings
+```
+
+### Recommended --stylize Range
+| Low | Default | High |
+|-----|---------|------|
+| 75 | **125** | 250 |
+
+Use `--stylize 125` as a starting point. Lower values (75) preserve more anatomical accuracy. Higher values (250) allow more MJ artistic interpretation.
+
+### Known MJ Failures
+Watch for these common misrenders:
+- ❌ teeth — Pteranodon is TOOTHLESS; name literally means 'toothless wing'
+- ❌ bat wings — membrane attaches to single elongated fourth finger, not between multiple fingers
+- ❌ bipedal running — quadrupedal launch from all fours; walked on folded wings
+- ❌ dinosaur — NOT a dinosaur; a pterosaur, completely separate lineage
+
+### --sref Test Results
+| sref URL | Stylize | Result | Notes |
+|----------|---------|--------|-------|
+| *(add test results here)* | | | |

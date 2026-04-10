@@ -82,4 +82,11 @@ ANATOMY = SpeciesAnatomy(
         "facultative biped browsing on all fours",
         "9.5m long herd animal",
     ],
+
+    recommended_stylize=(75, 125, 250),
+
+    known_failures=[
+        "upward crest — crest sweeps BACKWARD over neck, not pointing upward",
+        "teeth visible — beak covers front of mouth, no visible teeth from outside",
+    ],
 )

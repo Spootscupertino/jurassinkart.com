@@ -82,4 +82,12 @@ ANATOMY = SpeciesAnatomy(
         "semi-erect forelimbs elbows bowed out",
         "9m long 9-tonne ceratopsian",
     ],
+
+    recommended_stylize=(50, 100, 200),
+
+    known_failures=[
+        "fenestrated frill — Triceratops frill is SOLID bone, not windowed",
+        "sprawling lizard limbs — forelimbs semi-erect with elbows bowed out, not sprawling",
+        "too few horns — must have two long brow horns plus one shorter nose horn",
+    ],
 )

@@ -48,4 +48,11 @@ ANATOMY = SpeciesAnatomy(
         "reptile-scale-patterned bark texture",
         "40m towering Carboniferous club moss",
     ],
+
+    recommended_stylize=(150, 250, 500),
+
+    known_failures=[
+        "palm tree — NO palms; lepidodendron is a scale tree with diamond-scarred bark",
+        "oak or broadleaf — leaves are long grass-like, NOT broad leaves",
+    ],
 )

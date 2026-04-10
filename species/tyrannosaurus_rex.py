@@ -84,4 +84,14 @@ ANATOMY = SpeciesAnatomy(
         "serrated banana-shaped teeth",
         "12m long bus-sized predator",
     ],
+
+    recommended_stylize=(50, 100, 200),
+
+    known_failures=[
+        "three-fingered arms — MJ defaults to three fingers; must specify two",
+        "dragging tail — MJ defaults to tail on ground; must specify horizontal",
+        "pronated wrists — MJ renders palms-down; correct is palms-inward",
+        "exposed teeth when mouth closed — lips probable, teeth covered",
+        "feathered T. rex — adult skin impressions confirm scales, not feathers",
+    ],
 )

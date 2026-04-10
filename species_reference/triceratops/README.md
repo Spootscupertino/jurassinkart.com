@@ -72,3 +72,34 @@ Image format: minimum 4K resolution; RAW preferred; TIF for scans.
 - RAW preferred for museum photography
 - TIF for skeletal diagram scans
 - Photograph skull from multiple angles: lateral, dorsal, anterior, posterior
+
+## MJ Prompt Notes — Triceratops
+
+### CLIP-Optimized Shorthand
+These comma-separated phrases are what the anatomy module injects into prompts:
+```
+  three-horned skull with solid bony frill
+  parrot-like keratinous beak
+  pebbly rosette-patterned scales
+  rhino-proportioned stocky quadruped
+  semi-erect forelimbs elbows bowed out
+  9m long 9-tonne ceratopsian
+```
+
+### Recommended --stylize Range
+| Low | Default | High |
+|-----|---------|------|
+| 50 | **100** | 200 |
+
+Use `--stylize 100` as a starting point. Lower values (50) preserve more anatomical accuracy. Higher values (200) allow more MJ artistic interpretation.
+
+### Known MJ Failures
+Watch for these common misrenders:
+- ❌ fenestrated frill — Triceratops frill is SOLID bone, not windowed
+- ❌ sprawling lizard limbs — forelimbs semi-erect with elbows bowed out, not sprawling
+- ❌ too few horns — must have two long brow horns plus one shorter nose horn
+
+### --sref Test Results
+| sref URL | Stylize | Result | Notes |
+|----------|---------|--------|-------|
+| *(add test results here)* | | | |

@@ -80,4 +80,11 @@ ANATOMY = SpeciesAnatomy(
         "lateral triangular body spikes",
         "armored eyelids",
     ],
+
+    recommended_stylize=(75, 125, 250),
+
+    known_failures=[
+        "spiked tail — tail has a bony CLUB, not spikes (spikes are Stegosaurus)",
+        "tall proportions — body is extremely low, flat, and WIDE like a tank",
+    ],
 )

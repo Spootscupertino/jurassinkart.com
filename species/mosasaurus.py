@@ -76,4 +76,12 @@ ANATOMY = SpeciesAnatomy(
         "conical recurved gripping teeth",
         "13m elongated barrel-bodied marine lizard",
     ],
+
+    recommended_stylize=(75, 125, 250),
+
+    known_failures=[
+        "crocodile head — MJ renders crocodilian snout; Mosasaurus has a rounded monitor-lizard-like snout",
+        "eel-like tail — tail has a crescent FLUKE like a shark, not an eel undulation",
+        "dry land — fully aquatic, never on land",
+    ],
 )

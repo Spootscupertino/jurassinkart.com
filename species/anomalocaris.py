@@ -76,4 +76,12 @@ ANATOMY = SpeciesAnatomy(
         "semi-translucent flattened oval body",
         "1m Cambrian apex predator",
     ],
+
+    recommended_stylize=(100, 175, 350),
+
+    known_failures=[
+        "fish shape — flat oval body with lateral lobes, nothing like a fish",
+        "hard shell — semi-translucent, NOT hard-shelled like a crab",
+        "tiny — must be 1m, the apex predator of the Cambrian",
+    ],
 )

@@ -72,4 +72,11 @@ ANATOMY = SpeciesAnatomy(
         "pointed telson tail spine",
         "1m Ordovician sea scorpion predator",
     ],
+
+    recommended_stylize=(100, 150, 300),
+
+    known_failures=[
+        "modern scorpion — eurypterid body plan, not curved-tail scorpion shape",
+        "small — 1m predator, emphasize the massive spiny claws",
+    ],
 )

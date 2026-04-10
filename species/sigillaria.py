@@ -49,4 +49,11 @@ ANATOMY = SpeciesAnatomy(
         "smooth bark with raised round scars",
         "30m Carboniferous coal-swamp pillar tree",
     ],
+
+    recommended_stylize=(150, 250, 500),
+
+    known_failures=[
+        "palm tree — NOT a palm; Sigillaria has distinctive hexagonal ribbed bark",
+        "broadleaf — leaves are long grass-like tufts, not broad leaves",
+    ],
 )

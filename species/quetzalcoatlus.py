@@ -80,4 +80,12 @@ ANATOMY = SpeciesAnatomy(
         "long stiff vertical neck when standing",
         "terrestrial stork-like stalking posture",
     ],
+
+    recommended_stylize=(75, 125, 250),
+
+    known_failures=[
+        "teeth — Quetzalcoatlus is TOOTHLESS",
+        "small size — giraffe-height when standing; must not look small",
+        "exclusively aquatic — primarily a terrestrial stalking predator, like a giant stork",
+    ],
 )

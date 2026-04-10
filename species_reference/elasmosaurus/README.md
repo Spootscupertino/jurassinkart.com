@@ -42,3 +42,34 @@ for specific body regions and surface qualities:
 - RAW (.CR3, .ARW, .NEF) preferred for fossil and museum photography
 - TIF (16-bit, uncompressed) for flatbed scans of skeletal diagrams
 - PDF acceptable for published skeletal reconstructions
+
+## MJ Prompt Notes — Elasmosaurus
+
+### CLIP-Optimized Shorthand
+These comma-separated phrases are what the anatomy module injects into prompts:
+```
+  impossibly long sinuous neck tiny head
+  four large paddle-shaped flippers
+  needle-like interlocking fish-trap teeth
+  compact rounded torso short tail
+  smooth countershaded marine hide
+  14m plesiosaur neck over half body length
+```
+
+### Recommended --stylize Range
+| Low | Default | High |
+|-----|---------|------|
+| 100 | **150** | 300 |
+
+Use `--stylize 150` as a starting point. Lower values (100) preserve more anatomical accuracy. Higher values (300) allow more MJ artistic interpretation.
+
+### Known MJ Failures
+Watch for these common misrenders:
+- ❌ swan-neck pose — could NOT raise neck high out of water; neck moved horizontally
+- ❌ Loch Ness monster pose — classic humped pose is physically impossible
+- ❌ on land — fully aquatic, could not move on land
+
+### --sref Test Results
+| sref URL | Stylize | Result | Notes |
+|----------|---------|--------|-------|
+| *(add test results here)* | | | |

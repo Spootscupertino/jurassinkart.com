@@ -75,4 +75,12 @@ ANATOMY = SpeciesAnatomy(
         "heterocercal tail upper lobe extended",
         "4m deep-ocean chimaera relative",
     ],
+
+    recommended_stylize=(75, 125, 250),
+
+    known_failures=[
+        "external buzz-saw — tooth whorl is INSIDE the jaw, NOT sticking out like a circular saw",
+        "upper teeth — Helicoprion has NO upper teeth, upper jaw is smooth cartilage",
+        "shark body — more ratfish/chimaera-like, not classic shark shape",
+    ],
 )

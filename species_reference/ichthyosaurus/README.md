@@ -43,3 +43,34 @@ for specific body regions and surface qualities:
 - RAW (.CR3, .ARW, .NEF) preferred for fossil and museum photography
 - TIF (16-bit, uncompressed) for flatbed scans of skeletal diagrams
 - PDF acceptable for published skeletal reconstructions
+
+## MJ Prompt Notes — Ichthyosaurus
+
+### CLIP-Optimized Shorthand
+These comma-separated phrases are what the anatomy module injects into prompts:
+```
+  dolphin-shaped with enormous round eyes
+  bony sclerotic eye ring
+  smooth scaleless skin like dolphin
+  soft-tissue dorsal fin no bone
+  crescent tail fluke vertebrae bend down
+  2m dolphin-sized marine reptile
+```
+
+### Recommended --stylize Range
+| Low | Default | High |
+|-----|---------|------|
+| 100 | **150** | 300 |
+
+Use `--stylize 150` as a starting point. Lower values (100) preserve more anatomical accuracy. Higher values (300) allow more MJ artistic interpretation.
+
+### Known MJ Failures
+Watch for these common misrenders:
+- ❌ scales — smooth scaleless skin, NOT scaly like a lizard
+- ❌ no dorsal fin — dorsal fin is soft-tissue only but DID exist
+- ❌ upward tail bend — vertebrae bend DOWNWARD into lower fluke lobe
+
+### --sref Test Results
+| sref URL | Stylize | Result | Notes |
+|----------|---------|--------|-------|
+| *(add test results here)* | | | |

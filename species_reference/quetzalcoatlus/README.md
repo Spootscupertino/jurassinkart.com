@@ -46,3 +46,34 @@ for specific body regions and surface qualities:
 - RAW (.CR3, .ARW, .NEF) preferred for fossil and museum photography
 - TIF (16-bit, uncompressed) for flatbed scans of skeletal diagrams
 - PDF acceptable for published skeletal reconstructions
+
+## MJ Prompt Notes — Quetzalcoatlus
+
+### CLIP-Optimized Shorthand
+These comma-separated phrases are what the anatomy module injects into prompts:
+```
+  giraffe-height standing on folded wings
+  extremely long lancet-shaped toothless beak
+  10-11m wingspan largest flying animal ever
+  pycnofiber-covered lightweight hollow bones
+  long stiff vertical neck when standing
+  terrestrial stork-like stalking posture
+```
+
+### Recommended --stylize Range
+| Low | Default | High |
+|-----|---------|------|
+| 75 | **125** | 250 |
+
+Use `--stylize 125` as a starting point. Lower values (75) preserve more anatomical accuracy. Higher values (250) allow more MJ artistic interpretation.
+
+### Known MJ Failures
+Watch for these common misrenders:
+- ❌ teeth — Quetzalcoatlus is TOOTHLESS
+- ❌ small size — giraffe-height when standing; must not look small
+- ❌ exclusively aquatic — primarily a terrestrial stalking predator, like a giant stork
+
+### --sref Test Results
+| sref URL | Stylize | Result | Notes |
+|----------|---------|--------|-------|
+| *(add test results here)* | | | |

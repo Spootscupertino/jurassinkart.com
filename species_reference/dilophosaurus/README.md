@@ -87,3 +87,34 @@ Image format: minimum 4K resolution; RAW preferred; TIF for scans.
 - RAW preferred for museum photography
 - TIF for skeletal and skull diagram scans
 - Crest photography: multiple angles, raking light to reveal thin bone structure
+
+## MJ Prompt Notes — Dilophosaurus
+
+### CLIP-Optimized Shorthand
+These comma-separated phrases are what the anatomy module injects into prompts:
+```
+  twin parallel bony head crests
+  gracile lean 7m biped predator
+  kinked jaw with subnarial notch
+  no frill no venom
+  recurved serrated blade teeth
+  long thin horizontal tail
+```
+
+### Recommended --stylize Range
+| Low | Default | High |
+|-----|---------|------|
+| 50 | **100** | 175 |
+
+Use `--stylize 100` as a starting point. Lower values (50) preserve more anatomical accuracy. Higher values (175) allow more MJ artistic interpretation.
+
+### Known MJ Failures
+Watch for these common misrenders:
+- ❌ neck frill — Jurassic Park invention, Dilophosaurus had NO frill whatsoever
+- ❌ spitting venom — Jurassic Park invention, no venom capability
+- ❌ small size — JP version is dog-sized; real Dilophosaurus was 7m and 400kg
+
+### --sref Test Results
+| sref URL | Stylize | Result | Notes |
+|----------|---------|--------|-------|
+| *(add test results here)* | | | |

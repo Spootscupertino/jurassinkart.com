@@ -80,4 +80,12 @@ ANATOMY = SpeciesAnatomy(
         "recurved serrated blade teeth",
         "long thin horizontal tail",
     ],
+
+    recommended_stylize=(50, 100, 175),
+
+    known_failures=[
+        "neck frill — Jurassic Park invention, Dilophosaurus had NO frill whatsoever",
+        "spitting venom — Jurassic Park invention, no venom capability",
+        "small size — JP version is dog-sized; real Dilophosaurus was 7m and 400kg",
+    ],
 )

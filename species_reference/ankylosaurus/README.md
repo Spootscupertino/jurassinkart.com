@@ -74,3 +74,33 @@ Image format: minimum 4K resolution; RAW preferred; TIF for scans.
 - RAW preferred for museum photography
 - TIF for osteoderm surface detail scans
 - Raking light setup essential for revealing surface texture on armor scutes
+
+## MJ Prompt Notes — Ankylosaurus
+
+### CLIP-Optimized Shorthand
+These comma-separated phrases are what the anatomy module injects into prompts:
+```
+  massive bony tail club
+  interlocking dorsal armor osteoderms
+  low flat wide tank body
+  four pyramidal skull horns
+  lateral triangular body spikes
+  armored eyelids
+```
+
+### Recommended --stylize Range
+| Low | Default | High |
+|-----|---------|------|
+| 75 | **125** | 250 |
+
+Use `--stylize 125` as a starting point. Lower values (75) preserve more anatomical accuracy. Higher values (250) allow more MJ artistic interpretation.
+
+### Known MJ Failures
+Watch for these common misrenders:
+- ❌ spiked tail — tail has a bony CLUB, not spikes (spikes are Stegosaurus)
+- ❌ tall proportions — body is extremely low, flat, and WIDE like a tank
+
+### --sref Test Results
+| sref URL | Stylize | Result | Notes |
+|----------|---------|--------|-------|
+| *(add test results here)* | | | |

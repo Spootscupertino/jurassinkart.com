@@ -49,4 +49,11 @@ ANATOMY = SpeciesAnatomy(
         "giant tree-fern silhouette",
         "8m oldest known tree Devonian",
     ],
+
+    recommended_stylize=(175, 300, 600),
+
+    known_failures=[
+        "modern tree fern — Wattieza is simpler, more primitive than modern tree ferns",
+        "branching tree — BRANCHLESS single trunk with crown of fronds",
+    ],
 )

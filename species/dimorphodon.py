@@ -78,4 +78,11 @@ ANATOMY = SpeciesAnatomy(
         "long stiffened bony tail",
         "pigeon-sized 1.4m wingspan early pterosaur",
     ],
+
+    recommended_stylize=(100, 150, 300),
+
+    known_failures=[
+        "normal-sized head — head must appear OVERSIZED relative to body",
+        "no tail — has a long stiffened bony tail",
+    ],
 )

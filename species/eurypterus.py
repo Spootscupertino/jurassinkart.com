@@ -74,4 +74,11 @@ ANATOMY = SpeciesAnatomy(
         "tail spike telson for defense",
         "horseshoe-crab-sized 30cm eurypterid",
     ],
+
+    recommended_stylize=(100, 150, 300),
+
+    known_failures=[
+        "modern scorpion — flat eurypterid body plan, not curved-tail scorpion",
+        "too large — Eurypterus is relatively small (30cm), horseshoe-crab-sized",
+    ],
 )

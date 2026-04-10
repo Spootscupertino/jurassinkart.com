@@ -75,3 +75,35 @@ Image format: minimum 4K resolution; RAW preferred; TIF for scans.
 - RAW preferred for fossil photography
 - TIF (16-bit, uncompressed) for skeletal diagram scans
 - High-res bird feather macro photography is useful for texture reference
+
+## MJ Prompt Notes — Velociraptor
+
+### CLIP-Optimized Shorthand
+These comma-separated phrases are what the anatomy module injects into prompts:
+```
+  fully feathered turkey-sized raptor
+  sickle claw on raised second toe
+  long narrow feathered snout
+  feathered wing-like arms folded at rest
+  long rigid bony-rod tail
+  desert-camouflage plumage
+```
+
+### Recommended --stylize Range
+| Low | Default | High |
+|-----|---------|------|
+| 50 | **100** | 175 |
+
+Use `--stylize 100` as a starting point. Lower values (50) preserve more anatomical accuracy. Higher values (175) allow more MJ artistic interpretation.
+
+### Known MJ Failures
+Watch for these common misrenders:
+- ❌ scaly Velociraptor — MJ defaults to Jurassic Park scaly version; must specify feathered
+- ❌ human-sized — MJ renders too large; must specify turkey-sized
+- ❌ arms held straight out — correct is folded bird-like at rest
+- ❌ Jurassic Park frill — Velociraptor had no frill or display structures
+
+### --sref Test Results
+| sref URL | Stylize | Result | Notes |
+|----------|---------|--------|-------|
+| *(add test results here)* | | | |

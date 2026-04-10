@@ -76,4 +76,11 @@ ANATOMY = SpeciesAnatomy(
         "six bristled legs in prey-catching basket",
         "70cm wingspan largest flying insect ever",
     ],
+
+    recommended_stylize=(75, 125, 250),
+
+    known_failures=[
+        "tiny insect — must be eagle-SIZED, shot like a bird of prey not a macro insect",
+        "butterfly wings — wings are transparent with dark veins, dragonfly-type",
+    ],
 )

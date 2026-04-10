@@ -72,4 +72,12 @@ ANATOMY = SpeciesAnatomy(
         "oversized leatherback turtle body plan",
         "4.6m largest sea turtle ever",
     ],
+
+    recommended_stylize=(125, 200, 350),
+
+    known_failures=[
+        "hard turtle shell — shell is LEATHERY like a leatherback, not hard scutes",
+        "teeth — Archelon has a beak, NO teeth",
+        "clean shell — shell should be biofouled with barnacles and algae",
+    ],
 )

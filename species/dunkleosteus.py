@@ -77,4 +77,11 @@ ANATOMY = SpeciesAnatomy(
         "bony thoracic shoulder shield",
         "car-sized 6m armored predatory fish",
     ],
+
+    recommended_stylize=(75, 125, 250),
+
+    known_failures=[
+        "true teeth — has bony JAW BLADES, not teeth; self-sharpening shears",
+        "fully armored — only FRONT half is armored; rear is unarmored muscle",
+    ],
 )

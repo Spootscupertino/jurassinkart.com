@@ -71,4 +71,11 @@ ANATOMY = SpeciesAnatomy(
         "chambered spiral nautilus-like form",
         "squid-like soft body in shell",
     ],
+
+    recommended_stylize=(150, 250, 500),
+
+    known_failures=[
+        "snail — Ammonites are CEPHALOPODS (squid relatives), not snails",
+        "no tentacles — must show soft tentacles extending from shell opening",
+    ],
 )
