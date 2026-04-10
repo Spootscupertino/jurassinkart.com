@@ -1001,6 +1001,240 @@ def get_aerial_blocked(category: str, context: dict) -> dict:
 
 
 # ---------------------------------------------------------------------------
+# Arthropod context-reactive branching (Session 17)
+# ---------------------------------------------------------------------------
+
+# Arthropods split into two locomotion groups:
+#   aquatic: Anomalocaris, Eurypterus, Megalograptus, Jaekelopterus, Megarachne (eurypterids)
+#   terrestrial: Meganeura, Arthropleura, Pulmonoscorpius
+AQUATIC_ARTHROPODS = {"Anomalocaris", "Eurypterus", "Megalograptus", "Jaekelopterus", "Megarachne"}
+TERRESTRIAL_ARTHROPODS = {"Meganeura", "Arthropleura", "Pulmonoscorpius"}
+
+ARTHROPOD_LIGHTING_BY_SPECIES = {
+    # Terrestrial arthropods — forest floor / swamp
+    "Meganeura":       ["dappled_canopy",  "golden_hour",      "dawn_first_light",  "backlit_haze",      "broken_cloud"],
+    "Arthropleura":    ["forest_floor_shade","dappled_canopy", "overcast",           "dawn_first_light",  "fog_diffuse"],
+    "Pulmonoscorpius": ["dramatic_rim",     "moonlit",         "dawn_first_light",   "forest_floor_shade","dust_glow"],
+    # Aquatic arthropods — underwater
+    "Anomalocaris":    ["underwater_caustics","reef_scatter",   "noon_column",        "murk_glow",         "surface_dapple"],
+    "Eurypterus":      ["reef_scatter",     "underwater_caustics","murk_glow",        "surface_dapple",    "noon_column"],
+    "Megalograptus":   ["murk_glow",        "underwater_caustics","deep_water_fade",  "reef_scatter",      "noon_column"],
+    "Jaekelopterus":   ["murk_glow",        "deep_water_fade",  "underwater_caustics","noon_column",       "bioluminescent"],
+    "Megarachne":      ["forest_floor_shade","dappled_canopy", "murk_glow",          "overcast",          "dawn_first_light"],
+}
+
+ARTHROPOD_MOOD_BY_LIGHTING = {
+    "dappled_canopy":     ["quiet_power",     "feeding_focus",    "alert_scan",        "serene",            "scent_tracking"],
+    "forest_floor_shade": ["quiet_power",     "scent_tracking",   "alert_scan",        "feeding_focus",     "serene"],
+    "golden_hour":        ["heat_rest",       "serene",           "feeding_focus",      "quiet_power",       "alert_scan"],
+    "dawn_first_light":   ["alert_scan",      "quiet_power",      "serene",            "feeding_focus",     "scent_tracking"],
+    "overcast":           ["quiet_power",     "feeding_focus",    "alert_scan",         "serene",            "mid_stride"],
+    "dramatic_rim":       ["menacing",        "quiet_power",      "alert_scan",         "feeding_focus",     "territorial_hold"],
+    "moonlit":            ["scent_tracking",  "alert_scan",       "quiet_power",        "menacing",          "serene"],
+    "fog_diffuse":        ["quiet_power",     "scent_tracking",   "alert_scan",         "serene",            "feeding_focus"],
+    "backlit_haze":       ["quiet_power",     "serene",           "feeding_focus",      "alert_scan",        "eye_contact"],
+    "broken_cloud":       ["feeding_focus",   "mid_stride",       "alert_scan",         "quiet_power",       "serene"],
+    "dust_glow":          ["heat_rest",       "quiet_power",      "feeding_focus",      "territorial_hold",  "menacing"],
+    # Aquatic arthropod lighting
+    "underwater_caustics":["feeding_focus",   "quiet_power",      "alert_scan",         "serene",            "eye_contact"],
+    "reef_scatter":       ["feeding_focus",   "quiet_power",      "serene",             "alert_scan",        "eye_contact"],
+    "noon_column":        ["feeding_focus",   "quiet_power",      "alert_scan",         "mid_stride",        "menacing"],
+    "murk_glow":          ["menacing",        "quiet_power",      "alert_scan",         "feeding_focus",     "scent_tracking"],
+    "surface_dapple":     ["quiet_power",     "serene",           "feeding_focus",      "alert_scan",        "mid_stride"],
+    "deep_water_fade":    ["menacing",        "quiet_power",      "scent_tracking",     "alert_scan",        "serene"],
+    "bioluminescent":     ["quiet_power",     "serene",           "menacing",           "alert_scan",        "scent_tracking"],
+}
+
+ARTHROPOD_BEHAVIOR_BY_MOOD = {
+    "feeding_focus":  ["feeding",           "scanning_territory","standing_still",    "mid_stride",        "emerging_from_cover"],
+    "quiet_power":    ["standing_still",    "scanning_territory","mid_stride",        "resting_alert",     "emerging_from_cover"],
+    "alert_scan":     ["scanning_territory","standing_still",    "emerging_from_cover","resting_alert",    "mid_stride"],
+    "serene":         ["resting_alert",     "standing_still",    "basking_flat",      "post_rain_stillness","feeding"],
+    "menacing":       ["scanning_territory","mid_stride",        "standing_still",    "emerging_from_cover","feeding"],
+    "heat_rest":      ["basking_flat",      "resting_alert",     "standing_still",    "post_rain_stillness","shaking_off_water"],
+    "scent_tracking": ["scanning_territory","emerging_from_cover","mid_stride",       "standing_still",    "resting_alert"],
+    "mid_stride":     ["mid_stride",        "scanning_territory","standing_still",    "emerging_from_cover","feeding"],
+    "territorial_hold":["scanning_territory","standing_still",   "mid_stride",        "emerging_from_cover","resting_alert"],
+    "eye_contact":    ["standing_still",    "scanning_territory","resting_alert",     "emerging_from_cover","feeding"],
+}
+
+ARTHROPOD_CONDITION_BY_SPECIES = {
+    "Meganeura":       ["pristine_juvenile","dominant_prime",    "torn_wing_edge",    "dust_on_wings",     "dew_droplets"],
+    "Arthropleura":    ["dominant_prime",   "weathered_adult",   "mud_caked",         "moulting_skin",     "battle_scarred"],
+    "Pulmonoscorpius": ["dominant_prime",   "battle_scarred",    "weathered_adult",   "mud_caked",         "pristine_juvenile"],
+    "Anomalocaris":    ["dominant_prime",   "pristine_juvenile", "weathered_adult",   "battle_scarred",    "algae_growth"],
+    "Eurypterus":      ["dominant_prime",   "pristine_juvenile", "weathered_adult",   "battle_scarred",    "algae_growth"],
+    "Megalograptus":   ["dominant_prime",   "battle_scarred",    "weathered_adult",   "pristine_juvenile", "algae_growth"],
+    "Jaekelopterus":   ["dominant_prime",   "battle_scarred",    "weathered_adult",   "mud_caked",         "algae_growth"],
+    "Megarachne":      ["dominant_prime",   "weathered_adult",   "mud_caked",         "battle_scarred",    "pristine_juvenile"],
+}
+
+ARTHROPOD_CAMERA_BY_MODE = {
+    "portrait":        ["closeup_portrait", "tight_head",       "detail_abstract",   "ground_level_up",   "medium_shot"],
+    "canvas":          ["full_body_profile","ground_level_up",  "dynamic_low",       "rear_three_quarter","trail_camera"],
+    "environmental":   ["epic_wide",        "ground_level_up",  "trail_camera",       "aerial_above",     "medium_shot"],
+    "extreme_closeup": ["detail_abstract",  "tight_head",       "ground_level_up",   "closeup_portrait",  "medium_shot"],
+    "eye_contact":     ["closeup_portrait", "tight_head",       "ground_level_up",   "detail_abstract",   "medium_shot"],
+    "action_freeze":   ["dynamic_low",      "ground_level_up",  "medium_shot",       "trail_camera",      "detail_abstract"],
+    "tracking_side":   ["ground_level_up",  "medium_shot",      "full_body_profile", "trail_camera",      "dynamic_low"],
+    "ground_level":    ["ground_level_up",  "dynamic_low",      "detail_abstract",   "trail_camera",      "medium_shot"],
+    "confrontation":   ["ground_level_up",  "dynamic_low",      "closeup_portrait",  "detail_abstract",   "medium_shot"],
+}
+
+ARTHROPOD_WEATHER_BY_MOOD = {
+    "feeding_focus":    ["humid_haze",      "clear_pristine",   "overcast_flat",     "ground_mist",       "drizzle_steady"],
+    "quiet_power":      ["clear_pristine",  "ground_mist",      "overcast_flat",     "humid_haze",        "heat_haze"],
+    "alert_scan":       ["ground_mist",     "clear_pristine",   "cold_fog",          "overcast_flat",     "humid_haze"],
+    "serene":           ["clear_pristine",  "ground_mist",      "humid_haze",        "overcast_flat",     "rain_clearing"],
+    "menacing":         ["storm_approaching","ground_mist",     "cold_fog",           "overcast_flat",     "humid_haze"],
+    "heat_rest":        ["heat_haze",       "hot_still_air",    "humid_haze",         "clear_pristine",   "overcast_flat"],
+    "scent_tracking":   ["ground_mist",     "cold_fog",         "humid_haze",         "rain_clearing",    "clear_pristine"],
+    "mid_stride":       ["clear_pristine",  "overcast_flat",    "ground_mist",        "humid_haze",       "wind_gusts_dry"],
+    "territorial_hold": ["clear_pristine",  "heat_haze",        "ground_mist",        "overcast_flat",    "humid_haze"],
+    "eye_contact":      ["clear_pristine",  "overcast_flat",    "ground_mist",        "humid_haze",       "cold_fog"],
+}
+
+ARTHROPOD_INVALID_COMBOS = [
+    # Basking ↔ nocturnal/storm
+    ("behavior", "basking_flat",     "lighting", "moonlit",           "basking needs sunlight — moonlit contradicts"),
+    ("behavior", "basking_flat",     "weather",  "storm_approaching", "basking — approaching storm contradicts"),
+    ("behavior", "basking_flat",     "mood",     "menacing",          "basking — too passive for menacing mood"),
+    # Active behaviors ↔ passive moods
+    ("behavior", "mid_stride",       "mood",     "heat_rest",         "active locomotion — contradicts heat rest"),
+    ("behavior", "feeding",          "mood",     "heat_rest",         "actively feeding — contradicts passive heat rest"),
+    ("behavior", "scanning_territory","mood",    "heat_rest",         "actively scanning — contradicts passive heat rest"),
+]
+
+
+def get_arthropod_suggestions(category: str, context: dict) -> list:
+    """Context-reactive suggestions for arthropod habitat."""
+    if context.get("habitat") != "arthropod":
+        return []
+
+    species_name = context.get("species_name", "")
+    output_mode  = context.get("output_mode", "")
+    lighting     = context.get("lighting")
+    mood         = context.get("mood")
+    behavior     = context.get("behavior")
+
+    if category == "lighting":
+        return ARTHROPOD_LIGHTING_BY_SPECIES.get(species_name, [])
+
+    if category == "mood":
+        base = list(ARTHROPOD_MOOD_BY_LIGHTING.get(lighting, []))
+        # Predatory arthropods bias toward menacing/hunting moods
+        if species_name in ("Jaekelopterus", "Megalograptus", "Anomalocaris", "Pulmonoscorpius"):
+            priority = [m for m in ["menacing", "feeding_focus", "alert_scan", "territorial_hold", "quiet_power"] if m in base]
+            rest = [m for m in base if m not in priority]
+            base = priority + rest
+        return base[:5]
+
+    if category == "behavior":
+        return ARTHROPOD_BEHAVIOR_BY_MOOD.get(mood, [])
+
+    if category == "condition":
+        return ARTHROPOD_CONDITION_BY_SPECIES.get(species_name, [])[:5]
+
+    if category == "camera":
+        return ARTHROPOD_CAMERA_BY_MODE.get(output_mode, [])[:5]
+
+    if category == "weather":
+        return ARTHROPOD_WEATHER_BY_MOOD.get(mood, [])[:5]
+
+    return []
+
+
+def get_arthropod_blocked(category: str, context: dict) -> dict:
+    """Invalid combo blocking for arthropod habitat."""
+    if context.get("habitat") != "arthropod":
+        return {}
+
+    blocked = {}
+    for cat_a, name_a, cat_b, name_b, reason in ARTHROPOD_INVALID_COMBOS:
+        if cat_b == category and context.get(cat_a) == name_a:
+            blocked.setdefault(name_b, reason)
+        if cat_a == category and context.get(cat_b) == name_b:
+            blocked.setdefault(name_a, reason)
+
+    return blocked
+
+
+# ---------------------------------------------------------------------------
+# Plant context-reactive branching (Session 17)
+# Plants skip mood/behavior/condition in main() — only lighting, camera,
+# and weather need suggestions.
+# ---------------------------------------------------------------------------
+
+# Plants split by environment:
+#   swamp: Lepidodendron, Calamites, Sigillaria (Carboniferous coal swamp)
+#   forest: Araucaria, Williamsonia, Glossopteris
+#   aquatic: Archaefructus, Wattieza (near water)
+SWAMP_PLANTS = {"Lepidodendron", "Calamites", "Sigillaria"}
+FOREST_PLANTS = {"Araucaria", "Williamsonia", "Glossopteris"}
+AQUATIC_PLANTS = {"Archaefructus", "Wattieza"}
+
+PLANT_LIGHTING_BY_SPECIES = {
+    # Swamp plants — humid, foggy, filtered light
+    "Lepidodendron":  ["fog_diffuse",      "dappled_canopy",   "overcast",          "dawn_first_light",  "backlit_haze"],
+    "Calamites":      ["dappled_canopy",   "fog_diffuse",      "golden_hour",       "overcast",          "dawn_first_light"],
+    "Sigillaria":     ["fog_diffuse",      "overcast",         "dappled_canopy",    "dawn_first_light",  "backlit_haze"],
+    # Forest plants — richer light
+    "Araucaria":      ["golden_hour",      "backlit_haze",     "harsh_midday",      "overcast",          "dawn_first_light"],
+    "Williamsonia":   ["golden_hour",      "dappled_canopy",   "backlit_haze",      "dawn_first_light",  "broken_cloud"],
+    "Glossopteris":   ["golden_hour",      "overcast",         "backlit_haze",      "dawn_first_light",  "broken_cloud"],
+    # Aquatic plants — water-surface light
+    "Archaefructus":  ["dawn_first_light", "golden_hour",      "overcast",          "backlit_haze",      "surface_dapple"],
+    "Wattieza":       ["dawn_first_light", "golden_hour",      "overcast",          "fog_diffuse",       "backlit_haze"],
+}
+
+PLANT_CAMERA_BY_MODE = {
+    "portrait":        ["closeup_portrait", "detail_abstract",  "medium_shot",       "tight_head",        "ground_level_up"],
+    "canvas":          ["full_body_profile","epic_wide",        "medium_shot",       "ground_level_up",   "aerial_above"],
+    "environmental":   ["epic_wide",        "aerial_above",     "medium_shot",       "full_body_profile", "ground_level_up"],
+    "extreme_closeup": ["detail_abstract",  "tight_head",       "closeup_portrait",  "ground_level_up",   "medium_shot"],
+    "ground_level":    ["ground_level_up",  "dynamic_low",      "medium_shot",       "trail_camera",      "detail_abstract"],
+}
+
+PLANT_WEATHER_BY_ENVIRONMENT = {
+    "swamp":   ["humid_haze",       "ground_mist",       "drizzle_steady",    "overcast_flat",     "rain_clearing"],
+    "forest":  ["clear_pristine",   "ground_mist",       "overcast_flat",     "humid_haze",        "wind_gusts_dry"],
+    "aquatic": ["ground_mist",      "clear_pristine",    "drizzle_steady",    "humid_haze",        "overcast_flat"],
+}
+
+
+def get_plant_suggestions(category: str, context: dict) -> list:
+    """Context-reactive suggestions for plant habitat."""
+    if context.get("habitat") != "plant":
+        return []
+
+    species_name = context.get("species_name", "")
+    output_mode  = context.get("output_mode", "")
+
+    if category == "lighting":
+        return PLANT_LIGHTING_BY_SPECIES.get(species_name, [])
+
+    if category == "camera":
+        return PLANT_CAMERA_BY_MODE.get(output_mode, [])[:5]
+
+    if category == "weather":
+        if species_name in SWAMP_PLANTS:
+            return PLANT_WEATHER_BY_ENVIRONMENT["swamp"]
+        elif species_name in AQUATIC_PLANTS:
+            return PLANT_WEATHER_BY_ENVIRONMENT["aquatic"]
+        else:
+            return PLANT_WEATHER_BY_ENVIRONMENT["forest"]
+
+    return []
+
+
+def get_plant_blocked(category: str, context: dict) -> dict:
+    """Invalid combo blocking for plant habitat. Plants are simple — few combos to block."""
+    # Plants don't pick mood/behavior/condition, so almost no combos to block.
+    # Only block weather incompatible with plant environment.
+    return {}
+
+
+# ---------------------------------------------------------------------------
 # Habitat-agnostic dispatchers — used in main() for all three habitats
 # ---------------------------------------------------------------------------
 
@@ -1012,6 +1246,10 @@ def get_suggestions(category: str, context: dict) -> list:
         return get_terrestrial_suggestions(category, context)
     if habitat == "aerial":
         return get_aerial_suggestions(category, context)
+    if habitat == "arthropod":
+        return get_arthropod_suggestions(category, context)
+    if habitat == "plant":
+        return get_plant_suggestions(category, context)
     return []
 
 
@@ -1023,6 +1261,10 @@ def get_blocked(category: str, context: dict) -> dict:
         return get_terrestrial_blocked(category, context)
     if habitat == "aerial":
         return get_aerial_blocked(category, context)
+    if habitat == "arthropod":
+        return get_arthropod_blocked(category, context)
+    if habitat == "plant":
+        return get_plant_blocked(category, context)
     return {}
 
 
