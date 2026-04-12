@@ -793,7 +793,81 @@ Completed all remaining priorities (#2, #7, #8, #9, #10). The system now has:
 
 ---
 
-## Next Priorities
+## Session 18 — Group Modes, Feathered Species, Reference Image Pipeline
+
+### What changed
+Expanded group/multi-animal output modes, added feathered integument to T. rex and Dilophosaurus, built automated Discord reference image upload pipeline for `--sref` workflow.
+
+### Group Mode Expansion (1 → 4)
+- **`GROUP_MODES`** set: `{group_herd, family_group, waterhole_gather, migration_march}`
+- All group modes share: explicit count in first tokens, `"wide"` anatomy level, `"full body head to tail"` suppressed
+- `is_group` check updated from `output_mode == "group_herd"` to `output_mode in GROUP_MODES`
+- Per-mode `GROUP_LEADS` dict with count + composition framing:
+  - `group_herd` — "three {species}, spaced apart, each animal distinct, candid wildlife photograph"
+  - `family_group` — "one large adult with two smaller juveniles, size variation visible"
+  - `waterhole_gather` — "three {species} at muddy water edge, drinking and wading, trampled mud bank"
+  - `migration_march` — "column of five {species} walking in loose line receding into distance"
+- Anti-CGI waterhole fix: removed "reflections in still water" (triggered CG-mirror), replaced with "murky disturbed water, imperfect natural detail"
+- All group compositions include "imperfect natural detail" grounding phrase
+- `GROUP / MULTI-ANIMAL` section header added to `select_mode()` menu
+
+| Mode | Habitats | Lead animal count |
+|---|---|---|
+| `group_herd` | all 5 | three |
+| `family_group` | terrestrial, marine, aerial, arthropod | one adult + two juveniles |
+| `waterhole_gather` | terrestrial | three |
+| `migration_march` | terrestrial, marine, aerial | five |
+
+### Feathered Species Updates
+- **T. rex** — integument rewritten from pure scales to dense filamentous proto-feathers:
+  - `"dense shaggy proto-feathers like cassowary plumage"` in shorthand
+  - `"earth-toned brown feathers with iridescent sheen"` — golden eagle color reference
+  - `"bare scaly skin on snout and lower legs"` — mixed coverage like real birds
+  - Silhouette updated: `"massive feathered bipedal predator"`
+  - Known failure updated: "rainbow/parrot feathers — use cassowary/eagle references"
+- **Dilophosaurus** — integument rewritten to feathered:
+  - `"filamentous proto-feathers like emu plumage"` body covering
+  - `"display plumes framing twin crests like secretary bird"` — leverages MJ's secretary bird training data
+  - `"vivid red-orange crest skin like cassowary wattle"` — display coloration
+  - Silhouette updated: `"gracile feathered bipedal predator"`
+  - 7 CLIP-optimized shorthand phrases (was 6)
+- **Velociraptor** — already had full feathering from Session 15, unchanged
+- **Species selection** — `[feathered]` tag shown next to species with feathering/pycnofibers in anatomy module (7 species total: T. rex, Velociraptor, Dilophosaurus, Pteranodon, Quetzalcoatlus, Rhamphorhynchus, Dimorphodon)
+
+### Reference Image Upload Pipeline
+- **`upload_refs.py`** — automated Discord webhook uploader:
+  - `python3 upload_refs.py all` — batch uploads all new images from `reference_images/` subfolders
+  - `python3 upload_refs.py upload --file photo.jpg --category waterhole` — single image upload
+  - `python3 upload_refs.py list` — show all uploaded URLs
+  - Captures Discord CDN URLs from webhook response
+  - Auto-wires URLs into `sref_urls.json` mapped to relevant species via `CATEGORY_SPECIES_MAP`
+  - Duplicate detection (skips already-uploaded files)
+- **`reference_images/`** — 10 category folders:
+  - `waterhole/` → Stegosaurus, Triceratops, Ankylosaurus, Brachiosaurus, Parasaurolophus, T. rex
+  - `migration/` → Parasaurolophus, Brachiosaurus, Triceratops, Stegosaurus, Ankylosaurus
+  - `family/` → all terrestrial + Velociraptor
+  - `crocodile/` → T. rex, Spinosaurus, Mosasaurus, Kronosaurus, Liopleurodon, Dilophosaurus
+  - `feathered_biped/` → T. rex, Velociraptor, Dilophosaurus
+  - `tall_predator/` → Velociraptor, Dilophosaurus, T. rex
+  - `komodo/` → T. rex, Velociraptor, Dilophosaurus, Spinosaurus
+  - `arthropod_group/` → all 8 arthropod species
+  - `tortoise_group/` → Ankylosaurus, Archelon, Stegosaurus, Triceratops
+  - `raptor_flight/` → all 4 aerial species
+- **Webhook URL** stored in `.env` as `DISCORD_WEBHOOK_URL`
+
+### Files created
+- `upload_refs.py` — Discord webhook uploader + sref_urls.json wiring
+- `reference_images/` — 10 category subdirectories
+
+### Files modified
+- `generate_prompt.py` — GROUP_MODES set, 3 new output modes, GROUP_LEADS dict, is_group logic, [feathered] tag in species selection, anti-CGI waterhole composition
+- `species/tyrannosaurus_rex.py` — feathered integument, coloration, silhouette, shorthand, known_failures
+- `species/dilophosaurus.py` — feathered integument, coloration, silhouette, shorthand, known_failures
+- `.env` — added DISCORD_WEBHOOK_URL
+
+---
+
+## Next Priorities (Session 18)
 
 ### ~~1. Compress anatomy prompts for MJ's attention window~~ ✅ Session 16
 
@@ -836,3 +910,43 @@ Full A/B testing system: `--ab-test` generates two prompt variants differing on 
 - **Horseshoe crab** (broad flat body, compound eyes, paddle legs) — for Jaekelopterus/Eurypterus
 - **Giant millipede** (segmented plates, paired legs, rounded body) — for Arthropleura
 - **Dragonfly in flight** (veined wings, compound eyes, elongated abdomen) — for Meganeura
+
+---
+
+## 10 Ideas — Next Phase
+
+### 1. --sref Reference Library Build-Out
+Source and upload all 10 reference photo categories (waterhole, migration, family, crocodile, feathered_biped, tall_predator, komodo, arthropod_group, tortoise_group, raptor_flight). Run `python3 upload_refs.py all` to batch-wire CDN URLs into `sref_urls.json`. Test each category against 2-3 species to validate MJ pulls the right photographic qualities. This is the single highest-impact improvement available right now.
+
+### 2. Printify Integration — Auto-Upload Best Outputs to Store
+Connect `generate_prompt.py` to the Printify API (key already in `.env`). After scoring an A/B test winner or manually marking an output as "print-worthy", auto-upload to Printify as a canvas/poster product with species name, mode, and prompt metadata. Eliminates the manual download→upload→configure loop.
+
+### 3. Batch Generation Mode
+Add `--batch` flag that runs through a curated list of species/mode/condition combos and outputs all prompts to a file. User can then paste them into MJ sequentially. Good for overnight generation runs — queue 50 prompts, come back to results. Could also integrate with MJ's `/imagine` queue if API access becomes available.
+
+### 4. Prompt Scoring Dashboard
+Build a local web dashboard (Flask or Streamlit) that displays generated images alongside their prompts, A/B test results, and scores. Allows visual side-by-side comparison, tagging ("print-worthy", "needs vary region", "anatomy fail"), and filtering by species/mode/score. Pulls from the existing `prompts` and `ab_tests` DB tables.
+
+### 5. Vary Region Prompt Refinement
+The 4-step workflow (main → feet fix → background fix → mouth fix) outputs static prompts. Build an interactive Vary Region assistant: user selects which region failed, system generates a targeted fix prompt with the right anatomy data and `--stylize` for that specific region. Could also learn from past fixes — if T. rex feet always need the same fix, auto-suggest it.
+
+### 6. Seasonal/Time-of-Day Scene Presets
+Create curated scene presets that bundle lighting + weather + mood + condition into a single choice: "Monsoon Season" (storm light, heavy rain, mud-caked, waterhole overflow), "Dry Season Drought" (harsh midday, heat haze, lean season, dust), "Dawn Patrol" (first light, ground mist, alert scan, dew-wet). Reduces the menu flow from 6 choices to 1 for users who want a cohesive scene fast.
+
+### 7. Species Interaction Ecosystem Scenes
+Expand beyond predator_prey and ecosystem_diorama to full ecosystem tableaux: a waterhole scene with herbivores drinking while a predator watches from treeline, pterosaurs overhead, insects on the water surface. Multiple species from different habitats in one frame. Would need careful token budgeting — primary subject gets "mid", secondary gets "wide", background species get name-only.
+
+### 8. MJ Output Feedback Loop
+After generating a prompt, user pastes the MJ output image back into the system. Use CLIP or a vision model to score how well the output matches the prompt intent (did we get 3 animals? is the skin texture right? are the feet anatomically correct?). Auto-suggest prompt adjustments based on what failed. Over time, builds a per-species knowledge base of what works and what doesn't.
+
+### 9. Feathered vs Scaly Toggle
+Add a `--feathered` / `--scaly` CLI flag that switches between the feathered and scaled integument variants for species where both are scientifically plausible (T. rex, Dilophosaurus). Store both versions in the anatomy module and let the user choose at runtime. Could also add a "partial feathering" option (feathered back/arms, scaly belly/legs) for maximum variety.
+
+### 10. Claude Code + VS Code Integrated Pipeline
+Build a VS Code task pipeline using Claude Code that automates the full workflow:
+- **Task 1: Generate** — run `generate_prompt.py` interactively in the VS Code terminal, select species/mode/conditions
+- **Task 2: Upload refs** — drag reference images into `reference_images/` folders in the VS Code file explorer, run `upload_refs.py all` via task
+- **Task 3: Review** — after MJ generation, open results in VS Code image preview, use Claude Code to analyze anatomy accuracy and suggest fixes
+- **Task 4: Score** — run `--ab-score` from VS Code terminal, results auto-logged to DB
+- **Task 5: Ship** — mark winners as print-worthy, auto-push to Printify via API
+- All steps accessible via VS Code keyboard shortcuts or the command palette

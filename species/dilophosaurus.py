@@ -33,8 +33,9 @@ ANATOMY = SpeciesAnatomy(
     ),
 
     integument=Integument(
-        primary_covering="likely small scales covering body, possibly with filamentous integument — early coelurosaur-line theropod",
-        texture_detail="small pebbly scales assumed, limited direct evidence",
+        primary_covering="filamentous proto-feathers covering body like emu plumage, longer display plumes along arms and tail, bare scaly legs and snout",
+        texture_detail="shaggy hair-like filaments over torso and neck, coarser quilled feathers on forearms, bare leathery skin on lower legs",
+        special_structures="vivid display plumes framing twin head crests like secretary bird head feathers, crest skin possibly flushed bright for display",
     ),
 
     body=BodyProportions(
@@ -43,13 +44,13 @@ ANATOMY = SpeciesAnatomy(
         build="large lightly-built theropod, gracile compared to later predators, long and lean",
         neck="long flexible S-curved neck",
         tail="long thin tail held horizontal as counterbalance",
-        silhouette="gracile bipedal predator with distinctive twin parallel head crests, long neck, lean build",
+        silhouette="gracile feathered bipedal predator with distinctive twin parallel head crests, long neck, lean build",
         size_comparison="7m long, 400kg — one of the largest Early Jurassic predators, much larger than Jurassic Park depicted",
     ),
 
     coloration=ColorationEvidence(
-        likely_pattern="no direct evidence — crests likely brightly colored for display given their delicate non-combat structure",
-        display_structures="twin crests almost certainly display structures — too thin for combat, likely brightly colored or patterned",
+        likely_pattern="earth-toned body plumage like emu — grey-brown filaments, countershaded lighter underside",
+        display_structures="twin crests with vivid red-orange skin like cassowary casque, contrasting display plumes framing crests",
     ),
 
     locomotion=LocomotionProfile(
@@ -73,12 +74,13 @@ ANATOMY = SpeciesAnatomy(
     ],
 
     mj_shorthand=[
-        "twin parallel bony head crests",
-        "gracile lean 7m biped predator",
+        "twin parallel bony head crests with vivid skin",
+        "shaggy emu-like proto-feather plumage",
+        "gracile lean 7m feathered biped predator",
+        "display plumes framing crests like secretary bird",
+        "bare scaly legs and snout",
         "kinked jaw with subnarial notch",
-        "no frill no venom",
-        "recurved serrated blade teeth",
-        "long thin horizontal tail",
+        "long thin feathered horizontal tail",
     ],
 
     recommended_stylize=(50, 100, 175),
@@ -87,5 +89,6 @@ ANATOMY = SpeciesAnatomy(
         "neck frill — Jurassic Park invention, Dilophosaurus had NO frill whatsoever",
         "spitting venom — Jurassic Park invention, no venom capability",
         "small size — JP version is dog-sized; real Dilophosaurus was 7m and 400kg",
+        "rainbow/parrot feathers — use emu/secretary bird references to keep plumage realistic",
     ],
 )

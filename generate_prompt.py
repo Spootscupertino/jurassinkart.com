@@ -24,6 +24,10 @@ WIDE_SCALE_VARIANTS = ["wide shot"]
 # small in frame and the environment dominates — critical for canvas prints.
 WIDE_MODES = {"environmental", "valley_panorama", "ridgeline_silhouette", "river_crossing", "misty_dawn", "storm_front"}
 
+# Group modes — multiple same-species animals. Subject lead gets explicit
+# count, anatomy forced to "wide" level, "full body head to tail" suppressed.
+GROUP_MODES = {"group_herd", "family_group", "waterhole_gather", "migration_march"}
+
 # ---------------------------------------------------------------------------
 # Terminal color constants (ANSI escape codes)
 # ---------------------------------------------------------------------------
@@ -1668,13 +1672,43 @@ OUTPUT_MODES: dict[str, dict] = {
     },
     "group_herd": {
         "display":       "Group / herd scene",
-        "desc":          "multiple animals, social grouping, natural spacing across landscape",
+        "desc":          "three animals, social grouping, natural spacing across landscape",
         "fixed_camera":  "Canon EOS R5 70-200mm f/2.8, mid-range telephoto, group framing",
-        "composition":   "multiple individuals of same species in frame, natural spacing, social grouping across landscape",
+        "composition":   "each animal fully distinct, no overlap, imperfect natural detail",
         "canvas_print":  False,
         "full_body":     True,
         "needs_placement": False,
         "habitats":      ["terrestrial", "marine", "aerial", "arthropod", "plant"],
+    },
+    "family_group": {
+        "display":       "Family group — adult with juveniles",
+        "desc":          "one large adult with two smaller juveniles, size variation, nurturing",
+        "fixed_camera":  "Canon EOS R5 70-200mm f/2.8, mid-range telephoto, group framing",
+        "composition":   "clear size difference between adult and juveniles, imperfect natural detail",
+        "canvas_print":  False,
+        "full_body":     True,
+        "needs_placement": False,
+        "habitats":      ["terrestrial", "marine", "aerial", "arthropod"],
+    },
+    "waterhole_gather": {
+        "display":       "Waterhole gathering",
+        "desc":          "animals gathered at water source, drinking, reflections, golden light",
+        "fixed_camera":  "Canon EOS R5 200mm f/4, low water-level angle, telephoto bokeh",
+        "composition":   "muddy trampled ground, murky disturbed water, imperfect natural detail",
+        "canvas_print":  False,
+        "full_body":     True,
+        "needs_placement": False,
+        "habitats":      ["terrestrial"],
+    },
+    "migration_march": {
+        "display":       "Migration march — column in motion",
+        "desc":          "animals walking in loose column, receding into distance, epic depth",
+        "fixed_camera":  "Canon EOS R5 70-200mm f/2.8, telephoto compression, depth layering",
+        "composition":   "nearest animal largest, depth perspective, imperfect natural detail",
+        "canvas_print":  False,
+        "full_body":     True,
+        "needs_placement": False,
+        "habitats":      ["terrestrial", "marine", "aerial"],
     },
     # ─── MARINE-SPECIFIC ────────────────────────────────────────────────────
     "surface_break": {
@@ -2122,6 +2156,7 @@ def select_mode(habitat: str) -> str:
         "canvas":                "MID-RANGE / FULL BODY",
         "environmental":         "EPIC WIDE / LANDSCAPE  🏔️",
         "aerial_overhead":       "SPECIALTY / ATMOSPHERIC",
+        "group_herd":            "GROUP / MULTI-ANIMAL",
         "surface_break":         "MARINE",
         "soaring_thermal":       "AERIAL",
     }
@@ -2199,7 +2234,14 @@ def pick_species(conn: sqlite3.Connection, habitat: str = "terrestrial"):
         size = f"[{r['size_class']}]" if r["size_class"] else ""
         period = f"({r['period']})" if r["period"] else ""
         common = f" / {r['common_name']}" if r["common_name"] else ""
-        return f"{r['name']}{common}  {size} {period}"
+        # Show feathered tag for species with feathering in anatomy module
+        anat = get_anatomy(r["name"])
+        feather_tag = ""
+        if anat and anat.integument and anat.integument.primary_covering:
+            covering = anat.integument.primary_covering.lower()
+            if any(kw in covering for kw in ("feather", "plumage", "filament", "pycnofiber")):
+                feather_tag = f"  {C.YELLOW}[feathered]{C.RESET}"
+        return f"{r['name']}{common}  {size} {period}{feather_tag}"
 
     if len(rows) == 1:
         chosen = rows[0]
@@ -2652,7 +2694,23 @@ def assemble_prompt(
     # Drop it to avoid duplicate attention fragmentation.
     anatomy = get_anatomy(species["name"])
 
-    if anatomy:
+    # ── Group modes: lead with explicit count + group framing ──────────
+    # MJ ignores late-arriving "multiple individuals" — the count MUST be
+    # in the very first tokens to override its single-subject default.
+    is_group = output_mode in GROUP_MODES
+
+    GROUP_LEADS = {
+        "group_herd":       "three {size} {name}, spaced apart, each animal distinct, candid wildlife photograph",
+        "family_group":     "one large adult {name} with two smaller juvenile {name}, size variation visible, candid wildlife photograph",
+        "waterhole_gather": "three {size} {name} at muddy water edge, drinking and wading, trampled mud bank",
+        "migration_march":  "column of five {size} {name} walking in loose line receding into distance, candid wildlife photograph",
+    }
+
+    if is_group:
+        lead_template = GROUP_LEADS.get(output_mode, GROUP_LEADS["group_herd"])
+        group_lead = lead_template.format(size=size, name=species["name"])
+        subject_parts = [group_lead]
+    elif anatomy:
         # Anatomy module exists — lead with species name only, shorthand follows
         subject_parts = [f"{size} {species['name']}"]
     else:
@@ -2660,8 +2718,10 @@ def assemble_prompt(
         subject_parts = [f"{size} {species['name']}", species["description"] or ""]
 
     # Map output mode to anatomy detail level
+    # Group herd forces "wide" — can't resolve detail on 3 animals, and
+    # extra anatomy tokens fight the group composition instruction.
     CLOSE_MODES = {"portrait", "extreme_closeup", "eye_contact", "jaws_detail", "action_freeze"}
-    if wide_mode:
+    if wide_mode or is_group:
         anatomy_mode = "wide"
     elif output_mode in CLOSE_MODES:
         anatomy_mode = "close"
@@ -2697,7 +2757,7 @@ def assemble_prompt(
     # Canvas species extras (pose specifics for full-body modes).
     # Wide-scale variant suppresses "full body visible head to tail" because
     # the subject is meant to read small/distant, not anatomically resolved.
-    if (full_body or has_sref) and not wide_mode:
+    if (full_body or has_sref) and not wide_mode and not is_group:
         if output_mode == "canvas":
             extra = CANVAS_SPECIES_EXTRAS.get(species["name"])
             if extra:

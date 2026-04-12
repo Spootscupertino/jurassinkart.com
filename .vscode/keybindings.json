@@ -1,0 +1,29 @@
+{
+    "comment": "Dino Art Pipeline keyboard shortcuts. To activate, copy these into your VS Code keybindings.json (Cmd+K Cmd+S → Open Keyboard Shortcuts JSON)",
+    "shortcuts": [
+        {
+            "key": "cmd+shift+g",
+            "command": "workbench.action.tasks.runTask",
+            "args": "Dino: Generate Prompt",
+            "comment": "Generate a new prompt"
+        },
+        {
+            "key": "cmd+shift+u",
+            "command": "workbench.action.tasks.runTask",
+            "args": "Dino: Upload All References",
+            "comment": "Upload all new reference images to Discord"
+        },
+        {
+            "key": "cmd+shift+a",
+            "command": "workbench.action.tasks.runTask",
+            "args": "Dino: A/B Test Mode",
+            "comment": "Start an A/B test"
+        },
+        {
+            "key": "cmd+shift+p cmd+shift+d",
+            "command": "workbench.action.tasks.runTask",
+            "args": "Dino: Full Pipeline (Upload Refs + Generate)",
+            "comment": "Full pipeline: upload refs then generate"
+        }
+    ]
+}

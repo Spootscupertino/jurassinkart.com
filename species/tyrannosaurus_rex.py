@@ -34,9 +34,9 @@ ANATOMY = SpeciesAnatomy(
     ),
 
     integument=Integument(
-        primary_covering="predominantly pebbly non-overlapping scales across most of body, confirmed by skin impressions",
-        texture_detail="small pebbly tuberculate scales similar to lizard belly scales, skin impressions from multiple specimens confirm scale covering on neck, torso, tail",
-        special_structures="possible sparse filamentous integument on dorsal midline — debated; related tyrannosaurids had feathers but adult T. rex skin impressions show scales",
+        primary_covering="dense filamentous proto-feathers over body, longer display plumes on arms and tail, bare scaly skin on snout and lower legs",
+        texture_detail="shaggy hair-like filaments like cassowary body feathers, coarser quilled plumes along dorsal ridge and arms",
+        special_structures="iridescent display plumes on forearms and tail fan, bare facial skin with pebbly texture like vulture or cassowary head",
     ),
 
     body=BodyProportions(
@@ -45,13 +45,13 @@ ANATOMY = SpeciesAnatomy(
         build="massive deep-chested body, enormous skull relative to body, powerful haunches, robust and muscular throughout",
         neck="short thick muscular S-curved neck supporting massive skull",
         tail="long heavy muscular tail held rigidly horizontal as counterbalance — caudofemoralis muscle powered locomotion",
-        silhouette="massive bipedal predator with giant skull, tiny arms, thick horizontal tail, deep chest",
+        silhouette="massive feathered bipedal predator with giant skull, tiny arms, thick horizontal tail, deep chest",
         size_comparison="12m long, 4m at hip, 8+ tonnes — one of the largest land predators ever",
     ),
 
     coloration=ColorationEvidence(
-        likely_pattern="countershaded — darker dorsal surface, lighter ventral, disruptive pattern possible for woodland ambush",
-        display_structures="rugose bony ridges and lacrimal horns possibly brightly colored for species recognition or display",
+        likely_pattern="earth-toned plumage like golden eagle — dark brown dorsal feathers, tawny underside, countershaded",
+        display_structures="iridescent sheen on display plumes like crow or starling, bare facial skin flushed red-orange like cassowary wattle",
     ),
 
     locomotion=LocomotionProfile(
@@ -78,10 +78,10 @@ ANATOMY = SpeciesAnatomy(
     mj_shorthand=[
         "massive deep skull with binocular eyes",
         "tiny two-fingered arms",
-        "pebbly non-overlapping scales",
-        "thick horizontal tail as counterbalance",
-        "powerful pillar-like biped legs",
-        "serrated banana-shaped teeth",
+        "dense shaggy proto-feathers like cassowary plumage",
+        "earth-toned brown feathers with iridescent sheen",
+        "thick horizontal feathered tail as counterbalance",
+        "powerful pillar-like biped legs with bare scaly feet",
         "12m long bus-sized predator",
     ],
 
@@ -92,6 +92,6 @@ ANATOMY = SpeciesAnatomy(
         "dragging tail — MJ defaults to tail on ground; must specify horizontal",
         "pronated wrists — MJ renders palms-down; correct is palms-inward",
         "exposed teeth when mouth closed — lips probable, teeth covered",
-        "feathered T. rex — adult skin impressions confirm scales, not feathers",
+        "rainbow/parrot feathers — use cassowary/eagle references to keep plumage realistic and earth-toned",
     ],
 )

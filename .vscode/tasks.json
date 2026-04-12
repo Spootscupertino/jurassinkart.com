@@ -1,0 +1,181 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Dino: Generate Prompt",
+            "type": "shell",
+            "command": "python3",
+            "args": ["${workspaceFolder}/generate_prompt.py"],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "clear": true
+            },
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Dino: Generate with --sref",
+            "type": "shell",
+            "command": "python3",
+            "args": [
+                "${workspaceFolder}/generate_prompt.py",
+                "--sref",
+                "${input:srefUrl}"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "clear": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Dino: Upload All References",
+            "type": "shell",
+            "command": "python3",
+            "args": ["${workspaceFolder}/upload_refs.py", "all"],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Dino: Upload Single Reference",
+            "type": "shell",
+            "command": "python3",
+            "args": [
+                "${workspaceFolder}/upload_refs.py",
+                "upload",
+                "--file", "${input:refImagePath}",
+                "--category", "${input:refCategory}"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Dino: List Uploaded References",
+            "type": "shell",
+            "command": "python3",
+            "args": ["${workspaceFolder}/upload_refs.py", "list"],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Dino: A/B Test Mode",
+            "type": "shell",
+            "command": "python3",
+            "args": ["${workspaceFolder}/generate_prompt.py", "--ab-test"],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated",
+                "clear": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Dino: Score A/B Test",
+            "type": "shell",
+            "command": "python3",
+            "args": [
+                "${workspaceFolder}/generate_prompt.py",
+                "--ab-score", "${input:abTestId}"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Dino: A/B Test History",
+            "type": "shell",
+            "command": "python3",
+            "args": ["${workspaceFolder}/generate_prompt.py", "--ab-history"],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Dino: Full Pipeline (Upload Refs + Generate)",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Dino: Upload All References",
+                "Dino: Generate Prompt"
+            ],
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "srefUrl",
+            "type": "promptString",
+            "description": "Paste Discord CDN URL for --sref"
+        },
+        {
+            "id": "refImagePath",
+            "type": "promptString",
+            "description": "Path to reference image file"
+        },
+        {
+            "id": "refCategory",
+            "type": "pickString",
+            "description": "Reference image category",
+            "options": [
+                "waterhole",
+                "migration",
+                "family",
+                "crocodile",
+                "feathered_biped",
+                "tall_predator",
+                "komodo",
+                "arthropod_group",
+                "tortoise_group",
+                "raptor_flight"
+            ]
+        },
+        {
+            "id": "abTestId",
+            "type": "promptString",
+            "description": "A/B Test ID to score"
+        }
+    ]
+}
