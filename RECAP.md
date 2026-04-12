@@ -613,7 +613,7 @@ species/
 - **Sessions 13-14 lean output not yet validated with the new anatomy system** — the anatomy module injection replaces the old science fields but hasn't been visually tested in MJ yet.
 - **Arthropod/plant have no context-reactive suggestions** — `get_suggestions()` and `get_blocked()` fall through to empty defaults.
 - **`condition` param values can leak surface language underwater** — observed: Elasmosaurus underwater included `"head raised vertically above surface"` because condition param contained surface language.
-- **Git LFS not installed** — pushes require `--no-verify` to bypass LFS pre-push hook.
+- ~~**Git LFS not installed**~~ ✅ Session 18 — removed LFS hooks entirely. Reference images go to Discord via webhook, not git.
 - **`style_param` and `camera_param` are dead inputs to the prose path** — still pass through `assemble_prompt` signature for tag wiring but values are never read for prose.
 
 ## Session 12 — Wide Shot Composition Fix
