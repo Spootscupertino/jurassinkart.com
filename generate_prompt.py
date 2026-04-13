@@ -1767,7 +1767,7 @@ OUTPUT_MODES: dict[str, dict] = {
         "display":       "Predator–prey encounter",
         "desc":          "two species in frame, predator and prey, tension-filled moment",
         "fixed_camera":  "Canon EOS R5 70-200mm f/2.8, telephoto, natural encounter distance",
-        "composition":   "two different species in frame, clear size difference between them, natural spacing, dappled light through canopy gaps",
+        "composition":   "two different species in frame, predator dwarfs prey, dramatic scale contrast",
         "canvas_print":  False,
         "full_body":     True,
         "needs_placement": False,
@@ -1838,10 +1838,10 @@ ECOSYSTEM_PAIRINGS = {
 # Interaction phrases for predator-prey encounters.
 # Used to build the subject block when two species are in frame.
 PREDATOR_PREY_INTERACTIONS = {
-    "stalking":      "predator far behind prey, gap between animals, tension, prey unaware, separated by open ground",
-    "confrontation": "predator and prey facing each other across clearing, standoff, frozen moment, space between them",
-    "chase":         "predator pursuing prey at full speed, gap between runner and chaser, chase in progress",
-    "ambush":        "predator lunging toward prey, prey recoiling, explosive moment, bodies not touching",
+    "stalking":      "predator approaching tiny prey from behind, massive jaw looming above small prey, dramatic size contrast",
+    "confrontation": "predator looming over tiny prey, dramatic scale difference, prey dwarfed by predator shadow",
+    "chase":         "predator lunging toward small fleeing prey, massive jaws open, tiny prey escaping",
+    "ambush":        "predator striking at small prey, explosive attack moment, predator body dwarfs prey",
 }
 
 
@@ -1948,10 +1948,25 @@ def build_multi_subject_block(primary: dict, secondary: dict, interaction_type: 
 
     if output_mode == "predator_prey":
         interaction = PREDATOR_PREY_INTERACTIONS.get(interaction_type, "two species in natural encounter")
-        # Front-load: "one [predator] with one [prey]" then interaction then anatomy
-        # This ensures CLIP registers both species names in its early tokens
+
+        # ── Relative-size anchoring ──────────────────────────────────
+        # MJ defaults to rendering both subjects at similar scale.
+        # Inject explicit scale language: "tiny prey" vs "massive predator"
+        # using real body-length data from anatomy modules.
+        p_len = primary_anatomy.body.body_length_m if primary_anatomy and primary_anatomy.body else 0
+        s_len = secondary_anatomy.body.body_length_m if secondary_anatomy and secondary_anatomy.body else 0
+        if p_len and s_len and p_len > s_len * 3:
+            scale_phrase = "tiny %s dwarfed by massive %s" % (secondary["name"], primary["name"])
+        elif p_len and s_len and s_len > p_len * 3:
+            scale_phrase = "tiny %s dwarfed by massive %s" % (primary["name"], secondary["name"])
+        else:
+            scale_phrase = "clear size difference between them"
+
+        # Front-load: "one [predator] with one [prey]" then scale then interaction
+        # This ensures CLIP registers both species names + size relationship early
         parts = [
             "one %s %s with one %s %s" % (p_size, primary["name"], s_size, secondary["name"]),
+            scale_phrase,
             interaction,
         ]
         if p_anat:
@@ -2969,12 +2984,13 @@ def assemble_prompt(
                     "shallow depth of field, bokeh background, "
                     "detail shot, extreme close-up")
         neg = neg + wide_neg
-    # Session 19: predator_prey mode — prevent MJ from merging the two
-    # species into a single chimeric body.  Reinforce spatial separation.
+    # Session 19: predator_prey mode — prevent MJ from merging bodies
+    # and from rendering both species at equal size.
     if output_mode == "predator_prey":
         merge_neg = (", merged bodies, conjoined animals, fused creatures, "
                      "overlapping bodies, chimera, hybrid animal, "
                      "two-headed, morphing, blended anatomy, "
+                     "same size animals, equal sized, "
                      "Siamese, body fusion, grafted limbs")
         neg = neg + merge_neg
     # Session 15: species anatomy module — banned flora (e.g. "grass" for
