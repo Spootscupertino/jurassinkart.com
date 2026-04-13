@@ -1767,7 +1767,7 @@ OUTPUT_MODES: dict[str, dict] = {
         "display":       "Predator–prey encounter",
         "desc":          "two species in frame, predator and prey, tension-filled moment",
         "fixed_camera":  "Canon EOS R5 70-200mm f/2.8, telephoto, natural encounter distance",
-        "composition":   "two different species in frame, predator and prey, tension between them, natural spacing",
+        "composition":   "two different species in frame, clear size difference between them, natural spacing, dappled light through canopy gaps",
         "canvas_print":  False,
         "full_body":     True,
         "needs_placement": False,
@@ -1923,37 +1923,54 @@ def pick_interaction_type() -> str:
 def build_multi_subject_block(primary: dict, secondary: dict, interaction_type: str, output_mode: str) -> str:
     """Build the subject section for multi-subject scenes.
 
-    Token allocation: primary species gets ~60% of subject budget,
-    secondary gets ~40%. Both use anatomy shorthand at 'mid' detail level
-    to fit within CLIP's 77-token window.
+    CRITICAL: MJ's CLIP encoder only reliably processes ~77 tokens.
+    Two-species prompts MUST front-load:
+      1. Explicit count ("one X with one Y") so MJ renders TWO creatures
+      2. Both species names in the first 20 tokens
+      3. Anatomy trimmed to 'wide' level (silhouette only) for both
+    Without this, MJ collapses the two species into variants of the primary.
     """
     primary_anatomy = get_anatomy(primary["name"])
     secondary_anatomy = get_anatomy(secondary["name"])
 
-    # Primary species — full name + mid-level shorthand
+    # Size descriptors
     p_size = primary["size_class"].lower() if primary["size_class"] else ""
-    p_parts = [f"{p_size} {primary['name']}"]
-    if primary_anatomy:
-        p_text = build_anatomy_prompt(primary_anatomy, "mid")
-        if p_text:
-            p_parts.append(p_text)
-    primary_block = ", ".join(p for p in p_parts if p)
-
-    # Secondary species — name + minimal shorthand (wide level)
     s_size = secondary["size_class"].lower() if secondary["size_class"] else ""
-    s_parts = [f"{s_size} {secondary['name']}"]
-    if secondary_anatomy:
-        s_text = build_anatomy_prompt(secondary_anatomy, "wide")
-        if s_text:
-            s_parts.append(s_text)
-    secondary_block = ", ".join(p for p in s_parts if p)
 
-    # Interaction phrase
+    # Both species get WIDE-level anatomy only (silhouette + 1 key feature)
+    # to keep total subject block under ~40 tokens
+    p_anat = ""
+    if primary_anatomy:
+        p_anat = build_anatomy_prompt(primary_anatomy, "wide")
+    s_anat = ""
+    if secondary_anatomy:
+        s_anat = build_anatomy_prompt(secondary_anatomy, "wide")
+
     if output_mode == "predator_prey":
         interaction = PREDATOR_PREY_INTERACTIONS.get(interaction_type, "two species in natural encounter")
-        return f"{primary_block}, {interaction}, {secondary_block}"
+        # Front-load: "one [predator] with one [prey]" then interaction then anatomy
+        # This ensures CLIP registers both species names in its early tokens
+        parts = [
+            "one %s %s with one %s %s" % (p_size, primary["name"], s_size, secondary["name"]),
+            interaction,
+        ]
+        if p_anat:
+            parts.append(p_anat)
+        if s_anat:
+            parts.append(s_anat)
+        parts.append("two different species in frame")
+        return ", ".join(p for p in parts if p)
     else:
-        return f"{primary_block}, nearby {secondary_block}, coexisting naturally in shared habitat"
+        parts = [
+            "one %s %s with one %s %s" % (p_size, primary["name"], s_size, secondary["name"]),
+            "coexisting naturally in shared habitat",
+        ]
+        if p_anat:
+            parts.append(p_anat)
+        if s_anat:
+            parts.append(s_anat)
+        parts.append("two different species in frame")
+        return ", ".join(p for p in parts if p)
 
 
 # ---------------------------------------------------------------------------

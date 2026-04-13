@@ -282,11 +282,11 @@ def cmd_download(args):
             with urllib.request.urlopen(req, timeout=30) as resp:
                 dest.write_bytes(resp.read())
             total += 1
-            time.sleep(1.0)  # Rate limit courtesy
+            time.sleep(3.0)  # Rate limit courtesy for Wikimedia
         except Exception as ex:
             print("    FAILED: %s" % str(ex)[:80])
             failed += 1
-            time.sleep(2.0)
+            time.sleep(5.0)
 
     print("\nDownload complete: %d new, %d skipped, %d failed" % (total, skipped, failed))
 
