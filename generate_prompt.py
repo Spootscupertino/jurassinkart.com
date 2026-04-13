@@ -1838,10 +1838,10 @@ ECOSYSTEM_PAIRINGS = {
 # Interaction phrases for predator-prey encounters.
 # Used to build the subject block when two species are in frame.
 PREDATOR_PREY_INTERACTIONS = {
-    "stalking":    "predator stalking prey at distance, tension, prey unaware",
-    "confrontation": "predator and prey face to face, standoff, frozen moment",
-    "chase":       "predator pursuing prey at full speed, chase in progress",
-    "ambush":      "predator lunging from concealment, prey startled, explosive moment",
+    "stalking":      "predator far behind prey, gap between animals, tension, prey unaware, separated by open ground",
+    "confrontation": "predator and prey facing each other across clearing, standoff, frozen moment, space between them",
+    "chase":         "predator pursuing prey at full speed, gap between runner and chaser, chase in progress",
+    "ambush":        "predator lunging toward prey, prey recoiling, explosive moment, bodies not touching",
 }
 
 
@@ -2969,6 +2969,14 @@ def assemble_prompt(
                     "shallow depth of field, bokeh background, "
                     "detail shot, extreme close-up")
         neg = neg + wide_neg
+    # Session 19: predator_prey mode — prevent MJ from merging the two
+    # species into a single chimeric body.  Reinforce spatial separation.
+    if output_mode == "predator_prey":
+        merge_neg = (", merged bodies, conjoined animals, fused creatures, "
+                     "overlapping bodies, chimera, hybrid animal, "
+                     "two-headed, morphing, blended anatomy, "
+                     "Siamese, body fusion, grafted limbs")
+        neg = neg + merge_neg
     # Session 15: species anatomy module — banned flora (e.g. "grass" for
     # Jurassic species) injected into negative prompt to prevent MJ from
     # adding anachronistic vegetation.

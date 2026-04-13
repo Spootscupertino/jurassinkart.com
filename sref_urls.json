@@ -1,44 +1,267 @@
 {
-  "Ammonite": [],
-  "Ankylosaurus": [],
-  "Anomalocaris": [],
+  "Ammonite": [
+    {
+      "label": "ammonite/Green_turtle_swimming_over_coral_reefs_in_Kona.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038188770361524/Green_turtle_swimming_over_coral_reefs_in_Kona.jpg?ex=69dd83ab&is=69dc322b&hm=f37f8b577704b44332a6e6423f2190410c67aca267dbe2683844f6499df0ba19&"
+    },
+    {
+      "label": "ammonite/Nautilus_pompilius_(head).jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038202343264266/Nautilus_pompilius_head.jpg?ex=69dd83ae&is=69dc322e&hm=295cd400ca857bd4937b024bbf4a28058a42b955e957c92224e082a7063e4804&"
+    }
+  ],
+  "Ankylosaurus": [
+    {
+      "label": "waterhole/African_Bush_Elephant.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038235784446012/African_Bush_Elephant.jpg?ex=69dd83b6&is=69dc3236&hm=433a8ee934b7fa3b83031d0e4113005ee98d6fb421439cf2e634ca839aa9b329&"
+    },
+    {
+      "label": "waterhole/Alligator_snapping_turtle.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038244198088835/Alligator_snapping_turtle.jpg?ex=69dd83b8&is=69dc3238&hm=afff6e27772024ccbd4107da863080ae2fd90d8d22d76ebdf8cda638301cef1b&"
+    },
+    {
+      "label": "waterhole/Giraffe_Mikumi_National_Park.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038258911842495/Giraffe_Mikumi_National_Park.jpg?ex=69dd83bc&is=69dc323c&hm=4dfd4e9e50dd8aebb1eb4a1ec1f5df606990359e4d47c6b667148b74765971d7&"
+    }
+  ],
+  "Anomalocaris": [
+    {
+      "label": "arthropod_group/Sympetrum_flaveolum_-_side_(aka).jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038212753391616/Sympetrum_flaveolum_-_side_aka.jpg?ex=69dd83b1&is=69dc3231&hm=c86a318cb43afb0beeaf4527aecf5f71994558f17199b87b72402daa26cc0b65&"
+    }
+  ],
   "Araucaria": [],
   "Archaefructus": [],
-  "Archelon": [],
-  "Arthropleura": [],
-  "Brachiosaurus": [],
+  "Archelon": [
+    {
+      "label": "marine/White_shark.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038220995203082/White_shark.jpg?ex=69dd83b3&is=69dc3233&hm=133e25cd50860b9bacacc15b6edeb0b3429f1274f6f4c8ffa7c028f0520c14b8&"
+    }
+  ],
+  "Arthropleura": [
+    {
+      "label": "arthropod_group/Sympetrum_flaveolum_-_side_(aka).jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038212753391616/Sympetrum_flaveolum_-_side_aka.jpg?ex=69dd83b1&is=69dc3231&hm=c86a318cb43afb0beeaf4527aecf5f71994558f17199b87b72402daa26cc0b65&"
+    }
+  ],
+  "Brachiosaurus": [
+    {
+      "label": "waterhole/African_Bush_Elephant.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038235784446012/African_Bush_Elephant.jpg?ex=69dd83b6&is=69dc3236&hm=433a8ee934b7fa3b83031d0e4113005ee98d6fb421439cf2e634ca839aa9b329&"
+    },
+    {
+      "label": "waterhole/Alligator_snapping_turtle.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038244198088835/Alligator_snapping_turtle.jpg?ex=69dd83b8&is=69dc3238&hm=afff6e27772024ccbd4107da863080ae2fd90d8d22d76ebdf8cda638301cef1b&"
+    },
+    {
+      "label": "waterhole/Giraffe_Mikumi_National_Park.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038258911842495/Giraffe_Mikumi_National_Park.jpg?ex=69dd83bc&is=69dc323c&hm=4dfd4e9e50dd8aebb1eb4a1ec1f5df606990359e4d47c6b667148b74765971d7&"
+    }
+  ],
   "Calamites": [],
-  "Cretoxyrhina": [],
+  "Cretoxyrhina": [
+    {
+      "label": "marine/White_shark.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038220995203082/White_shark.jpg?ex=69dd83b3&is=69dc3233&hm=133e25cd50860b9bacacc15b6edeb0b3429f1274f6f4c8ffa7c028f0520c14b8&"
+    }
+  ],
   "Dilophosaurus": [],
-  "Dimorphodon": [],
-  "Dunkleosteus": [],
-  "Elasmosaurus": [],
-  "Eurypterus": [],
+  "Dimorphodon": [
+    {
+      "label": "raptor_flight/Brown_pelican_in_flight.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493039235748462602/Brown_pelican_in_flight.jpg?ex=69dd84a5&is=69dc3325&hm=78dceb94c676a40e344ee06bf603b37d23e4063271cc8ea6ad7e90e0717ec773&"
+    },
+    {
+      "label": "raptor_flight/Golden_Eagle_in_flight_-_5.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493039256162271283/Golden_Eagle_in_flight_-_5.jpg?ex=69dd84a9&is=69dc3329&hm=69dfa330e31e66c939f24400466304f850c706ea17e55dc61e7ef28d67a0bff0&"
+    }
+  ],
+  "Dunkleosteus": [
+    {
+      "label": "marine/White_shark.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038220995203082/White_shark.jpg?ex=69dd83b3&is=69dc3233&hm=133e25cd50860b9bacacc15b6edeb0b3429f1274f6f4c8ffa7c028f0520c14b8&"
+    }
+  ],
+  "Elasmosaurus": [
+    {
+      "label": "marine/White_shark.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038220995203082/White_shark.jpg?ex=69dd83b3&is=69dc3233&hm=133e25cd50860b9bacacc15b6edeb0b3429f1274f6f4c8ffa7c028f0520c14b8&"
+    }
+  ],
+  "Eurypterus": [
+    {
+      "label": "arthropod_group/Sympetrum_flaveolum_-_side_(aka).jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038212753391616/Sympetrum_flaveolum_-_side_aka.jpg?ex=69dd83b1&is=69dc3231&hm=c86a318cb43afb0beeaf4527aecf5f71994558f17199b87b72402daa26cc0b65&"
+    }
+  ],
   "Glossopteris": [],
-  "Helicoprion": [],
-  "Ichthyosaurus": [],
-  "Jaekelopterus": [],
-  "Kronosaurus": [],
-  "Leedsichthys": [],
+  "Helicoprion": [
+    {
+      "label": "marine/White_shark.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038220995203082/White_shark.jpg?ex=69dd83b3&is=69dc3233&hm=133e25cd50860b9bacacc15b6edeb0b3429f1274f6f4c8ffa7c028f0520c14b8&"
+    }
+  ],
+  "Ichthyosaurus": [
+    {
+      "label": "marine/White_shark.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038220995203082/White_shark.jpg?ex=69dd83b3&is=69dc3233&hm=133e25cd50860b9bacacc15b6edeb0b3429f1274f6f4c8ffa7c028f0520c14b8&"
+    }
+  ],
+  "Jaekelopterus": [
+    {
+      "label": "arthropod_group/Sympetrum_flaveolum_-_side_(aka).jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038212753391616/Sympetrum_flaveolum_-_side_aka.jpg?ex=69dd83b1&is=69dc3231&hm=c86a318cb43afb0beeaf4527aecf5f71994558f17199b87b72402daa26cc0b65&"
+    }
+  ],
+  "Kronosaurus": [
+    {
+      "label": "marine/White_shark.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038220995203082/White_shark.jpg?ex=69dd83b3&is=69dc3233&hm=133e25cd50860b9bacacc15b6edeb0b3429f1274f6f4c8ffa7c028f0520c14b8&"
+    }
+  ],
+  "Leedsichthys": [
+    {
+      "label": "marine/White_shark.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038220995203082/White_shark.jpg?ex=69dd83b3&is=69dc3233&hm=133e25cd50860b9bacacc15b6edeb0b3429f1274f6f4c8ffa7c028f0520c14b8&"
+    }
+  ],
   "Lepidodendron": [],
-  "Liopleurodon": [],
-  "Megalodon": [],
-  "Megalograptus": [],
-  "Meganeura": [],
-  "Megarachne": [],
-  "Mosasaurus": [],
-  "Parasaurolophus": [],
-  "Pteranodon": [],
-  "Pulmonoscorpius": [],
-  "Quetzalcoatlus": [],
-  "Rhamphorhynchus": [],
+  "Liopleurodon": [
+    {
+      "label": "marine/White_shark.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038220995203082/White_shark.jpg?ex=69dd83b3&is=69dc3233&hm=133e25cd50860b9bacacc15b6edeb0b3429f1274f6f4c8ffa7c028f0520c14b8&"
+    }
+  ],
+  "Megalodon": [
+    {
+      "label": "marine/White_shark.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038220995203082/White_shark.jpg?ex=69dd83b3&is=69dc3233&hm=133e25cd50860b9bacacc15b6edeb0b3429f1274f6f4c8ffa7c028f0520c14b8&"
+    }
+  ],
+  "Megalograptus": [
+    {
+      "label": "arthropod_group/Sympetrum_flaveolum_-_side_(aka).jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038212753391616/Sympetrum_flaveolum_-_side_aka.jpg?ex=69dd83b1&is=69dc3231&hm=c86a318cb43afb0beeaf4527aecf5f71994558f17199b87b72402daa26cc0b65&"
+    }
+  ],
+  "Meganeura": [
+    {
+      "label": "arthropod_group/Sympetrum_flaveolum_-_side_(aka).jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038212753391616/Sympetrum_flaveolum_-_side_aka.jpg?ex=69dd83b1&is=69dc3231&hm=c86a318cb43afb0beeaf4527aecf5f71994558f17199b87b72402daa26cc0b65&"
+    }
+  ],
+  "Megarachne": [
+    {
+      "label": "arthropod_group/Sympetrum_flaveolum_-_side_(aka).jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038212753391616/Sympetrum_flaveolum_-_side_aka.jpg?ex=69dd83b1&is=69dc3231&hm=c86a318cb43afb0beeaf4527aecf5f71994558f17199b87b72402daa26cc0b65&"
+    }
+  ],
+  "Mosasaurus": [
+    {
+      "label": "marine/White_shark.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038220995203082/White_shark.jpg?ex=69dd83b3&is=69dc3233&hm=133e25cd50860b9bacacc15b6edeb0b3429f1274f6f4c8ffa7c028f0520c14b8&"
+    }
+  ],
+  "Parasaurolophus": [
+    {
+      "label": "waterhole/African_Bush_Elephant.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038235784446012/African_Bush_Elephant.jpg?ex=69dd83b6&is=69dc3236&hm=433a8ee934b7fa3b83031d0e4113005ee98d6fb421439cf2e634ca839aa9b329&"
+    },
+    {
+      "label": "waterhole/Alligator_snapping_turtle.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038244198088835/Alligator_snapping_turtle.jpg?ex=69dd83b8&is=69dc3238&hm=afff6e27772024ccbd4107da863080ae2fd90d8d22d76ebdf8cda638301cef1b&"
+    },
+    {
+      "label": "waterhole/Giraffe_Mikumi_National_Park.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038258911842495/Giraffe_Mikumi_National_Park.jpg?ex=69dd83bc&is=69dc323c&hm=4dfd4e9e50dd8aebb1eb4a1ec1f5df606990359e4d47c6b667148b74765971d7&"
+    }
+  ],
+  "Pteranodon": [
+    {
+      "label": "raptor_flight/Brown_pelican_in_flight.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493039235748462602/Brown_pelican_in_flight.jpg?ex=69dd84a5&is=69dc3325&hm=78dceb94c676a40e344ee06bf603b37d23e4063271cc8ea6ad7e90e0717ec773&"
+    },
+    {
+      "label": "raptor_flight/Golden_Eagle_in_flight_-_5.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493039256162271283/Golden_Eagle_in_flight_-_5.jpg?ex=69dd84a9&is=69dc3329&hm=69dfa330e31e66c939f24400466304f850c706ea17e55dc61e7ef28d67a0bff0&"
+    }
+  ],
+  "Pulmonoscorpius": [
+    {
+      "label": "arthropod_group/Sympetrum_flaveolum_-_side_(aka).jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038212753391616/Sympetrum_flaveolum_-_side_aka.jpg?ex=69dd83b1&is=69dc3231&hm=c86a318cb43afb0beeaf4527aecf5f71994558f17199b87b72402daa26cc0b65&"
+    }
+  ],
+  "Quetzalcoatlus": [
+    {
+      "label": "raptor_flight/Brown_pelican_in_flight.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493039235748462602/Brown_pelican_in_flight.jpg?ex=69dd84a5&is=69dc3325&hm=78dceb94c676a40e344ee06bf603b37d23e4063271cc8ea6ad7e90e0717ec773&"
+    },
+    {
+      "label": "raptor_flight/Golden_Eagle_in_flight_-_5.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493039256162271283/Golden_Eagle_in_flight_-_5.jpg?ex=69dd84a9&is=69dc3329&hm=69dfa330e31e66c939f24400466304f850c706ea17e55dc61e7ef28d67a0bff0&"
+    }
+  ],
+  "Rhamphorhynchus": [
+    {
+      "label": "raptor_flight/Brown_pelican_in_flight.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493039235748462602/Brown_pelican_in_flight.jpg?ex=69dd84a5&is=69dc3325&hm=78dceb94c676a40e344ee06bf603b37d23e4063271cc8ea6ad7e90e0717ec773&"
+    },
+    {
+      "label": "raptor_flight/Golden_Eagle_in_flight_-_5.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493039256162271283/Golden_Eagle_in_flight_-_5.jpg?ex=69dd84a9&is=69dc3329&hm=69dfa330e31e66c939f24400466304f850c706ea17e55dc61e7ef28d67a0bff0&"
+    }
+  ],
   "Sigillaria": [],
   "Spinosaurus": [],
-  "Stegosaurus": [],
-  "Triceratops": [],
-  "Tyrannosaurus rex": [],
+  "Stegosaurus": [
+    {
+      "label": "waterhole/African_Bush_Elephant.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038235784446012/African_Bush_Elephant.jpg?ex=69dd83b6&is=69dc3236&hm=433a8ee934b7fa3b83031d0e4113005ee98d6fb421439cf2e634ca839aa9b329&"
+    },
+    {
+      "label": "waterhole/Alligator_snapping_turtle.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038244198088835/Alligator_snapping_turtle.jpg?ex=69dd83b8&is=69dc3238&hm=afff6e27772024ccbd4107da863080ae2fd90d8d22d76ebdf8cda638301cef1b&"
+    },
+    {
+      "label": "waterhole/Giraffe_Mikumi_National_Park.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038258911842495/Giraffe_Mikumi_National_Park.jpg?ex=69dd83bc&is=69dc323c&hm=4dfd4e9e50dd8aebb1eb4a1ec1f5df606990359e4d47c6b667148b74765971d7&"
+    }
+  ],
+  "Triceratops": [
+    {
+      "label": "waterhole/African_Bush_Elephant.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038235784446012/African_Bush_Elephant.jpg?ex=69dd83b6&is=69dc3236&hm=433a8ee934b7fa3b83031d0e4113005ee98d6fb421439cf2e634ca839aa9b329&"
+    },
+    {
+      "label": "waterhole/Alligator_snapping_turtle.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038244198088835/Alligator_snapping_turtle.jpg?ex=69dd83b8&is=69dc3238&hm=afff6e27772024ccbd4107da863080ae2fd90d8d22d76ebdf8cda638301cef1b&"
+    },
+    {
+      "label": "waterhole/Giraffe_Mikumi_National_Park.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038258911842495/Giraffe_Mikumi_National_Park.jpg?ex=69dd83bc&is=69dc323c&hm=4dfd4e9e50dd8aebb1eb4a1ec1f5df606990359e4d47c6b667148b74765971d7&"
+    }
+  ],
+  "Tyrannosaurus rex": [
+    {
+      "label": "waterhole/African_Bush_Elephant.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038235784446012/African_Bush_Elephant.jpg?ex=69dd83b6&is=69dc3236&hm=433a8ee934b7fa3b83031d0e4113005ee98d6fb421439cf2e634ca839aa9b329&"
+    },
+    {
+      "label": "waterhole/Alligator_snapping_turtle.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038244198088835/Alligator_snapping_turtle.jpg?ex=69dd83b8&is=69dc3238&hm=afff6e27772024ccbd4107da863080ae2fd90d8d22d76ebdf8cda638301cef1b&"
+    },
+    {
+      "label": "waterhole/Giraffe_Mikumi_National_Park.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038258911842495/Giraffe_Mikumi_National_Park.jpg?ex=69dd83bc&is=69dc323c&hm=4dfd4e9e50dd8aebb1eb4a1ec1f5df606990359e4d47c6b667148b74765971d7&"
+    }
+  ],
   "Velociraptor": [],
   "Wattieza": [],
   "Williamsonia": [],
-  "Xiphactinus": []
+  "Xiphactinus": [
+    {
+      "label": "marine/White_shark.jpg",
+      "url": "https://cdn.discordapp.com/attachments/1493025127980601356/1493038220995203082/White_shark.jpg?ex=69dd83b3&is=69dc3233&hm=133e25cd50860b9bacacc15b6edeb0b3429f1274f6f4c8ffa7c028f0520c14b8&"
+    }
+  ]
 }
