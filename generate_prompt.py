@@ -1767,7 +1767,7 @@ OUTPUT_MODES: dict[str, dict] = {
         "display":       "Predator–prey encounter",
         "desc":          "two species in frame, predator and prey, tension-filled moment",
         "fixed_camera":  "Canon EOS R5 70-200mm f/2.8, telephoto, natural encounter distance",
-        "composition":   "National Geographic wildlife photograph, two different animals in frame, decisive moment",
+        "composition":   "candid wildlife encounter, two different animals in frame, decisive moment",
         "canvas_print":  False,
         "full_body":     True,
         "needs_placement": False,
@@ -2958,6 +2958,20 @@ def assemble_prompt(
     # and was the single biggest source of redundant action language. Mood is
     # still selected (drives context-reactive suggestions) and saved as a tag.
 
+    # Session 19: Living-animal naturalism phrase — extracted from user's reptile
+    # reference photos. Describes the visual QUALITIES of real wildlife photography
+    # (specular scale highlights, warm directional light, organic imperfection)
+    # rather than naming cameras/magazines which cause staged specimen bias.
+    # Only injected for close/mid modes where surface detail is resolvable.
+    if not wide_mode and not is_group and habitat not in ("plant",):
+        if habitat == "arthropod":
+            naturalism = "individual chitin plates catching light, organic imperfection, living animal"
+        elif habitat == "marine":
+            naturalism = "wet skin catching light, water particles, living animal"
+        else:
+            naturalism = "individual scales catching sunlight, warm natural light, living animal"
+        subject_parts.append(naturalism)
+
     # Session 11: style_param["value"] and HABITAT_REALISM are NOT injected
     # into the prose. The DB-stored style rows contain the full realism stack
     # ("anatomically accurate, living animal skin texture, shot on Canon EOS,
@@ -2980,8 +2994,12 @@ def assemble_prompt(
     # Mode overrides prevent repetitive compositions.
     if output_mode == "predator_prey":
         # Naturalism anchor — the subject block already contains the specific
-        # hunt action.  This slot reinforces wildlife-photo realism.
-        interaction = "peak action moment frozen in time, decisive instant, raw nature"
+        # hunt action.  This slot reinforces wildlife-photo realism and
+        # physical grounding (water/ground contact, environmental debris).
+        if habitat == "marine":
+            interaction = "murky water, sediment particles, bubbles trailing, bodies moving through water"
+        else:
+            interaction = "dirt kicked up, dust and debris, muscles tensed, raw animal energy"
     elif output_mode == "perched":
         interaction = "talons gripping rocky edge, wings folded"
     elif output_mode == "underwater":
