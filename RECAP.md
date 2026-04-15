@@ -960,6 +960,73 @@ Critical content (species names, hunt action, scale) all in first ~30 tokens.
 
 ---
 
+## Session 20 — Discord Reference Library Buildout
+
+### What changed
+Deep dive into reference photo coverage. Fixed structural bugs in `upload_refs.py` that kept 6 of 14 category folders permanently empty, expanded the source catalog with 83 new verified Wikimedia URLs, downloaded 93 images across all 14 categories, and uploaded everything to Discord. Full 42/42 species coverage achieved.
+
+### Reference Library — Before vs After
+
+| Metric | Before | After |
+|--------|--------|-------|
+| Source catalog (`sref_sources.json`) | 223 URLs | 306 URLs |
+| Downloaded images (local) | ~10 across 6 categories | 93 across 14 categories |
+| Discord CDN URLs (`sref_urls.json`) | 48 (31 species) | 607 (42 species) |
+| Species with 0 refs | 11 | **0** |
+| Empty category folders | 6 of 14 | **0 of 14** |
+
+### Bug Fix — Multi-Category Download Routing
+**Problem:** `build_source_download_list()` deduplicated by URL and assigned each image to only the FIRST matching category. An elephant photo relevant to `waterhole`, `migration`, and `family` only landed in `waterhole`. Categories `feathered_biped`, `komodo`, `family`, `migration`, `tall_predator`, `tortoise_group`, and `sea_scorpion` stayed permanently empty.
+
+**Fix:** Rewrote routing to assign each URL to ALL relevant categories. Added local-copy optimization — when the same image maps to 5 categories, it downloads once from Wikimedia and copies locally 4 times (instant, no rate limiting).
+
+### Bug Fix — Discord 8MB Upload Limit
+**Problem:** 3 oversized images (Komodo dragon 14MB, wildebeest 12MB, magnolia 9MB) failed Discord upload with `413 Request entity too large`.
+
+**Fix:** Added `_resize_if_needed()` function — uses macOS `sips` to downscale images >7.5MB to 2048px max dimension before upload. No Python imaging dependencies needed.
+
+### Rate Limiting Improvements
+- Wikimedia download delay: 3s → 5s between requests, 5s → 8s on failure
+- Still hits 429s after ~20-30 requests in a batch — future sessions can re-run `python3 upload_refs.py sync` to pick up remaining failed downloads as Wikimedia cools down
+
+### CATEGORY_SPECIES_MAP Expansion
+- `feathered_biped`: added Pteranodon, Quetzalcoatlus, Rhamphorhynchus, Dimorphodon (pterosaurs have pycnofibers)
+- `tall_predator`: added Spinosaurus
+- `komodo`: added Mosasaurus, Kronosaurus, Liopleurodon (monitor lizard analogs for marine reptiles)
+
+### New Reference Sources Added (83 URLs)
+Targeted expansions for underrepresented species and empty categories:
+
+| Category | New References | Purpose |
+|----------|---------------|---------|
+| `feathered_biped` | Ostrich full body, shoebill stork | Bipedal feathered posture refs |
+| `komodo` | Komodo dragon walking | Large reptile locomotion |
+| `family` | Elephant herd at Amboseli, mother+calf, ostrich with chicks, juvenile crocs | Family group compositions |
+| `migration` | Wildebeest running, flamingo flock in flight, sandhill crane, caribou herd | Herd/migration movement |
+| `tortoise_group` | Aldabra giant tortoise, pangolin, armadillo | Armored body analogs |
+| `tall_predator` | Secretary bird walking, shoebill standing | Bipedal predator posture |
+| `sea_scorpion` | Nile crocodile underwater | Aquatic chelicerate analog |
+| `marine` | Orca porpoising, manta ray, moray eel, barracuda | Marine predator scale + texture |
+| `paleo_plant` | Wollemia pine, Dicksonia tree fern, cycad, ginkgo leaf | Living fossil plant analogs |
+| `arthropod` | Cuttlefish, millipede close-up, coiled millipede, dragonfly hovering, pangolin scales | Species-specific differentiation (was: all 8 arthropods shared identical 9 refs) |
+
+### Coverage Distribution
+- Richest: T. rex (43 URLs), Stegosaurus/Triceratops/Ankylosaurus (43 each)
+- Thinnest: Ammonite (3), Araucaria/Archaefructus/Calamites (4 each)
+- All 42 species have at least 3 Discord CDN URLs
+
+### Files modified
+- `upload_refs.py` — multi-category routing, local-copy optimization, auto-resize, rate limit tuning, CATEGORY_SPECIES_MAP expansion
+- `sref_sources.json` — 223 → 306 verified Wikimedia source URLs
+- `sref_urls.json` — 48 → 607 Discord CDN URLs (42/42 species)
+
+### Commits
+| Hash | Description |
+|------|-------------|
+| `21b71eb` | reference library: 42/42 species coverage, 607 Discord CDN URLs |
+
+---
+
 ## Next Priorities (Session 19)
 
 ### ~~1. Compress anatomy prompts for MJ's attention window~~ ✅ Session 16
