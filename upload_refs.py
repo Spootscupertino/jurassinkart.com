@@ -59,13 +59,15 @@ CATEGORY_SPECIES_MAP = {
     ],
     "feathered_biped": [
         "Tyrannosaurus rex", "Velociraptor", "Dilophosaurus",
+        "Pteranodon", "Quetzalcoatlus", "Rhamphorhynchus", "Dimorphodon",
     ],
     "tall_predator": [
         "Velociraptor", "Dilophosaurus", "Tyrannosaurus rex",
+        "Spinosaurus",
     ],
     "komodo": [
         "Tyrannosaurus rex", "Velociraptor", "Dilophosaurus",
-        "Spinosaurus",
+        "Spinosaurus", "Mosasaurus", "Kronosaurus", "Liopleurodon",
     ],
     "arthropod_group": [
         "Meganeura", "Arthropleura", "Jaekelopterus", "Pulmonoscorpius",
@@ -116,8 +118,9 @@ def load_sources():
 def build_source_download_list():
     """Build flat list of {label, url, category, filename} from sref_sources.json.
 
-    Deduplicates by URL.  Assigns each image to the first matching category
-    from the species that references it.
+    Each URL is assigned to ALL relevant categories (not just the first).
+    This ensures category folders like feathered_biped, family, komodo etc.
+    get populated when images are shared across species/categories.
     """
     sources = load_sources()
     if not sources:
@@ -130,32 +133,70 @@ def build_source_download_list():
         for sp in sp_list:
             species_to_cats.setdefault(sp, []).append(cat)
 
-    # Collect unique URLs with their best category assignment
-    seen_urls = {}
+    # Collect URLs mapped to ALL their relevant categories
+    # Key: (url, category) to avoid duplicate downloads within same category
+    seen = set()
+    items = []
     for species, entries in sources.items():
         cats = species_to_cats.get(species, [])
+        if not cats:
+            cats = ["uncategorized"]
         for entry in entries:
             url = entry["url"] if isinstance(entry, dict) else entry
             label = entry.get("label", "ref") if isinstance(entry, dict) else "ref"
-            if url not in seen_urls:
-                best_cat = cats[0] if cats else "uncategorized"
-                # Derive filename from URL
-                fname = url.rsplit("/", 1)[-1]
-                try:
-                    fname = urllib.request.url2pathname(fname)
-                except Exception:
-                    pass
-                fname = fname.replace("/", "_").replace("\\", "_")
-                if not fname.lower().endswith((".jpg", ".jpeg", ".png")):
-                    fname += ".jpg"
-                seen_urls[url] = {
-                    "label": label,
-                    "url": url,
-                    "category": best_cat,
-                    "filename": fname,
-                }
+            # Derive filename from URL
+            fname = url.rsplit("/", 1)[-1]
+            try:
+                fname = urllib.request.url2pathname(fname)
+            except Exception:
+                pass
+            fname = fname.replace("/", "_").replace("\\", "_")
+            if not fname.lower().endswith((".jpg", ".jpeg", ".png")):
+                fname += ".jpg"
+            # Add to EVERY relevant category for this species
+            for cat in cats:
+                key = (url, cat)
+                if key not in seen:
+                    seen.add(key)
+                    items.append({
+                        "label": label,
+                        "url": url,
+                        "category": cat,
+                        "filename": fname,
+                    })
 
-    return list(seen_urls.values())
+    return items
+
+
+def _resize_if_needed(filepath, max_bytes=7_500_000):
+    """If image exceeds max_bytes, resize it down. Returns image bytes."""
+    img_bytes = filepath.read_bytes()
+    if len(img_bytes) <= max_bytes:
+        return img_bytes
+
+    try:
+        import subprocess
+        # Use sips (macOS built-in) to resize — no PIL dependency
+        import tempfile
+        with tempfile.NamedTemporaryFile(suffix=filepath.suffix, delete=False) as tmp:
+            tmp.write(img_bytes)
+            tmp_path = tmp.name
+        # Resize to 50% until under limit
+        for scale in [50, 25]:
+            subprocess.run(
+                ["sips", "--resampleHeightWidthMax", "2048", tmp_path],
+                capture_output=True, timeout=10,
+            )
+            resized = Path(tmp_path).read_bytes()
+            if len(resized) <= max_bytes:
+                os.unlink(tmp_path)
+                print("    Resized %s: %dKB -> %dKB" % (
+                    filepath.name, len(img_bytes) // 1024, len(resized) // 1024))
+                return resized
+        os.unlink(tmp_path)
+    except Exception:
+        pass
+    return img_bytes  # Return original if resize fails
 
 
 def upload_to_discord(webhook_url, filepath, category):
@@ -163,6 +204,8 @@ def upload_to_discord(webhook_url, filepath, category):
     boundary = "----DinoArtRefBoundary"
     filename = filepath.name
     ct = "image/jpeg" if filepath.suffix.lower() in (".jpg", ".jpeg") else "image/png"
+
+    img_bytes = _resize_if_needed(filepath)
 
     payload_json = json.dumps({
         "content": "[dino_art ref] category: %s | file: %s" % (category, filename)
@@ -178,7 +221,7 @@ def upload_to_discord(webhook_url, filepath, category):
     body.append(('Content-Disposition: form-data; name="file"; filename="%s"' % filename).encode())
     body.append(("Content-Type: %s" % ct).encode())
     body.append(b"")
-    body.append(filepath.read_bytes())
+    body.append(img_bytes)
     body.append(("--%s--" % boundary).encode())
 
     body_bytes = b"\r\n".join(body)
@@ -253,7 +296,11 @@ def get_uploaded_urls(sref):
 # ---------------------------------------------------------------------------
 
 def cmd_download(args):
-    """Download source images from sref_sources.json into reference_images/."""
+    """Download source images from sref_sources.json into reference_images/.
+
+    When the same image is needed in multiple category folders, copies from
+    the first downloaded version instead of re-fetching from Wikimedia.
+    """
     items = build_source_download_list()
     if not items:
         return
@@ -261,6 +308,16 @@ def cmd_download(args):
     total = 0
     skipped = 0
     failed = 0
+    copied = 0
+
+    # Track where each URL was first downloaded to (for local copies)
+    url_to_local = {}
+
+    # Pre-scan existing files
+    for item in items:
+        dest = REF_DIR / item["category"] / item["filename"]
+        if dest.exists():
+            url_to_local.setdefault(item["url"], dest)
 
     for item in items:
         cat_dir = REF_DIR / item["category"]
@@ -269,6 +326,15 @@ def cmd_download(args):
 
         if dest.exists():
             skipped += 1
+            url_to_local.setdefault(item["url"], dest)
+            continue
+
+        # If we already have this file in another category, copy it
+        if item["url"] in url_to_local:
+            import shutil
+            src = url_to_local[item["url"]]
+            shutil.copy2(src, dest)
+            copied += 1
             continue
 
         print("  Downloading: %s" % item["label"])
@@ -281,14 +347,16 @@ def cmd_download(args):
             )
             with urllib.request.urlopen(req, timeout=30) as resp:
                 dest.write_bytes(resp.read())
+            url_to_local[item["url"]] = dest
             total += 1
-            time.sleep(3.0)  # Rate limit courtesy for Wikimedia
+            time.sleep(5.0)  # Rate limit courtesy for Wikimedia
         except Exception as ex:
             print("    FAILED: %s" % str(ex)[:80])
             failed += 1
-            time.sleep(5.0)
+            time.sleep(8.0)
 
-    print("\nDownload complete: %d new, %d skipped, %d failed" % (total, skipped, failed))
+    print("\nDownload complete: %d new, %d copied across categories, %d skipped, %d failed"
+          % (total, copied, skipped, failed))
 
 
 def cmd_upload_single(args):
