@@ -3273,7 +3273,7 @@ SREF_FILE = Path(__file__).parent / "sref_urls.json"
 # --cw (character weight) controls how literally MJ copies the --cref.
 # Lower values = influence feel/mood without literal texture transfer.
 MAX_SREF_URLS = 5   # max skeletal/fossil refs for --sref
-MAX_CREF_URLS = 5   # max wildlife photo refs for --cref
+MAX_CREF_URLS = 1   # MJ v7 only supports one --cref URL
 DEFAULT_CW = 50     # --cw weight: low enough to avoid texture bleed
 
 # ---------------------------------------------------------------------------
