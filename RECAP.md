@@ -1056,6 +1056,52 @@ New output modes: `predator_prey`, `ecosystem_diorama`. PREDATOR_PREY_PAIRINGS m
 ### ~~10. Build a prompt A/B testing framework~~ ✅ Session 17
 Full A/B testing system: `--ab-test` generates two prompt variants differing on one axis (lighting/mood/condition/behavior/stylize/output_mode). `--ab-score ID` rates and picks winner. `--ab-history` shows past results. DB tables: `ab_tests` + `ab_variants`. Species selection shows prior A/B wins. Designed for systematic MJ testing workflow.
 
+## Session 21 — Context-Aware Ref Selection, MJ v7 Fixes, sref_urls Cleanup
+
+### What changed
+Wired the 607 Discord CDN URLs into generate_prompt.py with intelligent scene-aware selection. Fixed 3 MJ v7 incompatibilities discovered during live testing. Cleaned 6000+ misrouted entries from sref_urls.json.
+
+### Dual-Ref System (--sref + --cref)
+- **`--sref`** (style reference): skeletal/fossil images only — guides anatomy without bleeding texture onto the animal
+- **`--cref`** (character reference): single best wildlife photo — guides feel/texture without literal pattern transfer
+- **Problem solved:** Giraffe skin pattern was literally appearing on Brachiosaurus when wildlife photos were used as `--sref`
+
+### Habitat Filtering
+`HABITAT_ALLOWED_CATEGORIES` dict gates which reference categories are eligible per habitat:
+- `marine` → only `marine`, `sea_scorpion`, `skeletal`
+- `terrestrial` → `waterhole`, `crocodile`, `komodo`, `feathered_biped`, `tall_predator`, `tortoise_group`, `family`, `migration`, `skeletal`
+- `aerial` → `raptor_flight`, `feathered_biped`, `skeletal`
+- `arthropod` → `arthropod_group`, `sea_scorpion`, `skeletal`
+- `plant` → `paleo_plant`, `skeletal`
+- **Problem solved:** Elephant and giraffe refs were appearing in underwater Elasmosaurus/Ammonite scenes
+
+### MJ v7 Compatibility Fixes
+1. **`--cw` removed** — MJ v7 dropped character weight flag entirely
+2. **`--cref` limited to 1 URL** — MJ v7 errors on "Multiple Omni References aren't supported"
+3. **`--sref` keeps up to 5 URLs** — MJ v7 still supports multiple style refs
+
+### sref_urls.json Cleanup
+- Removed 6000+ misrouted entries where multi-category download routing dumped every image into every category
+- `skeletal/` had 181 files including elephants, bamboo forests, wildebeest — now only species-matched fossils
+- Each category now only contains images matching its purpose
+- 707 clean URLs remain, 42/42 species covered
+
+### Mouth/Claw Priority
+`MOUTH_CLAW_PRIORITY_CATEGORIES = ["komodo", "crocodile", "tall_predator"]` — these categories always get injected first into --cref ordering since they show the teeth/claw detail MJ struggles with most.
+
+### Files modified
+- `generate_prompt.py` — HABITAT_ALLOWED_CATEGORIES, SREF_ONLY_CATEGORIES, MOUTH_CLAW_PRIORITY_CATEGORIES, select_refs(), MAX_CREF_URLS=1, removed --cw
+- `sref_urls.json` — cleaned from 10K+ to 707 entries (species-matched skeletal, category-relevant wildlife)
+
+### Commits
+| Hash | Description |
+|------|-------------|
+| `4bdbaf1` | sref_urls.json: clean category pollution, species-matched skeletal refs only |
+| `c6b3145` | remove --cw flag — not supported in MJ v7 |
+| `d5dbdf1` | limit --cref to 1 URL — MJ v7 multiple omni references not supported |
+
+---
+
 ## Reference Photos to Use as `--sref`
 - Komodo dragon foot (digits separated, claws at different angles, leathery pads)
 - Ostrich mid-stride (muted color, overcast, telephoto bokeh, messy feathers)
@@ -1075,19 +1121,24 @@ Full A/B testing system: `--ab-test` generates two prompt variants differing on 
 
 ## 10 Ideas — Next Phase
 
-### 1. --sref Reference Library Build-Out  🔄 IN PROGRESS
-Source and upload all 10 reference photo categories (waterhole, migration, family, crocodile, feathered_biped, tall_predator, komodo, arthropod_group, tortoise_group, raptor_flight). Run `python3 upload_refs.py all` to batch-wire CDN URLs into `sref_urls.json`. Test each category against 2-3 species to validate MJ pulls the right photographic qualities. This is the single highest-impact improvement available right now.
+### 1. --sref Reference Library Build-Out  ✅ COMPLETE
+Source and upload all reference photo categories, wire into prompt generator with context-aware selection.
 
-**Session 19 progress:**
-- ✅ Populated `sref_urls.json` with 92 Wikimedia URLs → discovered MJ rejects Wikimedia URLs (percent-encoded, redirects)
-- ✅ Restructured: `sref_sources.json` (Wikimedia catalog, 43 URLs) → download locally → upload to Discord → `sref_urls.json` (CDN URLs MJ accepts)
-- ✅ Rewrote `upload_refs.py` with `download`, `upload`, `sync`, `all`, `list` commands
-- ✅ 40 Discord CDN URLs across 27/42 species wired into `sref_urls.json`
-- ✅ 4 new reference_images categories added: `marine/`, `sea_scorpion/`, `paleo_plant/`, `ammonite/`
-- 🔄 15 species still need images (Wikimedia rate-limited at 429 after ~10 requests)
-- 🔄 User sourced komodo + crocodile reference photos — need to save to folders and run `upload_refs.py all`
+**Session 19:** Discovered MJ rejects Wikimedia URLs. Built two-file system (sref_sources.json → Discord CDN → sref_urls.json). 40 URLs across 27 species.
 
-### 2. Printify Integration — Auto-Upload Best Outputs to Store
+**Session 20:** Expanded source catalog 223→306 URLs. Fixed multi-category download routing bug. Downloaded 93 images across all 14 categories. Uploaded to Discord: 42/42 species covered.
+
+**Session 21:** Built context-aware dual-ref system in generate_prompt.py:
+- ✅ `--sref` = skeletal/fossil refs (guides anatomy without texture bleed)
+- ✅ `--cref` = wildlife photo refs (guides feel/texture)
+- ✅ Habitat filtering: marine scenes only get marine/sea_scorpion/skeletal refs (no more elephants in underwater shots)
+- ✅ Cleaned sref_urls.json: removed 6000+ misrouted entries, species-matched skeletal refs only
+- ✅ MJ v7 compatibility: removed unsupported `--cw` flag, limited `--cref` to 1 URL
+- ✅ Mouth/claw priority: komodo, crocodile, tall_predator refs injected first
+- ✅ 707 clean Discord CDN URLs, 42/42 species, zero cross-contamination
+- ✅ Live tested: Kronosaurus underwater scene renders with marine-only refs, clean results
+
+### 2. Printify Integration — Auto-Upload Best Outputs to Store  ⬅️ NEXT
 Connect `generate_prompt.py` to the Printify API (key already in `.env`). After scoring an A/B test winner or manually marking an output as "print-worthy", auto-upload to Printify as a canvas/poster product with species name, mode, and prompt metadata. Eliminates the manual download→upload→configure loop.
 
 ### 3. Batch Generation Mode
