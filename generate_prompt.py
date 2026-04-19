@@ -3505,15 +3505,19 @@ def select_refs(species_name, output_mode, habitat, lighting_name):
     allowed = HABITAT_ALLOWED_CATEGORIES.get(habitat, HABITAT_ALLOWED_CATEGORIES["terrestrial"])
 
     # Build category → [url_entries] index, filtered by habitat + exclusions
-    cat_index = {}       # wildlife refs (for --sref)
-    skeletal_entries = [] # skeletal refs (for --cref)
+    cat_index = {}         # wildlife refs (for --sref)
+    paleoart_entries = []  # paleoart refs (for --cref, preferred)
+    skeletal_entries = []  # skeletal refs (for --cref, fallback)
     for entry in species_entries:
         if isinstance(entry, dict):
             cat = _extract_category(entry.get("label", ""))
         else:
             cat = ""
+        if cat == CREF_PALEOART_CATEGORY:
+            paleoart_entries.append(entry)  # collect for --cref (preferred)
+            continue
         if cat == CREF_SKELETAL_CATEGORY:
-            skeletal_entries.append(entry)  # collect for --cref
+            skeletal_entries.append(entry)  # collect for --cref (fallback)
             continue
         if cat in SREF_EXCLUDED_CATEGORIES:
             continue
@@ -3604,21 +3608,18 @@ def select_refs(species_name, output_mode, habitat, lighting_name):
     sref_urls = _pick_from_cats(sref_priority, MAX_SREF_URLS)
 
     # --cref: paleoart (preferred) or skeletal (fallback) for likeness/morphology
-    # Paleoart shows the animal ALIVE with correct morphology — prevents MJ from
-    # making a Mosasaurus look like a crocodile or a Quetzalcoatlus look like a stork.
-    # Skeletal fallback provides body proportions when no paleoart available.
+    # Paleoart shows the animal ALIVE with correct morphology.
+    # All refs must be Discord CDN URLs (MJ rejects Wikimedia direct URLs).
     cref_urls = []
-    cref_source = ""  # for display: "paleoart" or "skeletal"
+    cref_source = ""
     if MAX_CREF_URLS > 0:
-        # Try paleoart first (from paleoart_refs.json — Wikimedia direct URLs)
-        paleoart_data = load_paleoart_refs()
-        paleoart_entries = paleoart_data.get(species_name, [])
         if paleoart_entries:
+            # Paleoart from sref_urls.json (already on Discord CDN)
             picked = random.sample(paleoart_entries, min(MAX_CREF_URLS, len(paleoart_entries)))
             cref_urls = [e["url"] if isinstance(e, dict) else e for e in picked]
             cref_source = "paleoart"
         elif skeletal_entries:
-            # Fallback to skeletal (from sref_urls.json, already on Discord CDN)
+            # Skeletal fallback from sref_urls.json (already on Discord CDN)
             picked = random.sample(skeletal_entries, min(MAX_CREF_URLS, len(skeletal_entries)))
             cref_urls = [e["url"] if isinstance(e, dict) else e for e in picked]
             cref_source = "skeletal"
