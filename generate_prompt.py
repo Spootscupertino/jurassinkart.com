@@ -1643,8 +1643,8 @@ OUTPUT_MODES: dict[str, dict] = {
     "aerial_overhead": {
         "display":       "Aerial overhead — drone view",
         "desc":          "direct overhead, dorsal surface visible, habitat pattern below",
-        "fixed_camera":  "Canon EOS R5 35mm, directly overhead, dorsal surface",
-        "composition":   "overhead view, dorsal surface centred, habitat visible around animal",
+        "fixed_camera":  "DJI Mavic 3 Pro 24mm, drone directly overhead at 30m altitude, looking straight down",
+        "composition":   "bird's-eye view looking straight down, camera directly above animal, top of head and back visible, ground/water surface fills entire frame, no horizon line, shot from drone altitude",
         "canvas_print":  False,
         "full_body":     True,
         "needs_placement": False,
@@ -2391,8 +2391,12 @@ def pick_species(conn: sqlite3.Connection, habitat: str = "terrestrial"):
         feather_tag = ""
         if anat and anat.integument and anat.integument.primary_covering:
             covering = anat.integument.primary_covering.lower()
-            if any(kw in covering for kw in ("feather", "plumage", "filament", "pycnofiber")):
+            if "pycnofiber" in covering:
+                feather_tag = f"  {C.YELLOW}[pycnofibers]{C.RESET}"
+            elif any(kw in covering for kw in ("feather", "plumage")):
                 feather_tag = f"  {C.YELLOW}[feathered]{C.RESET}"
+            elif "filament" in covering:
+                feather_tag = f"  {C.YELLOW}[filaments]{C.RESET}"
         return f"{r['name']}{common}  {size} {period}{feather_tag}"
 
     if len(rows) == 1:
@@ -3085,7 +3089,12 @@ def assemble_prompt(
     # camera framing language so the landscape dominates composition.
     # The interaction block is appended last — it's a grounding cue, not
     # a composition driver.
-    if wide_mode:
+    # Session 22: aerial_overhead needs camera perspective FIRST — MJ ignores
+    # drone/overhead directives buried after 100+ tokens of anatomy text.
+    if output_mode == "aerial_overhead":
+        drone_lead = "drone photograph looking straight down from 30m altitude, top-down bird's-eye view, no horizon"
+        sections = [drone_lead, subject, environment, lighting]
+    elif wide_mode:
         sections = [subject, camera, environment, lighting, interaction]
     else:
         sections = [subject, interaction, environment, lighting, camera]
@@ -3263,18 +3272,27 @@ def print_prompt_box(prompt_text: str) -> None:
 SREF_FILE = Path(__file__).parent / "sref_urls.json"
 
 # ---------------------------------------------------------------------------
-# Dual-ref system: --sref (skeletal/fossil) + --cref (wildlife photos)
+# Style-ref system: --sref (wildlife photos ONLY)
 # ---------------------------------------------------------------------------
-# MJ allows up to 5 URLs per --sref and 5 per --cref.  We use ALL slots:
-#   --sref: skeletal/fossil refs ONLY → guides anatomy without texture bleed
-#   --cref: wildlife photo refs → guides feel/texture at lower --cw weight
-#           so giraffe patterns don't bleed onto Brachiosaurus skin etc.
+# Session 22 overhaul — lesson learned:
+#   --sref copies VISUAL STYLE → skeletal photos made outputs look like fossils
+#   --cref copies LIKENESS     → shark photos made Mosasaurus look like a shark
 #
-# --cw (character weight) controls how literally MJ copies the --cref.
-# Lower values = influence feel/mood without literal texture transfer.
-MAX_SREF_URLS = 5   # max skeletal/fossil refs for --sref
-MAX_CREF_URLS = 1   # MJ v7 only supports one --cref URL
-DEFAULT_CW = 50     # --cw weight: low enough to avoid texture bleed
+# New approach:
+#   --sref: wildlife/nature photography ONLY → guides photographic feel, skin
+#           texture style, lighting quality — NOT literal likeness transfer
+#   --cref: REMOVED — too literal; bleeds reference animal appearance
+#   skeletal: REMOVED from refs — anatomy already encoded in text prompts via
+#             species modules (SkullAnatomy, LimbStructure, mj_shorthand, etc.)
+#
+# Wildlife --sref gives MJ the "real National Geographic photography" feel
+# without forcing the dinosaur to look like the reference animal.
+MAX_SREF_URLS = 2   # wildlife photo refs for --sref (style guide, less = less bleed)
+MAX_CREF_URLS = 0   # --cref DISABLED — too literal, causes likeness bleed
+DEFAULT_CW = 50     # kept for backward compat but unused
+DEFAULT_SW = 20     # --sw (style weight): how much --sref influences output
+                    # Default 100 is WAY too strong — copies ref animal appearance.
+                    # 20 = subtle photographic feel without shape/texture takeover.
 
 # ---------------------------------------------------------------------------
 # Habitat → allowed ref categories (strict filtering)
@@ -3282,43 +3300,54 @@ DEFAULT_CW = 50     # --cw weight: low enough to avoid texture bleed
 # Prevents cross-contamination: land animal refs can't appear in underwater
 # scenes, marine refs can't appear in terrestrial scenes, etc.
 HABITAT_ALLOWED_CATEGORIES = {
-    "marine":      {"marine", "sea_scorpion", "skeletal"},
-    "terrestrial": {"waterhole", "crocodile", "komodo", "feathered_biped",
-                    "tall_predator", "tortoise_group", "family", "migration",
-                    "skeletal"},
-    "aerial":      {"raptor_flight", "feathered_biped", "skeletal"},
-    "arthropod":   {"arthropod_group", "sea_scorpion", "skeletal"},
-    "plant":       {"paleo_plant", "skeletal"},
+    "marine":      {"marine", "sea_scorpion"},
+    "terrestrial": {"waterhole", "crocodile", "komodo",
+                    "tall_predator", "tortoise_group", "family", "migration"},
+    "aerial":      {"komodo", "crocodile"},
+    "arthropod":   {"arthropod_group", "sea_scorpion"},
+    "plant":       {"paleo_plant"},
 }
 
-# Category that goes to --sref (anatomy guide, no texture bleed).
-# Everything else is a wildlife photo → --cref.
-SREF_ONLY_CATEGORIES = {"skeletal"}
+# Categories EXCLUDED from all ref selection — skeletal/fossil images make MJ
+# render the output as a literal skeleton/statue.  Anatomy is already encoded
+# in the text-based species modules.
+EXCLUDED_CATEGORIES = {"skeletal"}
 
 # ---------------------------------------------------------------------------
-# Categories with mouth/claw/toe detail — prioritized in --cref ordering
 # ---------------------------------------------------------------------------
-# These are the hardest features for MJ; refs showing them get top slots.
+# Bird photo categories — EXCLUDED from --sref for ALL species (Session 22)
+# ---------------------------------------------------------------------------
+# Lesson learned: bird --sref refs make feathered theropods look like literal
+# birds (bustards/turkeys), and make pterosaurs grow feathered wings.
+# Text prompts already describe feathering accurately — visual bird refs
+# cause MJ to adopt bird body plans, not just feather texture.
+# Only reptile/mammal refs used as style guides now.
+BIRD_CATEGORIES = {"feathered_biped", "raptor_flight"}
+
+# ---------------------------------------------------------------------------
+# Categories with mouth/claw/toe detail — prioritized in --sref ordering
+# ---------------------------------------------------------------------------
+# These are the hardest features for MJ; refs showing them get top style slots.
 MOUTH_CLAW_PRIORITY_CATEGORIES = ["komodo", "crocodile", "tall_predator"]
 
 # ---------------------------------------------------------------------------
-# Context → cref-category priority mapping  (Session 21)
+# Context → sref-category priority mapping  (Session 22 — wildlife --sref only)
 # ---------------------------------------------------------------------------
-# Mode-based priorities determine which wildlife photo categories fill --cref
-# slots.  skeletal is no longer in these lists — it always goes to --sref.
-CREF_MODE_PRIORITY = {
+# Mode-based priorities determine which wildlife photo categories fill --sref
+# slots.  Skeletal excluded entirely — anatomy comes from text prompts.
+SREF_MODE_PRIORITY = {
     # Close-up / detail modes → mouth, claw, skin texture refs dominate
-    "portrait":         ["komodo", "crocodile", "tall_predator", "feathered_biped"],
-    "extreme_closeup":  ["komodo", "crocodile", "tall_predator", "feathered_biped"],
-    "eye_contact":      ["komodo", "crocodile", "tall_predator", "feathered_biped"],
-    "jaws_detail":      ["komodo", "crocodile", "tall_predator", "feathered_biped"],
-    "action_freeze":    ["komodo", "crocodile", "tall_predator", "feathered_biped"],
+    "portrait":         ["komodo", "crocodile", "tall_predator"],
+    "extreme_closeup":  ["komodo", "crocodile", "tall_predator"],
+    "eye_contact":      ["komodo", "crocodile", "tall_predator"],
+    "jaws_detail":      ["komodo", "crocodile", "tall_predator"],
+    "action_freeze":    ["komodo", "crocodile", "tall_predator"],
     # Mid-range full body
-    "canvas":           ["waterhole", "tall_predator", "komodo", "crocodile", "feathered_biped"],
-    "tracking_side":    ["tall_predator", "komodo", "crocodile", "feathered_biped"],
-    "ground_level":     ["tall_predator", "komodo", "crocodile", "feathered_biped"],
+    "canvas":           ["waterhole", "tall_predator", "komodo", "crocodile"],
+    "tracking_side":    ["tall_predator", "komodo", "crocodile"],
+    "ground_level":     ["tall_predator", "komodo", "crocodile"],
     "camera_trap":      ["waterhole", "komodo", "crocodile", "tall_predator"],
-    "confrontation":    ["komodo", "crocodile", "tall_predator", "feathered_biped"],
+    "confrontation":    ["komodo", "crocodile", "tall_predator"],
     # Epic wide / landscape
     "environmental":    ["waterhole", "migration", "family", "tall_predator", "komodo"],
     "valley_panorama":  ["waterhole", "migration", "family", "tall_predator"],
@@ -3338,25 +3367,25 @@ CREF_MODE_PRIORITY = {
     # Marine
     "surface_break":    ["marine", "sea_scorpion"],
     "underwater":       ["marine", "sea_scorpion"],
-    # Aerial
-    "soaring_thermal":  ["raptor_flight", "feathered_biped"],
-    "dive_strike":      ["raptor_flight", "feathered_biped"],
-    "perched":          ["raptor_flight", "feathered_biped", "komodo", "crocodile"],
+    # Aerial — reptile skin refs only (bird refs removed Session 22)
+    "soaring_thermal":  ["komodo", "crocodile"],
+    "dive_strike":      ["komodo", "crocodile"],
+    "perched":          ["komodo", "crocodile"],
     # Multi-subject
     "predator_prey":    ["komodo", "crocodile", "tall_predator", "waterhole"],
     "ecosystem_diorama":["waterhole", "family", "migration", "tall_predator"],
 }
 
-# ── Habitat-based cref injection (applied before mode priorities) ──────────
-CREF_HABITAT_INJECT = {
+# ── Habitat-based sref injection (applied before mode priorities) ──────────
+SREF_HABITAT_INJECT = {
     "marine":    ["marine"],
-    "aerial":    ["raptor_flight", "feathered_biped"],
+    "aerial":    ["komodo", "crocodile"],
     "arthropod": ["arthropod_group", "sea_scorpion"],
     "plant":     ["paleo_plant"],
 }
 
-# ── Lighting-based bonus categories (appended if cref slots remain) ────────
-CREF_LIGHTING_BONUS = {
+# ── Lighting-based bonus categories (appended if sref slots remain) ────────
+SREF_LIGHTING_BONUS = {
     "golden_hour":      ["waterhole", "migration"],
     "sunset_warm":      ["waterhole", "migration"],
     "dawn_first_light": ["waterhole", "migration"],
@@ -3390,21 +3419,20 @@ def _extract_category(label):
 
 
 def select_refs(species_name, output_mode, habitat, lighting_name):
-    """Context-aware dual-ref selection: --sref (skeletal) + --cref (wildlife).
+    """Context-aware wildlife --sref selection (Session 22 overhaul).
 
-    Splits refs into two buckets:
-      --sref: skeletal/fossil refs only → guides anatomy without texture bleed
-      --cref: wildlife photo refs → guides feel/texture at lower --cw weight
+    Session 22 lesson:
+      --sref copies VISUAL STYLE → skeletal photos made outputs look fossilized
+      --cref copies LIKENESS     → shark photos made Mosasaurus look like a shark
 
-    Filtering:
-      - Only categories allowed for the current habitat can appear
-      - Mouth/claw detail categories (komodo, crocodile, tall_predator) are
-        prioritized in --cref to emphasize the hardest MJ features
+    New approach:  wildlife photos → --sref ONLY (photographic style guide).
+    Skeletal refs excluded entirely — anatomy encoded in text prompts.
+    --cref removed — too literal for cross-species reference.
 
     Returns (sref_urls, cref_urls, cw_weight) where:
-      sref_urls: list of URL strings for --sref (skeletal only)
-      cref_urls: list of URL strings for --cref (wildlife photos)
-      cw_weight: int for --cw parameter
+      sref_urls: list of URL strings for --sref (wildlife style refs)
+      cref_urls: always [] (--cref disabled)
+      cw_weight: int (kept for backward compat, unused)
     """
     all_urls = load_sref_urls()
     species_entries = all_urls.get(species_name, [])
@@ -3414,13 +3442,17 @@ def select_refs(species_name, output_mode, habitat, lighting_name):
     # Strict habitat filtering: only allowed categories pass through
     allowed = HABITAT_ALLOWED_CATEGORIES.get(habitat, HABITAT_ALLOWED_CATEGORIES["terrestrial"])
 
-    # Build category → [url_entries] index, filtered by habitat
+    # Build category → [url_entries] index, filtered by habitat + exclusions
     cat_index = {}
     for entry in species_entries:
         if isinstance(entry, dict):
             cat = _extract_category(entry.get("label", ""))
         else:
             cat = ""
+        if cat in EXCLUDED_CATEGORIES:
+            continue  # skeletal/fossil refs excluded entirely
+        if cat in BIRD_CATEGORIES:
+            continue  # bird refs excluded — make dinosaurs look like birds
         if cat and cat not in allowed:
             continue  # habitat filter: reject this ref entirely
         cat_index.setdefault(cat, []).append(entry)
@@ -3439,6 +3471,8 @@ def select_refs(species_name, output_mode, habitat, lighting_name):
 
     def _pick_from_cats(cat_list, max_count):
         """Round-robin pick URLs from ordered category list up to max_count."""
+        if max_count <= 0:
+            return []
         available = [c for c in cat_list if c in cat_index]
         cursors = {c: 0 for c in available}
         picked = []
@@ -3469,43 +3503,42 @@ def select_refs(species_name, output_mode, habitat, lighting_name):
             rounds += 1
         return picked
 
-    # ── 1. --sref: skeletal/fossil refs only ──────────────────────────────
-    sref_cats = [c for c in cat_index if c in SREF_ONLY_CATEGORIES]
-    sref_urls = _pick_from_cats(sref_cats, MAX_SREF_URLS)
+    # ── --sref: wildlife photos only (style guide) ────────────────────────
+    # Build priority order: mouth/claw detail first, then context-aware
+    sref_priority = []
 
-    # ── 2. --cref: wildlife photo refs (non-skeletal) ─────────────────────
-    # Build priority order for cref categories (mouth/claw first)
-    cref_priority = []
-
-    # 2a. Mouth/claw emphasis: always inject detail categories first
+    # 1. Mouth/claw emphasis: detail categories first (hardest MJ features)
     for cat in MOUTH_CLAW_PRIORITY_CATEGORIES:
-        if cat in allowed and cat not in SREF_ONLY_CATEGORIES and cat not in cref_priority:
-            cref_priority.append(cat)
+        if cat in allowed and cat not in EXCLUDED_CATEGORIES and cat not in sref_priority:
+            sref_priority.append(cat)
 
-    # 2b. Habitat injection
-    for cat in CREF_HABITAT_INJECT.get(habitat, []):
-        if cat not in SREF_ONLY_CATEGORIES and cat not in cref_priority:
-            cref_priority.append(cat)
+    # 2. Habitat injection
+    for cat in SREF_HABITAT_INJECT.get(habitat, []):
+        if cat not in EXCLUDED_CATEGORIES and cat not in sref_priority:
+            sref_priority.append(cat)
 
-    # 2c. Mode-based priorities
-    for cat in CREF_MODE_PRIORITY.get(output_mode, []):
-        if cat not in SREF_ONLY_CATEGORIES and cat not in cref_priority:
-            cref_priority.append(cat)
+    # 3. Mode-based priorities
+    for cat in SREF_MODE_PRIORITY.get(output_mode, []):
+        if cat not in EXCLUDED_CATEGORIES and cat not in sref_priority:
+            sref_priority.append(cat)
 
-    # 2d. Lighting bonus
-    for cat in CREF_LIGHTING_BONUS.get(lighting_name, []):
-        if cat not in SREF_ONLY_CATEGORIES and cat not in cref_priority:
-            cref_priority.append(cat)
+    # 4. Lighting bonus
+    for cat in SREF_LIGHTING_BONUS.get(lighting_name, []):
+        if cat not in EXCLUDED_CATEGORIES and cat not in sref_priority:
+            sref_priority.append(cat)
 
-    # 2e. Any remaining non-skeletal categories
+    # 5. Any remaining non-excluded categories
     for cat in cat_index:
-        if cat and cat not in SREF_ONLY_CATEGORIES and cat not in cref_priority:
-            cref_priority.append(cat)
+        if cat and cat not in EXCLUDED_CATEGORIES and cat not in sref_priority:
+            sref_priority.append(cat)
 
-    # Filter cref_priority to only habitat-allowed categories
-    cref_priority = [c for c in cref_priority if c in allowed]
+    # Filter to only habitat-allowed categories
+    sref_priority = [c for c in sref_priority if c in allowed]
 
-    cref_urls = _pick_from_cats(cref_priority, MAX_CREF_URLS)
+    sref_urls = _pick_from_cats(sref_priority, MAX_SREF_URLS)
+
+    # --cref disabled (Session 22) — too literal, bleeds reference animal appearance
+    cref_urls = []
 
     return sref_urls, cref_urls, DEFAULT_CW
 
@@ -3518,7 +3551,7 @@ def select_sref_urls(species_name, output_mode, habitat, lighting_name):
 
 
 def display_ref_selection(species_name, sref_urls, cref_urls, cw_weight, species_entries):
-    """Print the auto-selected sref + cref URLs with labels for user visibility."""
+    """Print the auto-selected --sref URLs with labels for user visibility."""
     if not sref_urls and not cref_urls:
         return
 
@@ -3529,28 +3562,20 @@ def display_ref_selection(species_name, sref_urls, cref_urls, cw_weight, species
             url_to_label[entry["url"]] = entry.get("label", "reference")
 
     total_refs = len(species_entries)
-    total_selected = len(sref_urls) + len(cref_urls)
+    total_selected = len(sref_urls)
 
     print(f"\n  {hdr(f'REFERENCES — {species_name} (auto-selected)')}")
     print(f"  {C.DIM}" + "─" * 60 + C.RESET)
 
     if sref_urls:
-        print(f"  {C.WHITE}--sref (skeletal/anatomy guide):{C.RESET}")
+        print(f"  {C.WHITE}--sref (wildlife style guide, --sw {DEFAULT_SW}):{C.RESET}")
         for url in sref_urls:
             label = url_to_label.get(url, "reference")
             short_url = url[:50] + "..." if len(url) > 50 else url
             print(f"    {ok('+')} {C.BRIGHT_WHITE}{label}{C.RESET}")
             print(f"      {dim(short_url)}")
 
-    if cref_urls:
-        print(f"  {C.WHITE}--cref (wildlife feel, --cw {cw_weight}):{C.RESET}")
-        for url in cref_urls:
-            label = url_to_label.get(url, "reference")
-            short_url = url[:50] + "..." if len(url) > 50 else url
-            print(f"    {ok('+')} {C.BRIGHT_WHITE}{label}{C.RESET}")
-            print(f"      {dim(short_url)}")
-
-    print(f"  {dim(f'{total_selected} of {total_refs} refs selected ({len(sref_urls)} sref + {len(cref_urls)} cref)')}")
+    print(f"  {dim(f'{total_selected} of {total_refs} refs selected (wildlife --sref --sw {DEFAULT_SW}, skeletal/bird excluded)')}")
 
 
 def display_sref_selection(species_name, selected_urls, species_entries):
@@ -3886,6 +3911,8 @@ def ab_test_main(args) -> None:
     output_mode = select_mode(habitat)
     mode_cfg = OUTPUT_MODES[output_mode]
 
+    perspective = select_perspective()
+
     placement = ("", "")
     if mode_cfg["needs_placement"]:
         placement = select_canvas_placement()
@@ -4038,15 +4065,14 @@ def ab_test_main(args) -> None:
             placement=v_placement,
             has_sref=bool(ab_sref_urls or ab_cref_urls),
             habitat=habitat,
+            perspective=perspective,
         )
 
         if ab_sref_urls:
             ab_sref_joined = " ".join(ab_sref_urls)
-            prompt_text += f" --sref {ab_sref_joined}"
-        if ab_cref_urls:
-            ab_cref_joined = " ".join(ab_cref_urls)
-            prompt_text += f" --cref {ab_cref_joined}"
-        elif args.cref:
+            prompt_text += f" --sref {ab_sref_joined} --sw {DEFAULT_SW}"
+        # --cref disabled (Session 22) — manual CLI override still honored
+        if args.cref:
             prompt_text += f" --cref {args.cref}"
 
         title = make_title(species, v_mood, output_mode=v_output_mode)
@@ -4139,6 +4165,9 @@ def main() -> None:
     # --- Mode selection (filtered by habitat) ---
     output_mode = select_mode(habitat)
     mode_cfg    = OUTPUT_MODES[output_mode]
+
+    # --- Camera perspective (angle override — any mode) ---
+    perspective = select_perspective()
 
     placement: tuple[str, str] = ("", "")
     if mode_cfg["needs_placement"]:
@@ -4284,10 +4313,10 @@ def main() -> None:
     print(f"    {ok('+')} {dim('[weather]')}  {C.WHITE}{weather_param['name'].replace('_', ' ')}{C.RESET}")
     print()
 
-    # --- Context-aware dual-ref selection (Session 21) ---
-    # --sref: skeletal/fossil refs (anatomy guide, no texture bleed)
-    # --cref: wildlife photo refs (feel/texture at lower --cw weight)
-    # Strict habitat filtering prevents cross-contamination.
+    # --- Context-aware wildlife style refs (Session 22 overhaul) ---
+    # --sref: wildlife photos ONLY → photographic style guide
+    # --cref: DISABLED — too literal, bleeds reference animal likeness
+    # Skeletal refs excluded — anatomy encoded in text prompts already.
     sref_urls_list = []
     cref_urls_list = []
     cw_weight = DEFAULT_CW
@@ -4322,6 +4351,7 @@ def main() -> None:
         habitat=habitat,
         secondary_species=secondary_species,
         interaction_type=interaction_type,
+        perspective=perspective,
     )
 
     title = make_title(species, mood_param, output_mode=output_mode)
@@ -4330,13 +4360,13 @@ def main() -> None:
                       weather_param=weather_param, output_mode=output_mode)
 
     # --- Append reference URLs to prompt ---
+    # Session 22: wildlife --sref only, --cref disabled (too literal)
     if sref_urls_list:
         sref_joined = " ".join(sref_urls_list)
-        prompt_text += f" --sref {sref_joined}"
-    if cref_urls_list:
-        cref_joined = " ".join(cref_urls_list)
-        prompt_text += f" --cref {cref_joined}"
-    elif args.cref:
+        prompt_text += f" --sref {sref_joined} --sw {DEFAULT_SW}"
+    # --cref disabled: bleeds reference animal likeness onto dinosaur output
+    # Manual CLI --cref still honored if user explicitly passes one
+    if args.cref:
         prompt_text += f" --cref {args.cref}"
 
     # --- Build fix prompts ---
@@ -4354,11 +4384,13 @@ def main() -> None:
 
     # --- Display ---
     mode_label = mode_cfg["display"].upper()
+    persp_label = CAMERA_PERSPECTIVES.get(perspective, {}).get("display", "")
 
     # STEP 1 — Main prompt
     habitat_label = habitat.upper()
+    persp_tag = f" / {persp_label}" if perspective != "default" else ""
     print(f"\n{C.BOLD_CYAN}{'═' * 64}{C.RESET}")
-    print(f"  {C.BOLD_CYAN}STEP 1 — MAIN PROMPT{C.RESET}  {C.DIM}[{habitat_label} / {mode_label}]{C.RESET}")
+    print(f"  {C.BOLD_CYAN}STEP 1 — MAIN PROMPT{C.RESET}  {C.DIM}[{habitat_label} / {mode_label}{persp_tag}]{C.RESET}")
     print(f"{C.BOLD_CYAN}{'═' * 64}{C.RESET}")
     print(f"\n  {C.WHITE}Title :{C.RESET} {C.BRIGHT_WHITE}{title}{C.RESET}")
     print(f"  {C.WHITE}Tags  :{C.RESET} {dim(tags)}")
