@@ -29,6 +29,36 @@ WIDE_MODES = {"environmental", "valley_panorama", "ridgeline_silhouette", "river
 GROUP_MODES = {"group_herd", "family_group", "waterhole_gather", "migration_march"}
 
 # ---------------------------------------------------------------------------
+# Camera perspective — angle override independent of output mode.
+# ---------------------------------------------------------------------------
+CAMERA_PERSPECTIVES = {
+    "default": {
+        "display": "Default (mode's built-in angle)",
+        "lead":    "",
+    },
+    "drone_overhead": {
+        "display": "Drone / bird's-eye — straight down",
+        "lead":    "drone photograph looking straight down from 30m altitude, top-down bird's-eye view, no horizon, dorsal surface of animal visible",
+    },
+    "drone_angled": {
+        "display": "Drone / elevated 45° — angled down",
+        "lead":    "drone photograph from 20m altitude at 45-degree angle looking down, elevated perspective, ground visible around animal, slight horizon",
+    },
+    "ground_level": {
+        "display": "Ground level — eye height with animal",
+        "lead":    "camera at animal eye level on the ground, low angle, ground surface visible in foreground, horizon at eye height",
+    },
+    "low_upward": {
+        "display": "Low angle — looking up at animal",
+        "lead":    "camera on ground looking up at animal from below, extreme low angle, animal towering above, sky visible behind",
+    },
+    "hide_blind": {
+        "display": "Hide / blind — concealed, peering through cover",
+        "lead":    "photograph from wildlife hide, camera partially obscured by vegetation in foreground, candid unaware angle, telephoto compression",
+    },
+}
+
+# ---------------------------------------------------------------------------
 # Terminal color constants (ANSI escape codes)
 # ---------------------------------------------------------------------------
 
@@ -2831,6 +2861,7 @@ def assemble_prompt(
     habitat: str = "terrestrial",
     secondary_species: dict = None,         # Session 17: multi-subject scene support
     interaction_type: str = None,           # Session 17: predator_prey interaction type
+    perspective: str = "default",           # Session 21: camera angle override
 ) -> str:
     mode_cfg     = OUTPUT_MODES.get(output_mode, OUTPUT_MODES["portrait"])
     full_body    = mode_cfg["full_body"]
@@ -3104,17 +3135,18 @@ def assemble_prompt(
         camera = ""
 
     # ── ASSEMBLE ──────────────────────────────────────────────────────────────
-    # Session 13 v2: Subject name must still lead — MJ needs to know WHAT
-    # creature to draw. But in wide modes the subject block is lean (name +
-    # silhouette-level detail only), followed immediately by environment +
-    # camera framing language so the landscape dominates composition.
-    # The interaction block is appended last — it's a grounding cue, not
-    # a composition driver.
-    # Session 22: aerial_overhead needs camera perspective FIRST — MJ ignores
-    # drone/overhead directives buried after 100+ tokens of anatomy text.
-    if output_mode == "aerial_overhead":
-        drone_lead = "drone photograph looking straight down from 30m altitude, top-down bird's-eye view, no horizon"
-        sections = [drone_lead, subject, environment, lighting]
+    # Session 21: Camera perspective override. When a non-default perspective
+    # is chosen, its lead phrase is injected FIRST — before subject — so MJ
+    # treats the angle as the dominant composition directive.
+    perspective_lead = CAMERA_PERSPECTIVES.get(perspective, {}).get("lead", "")
+
+    # aerial_overhead mode implies drone_overhead perspective if user kept default
+    if output_mode == "aerial_overhead" and not perspective_lead:
+        perspective_lead = CAMERA_PERSPECTIVES["drone_overhead"]["lead"]
+
+    if perspective_lead:
+        # Perspective-first assembly: angle → subject → environment → lighting
+        sections = [perspective_lead, subject, environment, lighting]
     elif wide_mode:
         sections = [subject, camera, environment, lighting, interaction]
     else:
