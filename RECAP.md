@@ -1121,7 +1121,7 @@ Wired the 607 Discord CDN URLs into generate_prompt.py with intelligent scene-aw
 
 ## 10 Ideas — Next Phase
 
-### 1. --sref Reference Library Build-Out  ✅ COMPLETE
+### 1. --sref Reference Library Build-Out  ✅ COMPLETE (3-layer system live)
 Source and upload all reference photo categories, wire into prompt generator with context-aware selection.
 
 **Session 19:** Discovered MJ rejects Wikimedia URLs. Built two-file system (sref_sources.json → Discord CDN → sref_urls.json). 40 URLs across 27 species.
@@ -1138,7 +1138,89 @@ Source and upload all reference photo categories, wire into prompt generator wit
 - ✅ 707 clean Discord CDN URLs, 42/42 species, zero cross-contamination
 - ✅ Live tested: Kronosaurus underwater scene renders with marine-only refs, clean results
 
-### 2. Printify Integration — Auto-Upload Best Outputs to Store  ⬅️ NEXT
+**Session 22:** Ref system overhaul — 3 rounds of MJ testing revealed fundamental issues with how --sref/--cref work:
+
+*Round 1 — Skeletal --sref + wildlife --cref:*
+- ❌ Skeletal refs as `--sref` made outputs look like actual fossils/statues (Rhamphorhynchus = bronze skeleton)
+- ❌ Wildlife refs as `--cref` bled reference animal likeness (shark ref → Mosasaurus looks like a shark)
+- FIX: Removed skeletal from --sref, removed --cref entirely. Wildlife photos → --sref only.
+
+*Round 2 — Wildlife --sref (bird + reptile refs):*
+- ✅ Mosasaurus marine refs (shark, turtle) = great results
+- ❌ Bird refs (puffin, eagle) made Velociraptor look like a literal bird/bustard
+- ❌ Bird refs gave Quetzalcoatlus feathered wings (pterosaurs have membrane wings)
+- FIX: Removed ALL bird categories (feathered_biped, raptor_flight) from --sref.
+- FIX: Pterosaurs moved from feathered_biped → komodo/crocodile in CATEGORY_SPECIES_MAP.
+- FIX: `[feathered]` display tag → `[pycnofibers]` for pterosaurs (pycnofibers ≠ feathers).
+- FIX: Seabird refs (puffin, pelican, albatross) removed from land theropod sref_urls.json.
+
+*Round 3 — Reptile-only --sref:*
+- ✅ Mosasaurus still excellent
+- ❌ Komodo/gharial refs at default --sw 100 made Velociraptor look like a monitor lizard
+- ❌ Overhead/drone mode not producing top-down perspective (composition text buried too deep)
+- FIX: Added `--sw 20` (style weight) — subtle photographic feel without shape/texture bleed.
+- FIX: Reduced MAX_SREF_URLS from 3 → 2.
+- FIX: Aerial overhead mode: drone perspective front-loaded as first tokens in prompt assembly.
+- FIX: Camera changed to "DJI Mavic 3 Pro" with explicit "looking straight down, no horizon" language.
+
+*Current ref system (end of Session 22):*
+- `--sref` = wildlife photos only (reptile/mammal, NO birds, NO skeletal)
+- `--cref` = DISABLED entirely (too literal)
+- `--sw 20` = low style weight to prevent ref animal bleed
+- 2 refs max per prompt
+- Skeletal excluded — anatomy encoded in text via species modules
+- Bird photos excluded — make feathered dinosaurs look like actual birds
+- Pterosaurs get reptile refs (komodo, crocodile) for leathery skin feel
+- **STATUS: ~80% there. Mosasaurus dialed in. Velociraptor close but needs continued tuning. Overhead mode strengthened, needs live testing.**
+
+**Session 23:** Camera perspective system + 3-layer reference architecture:
+
+*Camera Perspectives:*
+- Added `CAMERA_PERSPECTIVES` dict with 7 options: `default`, `drone_overhead`, `drone_angled`, `epic_aerial`, `ground_level`, `low_upward`, `hide_blind`
+- `select_perspective()` interactive menu after mode selection
+- Perspective lead phrase injected FIRST in prompt assembly (before subject) — dominates MJ composition
+- `epic_aerial` = "200m altitude, vast sweeping landscape, animals tiny in frame, 14mm lens" — designed for large canvas prints
+- Fixed bug: perspective assembly was dropping `camera` (ultra-wide lens) and `interaction` sections
+- `aerial_overhead` mode auto-implies `drone_overhead` if user kept default perspective
+
+*3-Layer Reference System:*
+- Layer 1 — `--sref` (wildlife photos): photographic style, lighting, texture feel (2 URLs, --sw 20)
+- Layer 2 — `--cref` (paleoart renditions): what the animal LOOKS LIKE alive — correct morphology (1 URL)
+- Layer 3 — `--cref` fallback (skeletal diagrams): body proportions if no paleoart available
+- **Problem solved:** Mosasaurus looked like a crocodile because croc/komodo wildlife `--sref` was the only morphological reference. Paleoart `--cref` tells MJ "this is a marine lizard with flippers, not a croc."
+- `--cw` removed from output — not supported in MJ v7
+- All `--cref` URLs must be Discord CDN (MJ rejects Wikimedia direct URLs)
+
+*Paleoart Reference Library:*
+- Created `paleoart_refs.json` — Wikimedia CC-licensed life restorations for all 42 species
+- Downloaded 41 paleoart images via Wikimedia `Special:FilePath` redirect (avoids 429 rate limiting)
+- Uploaded all 41 to Discord CDN via webhook
+- Species-specific mapping: Mosasaurus paleoart only goes to Mosasaurus (not broadcast to all species like wildlife refs)
+- `SREF_EXCLUDED_CATEGORIES` updated: `{"skeletal", "paleoart"}` — neither should be used as style refs
+- `CREF_PALEOART_CATEGORY` / `CREF_SKELETAL_CATEGORY` — separate category constants for the cref pipeline
+- `load_paleoart_refs()` added alongside `load_sref_urls()`
+
+*Commits:*
+| Hash | Description |
+|------|-------------|
+| `7ca0275` | Camera perspective selector (initial) |
+| `cedee5b` | Fix: add missing select_perspective() function |
+| `368febd` | Fix: add CAMERA_PERSPECTIVES dict, perspective param, assembly logic |
+| `9d6314b` | Add epic_aerial perspective + fix assembly dropping camera/interaction |
+| `9540bb6` | Re-enable --cref with skeletal refs at --cw 10 |
+| `e74ff5b` | Remove --cw from cref — not supported in MJ v7 |
+| `d102d50` | 3-layer ref system: wildlife --sref + paleoart --cref |
+| `0e91969` | Upload 41 paleoart refs to Discord CDN, species-specific mapping |
+
+*Current ref system (end of Session 23):*
+- `--sref` = 2 wildlife photos (photographic style, --sw 20)
+- `--cref` = 1 paleoart rendition (correct morphology) or 1 skeletal fallback
+- All URLs from Discord CDN (MJ rejects external URLs)
+- 7 camera perspectives available (default, drone_overhead, drone_angled, epic_aerial, ground_level, low_upward, hide_blind)
+- `epic_aerial` tested and working for large canvas landscape shots
+- **STATUS: Quetzalcoatlus epic aerial landscape = canvas-ready. Mosasaurus needs re-test with paleoart cref (should no longer look like croc). ~36 species still missing paleoart (404 URLs need fixing).**
+
+### 2. Printify Integration — Auto-Upload Best Outputs to Store  ⬅️ NEXT (after #1 dialed in)
 Connect `generate_prompt.py` to the Printify API (key already in `.env`). After scoring an A/B test winner or manually marking an output as "print-worthy", auto-upload to Printify as a canvas/poster product with species name, mode, and prompt metadata. Eliminates the manual download→upload→configure loop.
 
 ### 3. Batch Generation Mode
