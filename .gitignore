@@ -32,8 +32,10 @@ env/
 .DS_Store
 .fuse_hidden*
 
-# Claude Code internal files
-.claude/
+# Claude Code — keep agent team and shared settings, ignore machine-local
+.claude/settings.local.json
+.claude/worktrees/
+.claude/projects/
 
 # Environment
 .env
