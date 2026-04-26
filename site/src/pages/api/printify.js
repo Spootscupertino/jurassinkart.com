@@ -1,6 +1,9 @@
 export async function GET() {
   const apiKey = import.meta.env.PRINTIFY_API_KEY;
   const configuredShopId = import.meta.env.PRINTIFY_SHOP_ID;
+  const authHeaders = {
+    'Authorization': `Bearer ${apiKey}`
+  };
 
   if (!apiKey) {
     return new Response(JSON.stringify({ error: 'Missing PRINTIFY_API_KEY in .env' }), {
@@ -9,13 +12,13 @@ export async function GET() {
     });
   }
 
-  let shopId = configuredShopId;
+  const shopIds = [];
 
-  if (!shopId) {
+  if (configuredShopId) {
+    shopIds.push(String(configuredShopId));
+  } else {
     const shopsResponse = await fetch('https://api.printify.com/v1/shops.json', {
-      headers: {
-        'Authorization': `Bearer ${apiKey}`
-      }
+      headers: authHeaders
     });
 
     if (!shopsResponse.ok) {
@@ -31,9 +34,11 @@ export async function GET() {
     }
 
     const shops = await shopsResponse.json();
-    shopId = shops?.[0]?.id ? String(shops[0].id) : null;
+    for (const shop of shops || []) {
+      if (shop?.id) shopIds.push(String(shop.id));
+    }
 
-    if (!shopId) {
+    if (shopIds.length === 0) {
       return new Response(JSON.stringify({
         error: 'No shops found for this Printify account. Set PRINTIFY_SHOP_ID in .env if needed.'
       }), {
@@ -43,67 +48,81 @@ export async function GET() {
     }
   }
 
-  const response = await fetch(`https://api.printify.com/v1/shops/${shopId}/products.json?limit=50`, {
-    headers: {
-      'Authorization': `Bearer ${apiKey}`
-    }
-  });
+  let allProducts = [];
+  const shopErrors = [];
 
-  if (!response.ok) {
-    const details = await response.text();
+  for (const shopId of shopIds) {
+    const response = await fetch(`https://api.printify.com/v1/shops/${shopId}/products.json?limit=50`, {
+      headers: authHeaders
+    });
+
+    if (!response.ok) {
+      const details = await response.text();
+      shopErrors.push({ shopId, status: response.status, details });
+      continue;
+    }
+
+    const data = await response.json();
+    const products = Array.isArray(data?.data) ? data.data : [];
+    allProducts = allProducts.concat(products.map((product) => ({ ...product, __shopId: shopId })));
+  }
+
+  if (allProducts.length === 0) {
     return new Response(JSON.stringify({
       error: 'Failed to fetch products from Printify',
-      shopId,
-      status: response.status,
-      details
-    }), {
+      shopIds,
+      details: shopErrors
+    }, null, 2), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
     });
   }
 
-  const data = await response.json();
+  const phoneCasePattern = /phone\s*case|iphone|samsung\s*galaxy|pixel\s*case|airpods\s*case|mag\s*safe|impact-resistant\s*cases|tough\s*phone\s*cases/i;
+  const posterCanvasPattern = /poster|canvas|wrapped\s*canvas|stretched\s*canvas|framed\s*poster|framed\s*print|matte\s*poster|rolled\s*poster|wall\s*art|wall\s*decor/i;
+  const artSubjectPattern = /dinosaur|jurassic|prehistoric|paleo|fossil|art|illustration|painting/i;
 
-  const phoneCasePattern = /phone\s*case|iphone|samsung\s*galaxy|pixel\s*case|airpods\s*case|mag\s*safe/i;
-  const posterCanvasPattern = /poster|canvas|wrapped\s*canvas|framed\s*poster|wall\s*art|print/i;
-  const testPattern = /\btest\b|sample|default|placeholder|do\s*not\s*buy|magnetic\s*impact-resistant\s*cases|tough\s*phone\s*cases/i;
-
-  const scoredProducts = (data.data || []).map((product) => {
+  const scoredProducts = allProducts.map((product) => {
     const title = product.title || '';
     const description = product.description || '';
-    const searchable = `${title} ${description}`;
+    const tags = Array.isArray(product.tags) ? product.tags.join(' ') : '';
+    const searchable = `${title} ${description} ${tags}`;
 
     const isPhoneCase = phoneCasePattern.test(searchable);
     const isPosterOrCanvas = posterCanvasPattern.test(searchable);
-    const isTestItem = testPattern.test(searchable);
+    const isArtSubject = artSubjectPattern.test(searchable);
+    const hasImage = Boolean(product.images?.[0]?.src);
 
     let score = 0;
     if (isPosterOrCanvas) score += 80;
-    if (isPhoneCase) score -= 80;
-    if (isTestItem) score -= 120;
+    if (isArtSubject) score += 25;
+    if (hasImage) score += 10;
+    if (isPhoneCase) score -= 200;
 
     return {
       id: product.id,
+      shopId: product.__shopId,
       title,
       description,
       image: product.images?.[0]?.src || null,
       isPhoneCase,
       isPosterOrCanvas,
-      isTestItem,
+      isArtSubject,
+      hasImage,
       score
     };
   });
 
-  const withoutTestItems = scoredProducts.filter((item) => !item.isTestItem);
-  const showcaseFirst = withoutTestItems.length > 0 ? withoutTestItems : scoredProducts;
-  const withoutPhoneCases = showcaseFirst.filter((item) => !item.isPhoneCase);
-
-  const prioritizedPool = withoutPhoneCases.length > 0 ? withoutPhoneCases : [];
+  const nonPhoneProducts = scoredProducts.filter((item) => !item.isPhoneCase && item.hasImage);
+  const posterCanvasOnly = nonPhoneProducts.filter((item) => item.isPosterOrCanvas);
+  const prioritizedPool = posterCanvasOnly.length > 0
+    ? posterCanvasOnly
+    : nonPhoneProducts.filter((item) => item.isArtSubject);
 
   const prioritized = prioritizedPool
     .sort((a, b) => b.score - a.score)
     .slice(0, 16)
-    .map(({ isPhoneCase, isPosterOrCanvas, isTestItem, score, ...publicFields }) => publicFields);
+    .map(({ isPhoneCase, isPosterOrCanvas, isArtSubject, hasImage, score, ...publicFields }) => publicFields);
 
   return new Response(JSON.stringify(prioritized, null, 2), {
     headers: { 'Content-Type': 'application/json' }
