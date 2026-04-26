@@ -66,7 +66,7 @@ export async function GET() {
 
   const phoneCasePattern = /phone\s*case|iphone|samsung\s*galaxy|pixel\s*case|airpods\s*case|mag\s*safe/i;
   const posterCanvasPattern = /poster|canvas|wrapped\s*canvas|framed\s*poster|wall\s*art|print/i;
-  const testPattern = /\btest\b|sample|default|placeholder|do\s*not\s*buy/i;
+  const testPattern = /\btest\b|sample|default|placeholder|do\s*not\s*buy|magnetic\s*impact-resistant\s*cases|tough\s*phone\s*cases/i;
 
   const scoredProducts = (data.data || []).map((product) => {
     const title = product.title || '';
@@ -98,7 +98,9 @@ export async function GET() {
   const showcaseFirst = withoutTestItems.length > 0 ? withoutTestItems : scoredProducts;
   const withoutPhoneCases = showcaseFirst.filter((item) => !item.isPhoneCase);
 
-  const prioritized = (withoutPhoneCases.length >= 6 ? withoutPhoneCases : showcaseFirst)
+  const prioritizedPool = withoutPhoneCases.length > 0 ? withoutPhoneCases : [];
+
+  const prioritized = prioritizedPool
     .sort((a, b) => b.score - a.score)
     .slice(0, 16)
     .map(({ isPhoneCase, isPosterOrCanvas, isTestItem, score, ...publicFields }) => publicFields);
