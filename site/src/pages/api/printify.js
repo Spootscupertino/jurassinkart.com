@@ -63,15 +63,47 @@ export async function GET() {
   }
 
   const data = await response.json();
-  
-  const simplified = (data.data || []).map((product) => ({
-    id: product.id,
-    title: product.title,
-    description: product.description,
-    image: product.images?.[0]?.src || null
-  }));
 
-  return new Response(JSON.stringify(simplified, null, 2), {
+  const phoneCasePattern = /phone\s*case|iphone|samsung\s*galaxy|pixel\s*case|airpods\s*case|mag\s*safe/i;
+  const posterCanvasPattern = /poster|canvas|wrapped\s*canvas|framed\s*poster|wall\s*art|print/i;
+  const testPattern = /\btest\b|sample|default|placeholder|do\s*not\s*buy/i;
+
+  const scoredProducts = (data.data || []).map((product) => {
+    const title = product.title || '';
+    const description = product.description || '';
+    const searchable = `${title} ${description}`;
+
+    const isPhoneCase = phoneCasePattern.test(searchable);
+    const isPosterOrCanvas = posterCanvasPattern.test(searchable);
+    const isTestItem = testPattern.test(searchable);
+
+    let score = 0;
+    if (isPosterOrCanvas) score += 80;
+    if (isPhoneCase) score -= 80;
+    if (isTestItem) score -= 120;
+
+    return {
+      id: product.id,
+      title,
+      description,
+      image: product.images?.[0]?.src || null,
+      isPhoneCase,
+      isPosterOrCanvas,
+      isTestItem,
+      score
+    };
+  });
+
+  const withoutTestItems = scoredProducts.filter((item) => !item.isTestItem);
+  const showcaseFirst = withoutTestItems.length > 0 ? withoutTestItems : scoredProducts;
+  const withoutPhoneCases = showcaseFirst.filter((item) => !item.isPhoneCase);
+
+  const prioritized = (withoutPhoneCases.length >= 6 ? withoutPhoneCases : showcaseFirst)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 16)
+    .map(({ isPhoneCase, isPosterOrCanvas, isTestItem, score, ...publicFields }) => publicFields);
+
+  return new Response(JSON.stringify(prioritized, null, 2), {
     headers: { 'Content-Type': 'application/json' }
   });
 }

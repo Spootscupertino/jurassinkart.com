@@ -403,7 +403,7 @@ import Gallery from '../components/Gallery.astro';
         requestAnimationFrame(smoothCursor);
 
         // Hover states
-        const hoverElements = document.querySelectorAll('.gallery-item, a:not(.btn)');
+        const hoverElements = document.querySelectorAll('.gallery-card, .gallery-item, a:not(.btn)');
         hoverElements.forEach(el => {
           el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
           el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
