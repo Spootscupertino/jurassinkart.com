@@ -1,16 +1,20 @@
 ---
 import productsData from '../data/products.json';
+import 'glightbox/dist/css/glightbox.min.css';
 
 let products = productsData;
 ---
 <section class="gallery">
+  <a href="https://www.printify.com/shop/jurassinkart" class="shop-link" target="_blank" rel="noopener">Visit the Shop</a>
   <h2>Featured Works</h2>
   <div class="gallery-grid">
     {products.length > 0 ? (
       products.map(product => (
-        <div class="gallery-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000" data-tilt-glare="true" data-tilt-max-glare="0.3">
+        <div class="gallery-card">
           {product.image ? (
-            <img src={product.image} alt={product.title} loading="lazy" />
+            <a href={product.image} class="glightbox" data-title={product.title} data-description="Dinosaurs & Prehistoric Art">
+              <img src={product.image} alt={product.title} loading="lazy" />
+            </a>
           ) : (
             <div class="no-image">No Image</div>
           )}
@@ -20,6 +24,7 @@ let products = productsData;
       <p class="empty-state">Curating featured posters and canvas works — check back soon.</p>
     )}
   </div>
+  <a href="https://www.printify.com/shop/jurassinkart" class="shop-link" target="_blank" rel="noopener">Visit the Shop</a>
 </section>
 
 <style>
@@ -32,39 +37,38 @@ let products = productsData;
     margin-bottom: 2.5rem;
   }
   
-  /* GRID / RESPONSIVE (Task 6) */
+  /* COLUMNS / RESPONSIVE (Classy Masonry Layout) */
   .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 2rem;
+    column-count: 1;
+    column-gap: 2rem;
     padding: 0 1rem;
     max-width: 1200px;
     margin: 0 auto;
   }
   
   @media (min-width: 600px) {
-    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { column-count: 2; }
   }
   @media (min-width: 900px) {
-    .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+    .gallery-grid { column-count: 3; }
   }
   @media (min-width: 1200px) {
-    .gallery-grid { grid-template-columns: repeat(4, 1fr); }
+    .gallery-grid { column-count: 4; }
   }
 
-  /* NORMALIZE CARD SIZE & HOVER EFFECT (Tasks 3 & 5) */
+  /* NORMALIZE CARD SIZE & HOVER EFFECT */
   .gallery-card {
+    break-inside: avoid;
+    margin-bottom: 2rem;
     position: relative;
-    aspect-ratio: 1 / 1;
-    border-radius: 22px;
+    border-radius: 16px;
     overflow: hidden;
-    background: transparent;
+    background: rgba(0, 0, 0, 0.2);
     cursor: pointer;
     /* Base styles for scroll animation */
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-    /* Removed the feathered mask to make it a solid thumbnail block */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   }
   
@@ -73,23 +77,20 @@ let products = productsData;
     transform: translateY(0) scale(1); /* Return to original state */
   }
 
-  /* FIX IMAGE BEHAVIOR (Task 2) */
+  /* FIX IMAGE BEHAVIOR */
   .gallery-card img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+    height: auto;
     display: block;
-    /* Zoom in significantly to crop out the white frames/walls from mockups */
-    transform: scale(1.65);
+    transform: scale(1);
     transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.6s ease;
-    filter: saturate(1.1) contrast(1.1);
+    filter: saturate(1.05) contrast(1.05);
   }
   
   .gallery-card:hover img {
-    /* Fun zoom out/in pop effect */
-    transform: scale(1.75); 
-    filter: saturate(1.2) contrast(1.15) brightness(1.1);
+    /* Classy subtle zoom in border bounds */
+    transform: scale(1.03); 
+    filter: saturate(1.1) contrast(1.1) brightness(1.1);
   }
 
   .no-image {
@@ -112,49 +113,3 @@ let products = productsData;
   }
 
 </style>
-
-<script>
-  import VanillaTilt from 'vanilla-tilt';
-
-  // Wait for the DOM to be fully loaded
-  document.addEventListener('DOMContentLoaded', () => {
-    // Initialize Vanilla Tilt on the cards
-    VanillaTilt.init(document.querySelectorAll('.gallery-card'), {
-      max: 12,
-      speed: 400,
-      glare: true,
-      "max-glare": 0.4,
-      scale: 1.05
-    });
-
-    // Observer options
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px 0px -10% 0px', // Trigger when 10% from the bottom of the viewport
-      threshold: 0.1 // Trigger when 10% of the element is visible
-    };
-
-    // The observer callback function
-    const observerCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // Add the visible class to trigger the CSS transition
-          entry.target.classList.add('visible');
-          // Stop observing once it's visible so it doesn't animate out and back in
-          observer.unobserve(entry.target);
-        }
-      });
-    };
-
-    // Create the Intersection Observer
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-    // Find all gallery cards and start observing them
-    const cards = document.querySelectorAll('.gallery-card');
-    cards.forEach((card, index) => {
-      // Add a slight staggered delay based on 3-column grid position so rows don't just appear simultaneously
-      (card as HTMLElement).style.transitionDelay = `${(index % 3) * 0.1}s`;
-      observer.observe(card);
-    });
-  });
-</script>
