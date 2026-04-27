@@ -1,0 +1,44 @@
+[
+  {
+    "id": "1",
+    "title": "Pteranodon Over Purple Asters",
+    "image": "/assets/website_dino_images/pteranodon.png",
+    "link": "#"
+  },
+  {
+    "id": "2",
+    "title": "Herbivorous Dinosaur Eye",
+    "image": "/assets/website_dino_images/dino_eye.png",
+    "link": "#"
+  },
+  {
+    "id": "3",
+    "title": "Prehistoric Forest Mushrooms",
+    "image": "/assets/website_dino_images/mushrooms.png",
+    "link": "#"
+  },
+  {
+    "id": "4",
+    "title": "Liopleurodon Short-necked Pliosaur",
+    "image": "/assets/website_dino_images/liopleurodon.png",
+    "link": "#"
+  },
+  {
+    "id": "5",
+    "title": "Triceratops 1",
+    "image": "/assets/website_dino_images/triceratops_1.png",
+    "link": "#"
+  },
+  {
+    "id": "6",
+    "title": "Triceratops 2",
+    "image": "/assets/website_dino_images/triceratops_2.png",
+    "link": "#"
+  },
+  {
+    "id": "7",
+    "title": "Ammonite Spiral-shelled Cephalopod",
+    "image": "/assets/website_dino_images/ammonite.png",
+    "link": "#"
+  }
+]

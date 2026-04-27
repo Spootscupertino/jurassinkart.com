@@ -1,16 +1,7 @@
 ---
-import { GET } from '../pages/api/printify.js';
+import productsData from '../data/products.json';
 
-let products = [];
-try {
-  // Call the endpoint function directly so we don't have networking/port issues
-  const response = await GET();
-  if (response.ok) {
-    products = await response.json();
-  }
-} catch (e) {
-  console.error('Failed to load products from API route', e);
-}
+let products = productsData;
 ---
 <section class="gallery">
   <h2>Featured Works</h2>
