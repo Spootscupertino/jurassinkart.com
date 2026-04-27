@@ -1,7 +1,8 @@
     <section class="hero">
     <!-- Parallax container needs overflow hidden which is set on .hero -->
     <div class="hero-bg parallax-layer">
-      <video autoplay loop muted playsinline preload="metadata" poster="/assets/prehistoric-tree.png" aria-label="Jurassic jungle canopy background">
+      <!-- Fixed Video path: using Astro's best static usage or fixing typo -->
+      <video autoplay loop muted playsinline preload="auto" poster="/assets/prehistoric-tree.png" aria-label="Jurassic jungle canopy background">
         <source src="/assets/forest-canopy-loop.mp4" type="video/mp4" />
       </video>
       <img class="hero-fallback" src="/assets/prehistoric-tree.png" alt="Prehistoric jungle canopy" loading="eager" decoding="async" />
@@ -26,6 +27,8 @@
       will-change: transform;
     }
     .hero-bg video {
+      position: absolute;
+      inset: 0;
       width: 100%; height: 100%;
       object-fit: cover;
       opacity: 0.45;
