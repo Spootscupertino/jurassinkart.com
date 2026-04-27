@@ -119,7 +119,28 @@ export async function GET() {
     ? posterCanvasOnly
     : nonPhoneProducts.filter((item) => item.isArtSubject);
 
-  const prioritized = prioritizedPool
+  // Deduplicate products based on normalized titles to prevent showing the same artwork across different mediums (e.g., both Canvas and Poster)
+  const seenTitles = new Set();
+  const deduplicatedPool = [];
+  
+  for (const item of prioritizedPool) {
+    // Strip common product suffixes and normalize to a root art title
+    const normTitle = (item.title || '').toLowerCase()
+      .replace(/poster|canvas|wrapped|stretched|framed|matte|premium|rolled|print|wall\s*art|wall\s*decor/g, '')
+      .replace(/[^a-z0-9]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+      
+    if (!seenTitles.has(normTitle) && normTitle.length > 0) {
+      seenTitles.add(normTitle);
+      deduplicatedPool.push(item);
+    } else if (normTitle.length === 0) {
+      // Fallback if the title was literally just "poster" or something edge-case
+      deduplicatedPool.push(item);
+    }
+  }
+
+  const prioritized = deduplicatedPool
     .sort((a, b) => b.score - a.score)
     .slice(0, 16)
     .map(({ isPhoneCase, isPosterOrCanvas, isArtSubject, hasImage, score, ...publicFields }) => publicFields);
