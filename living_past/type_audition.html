@@ -1,0 +1,270 @@
+<meta charset="utf-8">
+<style>
+  /* ---- locally-hosted candidate faces (installed mac fonts referenced by name) ---- */
+  @font-face{ font-family:"Cinzel"; src:url("fonts/Cinzel-Regular.ttf") format("truetype"); font-weight:400; }
+  @font-face{ font-family:"Cinzel"; src:url("fonts/Cinzel-SemiBold.ttf") format("truetype"); font-weight:600; }
+  @font-face{ font-family:"EB Garamond"; src:url("fonts/EBGaramond-Regular.ttf") format("truetype"); font-weight:400; font-style:normal; }
+  @font-face{ font-family:"EB Garamond"; src:url("fonts/EBGaramond-Italic.ttf") format("truetype"); font-weight:400; font-style:italic; }
+
+  :root{
+    --bg:#17150F; --ink:#D8CDB4; --sub:#9A9078; --hair:#FFFFFF1F;
+    --brass:#C9A35C; --brass-2:#D8B57A; --ivory:#F6ECD4; --abyss:#08151C; --bedrock:#241A10;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; }
+  .wrap{
+    background:var(--bg); color:var(--ink);
+    font-family:"Optima","Avenir Next",system-ui,sans-serif;
+    padding:40px clamp(18px,4vw,64px) 90px; line-height:1.5;
+  }
+  .lede{ max-width:74ch; margin:0 auto 40px; }
+  .lede .kicker{ font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:var(--brass); }
+  .lede h1{ font-family:"EB Garamond",Georgia,serif; font-weight:500; font-size:26px; margin:.3em 0 .35em; letter-spacing:.01em; }
+  .lede p{ color:var(--sub); font-size:14px; margin:.4em 0; }
+
+  section{ max-width:1080px; margin:0 auto 30px; }
+  .shead{ display:flex; align-items:baseline; gap:14px; border-bottom:1px solid var(--hair); padding-bottom:8px; margin-bottom:22px; }
+  .shead .n{ font-family:"Cinzel",serif; font-weight:600; color:var(--brass); font-size:15px; letter-spacing:.06em; }
+  .shead .t{ font-size:13px; letter-spacing:.2em; text-transform:uppercase; color:var(--sub); }
+
+  /* candidate card grid */
+  .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:18px; }
+  .card{
+    background:linear-gradient(160deg,#1d1a12,#12100b); border:1px solid var(--hair);
+    border-radius:8px; padding:22px 22px 24px; position:relative;
+  }
+  .card.pick{ border-color:var(--brass); box-shadow:0 0 0 1px var(--brass) inset, 0 18px 40px -22px #000; }
+  .card .tag{ position:absolute; top:0; right:14px; transform:translateY(-50%);
+    font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; padding:3px 9px; border-radius:100px;
+    background:var(--brass); color:#1a1408; font-weight:600; }
+  .card .tag.note{ background:transparent; border:1px solid var(--hair); color:var(--sub); }
+  .facename{ font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--sub); margin-bottom:14px; }
+
+  /* the actual poster title treatment, on sky */
+  .titlebox{
+    background:linear-gradient(120deg,#24325f 0%,#6a5480 34%,#c66a34 66%,#f2a250 88%,#ffd488 100%);
+    border-radius:5px; padding:26px 24px; text-align:right; margin-bottom:4px; overflow:hidden;
+  }
+  .place-cinzel{ font-family:"Cinzel",serif; font-weight:600; font-size:30px; letter-spacing:.14em; color:var(--ivory); line-height:1; text-shadow:0 2px 8px #0007; }
+  .place-didot{ font-family:"Didot","Bodoni 72",serif; font-weight:400; font-size:34px; letter-spacing:.16em; color:var(--ivory); line-height:1; text-shadow:0 2px 8px #0007; }
+  .place-bodoni{ font-family:"Bodoni 72","Didot",serif; font-weight:400; font-size:33px; letter-spacing:.14em; color:var(--ivory); line-height:1; text-shadow:0 2px 8px #0007; }
+  .place-cochin{ font-family:"Cochin",serif; font-weight:700; font-size:33px; letter-spacing:.14em; color:var(--ivory); line-height:1; text-shadow:0 2px 8px #0007; text-transform:uppercase; }
+  .when{ font-family:"Optima",sans-serif; font-size:11px; letter-spacing:.26em; text-transform:uppercase; color:#e6d3a8; margin-top:9px; text-shadow:0 1px 4px #0006; }
+
+  /* secondary uses on dark furniture */
+  .uses{ margin-top:16px; display:flex; flex-direction:column; gap:11px; }
+  .u-badge{ letter-spacing:.2em; text-transform:uppercase; color:var(--brass-2); font-size:12px; }
+  .u-strat{ letter-spacing:.22em; text-transform:uppercase; color:var(--brass-2); font-size:11px; }
+  .u-vol{ letter-spacing:.28em; text-transform:uppercase; color:var(--sub); font-size:10px; }
+  .cinzelface{ font-family:"Cinzel",serif; font-weight:600; }
+  .didotface{ font-family:"Didot",serif; }
+  .bodoniface{ font-family:"Bodoni 72",serif; }
+  .cochinface{ font-family:"Cochin",serif; font-weight:700; }
+
+  /* body serif specimen */
+  .blurb{ font-size:16px; line-height:1.45; color:#d3c6a6; font-style:italic; }
+  .sci{ font-style:italic; font-size:14px; color:#f0e7d2; display:block; margin-top:10px; }
+  .b-hoefler{ font-family:"Hoefler Text",Georgia,serif; }
+  .b-garamond{ font-family:"EB Garamond",Georgia,serif; }
+  .b-baskerville{ font-family:"Baskerville",Georgia,serif; }
+
+  /* sans specimen */
+  .s-optima{ font-family:"Optima",sans-serif; }
+  .s-avenir{ font-family:"Avenir Next","Avenir",sans-serif; }
+  .s-gill{ font-family:"Gill Sans","Gill Sans MT",sans-serif; }
+  .sans-demo .lab{ font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--brass-2); }
+  .sans-demo .stat{ font-size:15px; color:#e4d8bc; margin-top:6px; }
+  .sans-demo .eyebrow{ font-size:10px; letter-spacing:.24em; text-transform:uppercase; color:var(--sub); margin-top:6px; }
+
+  /* type scale specimen (the locked ladder) */
+  .scale{ background:linear-gradient(160deg,#1d1a12,#12100b); border:1px solid var(--hair); border-radius:8px; padding:26px 28px; }
+  .scale .row{ display:grid; grid-template-columns:180px 1fr; gap:20px; align-items:baseline; padding:11px 0; border-top:1px solid #ffffff10; }
+  .scale .row:first-child{ border-top:none; }
+  .scale .role{ font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--sub); }
+  .scale .role b{ display:block; color:var(--brass-2); font-weight:400; margin-top:3px; letter-spacing:.06em; font-size:10px; }
+  .sc-title{ font-family:"Cinzel",serif; font-weight:600; font-size:30px; letter-spacing:.14em; color:var(--ivory); }
+  .sc-sub{ font-family:"Optima",sans-serif; font-size:12px; letter-spacing:.26em; text-transform:uppercase; color:#e6d3a8; }
+  .sc-strat{ font-family:"Cinzel",serif; font-weight:600; font-size:14px; letter-spacing:.2em; text-transform:uppercase; color:var(--brass-2); }
+  .sc-cn{ font-family:"EB Garamond",serif; font-style:italic; font-size:17px; color:#f0e7d2; }
+  .sc-sn{ font-family:"EB Garamond",serif; font-style:italic; font-size:13px; color:#c9bb98; }
+  .sc-stat{ font-family:"Optima",sans-serif; font-size:12.5px; letter-spacing:.03em; color:#d8ccae; }
+  .sc-callout{ font-family:"Cinzel",serif; font-weight:600; font-size:20px; color:var(--brass-2); }
+
+  /* brass label letterspacing ladder */
+  .brassladder{ display:flex; flex-direction:column; gap:0; }
+  .brassladder .r{ display:grid; grid-template-columns:120px 1fr; gap:18px; align-items:center; padding:12px 0; border-top:1px solid #ffffff10; }
+  .brassladder .r:first-child{ border-top:none; }
+  .brassladder .meta{ font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--sub); }
+  .brassladder .spec{ font-family:"Optima",sans-serif; text-transform:uppercase; color:var(--brass-2); font-size:12px; }
+  .ls10{ letter-spacing:.10em; } .ls16{ letter-spacing:.16em; } .ls22{ letter-spacing:.22em; } .ls30{ letter-spacing:.30em; }
+
+  .rec{ max-width:1080px; margin:44px auto 0; background:linear-gradient(160deg,#20211a,#14140e);
+    border:1px solid var(--brass); border-radius:10px; padding:26px 30px; }
+  .rec h2{ font-family:"Cinzel",serif; font-weight:600; color:var(--brass-2); font-size:16px; letter-spacing:.1em; margin:0 0 14px; text-transform:uppercase; }
+  .rec ul{ margin:0; padding-left:0; list-style:none; }
+  .rec li{ padding:8px 0; border-top:1px solid #ffffff12; font-size:14px; }
+  .rec li:first-child{ border-top:none; }
+  .rec li b{ color:var(--brass-2); font-weight:600; }
+  .rec .sans{ font-size:12px; color:var(--sub); }
+</style>
+
+<div class="wrap">
+  <div class="lede">
+    <div class="kicker">The Living Past · Type Audition</div>
+    <h1>Locking the typographic voice — goals #1–4</h1>
+    <p>Every candidate below is the <em>real</em> face, rendered live. Cinzel is a free, open-licensed (SIL OFL) Trajan-alike standing in for the inscriptional Roman-capital direction; the true Trajan Pro can be licensed later with zero layout change. Didot, Bodoni&nbsp;72, Cochin, Baskerville, Hoefler&nbsp;Text and Optima are the macOS system faces already used in the mockup.</p>
+    <p class="sans" style="color:var(--sub);font-size:12.5px">Judge on the museum-plate feeling at the poster's real title size, and on how the small furniture (stratum headers, stats, badges) holds up as “engraved fine print.”</p>
+  </div>
+
+  <!-- ============ #1 DISPLAY FACE ============ -->
+  <section>
+    <div class="shead"><span class="n">1</span><span class="t">Display face — the poster title</span></div>
+    <div class="grid">
+
+      <div class="card pick">
+        <span class="tag">Recommended</span>
+        <div class="facename">Cinzel / Trajan — inscriptional Roman capitals</div>
+        <div class="titlebox">
+          <div class="place-cinzel">LATE CRETACEOUS</div>
+          <div class="when">145–66 million years ago</div>
+        </div>
+        <div class="uses">
+          <div class="u-badge cinzelface">Volume V of VII</div>
+          <div class="u-strat cinzelface">Above Ground · Underground · Shoreline · Ocean</div>
+          <div class="u-vol cinzelface">The Living Past · Sections of Ancient Earth</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag note">Placeholder</span>
+        <div class="facename">Didot — high-contrast Modern</div>
+        <div class="titlebox">
+          <div class="place-didot">LATE CRETACEOUS</div>
+          <div class="when">145–66 million years ago</div>
+        </div>
+        <div class="uses">
+          <div class="u-badge didotface">Volume V of VII</div>
+          <div class="u-strat didotface">Above Ground · Underground · Shoreline · Ocean</div>
+          <div class="u-vol didotface">The Living Past · Sections of Ancient Earth</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag note">Alt</span>
+        <div class="facename">Bodoni 72 — high-contrast Modern</div>
+        <div class="titlebox">
+          <div class="place-bodoni">LATE CRETACEOUS</div>
+          <div class="when">145–66 million years ago</div>
+        </div>
+        <div class="uses">
+          <div class="u-badge bodoniface">Volume V of VII</div>
+          <div class="u-strat bodoniface">Above Ground · Underground · Shoreline · Ocean</div>
+          <div class="u-vol bodoniface">The Living Past · Sections of Ancient Earth</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag note">Alt</span>
+        <div class="facename">Cochin (caps) — engraved transitional</div>
+        <div class="titlebox">
+          <div class="place-cochin">Late Cretaceous</div>
+          <div class="when">145–66 million years ago</div>
+        </div>
+        <div class="uses">
+          <div class="u-badge cochinface" style="text-transform:uppercase">Volume V of VII</div>
+          <div class="u-strat cochinface" style="text-transform:uppercase">Above · Underground · Shoreline · Ocean</div>
+          <div class="u-vol cochinface" style="text-transform:uppercase">The Living Past · Sections of Ancient Earth</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ #2 BODY SERIF + UTILITY SANS ============ -->
+  <section>
+    <div class="shead"><span class="n">2</span><span class="t">Body serif — the “this world” blurb + scientific names</span></div>
+    <div class="grid">
+      <div class="card pick">
+        <span class="tag">Recommended</span>
+        <div class="facename">EB Garamond — humanist old-style (Garamond family)</div>
+        <p class="blurb b-garamond">The final chapter of the age of dinosaurs — a lush, ice-free world teeming with life, unaware of the asteroid already in the sky.<span class="sci b-garamond">Tyrannosaurus rex · Mosasaurus hoffmannii · Quetzalcoatlus northropi</span></p>
+      </div>
+      <div class="card">
+        <span class="tag note">Placeholder</span>
+        <div class="facename">Hoefler Text — old-style (mac system)</div>
+        <p class="blurb b-hoefler">The final chapter of the age of dinosaurs — a lush, ice-free world teeming with life, unaware of the asteroid already in the sky.<span class="sci b-hoefler">Tyrannosaurus rex · Mosasaurus hoffmannii · Quetzalcoatlus northropi</span></p>
+      </div>
+      <div class="card">
+        <span class="tag note">Alt</span>
+        <div class="facename">Baskerville — transitional (mac system)</div>
+        <p class="blurb b-baskerville">The final chapter of the age of dinosaurs — a lush, ice-free world teeming with life, unaware of the asteroid already in the sky.<span class="sci b-baskerville">Tyrannosaurus rex · Mosasaurus hoffmannii · Quetzalcoatlus northropi</span></p>
+      </div>
+    </div>
+
+    <div class="shead" style="margin-top:30px"><span class="n">2</span><span class="t">Utility sans — labels · stats · eyebrows · timeline</span></div>
+    <div class="grid">
+      <div class="card pick sans-demo">
+        <span class="tag">Recommended</span>
+        <div class="facename">Optima — humanist sans (inscriptional-derived; pairs with Cinzel)</div>
+        <div class="lab s-optima">Fast Facts · Climate</div>
+        <div class="stat s-optima">12–13 m · Carnivore</div>
+        <div class="eyebrow s-optima">Deep time · You are here · K–Pg extinction</div>
+      </div>
+      <div class="card sans-demo">
+        <span class="tag note">Alt</span>
+        <div class="facename">Avenir Next — geometric sans</div>
+        <div class="lab s-avenir">Fast Facts · Climate</div>
+        <div class="stat s-avenir">12–13 m · Carnivore</div>
+        <div class="eyebrow s-avenir">Deep time · You are here · K–Pg extinction</div>
+      </div>
+      <div class="card sans-demo">
+        <span class="tag note">Alt</span>
+        <div class="facename">Gill Sans — humanist sans</div>
+        <div class="lab s-gill">Fast Facts · Climate</div>
+        <div class="stat s-gill">12–13 m · Carnivore</div>
+        <div class="eyebrow s-gill">Deep time · You are here · K–Pg extinction</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ #3 TYPE SCALE ============ -->
+  <section>
+    <div class="shead"><span class="n">3</span><span class="t">Type scale + weights — the locked ladder (proposed)</span></div>
+    <div class="scale">
+      <div class="row"><div class="role">Era title<b>Cinzel 600 · 30px · +.14em</b></div><div class="sc-title">LATE CRETACEOUS</div></div>
+      <div class="row"><div class="role">Era date / subtitle<b>Optima · 12px · +.26em · caps</b></div><div class="sc-sub">145–66 million years ago</div></div>
+      <div class="row"><div class="role">Stratum header<b>Cinzel 600 · 14px · +.20em · caps</b></div><div class="sc-strat">Ocean</div></div>
+      <div class="row"><div class="role">Common name<b>EB Garamond italic · 17px</b></div><div class="sc-cn">Tyrant lizard king</div></div>
+      <div class="row"><div class="role">Scientific name<b>EB Garamond italic · 13px</b></div><div class="sc-sn">Tyrannosaurus rex</div></div>
+      <div class="row"><div class="role">Stats line<b>Optima · 12.5px · +.03em</b></div><div class="sc-stat">12–13 m · Carnivore · 68–66 Ma</div></div>
+      <div class="row"><div class="role">Callout numeral<b>Cinzel 600 · 20px</b></div><div class="sc-callout">25</div></div>
+    </div>
+  </section>
+
+  <!-- ============ #4 BRASS LABEL LETTERSPACING ============ -->
+  <section>
+    <div class="shead"><span class="n">4</span><span class="t">Brass-label letterspacing — engraved plate, not UI</span></div>
+    <div class="scale">
+      <div class="brassladder">
+        <div class="r"><div class="meta">+.10em<br>too tight</div><div class="spec ls10">Above Ground · Reconstruction Confidence</div></div>
+        <div class="r"><div class="meta">+.16em</div><div class="spec ls16">Above Ground · Reconstruction Confidence</div></div>
+        <div class="r"><div class="meta">+.22em<br>proposed</div><div class="spec ls22">Above Ground · Reconstruction Confidence</div></div>
+        <div class="r"><div class="meta">+.30em<br>too airy</div><div class="spec ls30">Above Ground · Reconstruction Confidence</div></div>
+      </div>
+      <p style="color:var(--sub);font-size:12.5px;margin:18px 0 0;line-height:1.5">Proposed: <b style="color:var(--brass-2)">all-caps, +.22em, Optima</b> for the small brass furniture labels (stratum heads, panel titles, legend). Enough air to read as an engraved museum plate; not so wide it fragments at ~0.5&nbsp;cqw print size. Numerals and callouts stay in Cinzel to tie back to the title.</p>
+    </div>
+  </section>
+
+  <!-- ============ RECOMMENDATION ============ -->
+  <div class="rec">
+    <h2>Proposed lock</h2>
+    <ul>
+      <li><b>Display / wordmark:</b> <span class="cinzelface" style="color:var(--ivory)">Cinzel</span> (free OFL Trajan-alike; upgrade to Trajan Pro later if desired). Inscriptional Roman capitals = the literal “carved in a museum wall” voice, and it's the one face here derived from Roman monuments — dead-on for “Sections of Ancient Earth.” Didot/Bodoni read <em>fashion-magazine elegant</em>, a touch cold for deep time.</li>
+      <li><b>Body serif:</b> <span class="b-garamond" style="color:var(--ivory)">EB Garamond</span> — warm humanist old-style that sets the blurb and italic species names beautifully; also free/OFL and available identically on web + print. Hoefler stays a fine fallback.</li>
+      <li><b>Utility sans:</b> <span class="s-optima" style="color:var(--ivory)">Optima</span> — keep it. It's a humanist sans <em>itself drawn from Roman inscriptions</em>, so it shares Cinzel's DNA: one family feel across three roles.</li>
+      <li><b>Type scale:</b> the ladder in #3 above (7 fixed roles, 2 weights: Cinzel 600 + Optima/Garamond regular-italic).</li>
+      <li><b>Brass labels:</b> all-caps Optima, <b>+.22em</b>.</li>
+      <li class="sans">Net system: <b>Cinzel</b> (display + numerals) · <b>EB Garamond</b> (body + names) · <b>Optima</b> (labels/stats). Two of the three are free/OFL and web-identical — clean for the Astro side.</li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,96 @@
+<meta charset="utf-8">
+<style>
+  @font-face{ font-family:"Cinzel"; src:url("fonts/Cinzel-SemiBold.ttf") format("truetype"); font-weight:600; }
+  @font-face{ font-family:"EB Garamond"; src:url("fonts/EBGaramond-Italic.ttf") format("truetype"); font-style:italic; }
+  :root{ --bg:#17150F; --ink:#D8CDB4; --sub:#9A9078; --hair:#FFFFFF1F; --brass-hi:#D8B57A; --brass:#B98F4E; --ivory:#F6ECD4; }
+  *{ box-sizing:border-box; } body{ margin:0; }
+  .wrap{ background:var(--bg); color:var(--ink); font-family:"Optima","Avenir Next",system-ui,sans-serif; padding:40px clamp(18px,4vw,56px) 80px; line-height:1.5; }
+  .lede{ max-width:76ch; margin:0 auto 26px; }
+  .kicker{ font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:var(--brass-hi); }
+  h1{ font-family:"Cinzel",serif; font-weight:600; font-size:22px; letter-spacing:.06em; margin:.4em 0 .3em; }
+  .lede p{ color:var(--sub); font-size:13.5px; }
+  .board{ max-width:1000px; margin:0 auto; }
+  .sect{ font-family:"Cinzel",serif; font-weight:600; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--brass-hi); border-bottom:1px solid var(--hair); padding-bottom:7px; margin:26px 0 16px; }
+  .panel{ background:linear-gradient(90deg,#241A10,#14140e 55%,#0d1a20); border:1px solid var(--hair); border-radius:8px; padding:20px 24px; }
+  .cap{ font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--brass-hi); margin-bottom:12px; }
+  svg{ display:block; width:100%; }
+  .verdict{ max-width:1000px; margin:28px auto 0; background:linear-gradient(160deg,#20211a,#14140e); border:1px solid var(--brass-hi); border-radius:10px; padding:22px 28px; }
+  .verdict h2{ font-family:"Cinzel",serif; font-weight:600; color:var(--brass-hi); font-size:15px; letter-spacing:.1em; margin:0 0 10px; text-transform:uppercase; }
+  .verdict p{ font-size:13.5px; margin:.5em 0; } .verdict b{ color:var(--brass-hi); }
+</style>
+
+<div class="wrap">
+  <div class="lede">
+    <div class="kicker">The Living Past · Sense of Scale · Goal #10</div>
+    <h1>The human belongs in the key, not the world</h1>
+    <p>A 1.8&nbsp;m human silhouette next to the giants, drawn to a shared meter ruler, lets a viewer calibrate the whole poster at a glance — and it does so in the furniture, so no anachronistic human ever intrudes on the Cretaceous scene. Two layouts below.</p>
+  </div>
+
+  <div class="board">
+    <!-- A: horizontal ruler strip, recommended -->
+    <div class="sect">A · Ruler strip (recommended) — sits in the facts band</div>
+    <div class="panel">
+      <div class="cap">Sense of scale · metres</div>
+      <svg viewBox="0 0 960 150" preserveAspectRatio="xMidYMid meet">
+        <!-- baseline + meter ticks: 18 m across; scale = 48 px/m, 0 m at x=48 -->
+        <line x1="48" y1="118" x2="912" y2="118" stroke="#B98F4E" stroke-width="1.4"/>
+        <g stroke="#7a6438" stroke-width="1" font-family="Optima,sans-serif" fill="#9a8b6a" font-size="9" text-anchor="middle">
+          <line x1="48" y1="113" x2="48" y2="123"/><text x="48" y="136">0</text>
+          <line x1="144" y1="113" x2="144" y2="123"/><text x="144" y="136">2</text>
+          <line x1="240" y1="113" x2="240" y2="123"/><text x="240" y="136">4</text>
+          <line x1="336" y1="115" x2="336" y2="121"/>
+          <line x1="432" y1="113" x2="432" y2="123"/><text x="432" y="136">8</text>
+          <line x1="528" y1="115" x2="528" y2="121"/>
+          <line x1="624" y1="113" x2="624" y2="123"/><text x="624" y="136">12</text>
+          <line x1="720" y1="115" x2="720" y2="121"/>
+          <line x1="816" y1="113" x2="816" y2="123"/><text x="816" y="136">16</text>
+          <line x1="912" y1="113" x2="912" y2="123"/><text x="912" y="136">18</text>
+        </g>
+        <!-- human 1.8 m tall = 86 px, standing on baseline at ~0.6 m (x=77) -->
+        <g fill="#D8B57A">
+          <circle cx="77" cy="42" r="6.5"/>
+          <path d="M70 52 C70 49 84 49 84 52 L83 118 L79 118 L78 82 L76 82 L75 118 L71 118 Z"/>
+        </g>
+        <text x="77" y="100" font-family="EB Garamond,serif" font-style="italic" fill="#cdbf9f" font-size="11" text-anchor="middle">1.8 m</text>
+        <!-- Mosasaurus 17 m long, drawn to true scale: nose at 0.5 m (x=72), tail tip at 17.5 m (x=888). ~2.5 m tall body -->
+        <g fill="#8fb0a8" opacity="0.9">
+          <path d="M72 92
+            C90 84 140 82 220 84
+            C360 88 520 86 640 82
+            C560 96 460 100 360 100
+            C300 100 180 98 120 96
+            C160 100 180 104 184 112
+            C168 108 150 102 128 98
+            C110 100 92 100 72 92 Z"/>
+          <!-- tail extends to 17.5 m -->
+          <path d="M640 82 C720 80 800 84 888 92 C812 98 760 96 700 94 C680 100 668 108 664 116 C660 106 656 98 660 92 C650 90 646 88 640 87 Z" opacity="0.9"/>
+          <!-- front paddle -->
+          <path d="M150 96 C150 104 158 112 168 116 C158 112 150 106 146 100 Z"/>
+        </g>
+        <text x="470" y="72" font-family="EB Garamond,serif" font-style="italic" fill="#bfd6ce" font-size="12" text-anchor="middle">Mosasaurus · 17 m — nearly ten people, nose to tail</text>
+      </svg>
+    </div>
+
+    <!-- B: stacked height comparison -->
+    <div class="sect">B · Height stack (alt) — vertical, next to the confidence key</div>
+    <div class="panel" style="max-width:420px">
+      <div class="cap">Height at a glance</div>
+      <svg viewBox="0 0 400 150" preserveAspectRatio="xMidYMid meet">
+        <line x1="20" y1="130" x2="380" y2="130" stroke="#B98F4E" stroke-width="1.2"/>
+        <!-- scale: 26 px/m; human 1.8m, trex 4m tall, quetz 3m standing/5.5 tall pose, mosa ~2.5 depth -->
+        <g fill="#D8B57A"><circle cx="46" cy="86" r="5"/><path d="M40 94 C40 91 52 91 52 94 L51 122 L48 122 L47 106 L45 106 L44 122 L41 122 Z"/></g>
+        <text x="46" y="144" font-family="EB Garamond,serif" font-style="italic" fill="#cdbf9f" font-size="9" text-anchor="middle">Human 1.8 m</text>
+        <g fill="#caa15b"><path d="M120 130 C120 118 126 106 138 100 C136 92 140 84 150 82 C148 86 150 88 154 88 C164 86 176 92 182 102 C174 102 168 100 162 102 C166 116 160 128 150 130 Z"/></g>
+        <text x="150" y="144" font-family="EB Garamond,serif" font-style="italic" fill="#cdbf9f" font-size="9" text-anchor="middle">T. rex 4 m</text>
+        <g fill="#c2a878"><path d="M250 130 L250 70 C250 60 258 54 268 54 C260 46 262 40 262 40 C270 48 282 50 288 58 C296 54 306 56 312 62 C304 64 298 62 292 62 C296 80 288 96 274 100 L274 130 Z"/></g>
+        <text x="282" y="144" font-family="EB Garamond,serif" font-style="italic" fill="#cdbf9f" font-size="9" text-anchor="middle">Quetzalcoatlus 5 m</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <h2>Recommendation</h2>
+    <p><b>A — the horizontal ruler strip.</b> One shared metre scale with the human and the two titans on it turns "measured, not eyeballed" from a claim into something you can see, and it fits the facts band's horizontal rhythm. B (height stack) is a nice web-page module but on the poster it competes with the confidence key for the same corner.</p>
+    <p>Lock for §4: <b>a metre-ruled "Sense of scale" strip</b> in the facts band — 1.8&nbsp;m human silhouette + the volume's two titans drawn to the same ruler, brass on the dark ground, labels in EB Garamond italic. The human never appears in the scene itself.</p>
+  </div>
+</div>

@@ -1,0 +1,188 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content='width=device-width, initial-scale=1'><title>The Living Past · Vol V — all pages</title><style>
+  @font-face{ font-family:"Cinzel"; src:url("../fonts/Cinzel-Regular.ttf") format("truetype"); font-weight:400; }
+  @font-face{ font-family:"Cinzel"; src:url("../fonts/Cinzel-SemiBold.ttf") format("truetype"); font-weight:600; }
+  @font-face{ font-family:"EB Garamond"; src:url("../fonts/EBGaramond-Regular.ttf") format("truetype"); font-weight:400; font-style:normal; }
+  @font-face{ font-family:"EB Garamond"; src:url("../fonts/EBGaramond-Italic.ttf") format("truetype"); font-weight:400; font-style:italic; }
+  :root{
+    --brass:#B98F4E; --brass-hi:#D8B57A; --ivory:#F6ECD4; --muted:#A99C7F;
+    --bg:#0d0b07; --panel:#17140d; --hair:#ffffff14;
+    --display:"Cinzel",Georgia,serif; --body:"EB Garamond",Georgia,serif; --sans:"Optima","Avenir Next",system-ui,sans-serif;
+    /* per-organism focus point for the hero pan (where this animal sits in the scene) */
+    --focus-x:30%; --focus-y:24%;
+  }
+  *{ box-sizing:border-box; } html,body{ margin:0; }
+  .pg{ background:
+      radial-gradient(120% 60% at 50% -10%, #2a2312 0%, transparent 55%),
+      linear-gradient(180deg,#0d0b07,#0a0f12 70%,#08151C);
+    color:var(--ivory); font-family:var(--sans); min-height:100%; padding-bottom:64px; }
+  .wrap{ max-width:1000px; margin:0 auto; padding:0 22px; }
+
+  /* ============================================================
+     CINEMATIC ANIMATED HERO  — the poster scene, alive
+     ============================================================ */
+  .hero{ position:relative; width:100%; height:82vh; min-height:520px; overflow:hidden;
+    background:#05070a; border-bottom:1px solid #b98f4e33; }
+  .hero .scene{ position:absolute; inset:0; }
+  .hero .scene img{ width:100%; height:100%; object-fit:cover; display:block;
+    transform-origin:var(--focus-x) var(--focus-y);
+    animation:kenburns 34s ease-in-out infinite alternate; will-change:transform; }
+  /* real video hero — it supplies its own motion, so no Ken Burns */
+  .hero .scene video{ width:100%; height:100%; object-fit:cover; display:block; transform:scale(1.02); }
+  @keyframes kenburns{
+    0%{ transform:scale(1.06); }
+    100%{ transform:scale(1.20); }
+  }
+  /* drifting god-rays / light shimmer */
+  .hero .rays{ position:absolute; inset:-20% -10%; pointer-events:none; mix-blend-mode:screen; opacity:.35;
+    background:repeating-linear-gradient(74deg,
+      transparent 0 42px, #cfe8ff10 42px 46px, transparent 46px 120px);
+    animation:raydrift 18s linear infinite; }
+  @keyframes raydrift{ 0%{ transform:translateX(0); } 100%{ transform:translateX(120px); } }
+  /* slow drifting motes/plankton */
+  .hero .motes{ position:absolute; inset:0; pointer-events:none; opacity:.5;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20% 30%, #ffe9b855, transparent),
+      radial-gradient(1.5px 1.5px at 70% 60%, #cfe8ff44, transparent),
+      radial-gradient(1px 1px at 45% 80%, #ffe9b844, transparent),
+      radial-gradient(1px 1px at 85% 25%, #cfe8ff33, transparent),
+      radial-gradient(1.5px 1.5px at 33% 55%, #ffe9b833, transparent);
+    background-size:100% 100%; animation:motedrift 26s ease-in-out infinite alternate; }
+  @keyframes motedrift{ 0%{ transform:translateY(0); } 100%{ transform:translateY(-24px); } }
+  /* legibility scrims — soft top + strong bottom so the name always reads */
+  .hero .scrim{ position:absolute; inset:0; pointer-events:none;
+    background:
+      linear-gradient(180deg,#05070acc 0%, transparent 22%),
+      linear-gradient(0deg,#05070aee 0%, #05070a55 26%, transparent 52%),
+      radial-gradient(90% 60% at 50% 120%, transparent, #05070a88); }
+
+  .hero .title{ position:absolute; left:0; right:0; bottom:0; padding:0 0 44px;
+    animation:rise 1.1s cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes rise{ 0%{ opacity:0; transform:translateY(24px); } 100%{ opacity:1; transform:none; } }
+  .hero .title .in{ max-width:1000px; margin:0 auto; padding:0 22px; }
+  .hero .eyebrow{ font-family:var(--sans); font-size:12px; letter-spacing:.26em; text-transform:uppercase; color:var(--brass-hi);
+    text-shadow:0 1px 6px #000a; display:flex; align-items:center; gap:12px; }
+  .hero .eyebrow .no{ font-family:var(--display); font-weight:600; }
+  .hero .eyebrow .rule{ width:46px; height:1px; background:linear-gradient(90deg,var(--brass),transparent); }
+  .hero h1{ font-family:var(--body); font-style:italic; font-weight:400; font-size:clamp(42px,7.6vw,94px); letter-spacing:.005em;
+    color:var(--ivory); line-height:.98; margin:.14em 0 .16em; text-shadow:0 3px 22px #000c, 0 1px 3px #0009; }
+  .hero .sub{ font-family:var(--body); font-style:italic; font-size:clamp(15px,2.2vw,22px); color:#e6d3a8;
+    text-shadow:0 1px 8px #000b; letter-spacing:.01em; }
+  .hero .badge{ display:inline-flex; align-items:center; gap:9px; margin-top:16px;
+    font-family:var(--sans); font-size:12px; letter-spacing:.08em; color:#e8dcc0; text-shadow:0 1px 6px #000a; }
+  .hero .badge .dot{ width:12px; height:12px; border-radius:50%; border:1px solid var(--brass); background:var(--brass);
+    box-shadow:0 0 10px #b98f4e88; }
+  /* scroll cue */
+  .cue{ position:absolute; left:50%; bottom:16px; transform:translateX(-50%); font-family:var(--sans);
+    font-size:10px; letter-spacing:.28em; text-transform:uppercase; color:#e8dcc0aa; animation:bob 2.4s ease-in-out infinite;
+    text-align:center; text-shadow:0 1px 6px #000; }
+  .cue span{ display:block; font-size:14px; margin-top:3px; }
+  @keyframes bob{ 0%,100%{ transform:translate(-50%,0); opacity:.55;} 50%{ transform:translate(-50%,5px); opacity:1;} }
+
+  @media(prefers-reduced-motion:reduce){
+    .hero .scene img,.hero .rays,.hero .motes,.hero .title,.cue{ animation:none; }
+    .hero .scene img{ transform:scale(1.08); }
+  }
+
+  /* ============================================================
+     INFO — "all about it"
+     ============================================================ */
+  .facts{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--hair);
+    border:1px solid var(--hair); border-radius:10px; overflow:hidden; margin:34px 0 34px; }
+  @media(max-width:620px){ .facts{ grid-template-columns:repeat(2,1fr); } }
+  .facts .f{ background:var(--panel); padding:15px 18px; }
+  .facts .fl{ font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); }
+  .facts .fv{ font-family:var(--sans); font-size:16px; color:var(--ivory); margin-top:6px; letter-spacing:.01em; }
+
+  .cols{ display:grid; grid-template-columns:1.5fr 1fr; gap:36px; }
+  @media(max-width:760px){ .cols{ grid-template-columns:1fr; } }
+  h2{ font-family:var(--display); font-weight:600; font-size:13px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--brass-hi); border-bottom:1px solid var(--hair); padding-bottom:8px; margin:0 0 15px;
+    display:flex; align-items:center; gap:10px; }
+  h2::after{ content:""; flex:1; height:1px; background:linear-gradient(90deg,#b98f4e44,transparent); }
+  .blurb{ font-family:var(--body); font-style:italic; font-size:22px; line-height:1.5; color:#f3e9cf; margin-bottom:30px; }
+  .body-copy{ font-family:var(--sans); font-size:15.5px; line-height:1.7; color:#e4dabf; letter-spacing:.005em; }
+  .funfacts{ list-style:none; padding:0; margin:0; }
+  .funfacts li{ font-family:var(--sans); font-size:15px; line-height:1.62; padding:12px 0 12px 24px;
+    border-top:1px solid var(--hair); position:relative; color:#e4dabf; letter-spacing:.005em; }
+  .funfacts li:first-child{ border-top:none; }
+  .funfacts li::before{ content:"◆"; position:absolute; left:0; color:var(--brass); font-size:10px; top:15px; }
+
+  .aside{ display:flex; flex-direction:column; gap:22px; }
+  .card{ background:var(--panel); border:1px solid var(--hair); border-radius:12px; padding:20px; }
+  .survivor{ border-color:#3a5a3a55; background:linear-gradient(160deg,#12180f,#0f130c); }
+  .survivor .tag{ font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:#8fc98f; }
+  .survivor p{ font-family:var(--sans); font-size:14px; line-height:1.58; margin:8px 0 0; color:#d8e6d8; letter-spacing:.005em; }
+
+  .buy{ background:linear-gradient(160deg,#241d10,#14120b); border:1px solid var(--brass); }
+  .buy h3{ font-family:var(--display); font-weight:600; font-size:14px; letter-spacing:.1em; text-transform:uppercase; color:var(--brass-hi); margin:0 0 6px; }
+  .buy p{ font-size:13px; color:var(--muted); margin:0 0 14px; line-height:1.5; }
+  .btn{ display:block; text-align:center; text-decoration:none; padding:12px; border-radius:8px; font-size:13px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:9px; transition:transform .15s ease, box-shadow .15s ease; }
+  .btn.p{ background:var(--brass-hi); color:#1a1408; font-weight:600; }
+  .btn.p:hover{ transform:translateY(-1px); box-shadow:0 6px 18px -6px #d8b57a88; }
+  .btn.s{ border:1px solid var(--brass); color:var(--brass-hi); }
+  .btn.s:hover{ background:#b98f4e18; }
+
+  .distrib .map{ aspect-ratio:2/1; border-radius:8px; border:1px solid var(--hair); background:
+      radial-gradient(60% 80% at 40% 45%, #6f5a3455, transparent), #0f1a1f; margin-top:6px; }
+
+  .refs{ font-size:12px; color:var(--muted); line-height:1.6; }
+  .refs a{ color:var(--brass-hi); }
+
+  /* mini deep-time footer — echoes the poster's timeline */
+  .deeptime{ max-width:1000px; margin:44px auto 0; padding:0 22px; }
+  .deeptime svg{ width:100%; height:52px; display:block; }
+  .footer{ max-width:1000px; margin:14px auto 0; padding:16px 22px 0; border-top:1px solid var(--hair);
+    display:flex; justify-content:space-between; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+
+  .seo{ max-width:1000px; margin:26px auto 0; padding:14px 22px; font-size:11px; color:#6a6250; line-height:1.6; border-top:1px dashed #ffffff14; }
+  .seo code{ color:#9a8b6a; }
+
+  .hero .badge .dot.half{ background:linear-gradient(90deg,var(--brass) 0 50%,transparent 50%); }
+  .hero .badge .dot.open{ background:transparent; }
+  /* 'needs sourcing' placeholder tone — visible, never mistaken for finished copy */
+  .todo{ color:#7c6f52; font-style:italic; }
+  .todo::before{ content:"◇ "; color:var(--brass); font-style:normal; }
+</style></head><body><div class=pg><div class=wrap style='padding-top:40px'><h1 style='font-family:var(--display)'>The Living Past · Vol V — 32 pages</h1><p style='color:var(--muted)'>Generated by build_organism_pages.py. Each QR (jrk.art/x/&lt;id&gt;) lands on one of these.</p>    <h2>Above Ground</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px">
+      <a class="btn s" style="text-align:left" href="tyrannosaurus-rex.html">CR01 · Tyrannosaurus rex</a>
+      <a class="btn s" style="text-align:left" href="triceratops.html">CR02 · Triceratops</a>
+      <a class="btn s" style="text-align:left" href="edmontosaurus.html">CR03 · Edmontosaurus</a>
+      <a class="btn s" style="text-align:left" href="ankylosaurus.html">CR04 · Ankylosaurus</a>
+      <a class="btn s" style="text-align:left" href="dakotaraptor.html">CR05 · Dakotaraptor</a>
+      <a class="btn s" style="text-align:left" href="quetzalcoatlus.html">CR06 · Quetzalcoatlus</a>
+      <a class="btn s" style="text-align:left" href="ornithomimus.html">CR07 · Ornithomimus</a>
+      <a class="btn s" style="text-align:left" href="pachycephalosaurus.html">CR08 · Pachycephalosaurus</a>
+    </div>
+    <h2>Underground</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px">
+      <a class="btn s" style="text-align:left" href="didelphodon.html">CR09 · Didelphodon</a>
+      <a class="btn s" style="text-align:left" href="cimolestes.html">CR10 · Cimolestes</a>
+      <a class="btn s" style="text-align:left" href="beetle-larva.html">CR11 · Beetle larva</a>
+      <a class="btn s" style="text-align:left" href="ant.html">CR12 · Ant</a>
+      <a class="btn s" style="text-align:left" href="earthworm.html">CR13 · Earthworm</a>
+      <a class="btn s" style="text-align:left" href="cicada-nymph.html">CR14 · Cicada nymph</a>
+      <a class="btn s" style="text-align:left" href="nest-clutch.html">CR15 · Nest clutch</a>
+      <a class="btn s" style="text-align:left" href="mycorrhizal-fungi.html">CR16 · Mycorrhizal fungi</a>
+    </div>
+    <h2>Shoreline</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px">
+      <a class="btn s" style="text-align:left" href="borealosuchus.html">CR17 · Borealosuchus</a>
+      <a class="btn s" style="text-align:left" href="basilemys.html">CR18 · Basilemys</a>
+      <a class="btn s" style="text-align:left" href="gar.html">CR19 · Gar</a>
+      <a class="btn s" style="text-align:left" href="guitarfish-ray.html">CR20 · Guitarfish ray</a>
+      <a class="btn s" style="text-align:left" href="champsosaurus.html">CR21 · Champsosaurus</a>
+      <a class="btn s" style="text-align:left" href="palaeosaniwa.html">CR22 · Palaeosaniwa</a>
+      <a class="btn s" style="text-align:left" href="horseshoe-crab.html">CR23 · Horseshoe crab</a>
+      <a class="btn s" style="text-align:left" href="baculites.html">CR24 · Baculites</a>
+    </div>
+    <h2>Ocean</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px">
+      <a class="btn s" style="text-align:left" href="mosasaurus.html">CR25 · Mosasaurus</a>
+      <a class="btn s" style="text-align:left" href="prognathodon.html">CR26 · Prognathodon</a>
+      <a class="btn s" style="text-align:left" href="xiphactinus.html">CR27 · Xiphactinus</a>
+      <a class="btn s" style="text-align:left" href="enchodus.html">CR28 · Enchodus</a>
+      <a class="btn s" style="text-align:left" href="crow-shark.html">CR29 · Crow shark</a>
+      <a class="btn s" style="text-align:left" href="belemnite.html">CR30 · Belemnite</a>
+      <a class="btn s" style="text-align:left" href="inoceramus.html">CR31 · Inoceramus</a>
+      <a class="btn s" style="text-align:left" href="crinoid.html">CR32 · Crinoid</a>
+    </div></div></div></body></html>

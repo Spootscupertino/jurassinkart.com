@@ -1,0 +1,38 @@
+/* GENERATED from design_tokens.json — do not edit by hand.
+   Regenerate: python3 living_past/template/gen_tokens_css.py */
+:root{
+  /* --- brass + ink --- */
+  --lp-brass: #B98F4E;
+  --lp-brass-hi: #D8B57A;
+  --lp-ivory: #F6ECD4;
+  --lp-ivory-2: #EDE3CE;
+  --lp-muted: #A99C7F;
+  --lp-bedrock: #241A10;
+  --lp-abyss: #08151C;
+  --lp-extinction: #C0442F;
+  --lp-callout-fill: #0b0d0e;
+  --lp-callout-numeral: #E9D7AC;
+  --lp-sunset: #24325F, #6A5480, #C66A34, #F2A250, #FFD488;
+  --lp-ground-grad: #241A10, #1a1912, #0d1a20, #08151C;
+  /* --- faces --- */
+  --lp-display: "Cinzel", Trajan Pro, Georgia, serif;
+  --lp-body: "EB Garamond", Hoefler Text, Georgia, serif;
+  --lp-sans: "Optima", Avenir Next, system-ui, sans-serif;
+  --lp-display-weight: 600;
+  /* --- type scale (mockup px @ 1180px poster) --- */
+  --lp-era-title-size: 30px;
+  --lp-era-title-track: 0.14em;
+  --lp-era-date-size: 12px;
+  --lp-era-date-track: 0.26em;
+  --lp-stratum-header-size: 14px;
+  --lp-stratum-header-track: 0.2em;
+  --lp-common-name-size: 17px;
+  --lp-common-name-track: 0em;
+  --lp-scientific-name-size: 13px;
+  --lp-scientific-name-track: 0em;
+  --lp-stats-line-size: 12.5px;
+  --lp-stats-line-track: 0.03em;
+  --lp-callout-numeral-size: 20px;
+  --lp-callout-numeral-track: 0em;
+  --lp-brass-label-track: 0.22em;
+}

@@ -1,0 +1,162 @@
+{
+  "CR01": {
+    "slug": "tyrannosaurus-rex",
+    "path": "/late-cretaceous/tyrannosaurus-rex",
+    "volume": "V"
+  },
+  "CR02": {
+    "slug": "triceratops",
+    "path": "/late-cretaceous/triceratops",
+    "volume": "V"
+  },
+  "CR03": {
+    "slug": "edmontosaurus",
+    "path": "/late-cretaceous/edmontosaurus",
+    "volume": "V"
+  },
+  "CR04": {
+    "slug": "ankylosaurus",
+    "path": "/late-cretaceous/ankylosaurus",
+    "volume": "V"
+  },
+  "CR05": {
+    "slug": "dakotaraptor",
+    "path": "/late-cretaceous/dakotaraptor",
+    "volume": "V"
+  },
+  "CR06": {
+    "slug": "quetzalcoatlus",
+    "path": "/late-cretaceous/quetzalcoatlus",
+    "volume": "V"
+  },
+  "CR07": {
+    "slug": "ornithomimus",
+    "path": "/late-cretaceous/ornithomimus",
+    "volume": "V"
+  },
+  "CR08": {
+    "slug": "pachycephalosaurus",
+    "path": "/late-cretaceous/pachycephalosaurus",
+    "volume": "V"
+  },
+  "CR09": {
+    "slug": "didelphodon",
+    "path": "/late-cretaceous/didelphodon",
+    "volume": "V"
+  },
+  "CR10": {
+    "slug": "cimolestes",
+    "path": "/late-cretaceous/cimolestes",
+    "volume": "V"
+  },
+  "CR11": {
+    "slug": "beetle-larva",
+    "path": "/late-cretaceous/beetle-larva",
+    "volume": "V"
+  },
+  "CR12": {
+    "slug": "ant",
+    "path": "/late-cretaceous/ant",
+    "volume": "V"
+  },
+  "CR13": {
+    "slug": "earthworm",
+    "path": "/late-cretaceous/earthworm",
+    "volume": "V"
+  },
+  "CR14": {
+    "slug": "cicada-nymph",
+    "path": "/late-cretaceous/cicada-nymph",
+    "volume": "V"
+  },
+  "CR15": {
+    "slug": "nest-clutch",
+    "path": "/late-cretaceous/nest-clutch",
+    "volume": "V"
+  },
+  "CR16": {
+    "slug": "mycorrhizal-fungi",
+    "path": "/late-cretaceous/mycorrhizal-fungi",
+    "volume": "V"
+  },
+  "CR17": {
+    "slug": "borealosuchus",
+    "path": "/late-cretaceous/borealosuchus",
+    "volume": "V"
+  },
+  "CR18": {
+    "slug": "basilemys",
+    "path": "/late-cretaceous/basilemys",
+    "volume": "V"
+  },
+  "CR19": {
+    "slug": "gar",
+    "path": "/late-cretaceous/gar",
+    "volume": "V"
+  },
+  "CR20": {
+    "slug": "guitarfish-ray",
+    "path": "/late-cretaceous/guitarfish-ray",
+    "volume": "V"
+  },
+  "CR21": {
+    "slug": "champsosaurus",
+    "path": "/late-cretaceous/champsosaurus",
+    "volume": "V"
+  },
+  "CR22": {
+    "slug": "palaeosaniwa",
+    "path": "/late-cretaceous/palaeosaniwa",
+    "volume": "V"
+  },
+  "CR23": {
+    "slug": "horseshoe-crab",
+    "path": "/late-cretaceous/horseshoe-crab",
+    "volume": "V"
+  },
+  "CR24": {
+    "slug": "baculites",
+    "path": "/late-cretaceous/baculites",
+    "volume": "V"
+  },
+  "CR25": {
+    "slug": "mosasaurus",
+    "path": "/late-cretaceous/mosasaurus",
+    "volume": "V"
+  },
+  "CR26": {
+    "slug": "prognathodon",
+    "path": "/late-cretaceous/prognathodon",
+    "volume": "V"
+  },
+  "CR27": {
+    "slug": "xiphactinus",
+    "path": "/late-cretaceous/xiphactinus",
+    "volume": "V"
+  },
+  "CR28": {
+    "slug": "enchodus",
+    "path": "/late-cretaceous/enchodus",
+    "volume": "V"
+  },
+  "CR29": {
+    "slug": "crow-shark",
+    "path": "/late-cretaceous/crow-shark",
+    "volume": "V"
+  },
+  "CR30": {
+    "slug": "belemnite",
+    "path": "/late-cretaceous/belemnite",
+    "volume": "V"
+  },
+  "CR31": {
+    "slug": "inoceramus",
+    "path": "/late-cretaceous/inoceramus",
+    "volume": "V"
+  },
+  "CR32": {
+    "slug": "crinoid",
+    "path": "/late-cretaceous/crinoid",
+    "volume": "V"
+  }
+}

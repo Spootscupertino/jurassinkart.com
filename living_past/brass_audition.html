@@ -1,0 +1,152 @@
+<meta charset="utf-8">
+<style>
+  @font-face{ font-family:"Cinzel"; src:url("fonts/Cinzel-SemiBold.ttf") format("truetype"); font-weight:600; }
+  :root{
+    --bg:#17150F; --ink:#D8CDB4; --sub:#9A9078; --hair:#FFFFFF1F;
+    --brass:#B98F4E; --brass-hi:#D8B57A; --brass-lo:#8a6a34; --ivory:#F6ECD4;
+  }
+  *{ box-sizing:border-box; }
+  body{ margin:0; }
+  .wrap{ background:var(--bg); color:var(--ink); font-family:"Optima","Avenir Next",system-ui,sans-serif;
+    padding:40px clamp(18px,4vw,64px) 90px; line-height:1.5; }
+  .lede{ max-width:74ch; margin:0 auto 30px; }
+  .lede .kicker{ font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:var(--brass-hi); }
+  .lede h1{ font-family:"Cinzel",serif; font-weight:600; font-size:22px; letter-spacing:.06em; margin:.4em 0 .3em; }
+  .lede p{ color:var(--sub); font-size:13.5px; }
+
+  .cols{ max-width:1080px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .col{ background:linear-gradient(160deg,#1d1a12,#12100b); border:1px solid var(--hair); border-radius:10px; padding:22px 22px 26px; }
+  .col.pick{ border-color:var(--brass-hi); box-shadow:0 0 0 1px var(--brass-hi) inset; }
+  .col .tag{ font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; padding:3px 9px; border-radius:100px;
+    background:var(--brass); color:#1a1408; font-weight:600; display:inline-block; margin-bottom:6px; }
+  .col .tag.n{ background:transparent; border:1px solid var(--hair); color:var(--sub); }
+  .col h3{ font-family:"Cinzel",serif; font-weight:600; font-size:14px; letter-spacing:.08em; margin:6px 0 4px; color:var(--ivory); }
+  .col .desc{ font-size:12px; color:var(--sub); min-height:52px; }
+
+  /* ---- brass fills ---- */
+  .flat{ background:var(--brass-hi); }
+  .flat-r{ background:var(--brass); }
+  /* brushed metal: fine vertical striping + top-lit sheen */
+  .brushed{
+    background:
+      repeating-linear-gradient(90deg, #ffffff10 0 1px, #00000012 1px 2px),
+      linear-gradient(180deg,#e8c98e 0%, #c99a54 38%, #a97e3e 62%, #d9b578 100%);
+  }
+  .brushed-soft{
+    background:
+      repeating-linear-gradient(90deg, #ffffff0c 0 1px, #00000010 1px 3px),
+      linear-gradient(180deg,#dcb877 0%, #b98f4e 55%, #caa563 100%);
+  }
+  /* aged wood: warm grain streaks */
+  .wood{
+    background:
+      repeating-linear-gradient(88deg, #00000018 0 2px, #ffffff08 2px 5px, #00000010 5px 9px),
+      linear-gradient(180deg,#6b4a28,#4a331d);
+  }
+
+  .swatchrow{ display:flex; flex-direction:column; gap:16px; margin-top:14px; }
+  .lbl{ font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--sub); margin-bottom:5px; }
+
+  /* rule */
+  .rule{ height:2px; border-radius:2px; }
+  /* stratum underline + header */
+  .strat{ display:flex; align-items:center; gap:8px; }
+  .strat .t{ font-family:"Cinzel",serif; font-weight:600; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--brass-hi); white-space:nowrap; }
+  .strat .ln{ flex:1; height:1.5px; }
+  /* confidence dots at true ~0.6cqw print size */
+  .dots{ display:flex; align-items:center; gap:14px; }
+  .dot{ width:11px; height:11px; border-radius:50%; border:1px solid var(--brass); }
+  .dot.half{ position:relative; overflow:hidden; }
+  .dot.half::after{ content:""; position:absolute; inset:0; width:50%; }
+  .dot.open{ background:transparent !important; }
+  /* qr frame */
+  .qr{ width:44px; height:44px; border-radius:2px; padding:3px; }
+  .qr .inner{ width:100%; height:100%; background:#0d0f10; display:grid; grid-template-columns:repeat(6,1fr); grid-template-rows:repeat(6,1fr); }
+  .qr .inner i{ background:var(--brass-hi); }
+  /* callout numeral badge */
+  .callout{ width:30px; height:30px; border-radius:50%; border:1.4px solid var(--brass-hi); background:#0b0d0e;
+    display:flex; align-items:center; justify-content:center; font-family:"Cinzel",serif; font-weight:600; font-size:14px; color:#e9d7ac; }
+
+  .verdict{ max-width:1080px; margin:34px auto 0; background:linear-gradient(160deg,#20211a,#14140e);
+    border:1px solid var(--brass-hi); border-radius:10px; padding:24px 28px; }
+  .verdict h2{ font-family:"Cinzel",serif; font-weight:600; color:var(--brass-hi); font-size:15px; letter-spacing:.1em; margin:0 0 12px; text-transform:uppercase; }
+  .verdict p{ font-size:13.5px; margin:.5em 0; }
+  .verdict b{ color:var(--brass-hi); }
+</style>
+
+<div class="wrap">
+  <div class="lede">
+    <div class="kicker">The Living Past · Brass Treatment · Goal #5</div>
+    <h1>Flat vs. aged brass — does texture survive at print size?</h1>
+    <p>All brass furniture rendered at its true poster scale (2px rules, 11px confidence dots, ~1&nbsp;cm QR frame). The question isn't which looks richest zoomed-in — it's which still reads as one clean material at reading distance on a 24×36&nbsp;print.</p>
+  </div>
+
+  <div class="cols">
+    <!-- FLAT -->
+    <div class="col pick">
+      <span class="tag">Recommended</span>
+      <h3>A · Flat brass</h3>
+      <div class="desc">Solid <code>#D8B57A</code> / <code>#B98F4E</code>. Current mockup. Zero banding risk, crisp at any size, unmistakably legible.</div>
+      <div class="swatchrow">
+        <div><div class="lbl">Rules</div><div class="rule flat"></div><div class="rule flat-r" style="margin-top:7px"></div></div>
+        <div><div class="lbl">Stratum header</div><div class="strat"><span class="t">Ocean</span><span class="ln flat-r"></span></div></div>
+        <div><div class="lbl">Confidence dots</div><div class="dots">
+          <span class="dot" style="background:var(--brass-hi)"></span>
+          <span class="dot half"><span style="position:absolute;inset:0;background:var(--brass-hi);clip-path:inset(0 50% 0 0)"></span></span>
+          <span class="dot open"></span>
+        </div></div>
+        <div style="display:flex;gap:18px;align-items:flex-end">
+          <div><div class="lbl">QR frame</div><div class="qr flat"><div class="inner"><i></i><i style="background:transparent"></i><i></i><i></i><i style="background:transparent"></i><i></i><i style="background:transparent"></i><i></i><i></i><i style="background:transparent"></i><i></i><i></i><i></i><i></i><i style="background:transparent"></i><i></i><i></i><i style="background:transparent"></i><i style="background:transparent"></i><i></i><i></i><i style="background:transparent"></i><i></i><i></i><i></i><i style="background:transparent"></i><i></i><i></i><i style="background:transparent"></i><i></i><i style="background:transparent"></i><i></i><i></i><i style="background:transparent"></i><i></i><i></i></div></div></div>
+          <div><div class="lbl">Callout</div><div class="callout">25</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BRUSHED -->
+    <div class="col">
+      <span class="tag n">Alt</span>
+      <h3>B · Brushed metal</h3>
+      <div class="desc">Fine vertical striping + top-lit sheen. Premium engraved-plate realism — but the striping muddies at small size and is a print-banding risk.</div>
+      <div class="swatchrow">
+        <div><div class="lbl">Rules</div><div class="rule brushed"></div><div class="rule brushed-soft" style="margin-top:7px"></div></div>
+        <div><div class="lbl">Stratum header</div><div class="strat"><span class="t">Ocean</span><span class="ln brushed-soft"></span></div></div>
+        <div><div class="lbl">Confidence dots</div><div class="dots">
+          <span class="dot brushed"></span>
+          <span class="dot half"><span style="position:absolute;inset:0;clip-path:inset(0 50% 0 0)" class="brushed"></span></span>
+          <span class="dot open"></span>
+        </div></div>
+        <div style="display:flex;gap:18px;align-items:flex-end">
+          <div><div class="lbl">QR frame</div><div class="qr brushed"><div class="inner"><i></i><i style="background:transparent"></i><i></i><i></i><i style="background:transparent"></i><i></i><i style="background:transparent"></i><i></i><i></i><i style="background:transparent"></i><i></i><i></i><i></i><i></i><i style="background:transparent"></i><i></i><i></i><i style="background:transparent"></i><i style="background:transparent"></i><i></i><i></i><i style="background:transparent"></i><i></i><i></i><i></i><i style="background:transparent"></i><i></i><i></i><i style="background:transparent"></i><i></i><i style="background:transparent"></i><i></i><i></i><i style="background:transparent"></i><i></i><i></i></div></div></div>
+          <div><div class="lbl">Callout</div><div class="callout" style="border-color:transparent;background:none"><div style="position:absolute;width:30px;height:30px;border-radius:50%" class="brushed"></div><span style="position:relative;color:#2a1c08">25</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WOOD -->
+    <div class="col">
+      <span class="tag n">Alt</span>
+      <h3>C · Aged wood-grain</h3>
+      <div class="desc">Warm antique-frame plaque character. Handsome on big panels but reads muddy/dark on the tiny dots &amp; rules, and fights the ivory ink for contrast.</div>
+      <div class="swatchrow">
+        <div><div class="lbl">Rules</div><div class="rule wood"></div><div class="rule wood" style="margin-top:7px"></div></div>
+        <div><div class="lbl">Stratum header</div><div class="strat"><span class="t">Ocean</span><span class="ln wood"></span></div></div>
+        <div><div class="lbl">Confidence dots</div><div class="dots">
+          <span class="dot wood"></span>
+          <span class="dot half"><span style="position:absolute;inset:0;clip-path:inset(0 50% 0 0)" class="wood"></span></span>
+          <span class="dot open"></span>
+        </div></div>
+        <div style="display:flex;gap:18px;align-items:flex-end">
+          <div><div class="lbl">QR frame</div><div class="qr wood"><div class="inner"><i></i><i style="background:transparent"></i><i></i><i></i><i style="background:transparent"></i><i></i><i style="background:transparent"></i><i></i><i></i><i style="background:transparent"></i><i></i><i></i><i></i><i></i><i style="background:transparent"></i><i></i><i></i><i style="background:transparent"></i><i style="background:transparent"></i><i></i><i></i><i style="background:transparent"></i><i></i><i></i><i></i><i style="background:transparent"></i><i></i><i></i><i style="background:transparent"></i><i></i><i style="background:transparent"></i><i></i><i></i><i style="background:transparent"></i><i></i><i></i></div></div></div>
+          <div><div class="lbl">Callout</div><div class="callout wood" style="color:#f0e2c4">25</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <h2>Recommendation</h2>
+    <p><b>Flat brass as the locked base</b> for all small/repeated furniture — the 32 confidence dots, per-card rules, callout numerals, QR frames. At true print size, texture on these just becomes noise or a banding hazard, and flat brass is what keeps the field guide reading as crisp "engraved fine print."</p>
+    <p><b>Reserve a whisper of brushed sheen (option B) for the few LARGE brass moments only</b> — the master-QR frame and the confidence-key plate in the facts band — where the surface is big enough to carry it. This is a Photoshop finishing touch at build time (layer style), not a template constant, so it costs nothing to defer.</p>
+    <p>Net lock for §4: <b>brass = flat</b> (<code>#D8B57A</code> highlight / <code>#B98F4E</code> base); optional subtle brushed layer-style allowed on elements ≥ ~1.5&nbsp;cm only.</p>
+  </div>
+</div>

@@ -1,0 +1,123 @@
+---
+// The Living Past — organism page template (SCOPE §9, #15).
+// Auto-builds one page per organism from the volume JSON. Staging copy; deploy as
+//   site/src/pages/late-cretaceous/[slug].astro   (or a [volume]/[slug] route)
+// Data + design pulled from the locked sources — nothing hand-typed per page.
+import volumeV from "../../volume_v.json";
+
+const VOLUME_META: Record<string, { base: string; era: string; when: string }> = {
+  V: { base: "late-cretaceous", era: "Late Cretaceous", when: "66 Ma" },
+};
+const TYPE_LABEL: Record<string, string> = {
+  land_animal: "Land Animal", flying_reptile: "Flying Reptile",
+  marine_reptile: "Marine Reptile", fish: "Fish",
+  invertebrate: "Invertebrate", plant: "Plant", mammal: "Mammal",
+};
+const SECTION_LABEL: Record<string, string> = {
+  above: "Above Ground", underground: "Underground",
+  shoreline: "Shoreline", ocean: "Ocean",
+};
+const CONF_LABEL: Record<string, string> = {
+  well_documented: "Well-documented", reasonable_inference: "Reasonable inference",
+  speculative: "Speculative",
+};
+const slugify = (s: string) =>
+  s.toLowerCase().replace(/\([^)]*\)/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+export function getStaticPaths() {
+  const vol = volumeV.$meta.volume;
+  const base = VOLUME_META[vol]?.base ?? "volume";
+  return volumeV.organisms.map((o: any) => ({
+    params: { volume: base, slug: o.slug ?? slugify(o.commonName) },
+    props: { o, vol },
+  }));
+}
+
+const { o, vol } = Astro.props as { o: any; vol: string };
+const meta = VOLUME_META[vol];
+const confKey = o.confidence as keyof typeof CONF_LABEL;
+// confidence dot: filled | half | open
+const confClass = { well_documented: "filled", reasonable_inference: "half", speculative: "open" }[confKey];
+const heroImg = o.image ?? null; // isolate plate path once produced
+const title = `${o.scientificName} — ${meta.era} | The Living Past`;
+const desc = (o.blurb ?? `${o.commonName} (${o.scientificName}) — a ${TYPE_LABEL[o.type]?.toLowerCase()} of the ${meta.era}.`).slice(0, 155);
+---
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={desc} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={desc} />
+  {heroImg && <meta property="og:image" content={heroImg} />}
+  <link rel="stylesheet" href="/styles/living-past-tokens.css" />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "CreativeWork",
+    name: o.commonName, alternateName: o.scientificName, about: meta.era,
+    description: desc,
+  })} />
+</head>
+<body class="lp-page">
+  <div class="wrap">
+    <div class="top">
+      <span>The Living Past · Vol {vol} · <span class="era">{meta.era} · {meta.when}</span></span>
+      <span>{SECTION_LABEL[o.section]} · No. {String(o.position).padStart(2, "0")}</span>
+    </div>
+
+    <section class="hero">
+      <div class="heroimg">
+        <div class="callout">{o.id.replace(/^\D+/, "")}</div>
+        {heroImg
+          ? <img src={heroImg} alt={`${o.commonName} reconstruction`} />
+          : <div class="ph">isolate plate pending</div>}
+      </div>
+      <div class="namecol">
+        <div class="type">{TYPE_LABEL[o.type]}{o.diet && o.diet !== "—" ? ` · ${o.diet}` : ""}</div>
+        <h1>{o.commonName}</h1>
+        <div class="sci">{o.scientificName}</div>
+        {o.pronunciation && <div class="pron">{o.pronunciation}</div>}
+        <div class="badge"><span class={`dot ${confClass}`}></span> {CONF_LABEL[confKey]} reconstruction</div>
+      </div>
+    </section>
+
+    <div class="facts">
+      <div class="f"><div class="fl">Size</div><div class="fv">{o.size}</div></div>
+      <div class="f"><div class="fl">When</div><div class="fv">{o.ageRange_Ma?.[0]}–{o.ageRange_Ma?.[1]} Ma</div></div>
+      <div class="f"><div class="fl">Diet</div><div class="fv">{o.diet}</div></div>
+      <div class="f"><div class="fl">Habitat</div><div class="fv">{o.habitat ?? SECTION_LABEL[o.section]}</div></div>
+    </div>
+
+    <div class="cols">
+      <div class="main">
+        {o.blurb && <p class="blurb">{o.blurb}</p>}
+        {o.notes && <><h2>In this world</h2><p class="body-copy">{o.notes}</p></>}
+        {o.funFacts?.length > 0 && <>
+          <h2>Field notes</h2>
+          <ul class="funfacts">{o.funFacts.map((f: string) => <li>{f}</li>)}</ul>
+        </>}
+      </div>
+
+      <aside class="aside">
+        <div class="card buy">
+          <h3>Bring it home</h3>
+          <p>This scene as a museum-grade 24×36″ poster, or just this species as a print.</p>
+          <a class="btn p" href={`/${meta.base}#poster`}>Buy the {meta.era} poster</a>
+          <a class="btn s" href={`/${meta.base}/${o.slug ?? slugify(o.commonName)}#print`}>Buy the {o.commonName} print</a>
+        </div>
+        {o.survivor && <div class="card survivor"><div class="tag">Still with us today</div><p>{o.survivor}</p></div>}
+        {o.distribution && <div class="card distrib"><h2 style="border:none;margin:0 0 6px;padding:0">Where</h2><p class="body-copy" style="font-size:13px">{o.distribution}</p></div>}
+        {o.references?.length > 0 && <div class="card">
+          <h2 style="border:none;margin:0 0 8px;padding:0">Sources</h2>
+          <div class="refs">{o.references.map((r: any, i: number) => <a href={r.url ?? "#"}>[{i + 1}]</a>)}</div>
+        </div>}
+      </aside>
+    </div>
+
+    <div class="footer">
+      <span>◆ Reconstruction confidence disclosed</span>
+      <span>The Living Past · No. {vol}</span>
+    </div>
+  </div>
+</body>
+</html>

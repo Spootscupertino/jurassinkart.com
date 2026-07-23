@@ -1,0 +1,48 @@
+{
+  "$meta": {
+    "title": "Accurate stratigraphy for the Living Past Vol V cross-section",
+    "setting": "Williston Basin margin, western North America, terminal Maastrichtian (~66 Ma). Land cliff = Hell Creek Formation (fluvial), unconformably over Fox Hills Sandstone (nearshore marine) and Pierre/Bearpaw Shale (offshore marine) at depth.",
+    "method": "STRUCTURE is accurate + code-built (order, relative thickness, features); TEXTURE is MJ, one tile per lithology (see mjTexture). Never let MJ invent the layer order — that's the moat.",
+    "prewImpact_note": "Scene is PRE-IMPACT (asteroid still in the sky). The K-Pg iridium layer / Z-coal boundary clay is deposited BY the impact, so it is deliberately ABSENT from the ground here. The living surface at top IS the latest-Cretaceous land surface.",
+    "features_legend": {
+      "roots": "root traces descending from a vegetated paleosol surface",
+      "burrow": "invertebrate/mammal burrow in a paleosol (CR09/CR12/CR13 habitat)",
+      "egg_clutch": "buried dinosaur nest (CR15) in a sandy overbank/levee paleosol",
+      "coal": "lignite seam — compressed swamp peat",
+      "ash": "bentonite — altered volcanic ash from the scene's volcano (datable sanidine)",
+      "unconformity": "sharp erosive scour surface (up to ~3 m relief)",
+      "marine": "below the land/sea transition"
+    },
+    "references": [
+      "Hartman, Johnson & Nichols (eds.) 2002/2014, GSA Special Papers 361/503 — Hell Creek Formation & the K-Pg boundary",
+      "Fastovsky & Bercovici 2016, 'The Hell Creek Formation and its contribution to the K-Pg extinction: a short primer', Cretaceous Research",
+      "Flight/Belt et al.; Murphy et al. — Hell Creek lithostratigraphy, North Dakota (RG 279611040)",
+      "MDPI Geosciences 2020, 10(11):435 — Hell Creek sequence-stratigraphic review, Montana",
+      "USGS Geolex — Hell Creek Formation unit references"
+    ]
+  },
+  "layers": [
+    { "id": "L01", "name": "Living floodplain soil", "lithology": "rooted paleosol (dark mudstone)", "environment": "vegetated latest-Cretaceous land surface — the T. rex stands here", "color": "#4a3d28", "relThickness": 0.09, "features": ["roots", "burrow"],
+      "mjTexture": "extreme close texture of dark brown crumbly rooted topsoil and fine root traces, mottled organic soil, painterly realism, no animals, no text --ar 2:3 --style raw" },
+    { "id": "L02", "name": "Overbank mudstone", "lithology": "color-mottled mudstone/claystone", "environment": "floodplain overbank, plant & wood fragments", "color": "#5c5038", "relThickness": 0.12, "features": ["roots"],
+      "mjTexture": "extreme close texture of grey-brown color-mottled mudstone with carbonized plant and wood fragments, painterly realism, no animals, no text --ar 2:3 --style raw" },
+    { "id": "L03", "name": "Lignite seam", "lithology": "lignite / thin coal", "environment": "swampy backswamp — compressed peat", "color": "#171009", "relThickness": 0.035, "features": ["coal"],
+      "mjTexture": "extreme close texture of black lignite coal seam, dull woody carbon, thin bright resin films, painterly realism, no text --ar 3:1 --style raw" },
+    { "id": "L04", "name": "Channel sandstone", "lithology": "cross-bedded fine sandstone", "environment": "river point-bar / channel fill", "color": "#a98c58", "relThickness": 0.16, "features": ["crossbed"],
+      "mjTexture": "extreme close texture of tan trough cross-bedded fine sandstone, dune laminae, painterly realism, no text --ar 3:2 --style raw" },
+    { "id": "L05", "name": "Nest paleosol", "lithology": "sandy paleosol (mottled)", "environment": "levee/overbank soil — buried nest horizon", "color": "#6e5a34", "relThickness": 0.11, "features": ["egg_clutch", "burrow", "roots"],
+      "mjTexture": "extreme close texture of mottled sandy paleosol, root casts and small burrows, painterly realism, no animals, no text --ar 3:2 --style raw" },
+    { "id": "L06", "name": "Bentonite ash bed", "lithology": "bentonite (altered volcanic ash)", "environment": "ash fall from the scene's volcano — the datable marker", "color": "#b9b7a0", "relThickness": 0.028, "features": ["ash"],
+      "mjTexture": "extreme close texture of pale grey-green bentonite volcanic ash clay, waxy popcorn weathering, painterly realism, no text --ar 3:1 --style raw" },
+    { "id": "L07", "name": "Overbank mudstone", "lithology": "grey mudstone", "environment": "floodplain overbank", "color": "#4e4636", "relThickness": 0.12, "features": [],
+      "mjTexture": "extreme close texture of grey floodplain mudstone, faint bedding, painterly realism, no text --ar 2:3 --style raw" },
+    { "id": "L08", "name": "Channel sandstone", "lithology": "cross-bedded sandstone", "environment": "lower Hell Creek river channel", "color": "#9c8350", "relThickness": 0.14, "features": ["crossbed"],
+      "mjTexture": "extreme close texture of tan cross-bedded channel sandstone, painterly realism, no text --ar 3:2 --style raw" },
+    { "id": "U01", "name": "Unconformity", "lithology": "sharp erosive scour", "environment": "time gap — Hell Creek cut down into the marine rocks below", "color": "#2c2318", "relThickness": 0.012, "features": ["unconformity"],
+      "mjTexture": null },
+    { "id": "L09", "name": "Fox Hills Sandstone", "lithology": "yellow marine sandstone", "environment": "nearshore / shoreface — the retreating Western Interior Seaway", "color": "#b0a066", "relThickness": 0.14, "features": ["marine"],
+      "mjTexture": "extreme close texture of yellow-tan nearshore marine sandstone, gentle ripple lamination, faint shell debris, painterly realism, no text --ar 3:2 --style raw" },
+    { "id": "L10", "name": "Pierre / Bearpaw Shale", "lithology": "dark offshore marine shale", "environment": "offshore seafloor mud — deepest, oldest", "color": "#38414a", "relThickness": 0.18, "features": ["marine"],
+      "mjTexture": "extreme close texture of dark blue-grey offshore marine shale, fissile laminae, a round carbonate concretion, painterly realism, no text --ar 2:3 --style raw" }
+  ]
+}

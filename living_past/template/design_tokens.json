@@ -1,0 +1,135 @@
+{
+  "$meta": {
+    "name": "The Living Past — locked design tokens",
+    "version": "1.0.0",
+    "locked": "2026-07-09",
+    "source": "living_past/SCOPE.md §4 (frozen). Single source of truth for the PSD template and the Astro site.",
+    "note": "Two size scales: 'mockup_px' = px at the 1180px preview poster; 'master_pt' = points on the 24x36in 300dpi master (10800x7200 px). master_px = mockup_px * 9.153; master_pt = master_px * 0.24."
+  },
+
+  "canvas": {
+    "trim_in": [36, 24],
+    "dpi": 300,
+    "trim_px": [10800, 7200],
+    "bleed_in": 0.125,
+    "bleed_px": 37.5,
+    "full_bleed_px": [10875, 7275],
+    "safe_margin_in": 0.25,
+    "safe_margin_px": 75,
+    "color_profile": "sRGB",
+    "orientation": "landscape"
+  },
+
+  "layout": {
+    "rows_pct": { "scene": 65, "field_guide": 21, "facts_band": 10, "timeline": 4 },
+    "coastline_pct_from_left": 48,
+    "frame": "none",
+    "zone_dividers": "none (gradient fade to depths); single faint hairline above facts band allowed",
+    "furniture_ground_gradient": ["#241A10", "#1a1912", "#0d1a20", "#08151C"]
+  },
+
+  "scale": {
+    "px_per_m": 270,
+    "world_width_m": 40,
+    "note": "Surface giants sized at 270 px/m both axes. Root-depth and ocean-depth compressed on labeled rulers (Law #2). Re-derive px_per_m per volume from that volume's widest titan.",
+    "titans_v5": { "trex_len_m": 12, "mosasaurus_len_m": 17 }
+  },
+
+  "color": {
+    "brass_base": "#B98F4E",
+    "brass_hi": "#D8B57A",
+    "ink_ivory": "#F6ECD4",
+    "ink_ivory_2": "#EDE3CE",
+    "ink_muted": "#A99C7F",
+    "bedrock": "#241A10",
+    "abyss": "#08151C",
+    "callout_fill": "#0b0d0e",
+    "callout_numeral": "#E9D7AC",
+    "extinction_red": "#C0442F",
+    "sunset_stops": ["#24325F", "#6A5480", "#C66A34", "#F2A250", "#FFD488"],
+    "strata_grounds": { "above": "#5c4a2a", "underground": "#241A10", "shoreline": "#CDB184", "ocean": "#16313d" }
+  },
+
+  "type": {
+    "faces": {
+      "display": { "family": "Cinzel", "weight": 600, "fallback": "Trajan Pro, Georgia, serif", "license": "SIL OFL (Cinzel); upgrade to licensed Trajan Pro allowed" },
+      "body":    { "family": "EB Garamond", "styles": ["regular", "italic"], "fallback": "Hoefler Text, Georgia, serif", "license": "SIL OFL" },
+      "sans":    { "family": "Optima", "fallback": "Avenir Next, system-ui, sans-serif", "license": "system (macOS); web fallback Optima-like" }
+    },
+    "scale": {
+      "era_title":       { "face": "display", "mockup_px": 30,   "master_pt": 65.9, "tracking_em": 0.14, "case": "upper" },
+      "era_date":        { "face": "sans",    "mockup_px": 12,   "master_pt": 26.4, "tracking_em": 0.26, "case": "upper" },
+      "stratum_header":  { "face": "display", "mockup_px": 14,   "master_pt": 30.8, "tracking_em": 0.20, "case": "upper" },
+      "common_name":     { "face": "body",    "mockup_px": 17,   "master_pt": 37.3, "tracking_em": 0,    "case": "title", "style": "italic" },
+      "scientific_name": { "face": "body",    "mockup_px": 13,   "master_pt": 28.6, "tracking_em": 0,    "case": "title", "style": "italic" },
+      "stats_line":      { "face": "sans",    "mockup_px": 12.5, "master_pt": 27.5, "tracking_em": 0.03, "case": "sentence" },
+      "callout_numeral": { "face": "display", "mockup_px": 20,   "master_pt": 43.9, "tracking_em": 0,    "case": "none" }
+    },
+    "brass_label": { "face": "sans", "case": "upper", "tracking_em": 0.22 }
+  },
+
+  "brass_finish": {
+    "small_furniture": "flat",
+    "large_elements_sheen": "optional brushed layer-style on elements >= ~1.5cm only (master QR frame, confidence-key plate)"
+  },
+
+  "confidence_badge": {
+    "geometry": "one brass dot, 1px brass ring, three fill levels",
+    "levels": { "well_documented": "filled", "reasonable_inference": "half (left)", "speculative": "open" },
+    "fill": "#B98F4E", "ring": "#B98F4E"
+  },
+
+  "callout": {
+    "style": "circled numeral",
+    "ring": "#D8B57A", "ring_px_mockup": 1.3, "fill": "#0b0d0e", "numeral": "#E9D7AC", "face": "display"
+  },
+
+  "qr": {
+    "per_card_in": 0.5,
+    "master_in": 1.0,
+    "error_correction": "H",
+    "quiet_zone_modules": 4,
+    "encodes": "jrk.art/x/<id> (stable ID-redirect, never a page URL)",
+    "eye_style": "square",
+    "default_render": "dark modules #0d0f10 on ivory quiet-zone tile; brass tint only if printed scan test passes",
+    "gate": "contrast/scan test at true 0.5in before final lock"
+  },
+
+  "depth_zones": {
+    "treatment": "thin brass hairlines fading from right edge, dissolve before crossing open water",
+    "labels": ["SUNLIT", "TWILIGHT", "DEEP", "OCEAN FLOOR"],
+    "label_face": "sans"
+  },
+
+  "asteroid_whisper": {
+    "enabled": true,
+    "placement": "faint cold point + short streak, top-left empty indigo sky",
+    "note": "echoes K–Pg timeline mark; subtle, not a competing monument"
+  },
+
+  "scale_key": {
+    "layout": "horizontal metre-ruled strip in facts band",
+    "contents": "1.8m human silhouette + volume's largest organism to true scale",
+    "human_in_scene": false,
+    "label_face": "body"
+  },
+
+  "type_icons": {
+    "set": ["land_animal", "flying_reptile", "marine_reptile", "fish", "invertebrate", "plant", "mammal"],
+    "style": "brass silhouettes, single weight, common baseline",
+    "invertebrate_mark": "ammonite spiral (catch-all)",
+    "source": "living_past/glyphs.svg"
+  },
+
+  "timeline": {
+    "style": "warped/non-linear, labeled 'not to scale'",
+    "line": "#B98F4E", "pin": "brass triangle", "extinction_mark": "red ✕ #C0442F",
+    "invariant": "same line all 7 volumes; only pin moves"
+  },
+
+  "globe": {
+    "projection": "interrupted/peeled (unrolled globe)",
+    "land_fill": "#6F5A34", "sea_fill": "#0F1A1F", "pin": "brass dot",
+    "invariant": "same element all 7 volumes; continents drift"
+  }
+}

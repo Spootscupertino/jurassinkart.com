@@ -1,0 +1,581 @@
+{
+  "volume": "V",
+  "organisms": [
+    {
+      "id": "CR01",
+      "commonName": "Tyrannosaurus rex",
+      "section": "above",
+      "position": 1,
+      "size": "12-13 m",
+      "draw_px_master": 3510,
+      "draw_px_proof": 585,
+      "ar": "3:2 or 2:3 by build",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.45,
+        "kind": "feet"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Tyrannosaurus rex, three-quarter view angled about thirty degrees from the front, mid-stride, jaws wide open in a full roar baring rows of teeth, head turned toward camera, long tail sweeping out behind, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, carnivore-appropriate build, warm low golden sunset key light from the upper right, soft directional modelling on the form, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR02",
+      "commonName": "Triceratops",
+      "section": "above",
+      "position": 2,
+      "size": "8-9 m",
+      "draw_px_master": 2430,
+      "draw_px_proof": 405,
+      "ar": "3:2 or 2:3 by build",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.44,
+        "kind": "feet"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Triceratops horridus (Triceratops), three-quarter view angled about thirty degrees from the front, mid-stride, head turned slightly toward camera, long tail sweeping out behind, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, herbivore-appropriate build, warm low golden sunset key light from the upper right, soft directional modelling on the form, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR03",
+      "commonName": "Edmontosaurus",
+      "section": "above",
+      "position": 3,
+      "size": "9-12 m",
+      "draw_px_master": 3240,
+      "draw_px_proof": 540,
+      "ar": "3:2 or 2:3 by build",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.44,
+        "kind": "feet"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Edmontosaurus annectens (Edmontosaurus), three-quarter view angled about thirty degrees from the front, mid-stride, head turned slightly toward camera, long tail sweeping out behind, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, herbivore-appropriate build, warm low golden sunset key light from the upper right, soft directional modelling on the form, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR04",
+      "commonName": "Ankylosaurus",
+      "section": "above",
+      "position": 4,
+      "size": "6-8 m",
+      "draw_px_master": 2160,
+      "draw_px_proof": 360,
+      "ar": "3:2 or 2:3 by build",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.44,
+        "kind": "feet"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Ankylosaurus magniventris (Ankylosaurus), three-quarter view angled about thirty degrees from the front, mid-stride, head turned slightly toward camera, long tail sweeping out behind, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, herbivore-appropriate build, warm low golden sunset key light from the upper right, soft directional modelling on the form, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR05",
+      "commonName": "Dakotaraptor",
+      "section": "above",
+      "position": 5,
+      "size": "5-6 m",
+      "draw_px_master": 1620,
+      "draw_px_proof": 270,
+      "ar": "3:2 or 2:3 by build",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.44,
+        "kind": "feet"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Dakotaraptor steini (Dakotaraptor), three-quarter view angled about thirty degrees from the front, mid-stride, head turned slightly toward camera, long tail sweeping out behind, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, carnivore-appropriate build, warm low golden sunset key light from the upper right, soft directional modelling on the form, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR06",
+      "commonName": "Quetzalcoatlus",
+      "section": "above",
+      "position": 6,
+      "size": "10 m ws",
+      "draw_px_master": 2700,
+      "draw_px_proof": 450,
+      "ar": "16:9 (wingspan)",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.44,
+        "kind": "feet"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Quetzalcoatlus northropi (Quetzalcoatlus), wings fully spread wingtip to wingtip, banking in flight, seen from below and in front, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, carnivore-appropriate build, warm low golden sunset key light from the upper right, soft directional modelling on the form, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR07",
+      "commonName": "Ornithomimus",
+      "section": "above",
+      "position": 7,
+      "size": "4 m",
+      "draw_px_master": 1080,
+      "draw_px_proof": 180,
+      "ar": "3:2 or 2:3 by build",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.44,
+        "kind": "feet"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Ornithomimus velox (Ornithomimus), three-quarter view angled about thirty degrees from the front, mid-stride, head turned slightly toward camera, long tail sweeping out behind, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, omnivore-appropriate build, warm low golden sunset key light from the upper right, soft directional modelling on the form, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR08",
+      "commonName": "Pachycephalosaurus",
+      "section": "above",
+      "position": 8,
+      "size": "4-5 m",
+      "draw_px_master": 1350,
+      "draw_px_proof": 225,
+      "ar": "3:2 or 2:3 by build",
+      "anchor": {
+        "x": 0.22,
+        "y": 0.44,
+        "kind": "feet"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Pachycephalosaurus wyomingensis (Pachycephalosaurus), three-quarter view angled about thirty degrees from the front, mid-stride, head turned slightly toward camera, long tail sweeping out behind, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, herbivore-appropriate build, warm low golden sunset key light from the upper right, soft directional modelling on the form, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR09",
+      "commonName": "Didelphodon",
+      "section": "underground",
+      "position": 1,
+      "size": "1 m",
+      "draw_px_master": 270,
+      "draw_px_proof": 45,
+      "ar": "3:2",
+      "anchor": {
+        "x": 0.16,
+        "y": 0.6,
+        "kind": "mid"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Didelphodon vorax (Didelphodon), low three-quarter view, whole body in an alert crouch, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, carnivore-appropriate build, warm low golden sunset key light from the upper right, earthy ambient fill, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR10",
+      "commonName": "Cimolestes",
+      "section": "underground",
+      "position": 2,
+      "size": "20 cm",
+      "draw_px_master": 54,
+      "draw_px_proof": 9,
+      "ar": "3:2",
+      "anchor": {
+        "x": 0.16,
+        "y": 0.6,
+        "kind": "mid"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Cimolestes, low three-quarter view, whole body in an alert crouch, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, insectivore-appropriate build, warm low golden sunset key light from the upper right, earthy ambient fill, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR11",
+      "commonName": "Beetle larva",
+      "section": "underground",
+      "position": 3,
+      "size": "3 cm",
+      "draw_px_master": 8,
+      "draw_px_proof": 1,
+      "ar": "1:1",
+      "anchor": {
+        "x": 0.16,
+        "y": 0.6,
+        "kind": "mid"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Coleoptera (indet.) (Beetle larva), three-quarter view, whole shell/segmentation clearly shown, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, detritivore-appropriate build, warm low golden sunset key light from the upper right, earthy ambient fill, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR12",
+      "commonName": "Ant",
+      "section": "underground",
+      "position": 4,
+      "size": "1 cm",
+      "draw_px_master": 3,
+      "draw_px_proof": 0,
+      "ar": "1:1",
+      "anchor": {
+        "x": 0.16,
+        "y": 0.6,
+        "kind": "mid"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Formicidae (indet.) (Ant), three-quarter view, whole shell/segmentation clearly shown, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, omnivore-appropriate build, warm low golden sunset key light from the upper right, earthy ambient fill, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR13",
+      "commonName": "Earthworm",
+      "section": "underground",
+      "position": 5,
+      "size": "10 cm",
+      "draw_px_master": 27,
+      "draw_px_proof": 4,
+      "ar": "1:1",
+      "anchor": {
+        "x": 0.16,
+        "y": 0.6,
+        "kind": "mid"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Oligochaeta (indet.) (Earthworm), three-quarter view, whole shell/segmentation clearly shown, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, detritivore-appropriate build, warm low golden sunset key light from the upper right, earthy ambient fill, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR14",
+      "commonName": "Cicada nymph",
+      "section": "underground",
+      "position": 6,
+      "size": "4 cm",
+      "draw_px_master": 11,
+      "draw_px_proof": 2,
+      "ar": "1:1",
+      "anchor": {
+        "x": 0.16,
+        "y": 0.6,
+        "kind": "mid"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Cicadidae (indet.) (Cicada nymph), three-quarter view, whole shell/segmentation clearly shown, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, sap-feeder-appropriate build, warm low golden sunset key light from the upper right, earthy ambient fill, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR15",
+      "commonName": "Nest clutch",
+      "section": "underground",
+      "position": 7,
+      "size": "17 cm egg",
+      "draw_px_master": 46,
+      "draw_px_proof": 8,
+      "ar": "3:2 or 2:3 by build",
+      "anchor": {
+        "x": 0.16,
+        "y": 0.6,
+        "kind": "mid"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Dinosaur egg clutch (Nest clutch), three-quarter view angled about thirty degrees from the front, mid-stride, head turned slightly toward camera, long tail sweeping out behind, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, warm low golden sunset key light from the upper right, earthy ambient fill, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR16",
+      "commonName": "Mycorrhizal fungi",
+      "section": "underground",
+      "position": 8,
+      "size": "soil",
+      "draw_px_master": null,
+      "draw_px_proof": null,
+      "ar": "2:3",
+      "anchor": {
+        "x": 0.16,
+        "y": 0.6,
+        "kind": "mid"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Glomeromycota (indet.) (Mycorrhizal fungi), isolated whole specimen, frond and stem, even frontal light, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, symbiont-appropriate build, warm low golden sunset key light from the upper right, earthy ambient fill, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR17",
+      "commonName": "Borealosuchus",
+      "section": "shoreline",
+      "position": 1,
+      "size": "4 m",
+      "draw_px_master": 1080,
+      "draw_px_proof": 180,
+      "ar": "3:2 (long body)",
+      "anchor": {
+        "x": 0.4,
+        "y": 0.49,
+        "kind": "feet"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Borealosuchus sternbergii (Borealosuchus), full lateral view, mid-swim, subtle body roll revealing flippers/paddle, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, carnivore-appropriate build, warm low golden sunset key light from the upper right, faint water sheen, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR18",
+      "commonName": "Basilemys",
+      "section": "shoreline",
+      "position": 2,
+      "size": "1 m",
+      "draw_px_master": 270,
+      "draw_px_proof": 45,
+      "ar": "3:2 (long body)",
+      "anchor": {
+        "x": 0.4,
+        "y": 0.49,
+        "kind": "feet"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Basilemys, full lateral view, mid-swim, subtle body roll revealing flippers/paddle, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, herbivore-appropriate build, warm low golden sunset key light from the upper right, faint water sheen, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR19",
+      "commonName": "Gar",
+      "section": "shoreline",
+      "position": 3,
+      "size": "2 m",
+      "draw_px_master": 540,
+      "draw_px_proof": 90,
+      "ar": "3:2 (long body)",
+      "anchor": {
+        "x": 0.4,
+        "y": 0.49,
+        "kind": "feet"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Lepisosteus (Gar), full lateral view, dynamic swimming curve, jaw and fin detail, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, carnivore-appropriate build, warm low golden sunset key light from the upper right, faint water sheen, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR20",
+      "commonName": "Guitarfish ray",
+      "section": "shoreline",
+      "position": 4,
+      "size": "30 cm",
+      "draw_px_master": 81,
+      "draw_px_proof": 14,
+      "ar": "3:2 (long body)",
+      "anchor": {
+        "x": 0.4,
+        "y": 0.49,
+        "kind": "feet"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Myledaphus bipartitus (Guitarfish ray), full lateral view, dynamic swimming curve, jaw and fin detail, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, durophage-appropriate build, warm low golden sunset key light from the upper right, faint water sheen, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR21",
+      "commonName": "Champsosaurus",
+      "section": "shoreline",
+      "position": 5,
+      "size": "1.5 m",
+      "draw_px_master": 405,
+      "draw_px_proof": 68,
+      "ar": "3:2 (long body)",
+      "anchor": {
+        "x": 0.4,
+        "y": 0.49,
+        "kind": "feet"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Champsosaurus, full lateral view, mid-swim, subtle body roll revealing flippers/paddle, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, piscivore-appropriate build, warm low golden sunset key light from the upper right, faint water sheen, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR22",
+      "commonName": "Palaeosaniwa",
+      "section": "shoreline",
+      "position": 6,
+      "size": "2-3 m",
+      "draw_px_master": 810,
+      "draw_px_proof": 135,
+      "ar": "3:2 or 2:3 by build",
+      "anchor": {
+        "x": 0.4,
+        "y": 0.49,
+        "kind": "feet"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Palaeosaniwa canadensis (Palaeosaniwa), three-quarter view angled about thirty degrees from the front, mid-stride, head turned slightly toward camera, long tail sweeping out behind, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, carnivore-appropriate build, warm low golden sunset key light from the upper right, faint water sheen, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR23",
+      "commonName": "Horseshoe crab",
+      "section": "shoreline",
+      "position": 7,
+      "size": "30 cm",
+      "draw_px_master": 81,
+      "draw_px_proof": 14,
+      "ar": "1:1",
+      "anchor": {
+        "x": 0.4,
+        "y": 0.49,
+        "kind": "feet"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Xiphosura (indet.) (Horseshoe crab), three-quarter view, whole shell/segmentation clearly shown, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, detritivore-appropriate build, warm low golden sunset key light from the upper right, faint water sheen, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR24",
+      "commonName": "Baculites",
+      "section": "shoreline",
+      "position": 8,
+      "size": "1 m",
+      "draw_px_master": 270,
+      "draw_px_proof": 45,
+      "ar": "1:1",
+      "anchor": {
+        "x": 0.4,
+        "y": 0.49,
+        "kind": "feet"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Baculites, three-quarter view, whole shell/segmentation clearly shown, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, carnivore-appropriate build, warm low golden sunset key light from the upper right, faint water sheen, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR25",
+      "commonName": "Mosasaurus",
+      "section": "ocean",
+      "position": 1,
+      "size": "12-17 m",
+      "draw_px_master": 4590,
+      "draw_px_proof": 765,
+      "ar": "3:2 (long body)",
+      "anchor": {
+        "x": 0.76,
+        "y": 0.64,
+        "kind": "mid"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Mosasaurus hoffmannii (Mosasaurus), full lateral view, mid-swim, subtle body roll revealing flippers/paddle, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, carnivore-appropriate build, cool blue-green light from directly above, soft god-ray falloff, gentle backscatter, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR26",
+      "commonName": "Prognathodon",
+      "section": "ocean",
+      "position": 2,
+      "size": "7-12 m",
+      "draw_px_master": 3240,
+      "draw_px_proof": 540,
+      "ar": "3:2 (long body)",
+      "anchor": {
+        "x": 0.74,
+        "y": 0.66,
+        "kind": "mid"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Prognathodon, full lateral view, mid-swim, subtle body roll revealing flippers/paddle, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, carnivore-appropriate build, cool blue-green light from directly above, soft god-ray falloff, gentle backscatter, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR27",
+      "commonName": "Xiphactinus",
+      "section": "ocean",
+      "position": 3,
+      "size": "5-6 m",
+      "draw_px_master": 1620,
+      "draw_px_proof": 270,
+      "ar": "3:2 (long body)",
+      "anchor": {
+        "x": 0.74,
+        "y": 0.66,
+        "kind": "mid"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Xiphactinus audax (Xiphactinus), full lateral view, dynamic swimming curve, jaw and fin detail, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, carnivore-appropriate build, cool blue-green light from directly above, soft god-ray falloff, gentle backscatter, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR28",
+      "commonName": "Enchodus",
+      "section": "ocean",
+      "position": 4,
+      "size": "1.5 m",
+      "draw_px_master": 405,
+      "draw_px_proof": 68,
+      "ar": "3:2 (long body)",
+      "anchor": {
+        "x": 0.74,
+        "y": 0.66,
+        "kind": "mid"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Enchodus, full lateral view, dynamic swimming curve, jaw and fin detail, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, carnivore-appropriate build, cool blue-green light from directly above, soft god-ray falloff, gentle backscatter, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR29",
+      "commonName": "Crow shark",
+      "section": "ocean",
+      "position": 5,
+      "size": "3-5 m",
+      "draw_px_master": 1350,
+      "draw_px_proof": 225,
+      "ar": "3:2 (long body)",
+      "anchor": {
+        "x": 0.74,
+        "y": 0.66,
+        "kind": "mid"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Squalicorax (Crow shark), full lateral view, dynamic swimming curve, jaw and fin detail, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, carnivore-appropriate build, cool blue-green light from directly above, soft god-ray falloff, gentle backscatter, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR30",
+      "commonName": "Belemnite",
+      "section": "ocean",
+      "position": 6,
+      "size": "30 cm",
+      "draw_px_master": 81,
+      "draw_px_proof": 14,
+      "ar": "1:1",
+      "anchor": {
+        "x": 0.74,
+        "y": 0.66,
+        "kind": "mid"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Belemnitida (indet.) (Belemnite), three-quarter view, whole shell/segmentation clearly shown, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, carnivore-appropriate build, cool blue-green light from directly above, soft god-ray falloff, gentle backscatter, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR31",
+      "commonName": "Inoceramus",
+      "section": "ocean",
+      "position": 7,
+      "size": "0.5-2 m",
+      "draw_px_master": 540,
+      "draw_px_proof": 90,
+      "ar": "1:1",
+      "anchor": {
+        "x": 0.74,
+        "y": 0.66,
+        "kind": "mid"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Inoceramus, three-quarter view, whole shell/segmentation clearly shown, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, filter feeder-appropriate build, cool blue-green light from directly above, soft god-ray falloff, gentle backscatter, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    },
+    {
+      "id": "CR32",
+      "commonName": "Crinoid",
+      "section": "ocean",
+      "position": 8,
+      "size": "10-40 cm",
+      "draw_px_master": 108,
+      "draw_px_proof": 18,
+      "ar": "1:1",
+      "anchor": {
+        "x": 0.74,
+        "y": 0.66,
+        "kind": "mid"
+      },
+      "prompt": "full-length wide shot, the entire animal from head to tail-tip within the frame with generous empty margin on every side, seen from several metres back so the whole figure fits with room to spare of Crinoidea (indet.) (Crinoid), three-quarter view, whole shell/segmentation clearly shown, full body, all limbs and both feet visible, anatomically accurate paleoart reconstruction, filter feeder-appropriate build, cool blue-green light from directly above, soft god-ray falloff, gentle backscatter, isolated on a solid flat mid-grey background, no shadow, no ground, natural color, cleanly detailed skin/feathers/scales --style raw",
+      "status": "queued",
+      "notes": ""
+    }
+  ]
+}

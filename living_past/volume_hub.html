@@ -1,0 +1,185 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Living Past · Vol V — Late Cretaceous</title>
+<style>
+  @font-face{ font-family:"Cinzel"; src:url("fonts/Cinzel-Regular.ttf") format("truetype"); font-weight:400; }
+  @font-face{ font-family:"Cinzel"; src:url("fonts/Cinzel-SemiBold.ttf") format("truetype"); font-weight:600; }
+  @font-face{ font-family:"EB Garamond"; src:url("fonts/EBGaramond-Regular.ttf") format("truetype"); font-weight:400; font-style:normal; }
+  @font-face{ font-family:"EB Garamond"; src:url("fonts/EBGaramond-Italic.ttf") format("truetype"); font-weight:400; font-style:italic; }
+  :root{
+    --brass:#B98F4E; --brass-hi:#D8B57A; --ivory:#F6ECD4; --muted:#A99C7F;
+    --bg:#0d0b07; --panel:#17140d; --hair:#ffffff14;
+    --display:"Cinzel",Georgia,serif; --body:"EB Garamond",Georgia,serif; --sans:"Optima","Avenir Next",system-ui,sans-serif;
+  }
+  *{ box-sizing:border-box; } html,body{ margin:0; }
+  .pg{ background:
+      radial-gradient(120% 50% at 50% -8%, #2a2312 0%, transparent 52%),
+      linear-gradient(180deg,#0d0b07,#0a0f12 68%,#08151C);
+    color:var(--ivory); font-family:var(--sans); min-height:100%; padding-bottom:60px; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 24px; }
+
+  /* ===== VOLUME COVER HERO ===== */
+  .cover{ position:relative; width:100%; height:64vh; min-height:440px; overflow:hidden; background:#05070a;
+    border-bottom:1px solid #b98f4e33; }
+  .cover .scene{ position:absolute; inset:0; }
+  .cover .scene img{ width:100%; height:100%; object-fit:cover; display:block;
+    transform-origin:50% 42%; animation:drift 40s ease-in-out infinite alternate; will-change:transform; }
+  @keyframes drift{ 0%{ transform:scale(1.05);} 100%{ transform:scale(1.15);} }
+  .cover .scrim{ position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(180deg,#05070ab0 0%, transparent 30%),
+               linear-gradient(0deg,#05070af2 0%, #05070a66 30%, transparent 58%); }
+  .cover .capt{ position:absolute; left:0; right:0; bottom:0; padding:0 0 40px; text-align:center; }
+  .cover .eyebrow{ font-size:12px; letter-spacing:.32em; text-transform:uppercase; color:var(--brass-hi); text-shadow:0 1px 6px #000a; }
+  .cover h1{ font-family:var(--display); font-weight:600; font-size:clamp(34px,6vw,68px); letter-spacing:.06em;
+    color:var(--ivory); margin:.22em 0 .06em; text-shadow:0 3px 22px #000c; }
+  .cover .when{ font-family:var(--body); font-style:italic; font-size:clamp(15px,2.4vw,22px); color:#e6d3a8; text-shadow:0 1px 8px #000b; }
+
+  /* ===== INTRO / THIS WORLD ===== */
+  .intro{ max-width:820px; margin:36px auto 8px; text-align:center; }
+  .intro .lead{ font-family:var(--body); font-style:italic; font-size:22px; line-height:1.5; color:#f2e8ce; }
+  .facts{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--hair);
+    border:1px solid var(--hair); border-radius:10px; overflow:hidden; margin:30px auto 4px; max-width:900px; }
+  @media(max-width:620px){ .facts{ grid-template-columns:repeat(2,1fr); } }
+  .facts .f{ background:var(--panel); padding:14px 16px; text-align:center; }
+  .facts .fl{ font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); }
+  .facts .fv{ font-family:var(--sans); font-size:15px; color:var(--ivory); margin-top:6px; }
+
+  /* ===== ROSTER (four strata columns, like the poster) ===== */
+  .roster{ display:grid; grid-template-columns:repeat(4,1fr); gap:26px; margin-top:44px; }
+  @media(max-width:1000px){ .roster{ grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:560px){ .roster{ grid-template-columns:1fr; } }
+  .strat .shead{ display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+  .strat .shead span{ font-family:var(--display); font-weight:600; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--brass-hi); white-space:nowrap; }
+  .strat .shead .rule{ flex:1; height:1px; background:linear-gradient(90deg,#b98f4e66,transparent); }
+
+  .org{ display:grid; grid-template-columns:26px 44px 1fr auto; align-items:center; gap:10px;
+    padding:11px 8px; border-top:1px solid var(--hair); text-decoration:none; color:inherit; border-radius:8px;
+    transition:background .14s ease, transform .14s ease; }
+  .org:hover{ background:#ffffff08; transform:translateX(2px); }
+  .org .num{ font-family:var(--display); font-weight:600; font-size:13px; color:var(--brass-hi); }
+  .org .thumb{ width:44px; height:44px; border-radius:6px; border:1px solid #ffffff12; flex:none;
+    background:linear-gradient(160deg,#3b4a3a,#232a24); position:relative; overflow:hidden; }
+  .org .thumb::after{ content:attr(data-t); position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-size:8px; letter-spacing:.1em; text-transform:uppercase; color:#ffffff44; }
+  .org .txt{ display:flex; flex-direction:column; min-width:0; }
+  .org .cn{ font-family:var(--sans); font-size:14px; color:var(--ivory); line-height:1.15; }
+  .org .sn{ font-family:var(--body); font-style:italic; font-size:12.5px; color:var(--muted); line-height:1.2; margin-top:1px; }
+  .org .meta{ font-family:var(--sans); font-size:10.5px; letter-spacing:.02em; color:#8f836a; margin-top:3px; }
+  .org .dot{ width:11px; height:11px; border-radius:50%; border:1px solid var(--brass); flex:none; }
+  .dot.well_documented{ background:var(--brass); }
+  .dot.reasonable_inference{ background:linear-gradient(90deg,var(--brass) 50%, transparent 50%); }
+  .dot.speculative{ background:transparent; }
+
+  /* ===== BUY + CONFIDENCE KEY ===== */
+  .band{ display:grid; grid-template-columns:1.4fr 1fr; gap:26px; margin-top:48px; }
+  @media(max-width:760px){ .band{ grid-template-columns:1fr; } }
+  .card{ background:var(--panel); border:1px solid var(--hair); border-radius:12px; padding:22px; }
+  .buy{ background:linear-gradient(160deg,#241d10,#14120b); border:1px solid var(--brass); }
+  .buy h3{ font-family:var(--display); font-weight:600; font-size:15px; letter-spacing:.1em; text-transform:uppercase; color:var(--brass-hi); margin:0 0 6px; }
+  .buy p{ font-size:13.5px; color:var(--muted); margin:0 0 14px; line-height:1.5; }
+  .btn{ display:inline-block; text-decoration:none; padding:12px 20px; border-radius:8px; font-size:13px; letter-spacing:.08em; text-transform:uppercase;
+    background:var(--brass-hi); color:#1a1408; font-weight:600; transition:transform .15s ease, box-shadow .15s ease; }
+  .btn:hover{ transform:translateY(-1px); box-shadow:0 6px 18px -6px #d8b57a88; }
+  .keyt{ font-family:var(--display); font-weight:600; font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--brass-hi); margin:0 0 12px; }
+  .krow{ display:flex; align-items:center; gap:10px; font-size:13px; color:#cdbf9f; padding:5px 0; }
+
+  /* ===== DEEP TIME + FOOTER ===== */
+  .deeptime{ margin-top:48px; }
+  .deeptime svg{ width:100%; height:52px; display:block; }
+  .footer{ margin-top:14px; padding-top:16px; border-top:1px solid var(--hair);
+    display:flex; justify-content:space-between; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+</style>
+
+<div class="pg">
+  <!-- VOLUME COVER -->
+  <section class="cover">
+    <div class="scene"><img src="plates/_proof_scene.png" alt="Late Cretaceous cross-section"></div>
+    <div class="scrim"></div>
+    <div class="capt">
+      <div class="eyebrow">The Living Past · Volume V</div>
+      <h1>Late Cretaceous</h1>
+      <div class="when">Western North America · 66 million years ago</div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="intro">
+      <p class="lead">The final chapter of the age of dinosaurs — a lush, ice-free world teeming with life, unaware of the asteroid already in the sky. Thirty-two species, from the soil to the abyss.</p>
+    </div>
+
+    <div class="facts">
+      <div class="f"><div class="fl">Climate</div><div class="fv">Warm greenhouse</div></div>
+      <div class="f"><div class="fl">Sea level</div><div class="fv">~170 m above today</div></div>
+      <div class="f"><div class="fl">On the rise</div><div class="fv">Flowering plants</div></div>
+      <div class="f"><div class="fl">Day length</div><div class="fv">~23.5 hours</div></div>
+    </div>
+
+    <!-- ROSTER renders here -->
+    <div class="roster" id="roster"></div>
+
+    <div class="band">
+      <div class="card buy">
+        <h3>Bring the whole world home</h3>
+        <p>The Late Cretaceous as a museum-grade 24×36″ cross-section poster — all 32 species, from floodplain to abyss, on one sheet.</p>
+        <a class="btn" href="#">Buy the poster</a>
+      </div>
+      <div class="card">
+        <div class="keyt">Reconstruction confidence</div>
+        <div class="krow"><span class="dot well_documented"></span> Well-documented</div>
+        <div class="krow"><span class="dot reasonable_inference"></span> Reasonable inference</div>
+        <div class="krow"><span class="dot speculative"></span> Speculative</div>
+      </div>
+    </div>
+
+    <div class="deeptime">
+      <svg viewBox="0 0 1200 52" preserveAspectRatio="none" aria-label="Deep-time line">
+        <line x1="40" y1="30" x2="1160" y2="30" stroke="#b98f4e" stroke-width="1.2"/>
+        <g stroke="#6a5a38" stroke-width="1">
+          <line x1="150" y1="25" x2="150" y2="35"/><line x1="380" y1="25" x2="380" y2="35"/>
+          <line x1="620" y1="25" x2="620" y2="35"/><line x1="860" y1="25" x2="860" y2="35"/>
+        </g>
+        <text x="44" y="19" font-family="Optima,sans-serif" font-size="11" letter-spacing="3" fill="#8a7c60">DEEP TIME · NOT TO SCALE</text>
+        <circle cx="1050" cy="30" r="4.5" fill="#c0442f"/>
+        <text x="1064" y="34" font-family="Optima,sans-serif" font-size="11" fill="#c0703f">✕ K–Pg extinction</text>
+      </svg>
+    </div>
+    <div class="footer">
+      <span>◆ 32 species · confidence disclosed</span>
+      <span>The Living Past · No. V</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const STRATA = [
+    ["above","Above Ground"],["underground","Underground"],
+    ["shoreline","Shoreline"],["ocean","Ocean"]
+  ];
+  const TYPELABEL = { land_animal:"land", flying_reptile:"flyer", marine_reptile:"reptile",
+    fish:"fish", invertebrate:"invert", plant:"plant", mammal:"mammal" };
+  function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''); }
+  fetch('volume_v.json').then(r=>r.json()).then(data=>{
+    const roster=document.getElementById('roster');
+    const bySec={above:[],underground:[],shoreline:[],ocean:[]};
+    data.organisms.forEach(o=>bySec[o.section].push(o));
+    for(const [key,label] of STRATA){
+      const col=document.createElement('div'); col.className='strat';
+      col.innerHTML=`<div class="shead"><span>${label}</span><div class="rule"></div></div>`;
+      for(const o of bySec[key].sort((a,b)=>a.position-b.position)){
+        const num=String(o.position).padStart(2,'0');
+        const a=document.createElement('a'); a.className='org';
+        // real routing: /late-cretaceous/<slug>; demo: everyone lands on the built page
+        a.href='organism_page.html';
+        a.innerHTML=
+          `<span class="num">${num}</span>`+
+          `<span class="thumb" data-t="${TYPELABEL[o.type]||''}"></span>`+
+          `<span class="txt"><span class="cn">${o.commonName}</span> `+
+          `<span class="sn">${o.scientificName}</span>`+
+          `<span class="meta">${o.size} · ${o.diet}</span></span>`+
+          `<span class="dot ${o.confidence}"></span>`;
+        col.appendChild(a);
+      }
+      roster.appendChild(col);
+    }
+  });
+</script>

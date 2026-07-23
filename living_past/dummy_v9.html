@@ -1,0 +1,442 @@
+<meta charset="utf-8">
+<style>
+  /* Locked type system (2026-07-09): Cinzel · EB Garamond · Optima */
+  @font-face{ font-family:"Cinzel"; src:url("fonts/Cinzel-Regular.ttf") format("truetype"); font-weight:400; }
+  @font-face{ font-family:"Cinzel"; src:url("fonts/Cinzel-SemiBold.ttf") format("truetype"); font-weight:600; }
+  @font-face{ font-family:"EB Garamond"; src:url("fonts/EBGaramond-Regular.ttf") format("truetype"); font-weight:400; font-style:normal; }
+  @font-face{ font-family:"EB Garamond"; src:url("fonts/EBGaramond-Italic.ttf") format("truetype"); font-weight:400; font-style:italic; }
+  :root{
+    --page-bg:#CFC7B4; --page-ink:#3A3428; --page-sub:#6B6350; --hair:#00000022;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --page-bg:#17150F; --page-ink:#D8CDB4; --page-sub:#9A9078; --hair:#FFFFFF1F; }
+  }
+  :root[data-theme="light"]{ --page-bg:#CFC7B4; --page-ink:#3A3428; --page-sub:#6B6350; --hair:#00000022; }
+  :root[data-theme="dark"]{ --page-bg:#17150F; --page-ink:#D8CDB4; --page-sub:#9A9078; --hair:#FFFFFF1F; }
+
+  *{ box-sizing:border-box; }
+  body{ margin:0; }
+  .stage{
+    min-height:100%;
+    background:
+      radial-gradient(120% 80% at 50% -10%, #ffffff10, transparent 60%),
+      var(--page-bg);
+    color:var(--page-ink);
+    font-family:"Optima","Avenir Next","Gill Sans",system-ui,sans-serif;
+    padding:28px 18px 40px;
+    display:flex; flex-direction:column; align-items:center; gap:14px;
+  }
+  .cap{ width:min(1180px,96vw); }
+  .cap .eyebrow{ font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:var(--page-sub); }
+  .cap h1{ font-family:"Hoefler Text",Georgia,serif; font-weight:500; margin:.15em 0 .1em; font-size:19px; letter-spacing:.01em; }
+  .cap p{ margin:0; font-size:13px; color:var(--page-sub); max-width:70ch; line-height:1.5; }
+
+  /* ---------- POSTER ---------- */
+  .poster{
+    width:min(1180px,96vw);
+    aspect-ratio:3/2;
+    container-type:inline-size;
+    background:#0b0d0e;
+    box-shadow:0 30px 70px -20px #00000075, 0 4px 14px #0000004d;
+    display:grid;
+    grid-template-rows:65% 21% 10% 4%;
+    overflow:hidden;
+    color:#EDE3CE;
+    position:relative;
+    border:1px solid #00000060;
+  }
+
+  /* scene + floating title */
+  .scene{ position:relative; z-index:2; }
+  .scene svg{ display:block; width:100%; height:100%; }
+  .titleover{
+    position:absolute; inset:0 0 auto 0; padding:2.2cqw 2.6cqw 0;
+    display:flex; align-items:flex-start; justify-content:flex-end;
+    color:#f6ecd4; pointer-events:none;
+  }
+  .titleover .era{ text-align:right; display:flex; flex-direction:column; align-items:flex-end; gap:.35cqw; }
+  .era .place{ font-family:"Cinzel",Georgia,serif; font-weight:600; font-size:1.85cqw; letter-spacing:.14em; line-height:1; text-shadow:0 2px 6px #00000070; }
+  .era .when{ font-size:.95cqw; letter-spacing:.24em; text-transform:uppercase; color:#e6d3a8; text-shadow:0 1px 4px #00000066; }
+
+  /* shared dark ground for the whole lower half */
+  .ground{ background:linear-gradient(90deg,#241A10 0%, #1a1912 46%, #0d1a20 62%, #08151C 100%); }
+
+  /* field guide (organisms) */
+  .guide{ padding:.7cqw 2.0cqw .5cqw; display:grid; grid-template-columns:repeat(4,1fr); gap:2.2cqw; min-height:0; position:relative; z-index:2; }
+  .col{ display:flex; flex-direction:column; min-height:0; }
+  .colhead{ display:flex; align-items:center; gap:.5cqw; margin-bottom:.15cqw; }
+  .colhead span{ font-family:"Cinzel",serif; font-weight:600; font-size:.66cqw; letter-spacing:.2em; text-transform:uppercase; color:#d8b57a; white-space:nowrap; }
+  .colhead .ln{ flex:1; height:1px; background:linear-gradient(90deg,#b98f4e88,transparent); }
+  .entries{ flex:1; display:flex; flex-direction:column; min-height:0; }
+  .entry{
+    flex:1; min-height:0; display:grid;
+    grid-template-columns:1.0cqw 1.7cqw 1fr auto 1.5cqw;
+    align-items:center; gap:.4cqw;
+    border-top:1px solid #ffffff0d; padding:0;
+  }
+  .entry .num{ font-family:"Cinzel",serif; font-weight:600; font-size:.78cqw; color:#d8b57a; line-height:1; }
+  .entry .ethumb{ width:1.7cqw; height:1.7cqw; border-radius:1px; border:1px solid #ffffff12;
+    background:linear-gradient(160deg,#3b4a3a,#26302a); }
+  .entry .etxt{ min-width:0; }
+  .entry .ecn{ font-family:"EB Garamond",Georgia,serif; font-style:italic; font-size:.66cqw; color:#f0e7d2;
+    line-height:1.05; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .entry .emeta{ font-size:.46cqw; color:#a99c7f; line-height:1.1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .entry .dot{ width:.6cqw; height:.6cqw; border-radius:50%; border:1px solid #b98f4e; }
+  .dot.high{ background:#b98f4e; }
+  .dot.med{ background:linear-gradient(90deg,#b98f4e 50%, transparent 50%); }
+  .dot.low{ background:transparent; }
+  .entry .eqr{ width:1.5cqw; height:1.5cqw; border:1px solid #b98f4e55; padding:.06cqw; background:#0d0f10; }
+
+  /* full-width facts band */
+  .facts{ display:flex; align-items:stretch; padding:.8cqw 2.0cqw; border-top:1px solid #b98f4e44; position:relative; z-index:2; }
+  .panel{ flex:1; padding:0 1.6cqw; display:flex; flex-direction:column; justify-content:center; gap:.4cqw; border-right:1px solid #ffffff14; min-width:0; }
+  .panel:first-child{ padding-left:0; }
+  .panel:last-child{ border-right:none; padding-right:0; }
+  .panel.where{ flex:0 0 auto; width:15%; align-items:center; justify-content:center; gap:.25cqw; }
+  .panel.where .globe{ width:78%; }
+  .ptitle{ font-size:.64cqw; letter-spacing:.22em; text-transform:uppercase; color:#d8b57a; }
+  .glabel{ font-size:.56cqw; letter-spacing:.22em; text-transform:uppercase; color:#c9b183; text-align:center; }
+  .gsub{ font-family:"EB Garamond",serif; font-style:italic; font-size:.56cqw; color:#9a8b6a; text-align:center; line-height:1.25; }
+  .colophon{ font-size:.5cqw; letter-spacing:.22em; text-transform:uppercase; color:#8a7c60; text-align:center; margin-top:.15cqw; }
+  .frow{ display:flex; justify-content:space-between; gap:.8cqw; font-size:.58cqw; }
+  .frow .fl{ color:#9a8b6a; }
+  .frow .fv{ color:#e4d8bc; text-align:right; }
+  .blurb{ font-family:"EB Garamond",Georgia,serif; font-style:italic; font-size:.7cqw; line-height:1.35; color:#d3c6a6; }
+  .ckey{ display:flex; flex-direction:column; gap:.24cqw; }
+  .ckey .row{ display:flex; align-items:center; gap:.45cqw; font-size:.56cqw; color:#cdbf9f; }
+  .master{ display:flex; align-items:center; gap:.55cqw; margin-top:.25cqw; }
+  .master .qr{ width:2.4cqw; height:2.4cqw; flex:none; }
+  .master .mlabel{ font-size:.58cqw; letter-spacing:.12em; text-transform:uppercase; color:#8a7c60; line-height:1.4; }
+
+  /* timeline */
+  .timeline{ background:#060a0c; display:flex; align-items:center; position:relative; z-index:3; border-top:1px solid #ffffff10; }
+  .timeline svg{ width:100%; height:100%; display:block; }
+
+  .notes{ width:min(1180px,96vw); display:grid; grid-template-columns:1fr 1fr; gap:10px 26px; margin-top:6px; }
+  .notes h3{ grid-column:1/-1; font-family:"Hoefler Text",Georgia,serif; font-weight:500; font-size:14px; margin:6px 0 0; }
+  .note{ font-size:12.5px; line-height:1.5; color:var(--page-sub); }
+  .note b{ color:var(--page-ink); font-weight:500; }
+  .tag{ display:inline-block; font-size:10px; letter-spacing:.14em; text-transform:uppercase; padding:2px 7px; border:1px solid var(--hair); border-radius:100px; color:var(--page-sub); margin-right:6px; }
+</style>
+
+<div class="stage">
+  <div class="cap">
+    <div class="eyebrow">Dummy build · v9 · ocean depth zones + coast at 48%</div>
+    <h1>The Living Past — the ocean gets its depth ruler</h1>
+    <p>Over-exaggerated depth-zone lines (sunlit / twilight / deep / ocean floor) now band the water so each marine species can sit at its true depth — core to the accuracy thesis. Coastline nudged to 48%. Judge the <em>structure</em>, not the finish.</p>
+  </div>
+
+  <div class="poster">
+    <!-- SCENE (sky to top) with floating title -->
+    <div class="scene">
+      <svg viewBox="0 0 1200 480" preserveAspectRatio="none" role="img" aria-label="Placeholder Late Cretaceous cross-section with a dramatic volcanic sunset sky">
+        <defs>
+          <linearGradient id="gSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#24325f"/><stop offset="0.36" stop-color="#6a5480"/><stop offset="0.58" stop-color="#c66a34"/><stop offset="0.80" stop-color="#f2a250"/><stop offset="1" stop-color="#ffd488"/>
+          </linearGradient>
+          <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0" stop-color="#fff7dc" stop-opacity="0.95"/><stop offset="0.35" stop-color="#ffdf9c" stop-opacity="0.5"/><stop offset="1" stop-color="#ffdf9c" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="crater" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0" stop-color="#fff1c0"/><stop offset="0.4" stop-color="#ff8a3c"/><stop offset="1" stop-color="#b23a1f" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="gCloud" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffe9c6"/><stop offset="0.5" stop-color="#c98f83"/><stop offset="1" stop-color="#6f5c79"/>
+          </linearGradient>
+          <linearGradient id="gPlume" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0" stop-color="#d1783c"/><stop offset="0.4" stop-color="#6b565a"/><stop offset="1" stop-color="#39313a"/>
+          </linearGradient>
+          <linearGradient id="gGround" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#7c7a44"/><stop offset="0.30" stop-color="#5c4a2a"/><stop offset="0.55" stop-color="#493a28"/><stop offset="0.80" stop-color="#3d342d"/><stop offset="1" stop-color="#313035"/>
+          </linearGradient>
+          <linearGradient id="gSea" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#6f8a84"/><stop offset="0.30" stop-color="#2f5560"/><stop offset="0.62" stop-color="#16313d"/><stop offset="1" stop-color="#08151C"/>
+          </linearGradient>
+          <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter>
+          <filter id="soft2" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="10"/></filter>
+        </defs>
+
+        <rect x="0" y="0" width="1200" height="175" fill="url(#gSky)"/>
+        <ellipse cx="820" cy="120" rx="300" ry="200" fill="url(#sun)"/>
+
+        <!-- asteroid whisper (locked 2026-07-09): faint cold point + short streak, top-left empty sky -->
+        <g opacity="0.9">
+          <line x1="150" y1="26" x2="176" y2="40" stroke="#dfe9ff" stroke-width="1" opacity="0.28" stroke-linecap="round"/>
+          <circle cx="150" cy="26" r="3.4" fill="#eff4ff" opacity="0.14"/>
+          <circle cx="150" cy="26" r="1.5" fill="#f4f7ff" opacity="0.85"/>
+        </g>
+
+        <g opacity="0.16" filter="url(#soft2)" fill="#ffe6b0">
+          <polygon points="816,120 824,120 610,175 540,175"/>
+          <polygon points="818,120 822,120 300,172 250,175"/>
+          <polygon points="816,120 824,120 1000,175 1070,175"/>
+          <polygon points="819,120 821,120 842,0 780,0"/>
+        </g>
+
+        <path d="M120,175 L250,112 L380,175 Z" fill="#8a6a5a" opacity="0.4"/>
+        <path d="M900,175 L1010,120 L1120,175 Z" fill="#8a6a5a" opacity="0.35"/>
+
+        <!-- volcano + lit plume (geological hero) -->
+        <path d="M360,175 L500,80 L522,66 L546,84 L620,175 Z" fill="#33272b"/>
+        <polygon points="522,66 546,84 620,175 560,175" fill="#4a3236" opacity="0.6"/>
+        <ellipse cx="523" cy="74" rx="26" ry="10" fill="url(#crater)"/>
+        <path d="M516,76 L510,120" stroke="#e2652a" stroke-width="2" opacity="0.8"/>
+        <path d="M530,76 L537,124" stroke="#ff8a3c" stroke-width="1.6" opacity="0.75"/>
+        <g filter="url(#soft)" opacity="0.92" fill="url(#gPlume)">
+          <ellipse cx="522" cy="52" rx="24" ry="30"/><ellipse cx="542" cy="28" rx="32" ry="26"/><ellipse cx="578" cy="10" rx="36" ry="24"/><ellipse cx="624" cy="4" rx="30" ry="20"/><ellipse cx="664" cy="2" rx="24" ry="15"/>
+        </g>
+
+        <!-- epic clouds -->
+        <g filter="url(#soft)" fill="url(#gCloud)">
+          <ellipse cx="200" cy="90" rx="78" ry="34"/><ellipse cx="270" cy="74" rx="64" ry="40"/><ellipse cx="320" cy="94" rx="58" ry="30"/><ellipse cx="180" cy="112" rx="86" ry="26"/>
+          <ellipse cx="900" cy="86" rx="84" ry="38"/><ellipse cx="972" cy="100" rx="60" ry="28"/><ellipse cx="848" cy="106" rx="66" ry="26"/>
+          <ellipse cx="770" cy="182" rx="92" ry="20"/><ellipse cx="900" cy="188" rx="104" ry="18"/>
+          <ellipse cx="470" cy="44" rx="120" ry="9"/><ellipse cx="1010" cy="48" rx="90" ry="8"/>
+        </g>
+        <g filter="url(#soft2)" fill="#ffeccb" opacity="0.55">
+          <ellipse cx="286" cy="66" rx="46" ry="16"/><ellipse cx="908" cy="74" rx="54" ry="18"/>
+        </g>
+
+        <!-- pterosaur flock (silhouetted against the glow) -->
+        <g stroke="#241a1e" stroke-width="2.4" fill="none" opacity="0.7">
+          <path d="M360,150 Q374,134 388,150 M388,150 Q402,134 416,150"/>
+          <path d="M700,120 Q712,106 724,120 M724,120 Q736,106 748,120"/>
+          <path d="M980,140 Q992,126 1004,140 M1004,140 Q1016,126 1028,140"/>
+        </g>
+
+        <!-- CROSS-SECTION: hilly land + thick soil (left) into a deep ocean (right) -->
+        <!-- land + soil column -->
+        <path d="M0,220 C25,205 55,176 92,178 C135,181 172,202 205,216 C300,216 420,214 500,214 C520,214 552,208 576,222 C596,254 610,362 618,480 L0,480 Z" fill="url(#gGround)"/>
+        <!-- warm terrain sheen -->
+        <path d="M0,220 C25,205 55,176 92,178 C135,181 172,202 205,216 C300,216 420,214 500,214 C520,214 552,208 576,222 L576,286 C400,272 200,286 0,288 Z" fill="#e39a4e" opacity="0.13"/>
+        <!-- surface line + detritus -->
+        <path d="M0,220 C25,205 55,176 92,178 C135,181 172,202 205,216 C300,216 420,214 500,214 C520,214 552,208 576,222" fill="none" stroke="#241a0f" stroke-width="2" opacity="0.7"/>
+        <!-- topsoil band -->
+        <path d="M0,220 C25,205 55,176 92,178 C135,181 172,202 205,216 C300,216 420,214 500,214 C520,214 552,208 576,222 L584,268 C400,254 200,268 0,268 Z" fill="#3b2c19" opacity="0.5"/>
+        <!-- soil strata, thicker profile -->
+        <g fill="none" opacity="0.5" stroke-linecap="round">
+          <path d="M0,300 C120,296 260,308 400,300 C520,294 590,300 652,318" stroke="#241a10" stroke-width="2"/>
+          <path d="M0,356 C140,352 280,364 420,356 C540,351 610,356 664,374" stroke="#1a1109" stroke-width="2"/>
+          <path d="M0,414 C150,410 300,420 440,414 C560,409 630,414 676,430" stroke="#120b06" stroke-width="2"/>
+        </g>
+        <!-- roots diving deep -->
+        <g stroke="#5a4326" fill="none" stroke-linecap="round" opacity="0.85">
+          <path d="M120,216 C120,270 108,330 100,432" stroke-width="4.5"/>
+          <path d="M120,262 C144,282 164,296 188,306" stroke-width="2.6"/>
+          <path d="M116,320 C94,336 82,356 70,378" stroke-width="2.6"/>
+          <path d="M110,372 C120,398 120,424 114,458" stroke-width="2"/>
+          <path d="M430,214 C432,264 446,320 456,444" stroke-width="3.8"/>
+          <path d="M432,268 C410,288 396,304 384,326" stroke-width="2.4"/>
+          <path d="M442,320 C462,340 474,360 484,388" stroke-width="2.2"/>
+        </g>
+        <!-- burrow + buried clutch + pebbles -->
+        <ellipse cx="300" cy="392" rx="22" ry="13" fill="#1c140c"/><ellipse cx="295" cy="392" rx="10" ry="7" fill="#0d0a06"/>
+        <g fill="#c9b489" opacity="0.85"><ellipse cx="238" cy="330" rx="7" ry="9"/><ellipse cx="252" cy="334" rx="7" ry="9"/><ellipse cx="245" cy="344" rx="7" ry="9"/></g>
+        <g fill="#2a2730" opacity="0.65"><ellipse cx="80" cy="452" rx="13" ry="7"/><ellipse cx="360" cy="458" rx="15" ry="8"/><ellipse cx="200" cy="466" rx="11" ry="6"/><ellipse cx="520" cy="450" rx="12" ry="7"/></g>
+
+        <!-- ocean column (deeper), coast at ~48% -->
+        <path d="M556,210 L1200,210 L1200,480 L618,480 C610,362 596,254 576,222 C568,214 558,210 556,210 Z" fill="url(#gSea)"/>
+        <!-- warm sunlit sheen -->
+        <path d="M556,210 L1200,210 L1200,266 L590,266 C584,244 566,220 556,210 Z" fill="#e59a55" opacity="0.20"/>
+        <!-- ocean depth zones — locked 2026-07-09: hairlines fade in from the right edge, void stays a void -->
+        <defs><linearGradient id="zfade" x1="1" y1="0" x2="0" y2="0">
+          <stop offset="0" stop-color="#d8b57a" stop-opacity="0.55"/><stop offset="0.55" stop-color="#d8b57a" stop-opacity="0.12"/><stop offset="1" stop-color="#d8b57a" stop-opacity="0"/></linearGradient></defs>
+        <g stroke="url(#zfade)" stroke-width="1">
+          <line x1="820" y1="272" x2="1198" y2="272"/>
+          <line x1="830" y1="352" x2="1198" y2="352"/>
+          <line x1="840" y1="430" x2="1198" y2="430"/>
+        </g>
+        <g font-family="Optima,sans-serif" fill="#cdb489" text-anchor="end" letter-spacing="2" opacity="0.85">
+          <text x="1194" y="248" font-size="11">SUNLIT</text>
+          <text x="1194" y="316" font-size="11">TWILIGHT</text>
+          <text x="1194" y="398" font-size="11">DEEP</text>
+          <text x="1194" y="452" font-size="11">OCEAN FLOOR</text>
+        </g>
+        <!-- light shafts fading into the deep -->
+        <g opacity="0.09" fill="#ffe6b0">
+          <polygon points="820,210 862,210 800,486 748,486"/>
+          <polygon points="990,210 1022,210 972,470 924,470"/>
+          <polygon points="700,214 728,214 700,430 662,430"/>
+        </g>
+        <!-- particulate -->
+        <g fill="#cfe0dd" opacity="0.24"><circle cx="760" cy="300" r="2"/><circle cx="840" cy="350" r="1.6"/><circle cx="920" cy="316" r="2"/><circle cx="1000" cy="372" r="1.6"/><circle cx="700" cy="366" r="1.6"/><circle cx="880" cy="420" r="1.6"/><circle cx="1040" cy="344" r="1.6"/><circle cx="960" cy="430" r="1.6"/><circle cx="780" cy="410" r="1.4"/></g>
+        <!-- seafloor (lower) + life -->
+        <path d="M618,480 C680,462 800,452 900,450 C1010,448 1110,456 1200,452 L1200,480 Z" fill="#3a3324"/>
+        <g stroke="#6f6450" fill="none" opacity="0.8" stroke-linecap="round">
+          <path d="M920,466 C918,456 922,448 920,440" stroke-width="2"/><path d="M920,452 L912,444 M920,452 L928,444 M920,460 L910,454 M920,460 L930,454" stroke-width="1.4"/>
+          <path d="M1060,468 C1058,458 1062,450 1060,442" stroke-width="2"/><path d="M1060,454 L1052,446 M1060,454 L1068,446" stroke-width="1.4"/>
+        </g>
+        <g fill="#4a4636" opacity="0.9"><ellipse cx="820" cy="470" rx="11" ry="5"/><ellipse cx="1130" cy="462" rx="12" ry="6"/></g>
+
+        <!-- beach / shallows blend -->
+        <path d="M496,206 C542,208 568,210 584,236 C568,230 544,232 528,240 C546,222 530,210 496,206 Z" fill="#cdb184" opacity="0.28"/>
+
+        <!-- TITAN 1: T. rex, descending the hill -->
+        <path d="M85,205 L117,190 L135,142 C143,104 155,72 191,56 C213,46 239,42 269,48 C288,52 303,63 309,76 L296,84 C275,84 256,80 241,78 C245,108 239,142 231,172 L241,205 L213,205 L209,181 C205,164 199,151 186,143 C180,164 169,190 157,205 Z" fill="#170f0a"/>
+
+        <!-- TITAN 2: Mosasaurus, deeper -->
+        <path d="M1082,330 C1002,312 862,312 802,326 C790,329 786,335 796,339 C862,352 1002,352 1082,342 C1092,340 1092,334 1082,330 Z" fill="#0a1a22"/>
+        <path d="M1082,330 L1114,314 L1102,334 L1114,354 L1082,342 Z" fill="#0a1a22"/>
+        <path d="M902,340 L894,356 L918,344 Z" fill="#0a1a22"/>
+
+        <g font-family="Cinzel,Georgia,serif" font-weight="600">
+          <circle cx="255" cy="150" r="12" fill="#0b0d0e" stroke="#d8b57a" stroke-width="1.3"/>
+          <text x="255" y="155" font-size="13" fill="#e9d7ac" text-anchor="middle">1</text>
+          <circle cx="967" cy="332" r="12" fill="#0b0d0e" stroke="#d8b57a" stroke-width="1.3"/>
+          <text x="967" y="337" font-size="13" fill="#e9d7ac" text-anchor="middle">25</text>
+        </g>
+      </svg>
+
+      <div class="titleover">
+        <div class="era">
+          <div class="place">LATE CRETACEOUS</div>
+          <div class="when">145–66 million years ago</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FIELD GUIDE -->
+    <div class="guide ground" id="guide"></div>
+
+    <!-- FACTS BAND -->
+    <div class="facts ground">
+      <div class="panel where">
+        <svg class="globe" viewBox="0 0 200 100" role="img" aria-label="Paleo-globe placeholder">
+          <rect x="6" y="8" width="188" height="76" rx="10" fill="#0f1a1f" stroke="#b98f4e40"/>
+          <path d="M30,38 q18,-10 34,-2 q14,6 6,20 q-10,12 -30,6 q-18,-6 -10,-24 Z" fill="#6f5a34" opacity="0.85"/>
+          <path d="M96,28 q26,-6 40,8 q10,12 -6,22 q-24,12 -40,-4 q-10,-14 6,-26 Z" fill="#6f5a34" opacity="0.85"/>
+          <path d="M150,56 q14,-4 20,6 q4,10 -10,14 q-16,2 -16,-10 Z" fill="#6f5a34" opacity="0.7"/>
+          <line x1="88" y1="10" x2="88" y2="82" stroke="#08151C" stroke-width="6" opacity="0.6"/>
+          <circle cx="70" cy="50" r="3" fill="#d8b57a"/>
+        </svg>
+        <div class="glabel">Where — 66 Ma</div>
+        <div class="gsub">N. America split by the Interior Seaway</div>
+        <div class="colophon">The Living Past · No. V</div>
+      </div>
+
+      <div class="panel">
+        <div class="ptitle">Fast facts</div>
+        <div class="frow"><span class="fl">Climate</span><span class="fv">Warm, ice-free greenhouse</span></div>
+        <div class="frow"><span class="fl">Sea level</span><span class="fv">~170 m above today</span></div>
+        <div class="frow"><span class="fl">On the rise</span><span class="fv">Flowering plants</span></div>
+        <div class="frow"><span class="fl">Day length</span><span class="fv">~23.5 hours</span></div>
+      </div>
+
+      <div class="panel">
+        <div class="ptitle">This world</div>
+        <div class="blurb">The final chapter of the age of dinosaurs — a lush, ice-free world teeming with life, unaware of the asteroid already in the sky.</div>
+      </div>
+
+      <div class="panel">
+        <div class="ptitle">Reconstruction confidence</div>
+        <div class="ckey">
+          <div class="row"><span class="dot high"></span>Well-documented</div>
+          <div class="row"><span class="dot med"></span>Reasonable inference</div>
+          <div class="row"><span class="dot low"></span>Speculative</div>
+        </div>
+        <div class="master">
+          <div class="qr" id="masterqr"></div>
+          <div class="mlabel">Scan for the<br>full volume</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="timeline">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none" role="img" aria-label="Deep-time line with you-are-here pin">
+        <line x1="40" y1="34" x2="1160" y2="34" stroke="#b98f4e" stroke-width="1.4"/>
+        <g stroke="#6a5a38" stroke-width="1">
+          <line x1="150" y1="29" x2="150" y2="39"/><line x1="360" y1="29" x2="360" y2="39"/>
+          <line x1="600" y1="29" x2="600" y2="39"/><line x1="820" y1="29" x2="820" y2="39"/>
+          <line x1="1000" y1="29" x2="1000" y2="39"/>
+        </g>
+        <text x="44" y="22" font-family="Optima,sans-serif" font-size="12" letter-spacing="3" fill="#8a7c60">DEEP TIME</text>
+        <path d="M1050,18 L1062,18 L1056,32 Z" fill="#e9d7ac"/>
+        <text x="1044" y="14" font-family="Optima,sans-serif" font-size="12" letter-spacing="2" fill="#e9d7ac" text-anchor="end">YOU ARE HERE</text>
+        <circle cx="1092" cy="34" r="4.5" fill="#c0442f"/>
+        <text x="1104" y="38" font-family="Optima,sans-serif" font-size="12" fill="#c0703f">✕ K–Pg extinction</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="notes">
+    <h3>Changes in v9</h3>
+    <div class="note"><span class="tag">Done</span><b>Ocean depth zones</b>: labeled dashed lines band the water — SUNLIT / TWILIGHT / DEEP / OCEAN FLOOR — so every marine species drops onto its true depth. This is the marine equivalent of the soil strata.</div>
+    <div class="note"><span class="tag">Done</span>Coastline moved to <b>~48%</b>, giving the ocean a touch more of the poster.</div>
+    <div class="note"><span class="tag">Note</span>The zone lines are intentionally bold/obvious here; on the painted poster they can be as subtle or as diagrammatic as you like.</div>
+    <div class="note"><span class="tag">Next</span>Zone thresholds/labels, then lock composition and move to font + brass.</div>
+  </div>
+</div>
+
+<script>
+  const ORG = {
+    "Above ground":[
+      ["01","Tyrannosaurus rex","12–13 m · Carnivore","high"],
+      ["02","Triceratops horridus","8–9 m · Herbivore","high"],
+      ["03","Edmontosaurus annectens","9–12 m · Herbivore","high"],
+      ["04","Ankylosaurus magniventris","6–8 m · Herbivore","high"],
+      ["05","Pteranodon longiceps","6–7 m ws · Piscivore","med"],
+      ["06","Quetzalcoatlus northropi","10 m ws · Carnivore","med"],
+      ["07","Struthiomimus altus","4 m · Omnivore","med"],
+      ["08","Dracorex hogwartsia","3 m · Herbivore","low"]
+    ],
+    "Underground":[
+      ["09","Didelphodon vorax","1 m · Carnivore","med"],
+      ["10","Cimolestes","20 cm · Insectivore","med"],
+      ["11","Beetle larva","3 cm · Detritivore","low"],
+      ["12","Ant (Formicidae)","1 cm · Omnivore","med"],
+      ["13","Earthworm","10 cm · Detritivore","low"],
+      ["14","Cicada nymph","4 cm · Sap-feeder","low"],
+      ["15","Nest clutch","17 cm egg · —","med"],
+      ["16","Mycorrhizal fungi","soil · Symbiont","low"]
+    ],
+    "Shoreline":[
+      ["17","Deinosuchus","10 m · Carnivore","high"],
+      ["18","Archelon ischyros","4 m · Omnivore","high"],
+      ["19","Hesperornis regalis","1.5 m · Piscivore","med"],
+      ["20","Ichthyornis dispar","30 cm · Piscivore","med"],
+      ["21","Champsosaurus","1.5 m · Piscivore","med"],
+      ["22","Protostega gigas","3 m · Omnivore","med"],
+      ["23","Horseshoe crab","30 cm · Detritivore","high"],
+      ["24","Baculites","1 m · Carnivore","med"]
+    ],
+    "Ocean":[
+      ["25","Mosasaurus hoffmannii","12–17 m · Carnivore","high"],
+      ["26","Elasmosaurus platyurus","10 m · Piscivore","med"],
+      ["27","Xiphactinus audax","5–6 m · Carnivore","high"],
+      ["28","Enchodus libycus","1.5 m · Carnivore","med"],
+      ["29","Squalicorax","3–5 m · Carnivore","med"],
+      ["30","Belemnite","30 cm · Carnivore","med"],
+      ["31","Inoceramus","0.5–2 m · Filter feeder","med"],
+      ["32","Crinoid","10–40 cm · Filter feeder","low"]
+    ]
+  };
+  function qr(el){
+    let r="",s=42;
+    for(let y=0;y<12;y++)for(let x=0;x<12;x++){s=(s*1103515245+12345)&0x7fffffff;if((s>>7)&1)r+=`<rect x="${x*8+2}" y="${y*8+2}" width="7" height="7" fill="#d8b57a"/>`;}
+    el.innerHTML=`<svg viewBox="0 0 100 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">`+r+
+      `<rect x="2" y="2" width="22" height="22" fill="none" stroke="#d8b57a" stroke-width="4"/>`+
+      `<rect x="76" y="2" width="22" height="22" fill="none" stroke="#d8b57a" stroke-width="4"/>`+
+      `<rect x="2" y="76" width="22" height="22" fill="none" stroke="#d8b57a" stroke-width="4"/></svg>`;
+  }
+  const guide=document.getElementById('guide');
+  for(const [name,items] of Object.entries(ORG)){
+    const col=document.createElement('div'); col.className='col';
+    const head=document.createElement('div'); head.className='colhead';
+    head.innerHTML=`<span>${name}</span><div class="ln"></div>`; col.appendChild(head);
+    const ents=document.createElement('div'); ents.className='entries';
+    for(const [num,sci,st,conf] of items){
+      const e=document.createElement('div'); e.className='entry';
+      e.innerHTML=
+        `<span class="num">${num}</span>`+
+        `<div class="ethumb"></div>`+
+        `<div class="etxt"><div class="ecn">${sci}</div><div class="emeta">${st}</div></div>`+
+        `<span class="dot ${conf}" title="${conf}"></span>`+
+        `<div class="eqr"></div>`;
+      ents.appendChild(e);
+      qr(e.querySelector('.eqr'));
+    }
+    col.appendChild(ents); guide.appendChild(col);
+  }
+  qr(document.getElementById('masterqr'));
+</script>
