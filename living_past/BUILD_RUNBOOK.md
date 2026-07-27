@@ -13,6 +13,12 @@ automation can't do yet (image refs).
 | **Executor** | cheap subagent (Sonnet/Haiku) | Runs the deterministic loop below, one organism at a time; **escalates** at every gate; never makes a taste call. |
 | **Human** | Eric | Attaches image/style refs in MJ (the unsolved automation seam); final aesthetic sign-off; remixes. |
 
+> **Superseded for the generation phase (2026-07-27).** Steps 1–3 below are replaced by the
+> unattended firehose in [`MJ_FIREHOSE.md`](./MJ_FIREHOSE.md): Claude fires all 32 prompts into
+> MJ and stops. **Gate A is gone** — Eric curates natively in his MJ library instead, which is
+> what made the loop cheap enough to run unattended. Steps 4–7 (isolate → place → Gate B) still
+> stand and pick up from whatever he keeps.
+
 ## The per-organism loop (Executor)
 
 For each organism with `status: queued` in `build_queue.json`, in `position` order within the

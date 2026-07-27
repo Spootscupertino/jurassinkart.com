@@ -24,9 +24,13 @@ DEFAULT_VOL = ROOT / "living_past/volume_v.json"
 #   macro  — cm-scale inverts: "distance" is backwards; they need a filling close focus
 #   plate  — plants/fungi: a scientific specimen plate, no "animal/limbs/scales" language
 FRAMING = {
-    "figure": ("full-length wide shot, the entire animal from head to tail-tip within the frame "
-               "with generous empty margin on every side, seen from several metres back so the "
-               "whole figure fits with room to spare"),
+    # Rule 8 (2026-07-27): the head-crop is beaten but the TAIL still runs off the right edge —
+    # MJ fills the frame with the animal and the tail is the last thing it will sacrifice. Naming
+    # the two extremities explicitly, and asking for empty space at the edges, is what holds it.
+    "figure": ("full-length wide shot, zoomed out, the entire animal from snout to tail-tip within "
+               "the frame, both the tip of the tail and the tip of the snout well clear of the "
+               "frame edges with empty background all around them, seen from several metres back "
+               "so the whole figure fits with room to spare"),
     "wing":   ("full flight shot with the entire wingspan wingtip to wingtip inside the frame, "
                "generous empty margin past both wingtips, the whole animal seen from below and in front"),
     "macro":  ("full macro studio shot, the entire specimen sharp and filling the frame with a clean "
@@ -40,9 +44,9 @@ FRAMING_BY_TYPE = {
 }
 # "Nothing clipped" clause — feet/flippers/wings/legs differ by body plan.
 COMPLETE = {
-    "land_animal":    "full body, all limbs and both feet visible",
-    "marine_reptile": "full body, all flippers and the whole tail visible",
-    "fish":           "full body, every fin and the whole tail visible",
+    "land_animal":    "full body, all limbs, both feet and the complete untruncated tail visible",
+    "marine_reptile": "full body, all flippers and the complete untruncated tail visible",
+    "fish":           "full body, every fin and the complete untruncated tail fin visible",
     "mammal":         "full body, all four limbs and the tail visible",
     "flying_reptile": "whole body, both wings fully spread and the head crest visible",
     "invertebrate":   "whole body, every leg, segment and appendage visible",
@@ -76,26 +80,39 @@ ZONE_LIGHT = {
     "shoreline":   "warm low golden sunset key light from the upper right, faint water sheen",
     "ocean":       "cool blue-green light from directly above, soft god-ray falloff, gentle backscatter",
 }
-AR_HINT = {
-    "flying_reptile": "16:9 (wingspan)",
-    "marine_reptile": "3:2 (long body)",
-    "fish": "3:2 (long body)",
-    "land_animal": "3:2 or 2:3 by build",
+# Real, submittable aspect ratios — an executor firing these into MJ can't interpret
+# "3:2 or 2:3 by build". Override per record with an `ar` field.
+AR_BY_TYPE = {
+    "flying_reptile": "16:9",   # the wingspan is the axis that clips
+    "marine_reptile": "3:2",
+    "fish": "3:2",
+    "land_animal": "3:2",       # long tails make even bipeds read wide
     "mammal": "3:2",
     "invertebrate": "1:1",
     "plant": "2:3",
 }
+# Rule 7 — MJ resolves "isolated on flat grey" against the subject's implied habitat and the
+# habitat wins for anything airborne or submerged (the Quetzalcoatlus run came back on open
+# sky). A --no list is a much harder veto than another background adjective.
+NEGATIVE = "--no background scenery, sky, horizon, clouds, ground, terrain, water surface, seabed, cast shadow"
+
+
+def resolve_ar(o: dict) -> str:
+    return o.get("ar") or AR_BY_TYPE.get(o.get("type", ""), "3:2")
 
 
 def build_prompt(o: dict) -> str:
+    """Assemble the isolate prompt. Every type-derived clause can be overridden per record —
+    the roster has genuinely odd body plans (an egg clutch, a stalked crinoid, a straight-shelled
+    ammonite) whose `type` is right for the encyclopedia but wrong as a drawing instruction."""
     t = o.get("type", "land_animal")
     pose = o.get("pose") or POSE.get(t, POSE["land_animal"])
     light = ZONE_LIGHT.get(o.get("section", "above"), ZONE_LIGHT["above"])
-    framing = FRAMING[FRAMING_BY_TYPE.get(t, "figure")]
-    complete = COMPLETE.get(t, COMPLETE["land_animal"])
-    surface = SURFACE.get(t, SURFACE["land_animal"])
-    recon = "accurate scientific reconstruction" if t == "plant" \
-        else "anatomically accurate paleoart reconstruction"
+    framing = FRAMING[o.get("framing_mode") or FRAMING_BY_TYPE.get(t, "figure")]
+    complete = o.get("complete") or COMPLETE.get(t, COMPLETE["land_animal"])
+    surface = o.get("surface") or SURFACE.get(t, SURFACE["land_animal"])
+    recon = o.get("recon") or ("accurate scientific reconstruction" if t == "plant"
+                               else "anatomically accurate paleoart reconstruction")
     diet = o.get("diet", "").strip()
     # a diet-driven "build" reads oddly for plants/fungi ("symbiont-appropriate") — animals only
     diet_clause = f"{diet.lower()}-appropriate build, " if diet and diet not in ("", "—") and t != "plant" else ""
@@ -104,8 +121,9 @@ def build_prompt(o: dict) -> str:
     return (
         f"{framing} of {subject}, {pose}, {complete}, "
         f"{recon}, {diet_clause}"
-        f"{light}, isolated on a solid flat mid-grey background, no shadow, no ground, "
-        f"natural color, {surface} --style raw"
+        f"{light}, isolated on a plain seamless flat mid-grey studio backdrop, no ground, "
+        f"no cast shadow, natural color, {surface} "
+        f"--style raw --ar {resolve_ar(o)} {NEGATIVE}"
     )
 
 
@@ -113,7 +131,7 @@ def emit(o: dict) -> None:
     conf = o.get("confidence", "")
     refs = " · needs refs" if o.get("needsRefs") else ""
     print(f"# {o['id']} · {o.get('commonName','')} · {o.get('size','')} · {conf}{refs}")
-    print(f"#   suggested --ar: {AR_HINT.get(o.get('type',''),'3:2')}   (add --ow / refs / --stylize yourself)")
+    print(f"#   --ar {resolve_ar(o)} is baked into the prompt   (add --ow / refs / --stylize yourself)")
     print(f"#   full-body tip: keep close-up/head refs at LOW weight (--ow ~3-8) or they force a head-crop;")
     print(f"#   for the full-figure plate use a full-body skeletal/paleoart ref, save head-orefs for a detail pass")
     print(build_prompt(o))

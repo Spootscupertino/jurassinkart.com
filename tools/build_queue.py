@@ -21,7 +21,7 @@ import pathlib
 import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from lp_organism_prompt import build_prompt, AR_HINT          # noqa: E402
+from lp_organism_prompt import build_prompt, resolve_ar          # noqa: E402
 from scale_calc import compute_size                            # noqa: E402
 from compose_organism import SECTION_ANCHOR, ID_ANCHOR, PROOF_W, MASTER_W  # noqa: E402
 
@@ -51,7 +51,7 @@ def row(o: dict) -> dict:
         "size": o.get("size", ""),
         "draw_px_master": master_px,
         "draw_px_proof": proof_px,
-        "ar": AR_HINT.get(o.get("type", ""), "3:2"),
+        "ar": resolve_ar(o),
         "anchor": {"x": a.get("x"), "y": a.get("y"), "kind": a.get("anchor")},
         "prompt": build_prompt(o),
         "status": "queued",

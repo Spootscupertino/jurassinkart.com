@@ -1,57 +1,84 @@
-# The Living Past — Next Session Launch Prompt
+# The Living Past — Next Session Launch Prompt (updated 2026-07-27)
 
-> Paste this into a fresh session to pick up where we left off.
+> Paste the block below into a fresh session.
 
 ---
 
-We're building **"The Living Past — Sections of Ancient Earth,"** a collectible museum-grade poster series (Volume V = Late Cretaceous first). Read `living_past/SCOPE.md` (esp. §4 design constants and §13 the locked composition). Composition is locked.
+Focus this session entirely on the Vol V **backdrop** — the organism firehose stays on hold at
+9/32. Read `living_past/PLATE_ASSEMBLY.md`, `STAGING.md` and `DAY_PLAN.md` first, then look at
+`plates/backdrop_v3.png` and `plates/poster_draft_v1.png` to see where we ended up.
 
-## Last session (2026-07-08) — we proved the production workflow
+Priorities, in order:
 
-Instead of locking typography, we ran a live de-risking experiment: **can these posters actually be built by compositing separately-generated Midjourney pieces in Photoshop, or does it look pasted?** Answer, decisively: **yes, it works.** Everything is in memory `project_living_past_composite_validated` and in `living_past/experiment/`:
+1. **Push the zoomed-in micro habitats.** They're the best thing we unlocked and they get the
+   emphasis. Build more piece by piece in MJ — one idea per prompt, never crammed — and give them
+   more of the front of the plate.
+2. **Fix the sky and the volcano** at the wide 3000x1300 scene ratio: the volcano crops high and
+   the sky wants a calmer plate. Harvest regions, don't re-roll a mega-prompt.
+3. **Rebalance the composition** — it went bottom-heavy once the litter and soil grew.
+4. **Fix the organism knockout edges.** MJ's faint floor plane survives on some plates and reads
+   as a pale bar under the feet. A global tolerance isn't the answer. We're happy to knock out all
+   32 individually if that's what maximum detail costs — it's only 32 items.
 
-- `scene_composite.psd` — the capstone: a full four-zone cross-section (volcano + sunset sky, root-laced soil cutaway, beach, deep ocean with god rays, and a mosasaur) all composited from separate MJ plates into one believable world.
-- `rex_composite.psd` — a T. rex composited onto a clifftop base plate to scale.
+Personalization is OFF in MJ; keep it off. Keep every plate change reproducible in
+`tools/build_backdrop.py`, and export `--layers` so the Photoshop handoff stays free.
 
-**What we learned (carry this forward):**
-- **Drive Photoshop by script** — `osascript` running an ExtendScript `.jsx`, exporting a JPEG preview after each step to judge. Fast, cheap, repeatable; this is the real tooling seed.
-- **Environment = ONE rich MJ base plate.** The prompt phrase *"cross-section cutaway … as if seen through the glass wall of a giant aquarium, split by the ground-and-water line"* reliably produces the above/below diorama.
-- **Modular method:** clean base plate + hero DETAIL tiles posted into each zone (deep-water column, soil cutaway), seams feathered on BOTH axes (waterline = gradient mask; zone-to-zone = second gradient in Darken mode).
-- **Organism knockout:** Photoshop **Remove Background** (contextual task-bar button — UI only, NOT scriptable), then scripted place / scale / shadow / clipped grade. Organism plates need "full body, all limbs, isolated on solid background, no shadow, matched light."
-- **Prompt craft — lean on content, generous on mood.** Strip invented/fake-scientific subjects (MJ fakes strata/roots/creatures — we composite those in accurately), but pour on light/atmosphere/scale or MJ returns a flat gray slab. Scale comes from the **abyssal void + cliff height, not from lifting the camera** (aerial framing kills the underwater cutaway).
-- **Still missing for the real build:** true-scale placement — everything was eyeballed. The meter-grid + auto-size calculator (SCOPE §6) is the first real code.
+---
 
-## Progress — 2026-07-09: 19 of the 20 goals done
+## Why the backdrop earns a whole session (or two)
 
-The whole 20-goal list was worked end-to-end. **19 are complete; only #16 remains** (it
-needs your hands in Midjourney/Photoshop). Every design decision is frozen in `SCOPE.md`
-§4/§6/§13, each backed by a rendered audition.
+Once it's locked the project is roughly **half done**. Every downstream constant derives from it —
+the terrace line, the headroom, where the three depth planes sit, where each habitat is. Organisms
+composited against a plate that's still moving are wasted work, which is exactly why the firehose
+is paused rather than grinding.
 
-**Design locks #1–10 (auditions rendered):**
-- #1–4 Type: **Cinzel** display · **EB Garamond** body · **Optima** utility + 7-role scale + brass labels +.22em (`type_audition.html`; fonts in `fonts/`).
-- #5 **Flat brass** (brushed only on large elements) `brass_audition.html`.
-- #6 Confidence badge = one brass dot, 3 fill levels.
-- #7 Asteroid whisper **IN** (faint top-left point).
-- #8 Depth-zone lines **fade from the right edge** `zoneline_audition.html`.
-- #9 Seven brass glyphs → `glyphs.svg` (`glyph_audition.html`).
-- #10 Metre-ruled scale key, human + largest titan, human never in scene `scalebar_audition.html`.
+## Where things stand
 
-**Build #11–15:**
-- #11 §4 **fully frozen** → `template/` (`design_tokens.json` → `tokens.css`; PSD skeleton `tools/build_template_psd.jsx`).
-- #12 **`tools/scale_calc.py`** — px_per_m=270, true-scale + micro-organism rule.
-- #13/#18 **`volume_v.json`** — 32 orgs, roster LOCKED to a **tight 66 Ma community** (68–66 Ma); `tools/roster_audit.py` = 0 temporal fails, 8/8/8/8. (Swapped 7 out-of-interval taxa; `needsRefs:true` entries await sourced copy.)
-- #14 Redirect layer `redirect/` (gen + map + Astro endpoint).
-- #15 Astro page template `astro/[volume]/[slug].astro` + CSS (staged, live site untouched).
+| | state |
+|---|---|
+| Backdrop | strong — `backdrop_v3.png`, 9 harvested components, noise-warped seams |
+| Micro habitats | **the unlocked feature** — push hard |
+| Strata | 50% → ~12% of height, depth-graded, non-uniform |
+| Organisms on plate | ~4/10 — knockout edges are the flaw |
+| Sky / volcano | need work at the wide ratio |
+| Firehose | **on hold**, 9/32 fired |
+| Photoshop | no longer a hard transition (`--layers`) |
 
-**Prove/business #17,19,20:**
-- #17 MJ isolate recipe `mj_recipe.md` + `tools/lp_organism_prompt.py`.
-- #19 Web-page experience `organism_page.html` (rendered).
-- #20 `PRINTIFY_PLAN.md` — 24×36 landscape poster confirmed ready; **flags:** canvas retired (→ poster-only), landscape auto-adds a mug (add exception), API key may need re-auth.
+## The three hero anchors — do not lose these
 
-## The one open goal: #16 — T. rex vertical slice
-Everything is wired; only the MJ generation + PS placement are yours. Follow
-**`VERTICAL_SLICE_CR01.md`** — run `python3 tools/lp_organism_prompt.py CR01`, generate in
-MJ, knockout, size to 3510 px, place, and time it. That per-unit time × 32 = the Volume-V estimate.
+1. **T. rex** — far left, low worm's-eye camera, may break the title band.
+2. **Mosasaurus** — far right, floating over the abyssal void. **The void is the scale weapon:**
+   the ocean never gets shallower, only the soil does.
+3. **The volcano** — geological monument on the horizon, plus the **asteroid whisper**: one faint
+   cold point with a short streak, high in the empty top-left indigo.
 
-Nothing else blocks the build. After #16, the sequence is: produce all 32 (SCOPE §10) →
-`70_WORLD_GRADE` + export → publish (drafts, user-gated).
+## Ten ideas for next session
+
+1. **A whole micro-habitat set, one prompt each** — rotting-log interior, moss cushion, unfurling
+   fern crozier, mushroom cluster, puddle edge, bark crevice. Six plates blended along the front,
+   and the cm-scale organisms finally have real places to live.
+2. **A "macro window" treatment** — let one micro habitat break its own frame and run larger than
+   life in the bottom-left corner, so the poster explicitly teaches that scale changes there. It
+   pairs with the Law-#2 enlargement note the poster already owes the reader.
+3. **Per-plate knockout tolerance**, auto-derived by sampling each plate's own corner colours
+   rather than one global number. Probably fixes most of the 4/10 organism problem outright.
+4. **Shoot the sky as three plates** (high cirrus / mid cumulus / horizon glow) and stack them,
+   instead of hunting for one sky that does everything.
+5. **Reposition the volcano for the wide slot** — it wants to sit lower and further right now the
+   scene is 2.3:1, and it should overlap the treeline rather than float above it.
+6. **A river-margin close-up plate.** Five organisms live there and it's currently just distant
+   braided sand. It deserves the macro treatment the forest floor got.
+7. **A burrow cutaway with an occupant chamber** that visibly connects the surface litter to the
+   soil ribbon — tying the two habitat systems into one continuous world.
+8. **Underwater detail passes** — algae fringe on the shelf, shell beds on the seafloor, marine
+   snow in the abyss. The ocean is currently the emptiest quarter of the plate.
+9. **Rebalance by moving the waterline, not by shrinking the litter.** Raising the sea and
+   dropping the horizon may fix the bottom-heaviness without giving up any front detail.
+10. **Export the layer stack and do one real Photoshop pass** on backdrop_v3, to find out what the
+    code pipeline genuinely can't do before committing to code for the finish. Cheap experiment,
+    settles the question with evidence instead of opinion.
+
+---
+
+_(Earlier launch prompts and the 2026-07-08 compositing proof are in `SESSION_2026-07-10.md`,
+`SESSION_2026-07-23.md` and memory `project_living_past_composite_validated`.)_

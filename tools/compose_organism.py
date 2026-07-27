@@ -68,7 +68,7 @@ ID_ANCHOR = {
     "CR25": {"x": 0.76, "y": 0.64, "anchor": "mid",  "shadow": False},
 }
 
-GREY_TOLERANCE = 42   # flood-fill tolerance around the corner colour
+GREY_TOLERANCE = 78   # MJ backdrops are gradients AND often carry a faint floor plane
 EDGE_FEATHER = 1.2    # px of alpha blur to de-jag the knockout edge
 
 
@@ -101,19 +101,31 @@ def has_real_alpha(im: Image.Image) -> bool:
     return lo < 245  # some genuinely transparent pixels exist
 
 
-def knockout_grey(im: Image.Image) -> Image.Image:
-    """Remove the connected solid background by flood-filling from the four corners.
+def knockout_grey(im: Image.Image, tolerance: int = GREY_TOLERANCE) -> Image.Image:
+    """Remove the connected background by flood-filling inward from the whole border.
 
-    The MJ isolate recipe gives a flat mid-grey field touching every edge, so the
-    background is one connected region reachable from the corners — flood-fill each
-    corner, mark filled pixels transparent, feather the edge. Any grey *inside* the
-    animal is untouched because it isn't connected to a corner."""
+    The MJ isolate recipe asks for a flat mid-grey field touching every edge, so the
+    background is one connected region reachable from outside — flood-fill it, mark filled
+    pixels transparent, feather the edge. Any grey *inside* the animal is untouched because
+    it isn't connected to the border.
+
+    Four corner seeds are not enough in practice. MJ ignores "no ground" often enough that
+    plates come back with a faint floor plane under the feet, and that floor is a different
+    grey from the upper field — unreachable from the top corners and a different seed colour
+    from the bottom ones. It survives the fill and composites as a visible rectangular slab.
+    Seeding densely along all four edges catches each distinct band."""
     rgb = im.convert("RGB")
     w, h = rgb.size
     # Sentinel colour unlikely to occur in the plate; fill matched bg with it.
     SENT = (0, 255, 1)
-    for corner in ((0, 0), (w - 1, 0), (0, h - 1), (w - 1, h - 1)):
-        ImageDraw.floodfill(rgb, corner, SENT, thresh=GREY_TOLERANCE)
+    step = max(8, min(w, h) // 24)
+    seeds = [(0, 0), (w - 1, 0), (0, h - 1), (w - 1, h - 1)]
+    seeds += [(x, 0) for x in range(0, w, step)] + [(x, h - 1) for x in range(0, w, step)]
+    seeds += [(0, y) for y in range(0, h, step)] + [(w - 1, y) for y in range(0, h, step)]
+    for seed in seeds:
+        if rgb.getpixel(seed) == SENT:
+            continue                      # already cleared by an earlier fill
+        ImageDraw.floodfill(rgb, seed, SENT, thresh=tolerance)
     px = rgb.load()
     alpha = Image.new("L", (w, h), 255)
     ap = alpha.load()

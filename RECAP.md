@@ -14,6 +14,69 @@
 
 ---
 
+## ⭐ The Living Past poster series — active build (updated 2026-07-10)
+
+Flagship 7-volume museum-poster project (Volume V = Late Cretaceous first). Full scope in
+`living_past/SCOPE.md`. Design constants + roster LOCKED (see `SCOPE.md` §4, `volume_v.json`).
+
+**Session 2026-07-10 — the background went to the next level, and the QR destination is built:**
+- **Base plate v2** (`plates/base_plate_v2.png`) — clean flat-terrace plate (a background is a
+  *stage*, not a performer). **Black abyss** shipped in `compose_proof.py`.
+- **Accurate geology composited** — moat rule: *we own the layer structure, MJ owns the
+  texture.* `geology_hellcreek.json` (referenced Hell Creek stack), `tools/render_strata.py`
+  (accurate column), `tools/composite_strata.py` (clads the cliff with 8 MJ texture tiles).
+- **QR destination designed + phone-proven** — `organism_page.html` (animated video hero),
+  `volume_hub.html` (32-species cover). Drop kit: `living_past/DROP_KIT_prompts.md`.
+- **Read `living_past/SESSION_2026-07-10.md` + `NEXT_20_IDEAS.md` to hit the ground running.**
+  Next opening move: **place the T. rex (CR01) on the terrace at true scale.**
+
+**Session 2026-07-27 — the backdrop became the product, and the micro habitats unlocked it.**
+Read `living_past/NEXT_SESSION.md` first. Key artefacts: `plates/backdrop_v3.png`,
+`plates/poster_draft_v1.png`, `PLATE_ASSEMBLY.md`, `STAGING.md`, `PHOTOSHOP.md`.
+
+- **The back plate is HARVESTED, never generated in one shot.** No single MJ render lands the
+  volcano, terraces, coastline, abyss and sky together. Each render contributes the one region it
+  nailed; `tools/build_backdrop.py` composites 9 slots. See `PLATE_ASSEMBLY.md`.
+- **⭐ Zoomed-in micro habitats are the session's unlocked feature.** Extreme-macro forest floor
+  and a sheltered hollow under a log, pulled right to the front of the plate. They give the
+  cm-scale organisms (ant 3px, beetle larva 8px at true scale) a place to be drawn *huge* — the
+  near end of the depth cascade, and the fix for the six species below the legibility floor.
+  **Emphasis goes here going forward.**
+- **The seams are the whole job.** Straight alpha ramps read as pasted rectangles no matter how
+  wide the feather; every mask is noise-warped so the transition line itself wanders.
+- **Topography is derived from the roster**, not art-directed (`tools/habitat_map.py`). All 32
+  now have a declared home. It caught a hole nothing else would: five organisms need a freshwater
+  river margin and no plate had a river at all.
+- **The roster DOES fit** — via per-group scale + three depth planes (`STAGING.md`). No faked
+  sizes; the plane multiplier is just distance.
+- **Strata fixed**: 8 texture tiles were covering 11 layers, so L02/L07 and L04/L08 were
+  pixel-identical twins. `render_strata_organic.py` blends 2-3 crops per layer with undulating
+  contacts. Soil cut from **50% of scene height to ~12%**, and depth-graded like the ocean.
+- **MJ pixel extraction solved**: MJ's own download button in *real Chrome* -> `~/Downloads`
+  (the in-app browser sandboxes downloads). curl/fetch/canvas are all blocked. See `MJ_FIREHOSE.md`.
+- **Personalization turned OFF** — every earlier render carried `--profile uxjzh3u`, pushing
+  everything toward one learned look, the opposite of what harvesting varied components needs.
+- **Photoshop is not a hard transition** — `--layers` exports each component as a full-canvas
+  RGBA PNG; PS *Load Files into Stack* rebuilds the editable stack. See `PHOTOSHOP.md`.
+
+### The three hero anchors (SCOPE §120-124 — everything flows around these)
+
+1. **T. rex** — land titan, far left, low worm's-eye camera, may break the title band.
+2. **Mosasaurus** — marine titan, far right, floating over the abyssal void. **The void is the
+   scale weapon, so the ocean keeps full vertical depth even as the soil band gets thinner.**
+3. **The volcano** — the geological monument on the horizon, plus the **asteroid whisper**: a
+   single faint cold point with a short streak, high in the empty top-left indigo sky.
+
+**Honest state:** backdrop is strong; the dinosaurs on it are ~4/10 — knockout edges are the
+visible flaw. Sky and volcano still need work at the wide scene ratio. **The organism firehose is
+ON HOLD (9/32 fired) for a session or two** — once the backdrop is locked the project is roughly
+half done, so it earns the focus.
+
+_(Prior: Session 2026-07-09 locked all design constants + the roster + first plate composite —
+see `living_past/SESSION_2026-07-09.md`.)_
+
+---
+
 ## The Pipeline (How Images Get Made)
 
 ```

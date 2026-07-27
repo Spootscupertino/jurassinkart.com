@@ -60,6 +60,69 @@ Asteroid whisper = faint cold point, top-left of zone 1 (locked #7).
 
 ### 0 · Master base plate (does most of zones 2–4 in one shot — like your cliff plate)
 
+**v5 / SURFACE-PLATE ARCHITECTURE (2026-07-27, Eric's call) — stop asking MJ for the whole world.**
+
+Up to v4 the base plate tried to be sky + land + cutaway + ocean in a single MJ image. That fights
+the moat: the strata are *code-built* from `geology_hellcreek.json` (accurate order and thickness),
+and MJ has no business inventing them. It also caused every composition problem so far — the soil
+ate half the canvas, and the terrace had no headroom.
+
+**New split:** MJ generates only the **surface world** — sky, undulating plain, short coastline.
+The accurate strata and the deep-ocean column are composited *underneath* it from plates we
+already build. Geology stays code; texture and light stay MJ.
+
+Two further requirements, both from Eric:
+- **Undulating topography.** Rolling rises, hollows, terraces and benches — varied ground levels
+  give organisms real places to stand and read as scale cues. A billiard-table plain gives neither.
+- **Three hero anchors** (SCOPE §120–124, re-confirmed): T. rex far left on a worm's-eye camera,
+  Mosasaurus far right over the abyss, volcano as the geological monument, asteroid-whisper in an
+  empty top-left sky. Everything else flows around those three.
+
+Note the abyss is **not** the thing to shrink. "Underground is too thick" means the *soil* band;
+the ocean void is the scale weapon that sells the Mosasaurus and it keeps its vertical depth.
+
+```
+Wide panoramic view of a Late Cretaceous coastal plain seen from a low worm's-eye camera close
+to the ground. Gently rolling undulating topography — low rises and shallow hollows, a step of
+terraces, a small ridge, a sandy bench — giving many different ground levels and standing places,
+the land receding from a near foreground through a clear middle distance to a hazed far treeline
+and low blue hills. A single smoking volcano with a lit crater and a long drifting ash plume
+stands on the horizon as the monument. On the right the plain ends in a short steep bluff where
+the sea begins in sunlit turquoise shallows. A dramatic volcanic sunset sky fills the upper
+third, deep indigo and empty in the top-left corner. The undulating ground fills the lower two
+thirds of the frame and runs off the bottom edge. Flat horizon-level view, no cutaway, no
+cross-section, no underground layers, nothing sliced open. Epic scale, cinematic god rays,
+painterly realism, no animals, no people, no text --ar 3:2 --style raw
+--no cross-section, cutaway, sliced ground, exposed soil layers, underground
+```
+
+**v3 (2026-07-27) — more land, shorter shoreline, real headroom over the terrace.**
+Three faults in v2, all visible once organisms were actually placed on it:
+1. *The beach is a long diagonal.* It sweeps from upper-left to mid-right and spends most of the
+   land area on empty wet sand. Eric: "the shoreline might be a bit long."
+2. *Not enough land.* Eight above-ground organisms have to share what's left after the beach takes
+   its cut.
+3. *No headroom.* The terrace sits so high in the frame that a T. rex placed on it is capped at
+   10.4% of poster width by the poster's top trim — the animal is limited by the plate, not by
+   any design decision.
+
+The fix is one composition: push the coastline right, make the waterline run **steeply down the
+frame instead of across it**, and drop the terrace to sit low with open sky above it.
+
+```
+Cross-section cutaway of an ancient coastal world seen through the glass wall of a giant
+aquarium, split by the ground-and-water line. LEFT AND CENTRE: a vast broad flat open coastal
+plain of bare ground and low scrub filling the left two thirds of the frame, a deep generous
+expanse of level standing room, the flat ground sitting low in the frame with a tall open
+expanse of sky and distant sea above it, its far edge cut away to reveal an eroded
+earth-and-rock cliff in cross-section. RIGHT: the land ends abruptly in a short compact
+shoreline, the waterline running steeply down the frame rather than sweeping across it, then
+sunlit turquoise shallows falling fast to cold abyssal blue-black depths, a true dark plunge
+into black in the lower-right corner. BACKGROUND: distant hazed shoreline and one smoking
+volcano under a dramatic volcanic sunset. Epic scale, cinematic god rays, painterly realism,
+no animals, no people, no text --ar 3:2 --style raw
+```
+
 **v2 (2026-07-10) — bakes in the flat T. rex terrace + the black abyss (see Composition below):**
 ```
 Cross-section cutaway of an ancient coastal world seen through the glass wall of a giant
