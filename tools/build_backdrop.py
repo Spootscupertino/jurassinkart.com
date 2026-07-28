@@ -45,7 +45,26 @@ FLOOR_BOT = 0.875     # litter ends, strata begin. Pushed down twice: the micro 
                       # are the strongest part of the plate and the soil was the weakest,
                       # so the band trade goes to the litter. Strata now ~12% (was 50%).
 COAST_X   = 0.55      # ocean wedge nominal edge
-SEA_TOP   = 0.20      # waterline on the ocean side
+
+# ---- composition balance ---------------------------------------------------------------------
+# The plate went bottom-heavy once the litter and soil grew. The tempting fix is to shrink the
+# litter back, but the litter is the best thing on the plate and the micro habitats live in it.
+# So rebalance from the OTHER end instead: raise the sea and drop the horizon. Both put mass and
+# interest into the top half without giving up a single pixel of front detail.
+SEA_TOP   = 0.145     # waterline on the ocean side (was 0.20 — the sea comes up)
+LAND_BIAS = 0.34      # vertical crop bias on the land plate; < 0.5 keeps more of the source's
+                      # sky, which drops the horizon line down the frame and opens the top.
+
+# ---- the volcano, at the wide ratio ------------------------------------------------------------
+# At 2.3:1 the monument wants to sit lower and further right than it did on a 3:2 plate, and to
+# OVERLAP the treeline rather than float above it. Fractions of the canvas, top-left of the patch.
+VOLCANO_X = 0.545
+VOLCANO_Y = 0.055
+VOLCANO_W = 0.34
+
+# ---- the macro window --------------------------------------------------------------------------
+# Bottom-left box (x0, y0, x1, y1 as canvas fractions) that one micro habitat runs out of.
+MACRO_WIN = (0.018, 0.505, 0.245, 0.945)
 
 
 def noise(shape, octaves=(3, 7, 16), seed=0) -> np.ndarray:
@@ -77,12 +96,16 @@ def organic_mask(size, axis: str, edge: float, width: float, seed: int, warp: fl
     return Image.fromarray((a * 255).astype(np.uint8), "L").filter(ImageFilter.GaussianBlur(6))
 
 
-def cover(im: Image.Image, size) -> Image.Image:
+def cover(im: Image.Image, size, bias: float = 0.5) -> Image.Image:
+    """Scale to cover `size` and crop. `bias` picks WHERE the vertical crop is taken from:
+    0.5 centres it (the default everywhere), lower keeps more of the source's top. That knob is
+    how the horizon gets moved without re-rolling the plate — see LAND_BIAS."""
     tw, th = size
     s = max(tw / im.width, th / im.height)
     r = im.resize((max(1, round(im.width * s)), max(1, round(im.height * s))), Image.LANCZOS)
-    return r.crop(((r.width - tw) // 2, (r.height - th) // 2,
-                   (r.width - tw) // 2 + tw, (r.height - th) // 2 + th))
+    x = (r.width - tw) // 2
+    y = round((r.height - th) * min(max(bias, 0.0), 1.0))
+    return r.crop((x, y, x + tw, y + th))
 
 
 def load(name: str) -> Image.Image:
@@ -169,16 +192,40 @@ def main(argv=None) -> int:
     scene = Image.new("RGBA", (W, H), (12, 14, 18, 255))
 
     # ---- 1 · the world ------------------------------------------------------------------
-    land = cover(load("land_oblique_river.png"), (W, H))
+    land = cover(load("land_oblique_river.png"), (W, H), bias=LAND_BIAS)
     scene.alpha_composite(land.convert("RGBA"), (0, 0))
     record("10_land", land)
-    print("  land        full frame      angled plain + braided river + volcano")
+    print(f"  land        full frame      angled plain + braided river (bias {LAND_BIAS} drops the horizon)")
 
     # ---- 1b · a better sky --------------------------------------------------------------
     # The land plate's own sky is flat and pale. A dedicated sky plate is blended in above the
     # horizon only, then the volcano is put back on top of it — otherwise the new sky buries the
     # monument that the whole right-hand composition hangs on.
-    if (CAND / "sky_sunset.png").exists():
+    # Three plates stacked by altitude beat one sky that tries to do everything — the same
+    # harvesting thesis as the rest of the plate, applied upward. Each is masked to its own band
+    # with a noise-warped edge so the bands don't rule straight lines across the air:
+    #   high cirrus  the top, where the asteroid whisper lands
+    #   mid cumulus  the sculpted volume that gives the sky depth
+    #   horizon glow the warm gradient the land dissolves up into
+    # Falls back to the single sky_sunset plate whenever the triptych hasn't been shot yet.
+    TRIPTYCH = [("sky_high_cirrus.png", 0.00, 0.16, 0.55, 41),
+                ("sky_mid_cumulus.png", 0.10, 0.26, 0.62, 43),
+                ("sky_horizon_glow.png", 0.20, 0.36, 0.70, 47)]
+    for name, y0, y1, edge, seed in [t for t in TRIPTYCH if (CAND / t[0]).exists()]:
+        top, bot = round(H * y0), round(H * y1)
+        band = cover(load(name), (W, bot - top))
+        bm = np.asarray(organic_mask((W, bot - top), "y", edge, 0.52, seed=seed, warp=0.11)
+                        .point(lambda v: 255 - v), np.float32)
+        # fade the top edge too for every band below the first, so they layer instead of stack
+        if y0 > 0:
+            bm *= np.asarray(organic_mask((W, bot - top), "y", 0.18, 0.34, seed=seed + 1,
+                                          warp=0.09), np.float32) / 255.0
+        _bm = Image.fromarray(bm.astype(np.uint8), "L")
+        paste(scene, band, (0, top), _bm)
+        record(f"2{TRIPTYCH.index((name, y0, y1, edge, seed))}_sky_{name[4:-4]}", band, (0, top), _bm)
+        print(f"  sky         y {y0:.2f}-{y1:.2f}     {name[4:-4].replace('_', ' ')}")
+
+    if not any((CAND / t[0]).exists() for t in TRIPTYCH) and (CAND / "sky_sunset.png").exists():
         skyh = round(H * 0.34)
         sky = cover(load("sky_sunset.png"), (W, skyh))
         m = np.asarray(organic_mask((W, skyh), "y", 0.74, 0.44, seed=11, warp=0.10)
@@ -196,6 +243,35 @@ def main(argv=None) -> int:
         paste(scene, sky, (0, 0), _skym)
         record("20_sky", sky, (0, 0), _skym)
         print("  sky         y 0.00-0.34     sunset plate, held clear of the volcano's airspace")
+
+    # ---- 1c · the volcano, harvested and placed ------------------------------------------
+    # The volcano used to be whatever the land plate happened to contain, which is why it crops
+    # high and floats: the land plate is 3:2 and the scene slot is 2.3:1, so its horizon furniture
+    # lands too near the top edge. v5_volcano_terraces is the render that actually nailed the cone
+    # and the ash plume, so the monument becomes its own harvested component with its own
+    # coordinates — lower and further right, deliberately overlapping the treeline rather than
+    # hovering above it, which is what makes it read as sitting IN the world at this ratio.
+    if (CAND / "volcano_monument.png").exists() or (CAND / "v5_volcano_terraces.png").exists():
+        src = load("volcano_monument.png" if (CAND / "volcano_monument.png").exists()
+                   else "v5_volcano_terraces.png")
+        # cone + plume region of the v5 plate, generous enough to carry its own local sky
+        cx0, cy0, cx1, cy1 = (round(src.width * 0.26), 0,
+                              round(src.width * 0.70), round(src.height * 0.50))
+        vw = round(W * VOLCANO_W)
+        crop = src.crop((cx0, cy0, cx1, cy1))
+        vh = round(crop.height * vw / crop.width)
+        volc = crop.resize((vw, vh), Image.LANCZOS)
+        vx, vy = round(W * VOLCANO_X), round(H * VOLCANO_Y)
+        # Blob mask, not a ramp: the monument is an inserted patch with no straight sides, and its
+        # own local sky has to dissolve into ours on every edge. The bottom is additionally cut
+        # back so the cone's base disappears INTO the treeline instead of ending on a visible line.
+        vm = np.asarray(blob_mask((vw, vh), seed=19, softness=0.86), np.float32)
+        vm *= np.asarray(organic_mask((vw, vh), "y", 0.86, 0.30, seed=29, warp=0.12)
+                         .point(lambda v: 255 - v), np.float32) / 255.0
+        _vm = Image.fromarray(vm.astype(np.uint8), "L")
+        paste(scene, volc, (vx, vy), _vm)
+        record("25_volcano", volc, (vx, vy), _vm)
+        print(f"  volcano     x {VOLCANO_X:.2f} y {VOLCANO_Y:.2f}   monument dropped onto the treeline")
 
     # ---- 2 · ocean wedge, blended in on an irregular coastline --------------------------
     # Built as its own region (lower-right), then blended into the scene with the PRODUCT of two
@@ -216,9 +292,42 @@ def main(argv=None) -> int:
     mx = np.asarray(organic_mask((ow, oh), "x", 0.16, 0.20, seed=17, warp=0.09), np.float32)
     my = np.asarray(organic_mask((ow, oh), "y", 0.16, 0.24, seed=23, warp=0.07), np.float32)
     m = Image.fromarray((mx * my / 255.0).astype(np.uint8), "L")
+    # Underwater detail passes, blended into the ocean region BEFORE it goes down on the scene so
+    # they inherit the same coastline mask and can't spill onto the land. The ocean is the emptiest
+    # quarter of the plate; each pass belongs to one depth band, shallow to deep, because a single
+    # "underwater scene" laid over the whole wedge would flatten the drop-off that the abyss —
+    # and therefore the Mosasaurus's scale — depends on.
+    for name, y0, y1, edge, seed in [("ocean_algae_fringe.png", 0.00, 0.34, 0.62, 51),
+                                     ("ocean_shell_beds.png",   0.26, 0.62, 0.58, 53),
+                                     ("ocean_marine_snow.png",  0.52, 1.00, 0.40, 59)]:
+        if not (CAND / name).exists():
+            continue
+        t, b = round(oh * y0), round(oh * y1)
+        det = cover(load(name), (ow, b - t))
+        dm = np.asarray(blob_mask((ow, b - t), seed=seed, softness=0.92), np.float32)
+        dm *= np.asarray(organic_mask((ow, b - t), "y", edge, 0.55, seed=seed + 1, warp=0.13),
+                         np.float32) / 255.0
+        paste(ocean, det, (0, t), Image.fromarray(dm.astype(np.uint8), "L"))
+        print(f"  ocean det   y {y0:.2f}-{y1:.2f}     {name[6:-4].replace('_', ' ')}")
+
     paste(scene, ocean.convert("RGB"), (ox, oy), m)
     record("30_ocean", ocean.convert("RGB"), (ox, oy), m)
     print(f"  ocean       x~{COAST_X:.2f}          shelf -> drop-off -> abyss (wandering coastline)")
+
+    # ---- 2b · the freshwater river margin -----------------------------------------------
+    # habitat_map.py caught this and nothing else would have: five organisms (Borealosuchus,
+    # Basilemys, the gar, the guitarfish ray, Champsosaurus) declare a freshwater river margin as
+    # their home, and every plate so far had it only as distant braided sand — too far back for any
+    # of them to be drawn at a legible size. It sits in the middle distance on the land side,
+    # nearer than the braid but behind the macro litter, which then overlaps its lower edge.
+    if (CAND / "river_margin_macro.png").exists():
+        rw2, rh2 = round(W * 0.40), round(H * 0.26)
+        rx, ry = round(W * 0.30), round(H * 0.30)
+        riv = cover(load("river_margin_macro.png"), (rw2, rh2))
+        _rm = blob_mask((rw2, rh2), seed=77, softness=0.88)
+        paste(scene, riv, (rx, ry), _rm)
+        record("35_river_margin", riv, (rx, ry), _rm)
+        print("  river       x 0.30 y 0.30    close-up freshwater margin (5 organisms live here)")
 
     # ---- 3 · macro forest floor, several plates, irregular overlaps ---------------------
     ft, fb = round(H * FLOOR_TOP), round(H * FLOOR_BOT)
@@ -290,26 +399,135 @@ def main(argv=None) -> int:
                    blob_mask((box[2] - box[0], box[3] - box[1]), seed=97, softness=0.78), "darken")
         print("  burrows     upper soil      tunnel mouths + nest chamber (darken)")
 
-    # ---- 4c · the micro-fauna habitat ---------------------------------------------------
-    # A sheltered hollow under a log, front-left in the litter — the landing spot where the
-    # cm-scale organisms get drawn huge. Without it the ant and the beetle larva have nowhere
-    # legible to be at all (3px and 8px at true scale).
-    if (CAND / "micro_hollow.png").exists():
-        # Two habitats, both large. These are the best-reading part of the plate and the place
-        # the cm-scale organisms actually become legible, so they get real estate rather than a
-        # polite corner. Different seeds + a mirrored second copy so they don't read as one image
-        # used twice.
-        for i, (fx, fy, mw, mh, flip) in enumerate([
-                (0.015, 250, 1180, 720, False),
-                (0.335, 505, 940, 580, True)]):   # keep both on the land side
-            src = load("micro_hollow.png")
-            if flip:
-                src = src.transpose(Image.FLIP_LEFT_RIGHT)
-            hollow = cover(src, (mw, mh))
-            _hm = blob_mask((mw, mh), seed=133 + i * 29, softness=0.80)
-            paste(scene, hollow, (round(W * fx), ft + fy), _hm)
-            record(f"60_micro_habitat_{i+1}", hollow, (round(W * fx), ft + fy), _hm)
-        print("  micro       front x2        sheltered hollows = micro-fauna habitat")
+    # The cutaway is the plate that makes the poster ONE world instead of two stacked systems.
+    # It has to straddle the litter/soil contact — a tunnel that starts in surface leaf litter and
+    # ends in an occupied chamber down in the ribbon — so unlike the burrow-mouth detail pass it is
+    # composited straight rather than tonally blended: the point is that you can follow it down,
+    # and darken-blending would keep only the tunnel's shadow and throw away the chamber.
+    if (CAND / "burrow_cutaway.png").exists():
+        bw, bh = round(W * 0.30), round(H * 0.30)
+        bx, by = round(W * 0.055), fb - round(bh * 0.62)      # spans the litter/soil contact
+        cut = cover(load("burrow_cutaway.png"), (bw, bh))
+        _cm = blob_mask((bw, bh), seed=101, softness=0.82)
+        paste(scene, cut, (bx, by), _cm)
+        record("55_burrow_cutaway", cut, (bx, by), _cm)
+        print("  burrow cut  litter->soil    surface litter to occupant chamber, one continuous world")
+
+    # ---- 4c · the micro-habitat set ------------------------------------------------------
+    # The front band is where the cm-scale organisms get drawn huge. Without it the ant and the
+    # beetle larva have nowhere legible to be at all (3px and 8px at true scale).
+    # One plate per idea (tools/lp_plate_prompt.py --group micro). Six different habitats
+    # blended along the front beat one hollow used twice for the same reason three litter plates
+    # beat one tiled texture: a repeated image reads as wallpaper, and the whole point of the front
+    # band is that it should read as a world the cm-scale organisms could actually live in.
+    #
+    # Each entry is (slot, x-fraction, y-offset from the litter top, width, height, flip). They
+    # overlap deliberately — a row of discrete patches is just a different kind of wallpaper — and
+    # every one gets its own blob seed so no two edges fall the same way. All stay on the land side.
+    MICRO = [("micro_log_interior",     0.010, 235, 1120, 700, False),
+             ("micro_moss_cushion",     0.150, 470,  760, 470, False),
+             ("micro_fern_crozier",     0.268, 180,  520, 660, False),
+             ("micro_mushroom_cluster", 0.335, 505,  880, 545, True),
+             ("micro_puddle_edge",      0.415, 300,  900, 560, False),
+             ("micro_bark_crevice",     0.050, 120,  470, 620, True)]
+    placed = [m for m in MICRO if (CAND / f"{m[0]}.png").exists()]
+    if not placed and (CAND / "micro_hollow.png").exists():
+        # the pre-set fallback: one hollow, twice, mirrored so it doesn't read as one image reused
+        placed = [("micro_hollow", 0.015, 250, 1180, 720, False),
+                  ("micro_hollow", 0.335, 505, 940, 580, True)]
+    for i, (slot, fx, fy, mw, mh, flip) in enumerate(placed):
+        src = load(f"{slot}.png")
+        if flip:
+            src = src.transpose(Image.FLIP_LEFT_RIGHT)
+        hab = cover(src, (mw, mh))
+        _hm = blob_mask((mw, mh), seed=133 + i * 29, softness=0.80)
+        paste(scene, hab, (round(W * fx), ft + fy), _hm)
+        record(f"60_micro_{i+1}_{slot}", hab, (round(W * fx), ft + fy), _hm)
+    if placed:
+        print(f"  micro       front x{len(placed):<7} {', '.join(m[0].replace('micro_', '') for m in placed)}")
+
+    # ---- 4c2 · the macro window ----------------------------------------------------------
+    # One habitat breaks its own frame and runs larger than life in the bottom-left corner. The
+    # poster already owes the reader the Law #2 note — that magnification changes here — and a
+    # ruled box with something climbing out of it *shows* that in a way a caption only asserts.
+    #
+    # Breaking the frame is the entire mechanism, so it has to be built as a break: the content
+    # mask is the box UNION an overflow lobe, and the brass rule is then drawn with that same lobe
+    # subtracted from its alpha. The line is therefore genuinely interrupted where the habitat
+    # crosses it, rather than the habitat being drawn over an intact line — which reads as a
+    # sticker on top of a frame instead of something coming out of one.
+    #
+    # The frame is the only ruled line anywhere on this plate, and that is the point: everything
+    # else is noise-warped precisely so nothing reads as drawn. The one deliberate straight edge
+    # is legible as an instrument of the poster rather than an artefact of the compositing.
+    # The Law #2 caption itself belongs to the type layer, not here — the backdrop stays a stage.
+    if placed:
+        slot = placed[0][0]
+        mx0, my0 = round(W * MACRO_WIN[0]), round(H * MACRO_WIN[1])
+        mx1, my1 = round(W * MACRO_WIN[2]), round(H * MACRO_WIN[3])
+        bw2, bh2 = mx1 - mx0, my1 - my0
+        # zoomed FURTHER in than the same plate reads at in the front band — that difference in
+        # magnification is the whole message of the window
+        over = round(bh2 * 0.30)                 # how far past the rule the habitat escapes
+        cw, ch = bw2 + over, bh2 + over
+        big = load(f"{slot}.png")
+        big = cover(big.crop((round(big.width * 0.22), round(big.height * 0.22),
+                              round(big.width * 0.78), round(big.height * 0.78))), (cw, ch))
+        # A window in the dark bottom-left corner has to carry its own light or it reads as a hole
+        # rather than as an enlargement, so the content gets a small lift before the world grade.
+        ba = np.asarray(big, np.float32) * 1.22 + 12
+        big = Image.fromarray(np.clip(ba, 0, 255).astype(np.uint8))
+
+        # The mask is the box UNION a lobe that straddles the box's top edge. An explicit gaussian
+        # bump is used rather than blob_mask here: the lobe has to sit at a KNOWN place relative to
+        # the rule (centred on the top edge, right of middle) so that it reliably covers both sides
+        # of the line. A noise blob's centre of mass wanders with the seed, and a spill that lands
+        # entirely inside or entirely outside the box teaches the reader nothing.
+        gy = np.arange(ch, dtype=np.float32)[:, None]
+        gx = np.arange(cw, dtype=np.float32)[None, :]
+        # The vertical falloff is deliberately much tighter than the horizontal one. A round lobe
+        # wide enough to look like a habitat climbing out is also tall enough to stay ~80% opaque
+        # at the top of the canvas, which composites as a pale slab hanging over the corner rather
+        # than as a spill. Squashing it keeps the width and kills the slab.
+        cx, cy, rad = bw2 * 0.68, float(over), bw2 * 0.30
+        lobe = np.exp(-(((gx - cx) ** 2 + ((gy - cy) * 2.2) ** 2) / (2 * rad * rad)))
+        lobe *= 0.72 + 0.55 * noise((ch, cw), octaves=(2, 5, 11), seed=181)   # keep its edge organic
+        # Force the lobe to zero at the content canvas edges. Same trap as blob_mask's softness:
+        # the gaussian is still ~16% opaque at the top-right corner, and 16% opacity that stops
+        # dead at a boundary is a ruled line — it composited as a faint rectangle hanging over the
+        # corner, which is precisely what the rest of this file's noise-warping exists to avoid.
+        # Only the lobe is damped; the framed content keeps its hard edge, because there the
+        # straight line is the point.
+        # The falloff distance is the overflow depth itself, so the damping runs out exactly at the
+        # rule and the lobe is undamped where it crosses. Any wider and it flattens the peak, which
+        # removes the break entirely — the rule comes back intact and the window stops teaching.
+        fall = max(1, over)
+        ex = np.clip(np.minimum(gx, cw - 1 - gx) / fall, 0, 1)
+        ey = np.clip(np.minimum(gy, ch - 1 - gy) / fall, 0, 1)
+        lobe = np.clip(lobe * ex * ey, 0, 1)
+
+        mask = np.zeros((ch, cw), np.float32)
+        mask[over:, :bw2] = 1.0                                       # the framed content
+        mask = np.maximum(mask, lobe)                                 # the part that escapes
+        _mm = Image.fromarray((np.clip(mask, 0, 1) * 255).astype(np.uint8), "L") \
+                   .filter(ImageFilter.GaussianBlur(1.6))
+        paste(scene, big, (mx0, my0 - over), _mm)
+        record("62_macro_window", big, (mx0, my0 - over), _mm)
+
+        # the brass rule, genuinely interrupted where the habitat crosses it
+        rule = Image.new("L", (W, H), 0)
+        rd = ImageDraw.Draw(rule)
+        rd.rectangle((mx0, my0, mx1, my1), outline=255, width=max(3, round(H * 0.0035)))
+        ra = np.asarray(rule, np.float32)
+        cut = np.zeros((H, W), np.float32)
+        y0c, x0c = my0 - over, mx0
+        cut[y0c:y0c + ch, x0c:x0c + cw] = lobe
+        ra *= 1.0 - np.clip(cut * 1.9, 0, 1)
+        _rule = Image.merge("RGBA", (*Image.new("RGB", (W, H), (185, 143, 78)).split(),
+                                     Image.fromarray(ra.astype(np.uint8), "L")))
+        scene.alpha_composite(_rule)
+        LAYERS.append(("63_macro_window_rule", _rule))
+        print(f"  macro win   bottom-left     {slot.replace('micro_', '')} breaks its frame (Law #2)")
 
     # ---- 4d · the asteroid whisper (SCOPE §217) -----------------------------------------
     # A single faint cold point with a short streak, high in the empty top-left indigo. Subtle

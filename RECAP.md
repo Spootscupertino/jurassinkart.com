@@ -67,10 +67,42 @@ Read `living_past/NEXT_SESSION.md` first. Key artefacts: `plates/backdrop_v3.png
 3. **The volcano** — the geological monument on the horizon, plus the **asteroid whisper**: a
    single faint cold point with a short streak, high in the empty top-left indigo sky.
 
-**Honest state:** backdrop is strong; the dinosaurs on it are ~4/10 — knockout edges are the
-visible flaw. Sky and volcano still need work at the wide scene ratio. **The organism firehose is
-ON HOLD (9/32 fired) for a session or two** — once the backdrop is locked the project is roughly
-half done, so it earns the focus.
+**Session 2026-07-28 — the knockout moved to Photoshop, and the plate became parameterised.**
+Read `living_past/NEXT_SESSION.md` first. Current plate: `plates/backdrop_v4.png`.
+
+- **⭐ The 4/10 knockout was a method limit, not a tuning problem.** The flood fill can only remove
+  background *connected to the frame border* and *tonally near it*; MJ's floor plane is neither, so
+  no tolerance clears it without eating silhouette. Photoshop's Select Subject has no such
+  constraint, runs from JSX in ~2 s a plate, and clears it completely. `tools/ps_isolate.py`.
+  This also corrects the old "Remove-BG is UI-only, not scriptable" note in `mj_recipe.md`.
+- **The flood fill was still fixed** for the no-Photoshop path: per-band tolerances swept from each
+  plate's own response curve, stopped by silhouette fragmentation (perimeter/√area) plus a
+  claimed-area cap. Ends the erosion that was chewing tails and crests. Two plausible-looking
+  approaches were measured and rejected — see the docstrings in `compose_organism.py`.
+- **The backdrop is parameterised**: volcano harvested as its own positionable component (lower and
+  right, overlapping the treeline at 2.3:1), rebalanced by raising the sea and dropping the horizon
+  rather than shrinking the litter, plus a **macro window** bottom-left that one habitat breaks out
+  of — the poster's one deliberate ruled line.
+- **Eleven new component slots wired and tested**, all optional-if-missing. The 14 prompts that
+  feed them live in `tools/lp_plate_prompt.py` (`--missing` lists what's unshot).
+- **Live poster preview restored.** `plates/_scene_live.png` refreshed with backdrop_v4 + the
+  PS-isolated cast, so `poster_mockup_live.html` shows the plate inside the real furniture and
+  type. Serve it with the `living-past-static` launch config on :4599 — that HTML is the poster
+  of record; `poster_full.png` is only ever a stale render.
+
+**Honest state:** the remaining work on the backdrop is *generation*, not code. The firehose stays
+ON HOLD (9/32) — but the 14 plate prompts are now the queue that matters. **Nothing from this
+session is committed** — `end_session_daddy.sh` refuses to run in the main worktree, and the
+working tree is dirty by design pending review.
+
+**Known weaknesses carried forward** (fuller list in `NEXT_SESSION.md`): the depth planes stack
+the cast in one vertical band and need a re-tune; the strata still read as flat ruled bars, which
+is now the single most "made in code" thing on the plate; the ocean is a hard vertical wall rather
+than a receding shelf; and the macro window is a bright rectangle in a corner with no visual
+answer anywhere else in the composition.
+
+_(Prior honest state, 2026-07-27: backdrop strong, dinosaurs ~4/10 on knockout edges, sky and
+volcano weak at the wide ratio.)_
 
 _(Prior: Session 2026-07-09 locked all design constants + the roster + first plate composite —
 see `living_past/SESSION_2026-07-09.md`.)_

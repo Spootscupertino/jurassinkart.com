@@ -34,6 +34,7 @@ import json
 import pathlib
 import sys
 
+import numpy as np
 from PIL import Image, ImageDraw, ImageFilter
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -68,8 +69,10 @@ ID_ANCHOR = {
     "CR25": {"x": 0.76, "y": 0.64, "anchor": "mid",  "shadow": False},
 }
 
-GREY_TOLERANCE = 78   # MJ backdrops are gradients AND often carry a faint floor plane
+GREY_TOLERANCE = 78   # legacy global fallback — only used if --tolerance is passed explicitly
 EDGE_FEATHER = 1.2    # px of alpha blur to de-jag the knockout edge
+EDGE_ERODE = 1        # px of alpha erosion BEFORE feathering — see knockout_grey
+RING_SHARE = 0.08     # a border colour must own this much of the ring to count as background
 
 
 def px_per_m(master: bool) -> float:
@@ -101,7 +104,167 @@ def has_real_alpha(im: Image.Image) -> bool:
     return lo < 245  # some genuinely transparent pixels exist
 
 
-def knockout_grey(im: Image.Image, tolerance: int = GREY_TOLERANCE) -> Image.Image:
+def border_ring(arr, band_px: int | None = None):
+    """The plate's own border pixels — the only part of the image we know is background."""
+    h, w = arr.shape[:2]
+    b = band_px or max(2, min(h, w) // 50)
+    return np.concatenate([arr[:b].reshape(-1, 3), arr[-b:].reshape(-1, 3),
+                           arr[:, :b].reshape(-1, 3), arr[:, -b:].reshape(-1, 3)])
+
+
+def background_bands(ring, min_share: float = RING_SHARE, merge: int = 40):
+    """The distinct background colours present along this plate's border.
+
+    Two different things live on an MJ isolate's border:
+
+      * the mid-grey field itself, usually a gentle gradient;
+      * the faint floor plane MJ adds under the feet despite "no ground" — a *different* grey,
+        unreachable from the top corners and a different seed colour from the bottom ones,
+        which is why it survives a naive fill and composites as a pale bar under the feet.
+
+    A colour counts as a band only if it owns a real share of the border. That share test is what
+    keeps a subject touching the frame edge from seeding a flood fill into its own body: a tail
+    crossing the edge is a thin run, a floor plane is a wide one."""
+    q = (ring // 16).astype(np.int64)
+    key = q[:, 0] * 1024 + q[:, 1] * 32 + q[:, 2]
+    vals, counts = np.unique(key, return_counts=True)
+    bands = []
+    for i in np.argsort(-counts):
+        if counts[i] / len(ring) < min_share:
+            break
+        centre = ring[key == vals[i]].mean(axis=0)
+        if all(np.abs(centre - c).sum() > merge for c in bands):
+            bands.append(centre)
+    return bands or [np.median(ring, axis=0)]
+
+
+# Tolerance ladder, swept per plate. PIL's floodfill compares each candidate against the SEED
+# pixel using a 1-norm summed across all three channels, so these are L1 numbers — 78 (the old
+# global) is only ~26 per channel.
+TOL_LADDER = (20, 30, 40, 55, 70, 85, 100, 120, 145, 175, 210)
+TOL_SHAPE = 1.8       # retained-shape complexity may rise this much above its best before we stop
+TOL_GROWTH = 1.15     # a band may claim this much more than its base claim before we call it a burst
+TOL_SLACK = 0.005     # ...plus this much of the frame, so a band with a tiny base can still breathe
+SEED_RADIUS = 90      # L1 distance from a band centre within which a border pixel may seed
+
+
+def _seeds(w: int, h: int):
+    step = max(8, min(w, h) // 24)
+    s = [(0, 0), (w - 1, 0), (0, h - 1), (w - 1, h - 1)]
+    s += [(x, 0) for x in range(0, w, step)] + [(x, h - 1) for x in range(0, w, step)]
+    s += [(0, y) for y in range(0, h, step)] + [(w - 1, y) for y in range(0, h, step)]
+    return s
+
+
+def _fill_mask(im: Image.Image, tols, bands, only: int | None = None) -> np.ndarray:
+    """Flood the background inward from dense border seeds; return the filled (=transparent) mask.
+
+    Each seed floods at the tolerance belonging to the band it matches — that is the whole point.
+    `only` restricts firing to one band's seeds, which is how each band's tolerance gets swept
+    independently."""
+    rgb = im.convert("RGB")
+    w, h = rgb.size
+    SENT = (0, 255, 1)     # sentinel unlikely to occur in the plate
+    for seed in _seeds(w, h):
+        px = rgb.getpixel(seed)
+        if px == SENT:
+            continue                      # already cleared by an earlier fill
+        p = np.asarray(px, np.float32)
+        dists = [np.abs(p - c).sum() for c in bands]
+        i = int(np.argmin(dists))
+        if dists[i] > SEED_RADIUS:
+            continue                      # subject crosses the frame edge here — do not seed
+        if only is not None and i != only:
+            continue
+        ImageDraw.floodfill(rgb, seed, SENT, thresh=int(tols[i]))
+    return (np.asarray(rgb) == np.array(SENT, np.uint8)).all(axis=2)
+
+
+def _complexity(kept: np.ndarray) -> float:
+    """Perimeter over sqrt(area) of the retained mask — how ragged the silhouette is.
+
+    Scale-invariant, so a big animal and a small one are judged the same way, and it costs two
+    array comparisons. This is the measurement that finally separated "still eating background"
+    from "eating the animal": a fill chewing background leaves the silhouette smooth, while one
+    breaking through the edge sprays disconnected speckles along the tail and crest — visually
+    obvious in the before/after strips, and a 3-6x jump in this number."""
+    a = int(kept.sum())
+    if a == 0:
+        return float("inf")
+    p = int((kept[:, 1:] != kept[:, :-1]).sum() + (kept[1:, :] != kept[:-1, :]).sum())
+    return p / (a ** 0.5)
+
+
+def _knee(im: Image.Image, bands, band: int, secondary: bool) -> int:
+    """Largest tolerance for one band's seeds before the fill starts eating the subject.
+
+    Each band is swept with only its own seeds firing. Two independent stop rules, because the
+    two ways a fill can go wrong look nothing alike and neither test sees both:
+
+      * **Shape complexity** (`_complexity`) catches *fragmenting* erosion — the speckled
+        chewing along a tail or crest. This is the failure on the dark field band of every plate.
+      * **Claimed-area growth**, against the band's own base claim, catches *smooth* over-claiming
+        — a pale band quietly swallowing pale armour as one solid blob, which leaves the
+        silhouette perfectly smooth and is invisible to the complexity test. This is the failure
+        on the Ankylosaurus.
+
+    The growth test only applies to secondary bands. On the dominant field band it is worse than
+    useless: a gradient background legitimately grows that band's claim from 50% to 65% of the
+    frame across the ladder, so any growth ceiling tight enough to mean something there also
+    stops the sweep long before the background is gone.
+
+    A colour-distance cap was tried as well and does not work at all: the shaded parts of an
+    animal sit within 7-31 L1 of the background grey, so any cap tight enough to protect them
+    collapses the tolerance to nothing."""
+    tols = [TOL_LADDER[0]] * len(bands)
+    kept = ~_fill_mask(im, tols, bands, only=band)
+    ceiling = (1.0 - kept.mean()) * TOL_GROWTH + TOL_SLACK
+    best_shape = _complexity(kept)
+    best = TOL_LADDER[0]
+    for tol in TOL_LADDER[1:]:
+        tols[band] = tol
+        kept = ~_fill_mask(im, tols, bands, only=band)
+        shape = _complexity(kept)
+        if shape > best_shape * TOL_SHAPE:
+            break
+        if secondary and (1.0 - kept.mean()) > ceiling:
+            break
+        best_shape = min(best_shape, shape)
+        best = tol
+    return best
+
+
+def derive_tolerances(im: Image.Image, bands) -> list[int]:
+    """Choose a tolerance PER BAND, each from its own response curve on this plate.
+
+    Two earlier attempts are worth recording, because both looked reasonable and both were wrong:
+
+    1. *One number derived from the border's colour spread.* Measured against the three real
+       plates it produced 161-180 where the right answer was 70-100, and at those values the fill
+       burst through the silhouette and ate most of the T. rex. How wide the border gradient is
+       simply does not predict how far the background sits from the subject.
+
+    2. *One swept number for the whole plate.* Much better — it stopped the fill eating the
+       animal — but it is capped by whichever band is closest to the subject, and on the
+       Edmontosaurus plate that cap left MJ's pale floor plane sitting under the feet. One
+       tolerance cannot both clear a pale floor and spare a dark flank.
+
+    Hence per band, swept — but not symmetrically, because the two kinds of band carry very
+    different risk. Measured across all three plates, every attempt to push the *dominant* band
+    past the old global 78 cost silhouette: the T. rex lost its crest and tail edge, the
+    Edmontosaurus its neck and tail. That band is the field the subject is composited against, so
+    78 is doing real work as a calibrated safe value and it stays the ceiling for it.
+
+    The headroom is entirely in the *secondary* bands — MJ's floor plane and backdrop hotspots.
+    They are small, tonally distinct, and precisely what one global number could never clear
+    without endangering the silhouette. Those sweep freely upward under the growth cap, which is
+    where the pale bar under the feet finally goes."""
+    tols = [_knee(im, bands, i, secondary=i > 0) for i in range(len(bands))]
+    tols[0] = min(tols[0], GREY_TOLERANCE)     # bands are share-ordered, so [0] is the field
+    return tols
+
+
+def knockout_grey(im: Image.Image, tolerance: int | None = None) -> Image.Image:
     """Remove the connected background by flood-filling inward from the whole border.
 
     The MJ isolate recipe asks for a flat mid-grey field touching every edge, so the
@@ -109,30 +272,25 @@ def knockout_grey(im: Image.Image, tolerance: int = GREY_TOLERANCE) -> Image.Ima
     pixels transparent, feather the edge. Any grey *inside* the animal is untouched because
     it isn't connected to the border.
 
-    Four corner seeds are not enough in practice. MJ ignores "no ground" often enough that
-    plates come back with a faint floor plane under the feet, and that floor is a different
-    grey from the upper field — unreachable from the top corners and a different seed colour
-    from the bottom ones. It survives the fill and composites as a visible rectangular slab.
-    Seeding densely along all four edges catches each distinct band."""
-    rgb = im.convert("RGB")
-    w, h = rgb.size
-    # Sentinel colour unlikely to occur in the plate; fill matched bg with it.
-    SENT = (0, 255, 1)
-    step = max(8, min(w, h) // 24)
-    seeds = [(0, 0), (w - 1, 0), (0, h - 1), (w - 1, h - 1)]
-    seeds += [(x, 0) for x in range(0, w, step)] + [(x, h - 1) for x in range(0, w, step)]
-    seeds += [(0, y) for y in range(0, h, step)] + [(w - 1, y) for y in range(0, h, step)]
-    for seed in seeds:
-        if rgb.getpixel(seed) == SENT:
-            continue                      # already cleared by an earlier fill
-        ImageDraw.floodfill(rgb, seed, SENT, thresh=tolerance)
-    px = rgb.load()
-    alpha = Image.new("L", (w, h), 255)
-    ap = alpha.load()
-    for y in range(h):
-        for x in range(w):
-            if px[x, y] == SENT:
-                ap[x, y] = 0
+    Four corner seeds are not enough in practice, and neither is one tolerance for every plate:
+    see `background_bands` for what else lives on the border, and `derive_tolerance` for how the
+    number is chosen from this plate rather than from the average of all plates.
+
+    Pass `tolerance` to override the derivation with a single fixed number."""
+    bands = background_bands(border_ring(np.asarray(im.convert("RGB"), np.float32)))
+    tols = [tolerance] * len(bands) if tolerance is not None else derive_tolerances(im, bands)
+    filled = _fill_mask(im, tols, bands)
+    kept = 1.0 - filled.mean()
+    detail = ", ".join(f"{tuple(int(v) for v in c)}@{t}" for c, t in zip(bands, tols))
+    print(f"  knockout: {len(bands)} background band(s) {detail} — {100*kept:.0f}% of frame kept")
+
+    alpha = Image.fromarray(np.where(filled, 0, 255).astype(np.uint8), "L")
+    # Erode before feathering. The knockout edge carries a 1-2px fringe of background grey
+    # (MJ's own antialiasing), and against the dark plate that fringe reads as a pale halo —
+    # a large part of why the composited organisms scored 4/10. Feathering alone spreads the
+    # fringe instead of removing it; pulling the alpha in by a pixel first cuts it off.
+    for _ in range(EDGE_ERODE):
+        alpha = alpha.filter(ImageFilter.MinFilter(3))
     if EDGE_FEATHER:
         alpha = alpha.filter(ImageFilter.GaussianBlur(EDGE_FEATHER))
     out = im.convert("RGBA")
@@ -155,13 +313,13 @@ def contact_shadow(size: tuple[int, int]) -> Image.Image:
     return sh_img.filter(ImageFilter.GaussianBlur(max(2, sh // 3)))
 
 
-def isolate(plate_path: pathlib.Path) -> Image.Image:
+def isolate(plate_path: pathlib.Path, tolerance: int | None = None) -> Image.Image:
     im = Image.open(plate_path)
     if has_real_alpha(im):
         iso = trim(im.convert("RGBA"))
         how = "existing alpha"
     else:
-        iso = trim(knockout_grey(im))
+        iso = trim(knockout_grey(im, tolerance=tolerance))
         how = "grey flood-fill knockout"
     print(f"  isolate: {how} → {iso.width}x{iso.height} (trimmed to content)")
     return iso
@@ -222,6 +380,8 @@ def main(argv=None) -> int:
     ap.add_argument("--dx", type=int, default=0, help="nudge placement x (px)")
     ap.add_argument("--dy", type=int, default=0, help="nudge placement y (px)")
     ap.add_argument("--scale", type=float, default=1.0, help="multiply true-scale width")
+    ap.add_argument("--tolerance", type=int, default=None,
+                    help="override the per-plate derived knockout tolerance with one global number")
     args = ap.parse_args(argv)
 
     oid = args.id.upper()
@@ -236,7 +396,7 @@ def main(argv=None) -> int:
     print(f"# {oid} · {org.get('commonName')} · {org.get('section')} · size {org.get('size')}")
     ORGANISMS.mkdir(parents=True, exist_ok=True)
 
-    iso = isolate(args.plate)
+    iso = isolate(args.plate, tolerance=args.tolerance)
     iso_out = ORGANISMS / f"{oid}_isolated.png"
     iso.save(iso_out)
     print(f"  saved isolate → {iso_out}")

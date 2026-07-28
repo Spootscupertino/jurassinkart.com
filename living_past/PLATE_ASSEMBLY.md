@@ -51,12 +51,53 @@ It also flagged `treeline` and `drop_off` as decorative — nothing in the roste
 | Turquoise shallows | MJ — either candidate | have |
 | **Strata cutaway (11 Hell Creek layers)** | **code** — `composite_strata.py` from `geology_hellcreek.json` | **have — never MJ** |
 | Deep-ocean column + abyssal void | MJ — `plates/deep_ocean_column.png`, `plates/abyssal_void.png` | have |
-| Asteroid whisper (top-left) | code — single faint point + streak | to do |
+| Asteroid whisper (top-left) | code — single faint point + streak | have |
+| Volcano monument, positionable | MJ — cropped from `candidates/v5_volcano_terraces.png` | **have** |
+| Micro-habitat set ×6 | MJ — `lp_plate_prompt.py --group micro` | wired, **to shoot** |
+| Sky triptych ×3 (cirrus / cumulus / glow) | MJ — `--group sky` | wired, **to shoot** |
+| River margin close-up | MJ — `--group river` | wired, **to shoot** |
+| Burrow cutaway + occupant chamber | MJ — `--group burrow` | wired, **to shoot** |
+| Underwater passes ×3 (algae / shells / snow) | MJ — `--group ocean` | wired, **to shoot** |
+| Macro window (rule + overflow) | code — `build_backdrop.py`, `MACRO_WIN` | **have** |
 
 The strata row is the moat. MJ must never invent layer order or thickness; it only supplies the
 per-lithology texture tiles listed in `geology_hellcreek.json → mjTexture`.
 
-## Status — `plates/backdrop_v2.png` (2026-07-27)
+## Status — `backdrop_v4` (2026-07-28)
+
+Built by the same `tools/build_backdrop.py`. Five changes, all reproducible, all parameterised at
+the top of the file:
+
+- **The volcano is its own harvested component** (`25_volcano`), no longer whatever the land plate
+  happened to contain. It was cropping high and floating because the land plate is 3:2 and the
+  scene slot is 2.3:1, so its horizon furniture landed near the top edge. Now cropped from
+  `v5_volcano_terraces` — the render that actually nailed the cone and plume — and placed at
+  `VOLCANO_X/Y/W`, lower and further right, deliberately **overlapping the treeline**.
+- **Rebalanced from the top, not the bottom.** The plate went bottom-heavy, but the litter is the
+  best thing on it, so the fix came from the other end: `SEA_TOP` 0.20 → 0.145 (the sea comes up)
+  and `LAND_BIAS` 0.34 (a vertical crop bias on the land plate that drops the horizon and opens the
+  sky). Not one pixel of front detail was given up.
+- **The macro window** (`62/63`) — a brass-ruled box bottom-left that one micro habitat runs out
+  of, larger than life. It is the only ruled line on the plate, and that is the point: everything
+  else is noise-warped so nothing reads as drawn, so the one deliberate straight edge reads as an
+  instrument of the poster. The Law #2 caption belongs to the type layer, not here.
+- **Eleven new component slots wired**, each optional-if-missing so the build runs before the
+  renders land: the six-plate micro-habitat set, the three-plate sky, the river margin, the burrow
+  cutaway, and three underwater detail passes. Prompts: `tools/lp_plate_prompt.py`.
+- **The knockout moved to Photoshop.** See `PHOTOSHOP.md` — the flood fill cannot reach MJ's floor
+  plane by construction, and Select Subject can, scriptably.
+
+Two masking traps re-learned while building the macro window, both the *same* trap as the
+`blob_mask` softness lesson below and worth stating as a general law:
+
+> **Any mask that is still partly opaque where its own canvas ends composites as a ruled
+> rectangle.** The window's overflow lobe was ~16% opaque at the corner and read as a pale slab
+> hanging over the corner. The fix is to force the mask to zero inside its own bounds — but the
+> falloff distance must stop exactly at the feature it is protecting, because a falloff wide enough
+> to be safe also flattens the lobe's peak, and then the rule came back intact and the window
+> stopped teaching anything.
+
+## Superseded — `plates/backdrop_v2.png` (2026-07-27)
 
 Nine components. Adds over v1: dedicated sunset sky, the asteroid whisper, root traces and
 burrows blended into the soil, and the micro-fauna hollow. **Personalization is now OFF** — every

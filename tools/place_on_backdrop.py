@@ -22,11 +22,13 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from compose_organism import ORGS, isolate, parse_width_m
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-BACKDROP = ROOT / "living_past/plates/backdrop_v3.png"
+BACKDROP = ROOT / "living_past/plates/backdrop_v4.png"
 
 # plane -> (scale multiplier, ground y as fraction of canvas height)
 # Ground lines eyeball-tuned on backdrop_v3: the foreground promontory, the open plain behind it,
-# and the far plain by the treeline.
+# and the far plain by the treeline. Re-checked against backdrop_v4 (which drops the horizon and
+# raises the waterline) and they still land on ground — but they WILL need a proper re-tune once
+# the six micro-habitat plates land and the front band stops being two fallback hollows.
 PLANES = {
     "fg":  (1.00, 0.640),
     "mid": (0.55, 0.505),
@@ -49,9 +51,11 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="Place organisms on the assembled backdrop")
     ap.add_argument("items", nargs="+", metavar="ID:plane:plate.png")
     ap.add_argument("--out", type=pathlib.Path, default=ROOT / "working/backdrop_cast.png")
+    ap.add_argument("--backdrop", type=pathlib.Path, default=BACKDROP,
+                    help="plate to stand the cast on (defaults to the last locked backdrop)")
     args = ap.parse_args(argv)
 
-    scene = Image.open(BACKDROP).convert("RGBA")
+    scene = Image.open(args.backdrop).convert("RGBA")
     W, H = scene.size
     px_per_m = (REF_FRAC * W) / REF_M
 

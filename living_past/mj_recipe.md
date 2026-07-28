@@ -8,7 +8,7 @@ The recipe below is what `tools/lp_organism_prompt.py` assembles from each
 
 ## The five rules of an isolate plate
 1. **One subject, whole.** Full body, every limb visible, anatomically accurate — the moat is conquering the hard anatomy others botch (Brand vision). No scenery, no second animal.
-2. **Knockout-friendly background.** Solid flat background, no ground contact, no cast shadow — so Photoshop *Remove Background* is clean. (Remove-BG is UI-only, not scriptable — keep the edge easy.)
+2. **Knockout-friendly background.** Solid flat background, no ground contact, no cast shadow — so the knockout is clean. **Correction (2026-07-28):** background removal is *not* UI-only as recorded here previously. Photoshop's Select Subject runs from JSX (`executeAction(stringIDToTypeID("autoCutout"))`) at ~2 s a plate, and it clears the faint floor plane that the flood-fill knockout provably cannot reach. Use `tools/ps_isolate.py`; see `PHOTOSHOP.md`. Keeping the edge easy still matters, but it is no longer the only defence.
 3. **Matched light = composites for free.** Light direction/temperature is set by the organism's **zone** so all 32 share "one world, one light" before the `70_WORLD_GRADE` pass:
    - above / underground / shoreline → **warm low sunset key from the upper right**, long golden light (matches the volcanic-sunset sky).
    - ocean → **cool blue-green light from directly above**, soft god-ray falloff, slight backscatter (matches the depth column).
