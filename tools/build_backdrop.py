@@ -44,6 +44,8 @@ FLOOR_TOP = 0.50      # macro litter starts (deep overlap with the land, blended
 FLOOR_BOT = 0.875     # litter ends, strata begin. Pushed down twice: the micro habitats
                       # are the strongest part of the plate and the soil was the weakest,
                       # so the band trade goes to the litter. Strata now ~12% (was 50%).
+STRATA_LIFT = 1.20    # Eric: brighten the strata. The section is the accuracy moat and it
+                      # was reading too dark to find the contacts in — see the grade below.
 COAST_X   = 0.55      # ocean wedge nominal edge
 COAST_TILT = 0.115    # criticism #2: the coastline used to run straight down the frame, which is
                       # why the water read as a wall. A shore only recedes if its plan position
@@ -145,7 +147,7 @@ MACRO_WINS = [
     # is". A shared shape is the thing that made four windows read as four crops of one instrument.
     # The big litter window stays the squarest (a lozenge, so the wide box still fills) and bulges
     # most, because it is the one the reader is closest to and the Law #2 exemplar.
-    dict(box=(0.018, 0.545, 0.222, 0.945), slots=("micro_log_cavity",),
+    dict(box=(0.006, 0.580, 0.196, 0.960), slots=("micro_log_cavity",),
          lobe_x=0.68, lift=1.22, over=0.30, seed=181, warm=0.12, dissolve=0.55,
          roundness=2.8, wobble=0.09, barrel=0.18,
          crop=(0.22, 0.22, 0.78, 0.78), flip=False),
@@ -158,7 +160,7 @@ MACRO_WINS = [
     # in the abyss — a window is a magnification of *what is behind it*, and pointing it at
     # something that cannot be there breaks the instrument rather than extending it. Better to run
     # one window until `ocean_shell_beds` is shot than to ship a legible lie.
-    dict(box=(0.775, 0.560, 0.905, 0.815),
+    dict(box=(0.560, 0.755, 0.700, 0.985),
          slots=("ocean_shell_beds", "ocean_marine_snow", "ocean_algae_fringe"), require=True,
          lobe_x=0.34, lift=1.12, over=0.34, seed=193,
          roundness=2.2, wobble=0.12, barrel=0.13,
@@ -857,10 +859,10 @@ def main(argv=None) -> int:
     # pale and papery against the litter above; falling off into the dark makes the ground feel
     # like it continues below the frame instead of stopping at a printed edge, and it rhymes with
     # the abyss on the other side of the plate.
-    ra = np.asarray(ribbon, np.float32)
+    ra = np.asarray(ribbon, np.float32) * STRATA_LIFT + 7
     depth = np.linspace(0, 1, ra.shape[0], dtype=np.float32)[:, None, None]
-    ra *= (1.0 - 0.62 * depth ** 1.35)
-    ra = ra * (1 - 0.22 * depth) + np.array([26, 22, 18], np.float32) * (0.22 * depth)
+    ra *= (1.0 - 0.38 * depth ** 1.35)
+    ra = ra * (1 - 0.13 * depth) + np.array([26, 22, 18], np.float32) * (0.13 * depth)
     ribbon = Image.fromarray(np.clip(ra, 0, 255).astype(np.uint8))
     # soil belongs to the land side only — fade it out under the sea, on the same wandering
     # coastline the ocean uses, so the two edges agree instead of crossing each other
@@ -921,9 +923,11 @@ def main(argv=None) -> int:
     MICRO = [("micro_log_interior",     0.010, 0.1175, 0.373, 0.350, False),
              ("micro_moss_cushion",     0.150, 0.2350, 0.253, 0.235, False),
              ("micro_fern_crozier",     0.268, 0.0900, 0.173, 0.330, False),
-             ("micro_mushroom_cluster", 0.335, 0.2100, 0.293, 0.273, True),
              ("micro_puddle_edge",      0.352, 0.1500, 0.215, 0.280, False),
+             ("micro_mushroom_cluster", 0.335, 0.2100, 0.293, 0.273, True),
              ("micro_bark_crevice",     0.050, 0.0600, 0.157, 0.310, True)]
+    # a plate that ends up under two neighbours needs its contrast back
+    MICRO_LIFT = {"micro_mushroom_cluster": 1.20}
     placed = [m for m in MICRO if (CAND / f"{m[0]}.png").exists()]
     if not placed and (CAND / "micro_hollow.png").exists():
         # the pre-set fallback: one hollow, twice, mirrored so it doesn't read as one image reused
@@ -945,6 +949,10 @@ def main(argv=None) -> int:
         if flip:
             src = src.transpose(Image.FLIP_LEFT_RIGHT)
         hab = cover(src, (mw, mh))
+        if slot in MICRO_LIFT:
+            _ha = np.asarray(hab, np.float32) * MICRO_LIFT[slot] + 5
+            _ha = np.where(_ha > 205, 205 + (_ha - 205) * 0.45, _ha)
+            hab = Image.fromarray(np.clip(_ha, 0, 255).astype(np.uint8))
         mx0, my0 = round(W * fx), ft + fy
         _hm = blob_mask((mw, mh), seed=133 + i * 29, softness=0.80)
         _hm = Image.fromarray(

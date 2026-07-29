@@ -205,13 +205,25 @@ PLATES: dict[str, dict] = {
         no=f"{NO_LIFE}, fish, coral reef, divers, boats, sky, surface"),
     "ocean_shell_beds": dict(
         group="ocean", ar="3:2",
-        idea="mid band — a densely littered seafloor; reads as accumulated time, not decoration",
+        idea="the strata/ocean contact — a pavement of metre-wide Inoceramus, CR31's declared home",
+        # RESHOOT 2026-07-29. Eric spotted the placement — "the spot for the shells is gonna be right
+        # at the base of the strata hitting the ocean" — and that fixes the content question too. The
+        # old prompt asked for generic shell hash and the intent (the seafloor IS accumulated death,
+        # the same accuracy argument as the strata) never read; unread intent is failed intent.
+        #
+        # The roster already named the answer: CR31 Inoceramus reached 1-2 m. A floor paved with
+        # metre-wide clams is accurate, dramatic, legible at poster scale, AND gives a roster
+        # organism its declared home, which shell hash never could. Scale has to be stated in the
+        # prompt or MJ returns a beach of thumbnail cockles.
         prompt=(
-            "underwater photograph of a seafloor densely paved with empty shells, thick beds of "
-            "broken and whole bivalve and ammonite shells half-buried in grey sediment, layers of "
-            f"shell hash packed together, {SUBSURFACE}, natural color, photographic, "
-            "nothing stylised"),
-        no=f"{NO_LIFE}, living animals, fish, coral reef, divers, sky, surface"),
+            "underwater photograph of a seafloor paved with enormous fossil clams, huge thick-shelled "
+            "bivalves each as wide as a manhole cover lying half-buried in grey-green mud, heavy "
+            "concentric growth ribbing across every shell, some valves still paired and gaping, "
+            "others broken into curved plates, packed edge to edge into a dense pavement receding "
+            f"away from the camera, fine silt settling over them, {SUBSURFACE}, natural color, "
+            "photographic, nothing stylised"),
+        no=f"{NO_LIFE}, living animals, fish, coral reef, divers, sky, surface, "
+           f"small shells, cockles, scallops, beach, sand dollar, starfish"),
     "ocean_marine_snow": dict(
         group="ocean", ar="3:2",
         idea="abyss band — the only texture the void gets, and the thing that proves it's water",
@@ -289,15 +301,29 @@ PLATES: dict[str, dict] = {
         # cone and the rectangle shows. There is no setting that wins, because the source is a crop
         # of a landscape rather than a subject. So: shoot the cone against plain sky, so it can be
         # knocked out and composited like an organism instead of blended like a region.
+        # RESHOOT 2026-07-29. Eric: "i think our volcano is lame, it needs to be a life ending
+        # monster." The old prompt was built to SUPPRESS drama — its --no list excluded lava flow,
+        # fire and a glowing crater outright — because criticism #7 wanted the cone subordinate to
+        # the T. rex. That constraint is now met by other means: the monument has been pushed into
+        # the corner at 30% width and sits behind aerial perspective, so it can be violent without
+        # competing for the eye. Position, not meekness, is what keeps it a monument.
+        #
+        # And for THIS volume the violence is the point. The Deccan flood basalts are the second
+        # K-Pg killer, already on the plate as the sulphate veil high in the sky (build_backdrop
+        # §4d2). A polite stratovolcano undersells the thesis. Volcanic lightning is asked for
+        # because it is real, it is spectacular, and almost no paleoart uses it.
         prompt=(
-            "photograph of a single large volcanic cone seen from far away across flat ground, the "
+            "photograph of a colossal erupting volcano seen from far away across flat ground, the "
             "whole mountain isolated against clean empty pale sky with nothing else in the frame, "
-            "a tall dark ash column rising straight from the summit and drifting sideways at "
-            "altitude, steep symmetrical flanks streaked with old lava scars, soft distance haze "
-            "at the base, low warm sunlight raking the left flank, natural color, photographic, "
-            "nothing stylised"),
-        no=f"{NO_LIFE}, foreground, trees, rocks in front, lava flow, fire, glowing crater, "
-           f"city, roads, lake, ocean, other mountains, mountain range"),
+            "an immense black ash column punching vertically into the stratosphere and flattening "
+            "into a vast spreading anvil cloud far overhead, branching volcanic lightning crawling "
+            "inside the dark column, the summit crater glowing incandescent orange, a pyroclastic "
+            "density current boiling down one flank in a grey avalanche, glowing lava streaking the "
+            "upper slopes, the ash so dense it dims the sun behind it, steep flanks scarred by old "
+            "flows, apocalyptic scale, low warm sunlight raking the left flank, natural color, "
+            "photographic, nothing stylised"),
+        no=f"{NO_LIFE}, foreground, trees, rocks in front, city, roads, lake, ocean, "
+           f"other mountains, mountain range, cartoon, illustration"),
     "geo_volcanic_ash": dict(
         group="land", ar="3:2",
         idea="the geological window's subject — the ash that becomes bed L06 in the cutaway",
@@ -330,13 +356,20 @@ PLATES: dict[str, dict] = {
         # cascade the poster can now show in one glance: molten rock in the vent, the ash it throws,
         # the bentonite bed that ash becomes, and the section that bed sits in — four windows onto
         # one material at four points in its life. That is the accuracy moat as *composition*.
+        # STEP-UP 2026-07-29. Eric: "we can step up our magma game." The first plate is a quiet
+        # crack in cooled crust — accurate, and far too calm to sit at the foot of a life-ending
+        # monster. A Deccan-style FISSURE eruption is both more dramatic and more correct for the
+        # volume: the flood basalts came out of ground cracks, not a single polite vent. Asking for
+        # the curtain of fire and the spatter gives the window motion, which is what the still crack
+        # never had.
         prompt=(
-            "extreme close photograph looking down into a crack in a crusted lava surface, "
-            "brilliant incandescent orange and yellow molten rock glowing deep inside the fissure, "
-            "black cooled crust broken into plates at the surface with the glow showing between "
-            "them, intense heat shimmer above the crack, fine sparks, the molten interior clearly "
-            "far brighter than the dark crust, real depth down into the fissure, natural color, "
-            "photographic, nothing stylised"),
+            "extreme close photograph of a violent fissure eruption in a crusted lava field, a "
+            "roaring curtain of molten rock fountaining up out of a long ground crack, brilliant "
+            "white-hot and yellow at the base going deep orange higher up, molten spatter thrown in "
+            "arcs, a glowing river of lava running away from the fissure, black cooled crust broken "
+            "into plates with incandescent glow showing between them, violent heat shimmer, dense "
+            "sparks and embers in the air, the molten rock clearly far brighter than the dark crust, "
+            "real depth down into the fissure, natural color, photographic, nothing stylised"),
         no=f"{NO_WORLD}, fire, flames, campfire, forge, furnace, metal, molten steel, "
            f"fireworks, sun, illustration"),
     "air_insect_swarm": dict(
