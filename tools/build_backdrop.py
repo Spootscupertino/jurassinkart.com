@@ -576,6 +576,13 @@ def main(argv=None) -> int:
         # cone; the ash column is the loudest thing in the crop and pushing the rock back while
         # leaving the smoke forward just moves the competition rather than ending it.
         va = np.asarray(volc, np.float32)
+        # Fire is self-luminous, so distance dims it far less than it dims lit rock — and flattening
+        # contrast toward the local mean is exactly wrong for it. `volc_hot` keeps a barely-hazed copy
+        # for the lighten pass below; the aerial perspective still applies in full to the cone itself,
+        # so the monument recedes while its eruption stays hot. Same plate, two atmospheres, because
+        # they are two different kinds of light.
+        vhot = va * (1 - VOLCANO_HAZE * 0.25) + np.array([206, 186, 172], np.float32) * (VOLCANO_HAZE * 0.25)
+        volc_hot = Image.fromarray(np.clip(vhot, 0, 255).astype(np.uint8))
         va = va.mean(axis=2, keepdims=True) * VOLCANO_FLATTEN + va * (1 - VOLCANO_FLATTEN)
         va = va * (1 - VOLCANO_HAZE) + np.array([206, 186, 172], np.float32) * VOLCANO_HAZE
         volc = Image.fromarray(np.clip(va, 0, 255).astype(np.uint8))
@@ -595,14 +602,104 @@ def main(argv=None) -> int:
             # what kept drawing a soft rectangle in the air, because the patch's sky is a different
             # sky no matter how wide the mask feathers.
             box = (vx, vy, min(W, vx + vw), min(H, vy + vh))
-            blend_into(scene, volc, box, _vm.crop((0, 0, box[2] - box[0], box[3] - box[1])), "darken")
+            bw3, bh3 = box[2] - box[0], box[3] - box[1]
+            blend_into(scene, volc, box, _vm.crop((0, 0, bw3, bh3)), "darken")
             record("25_volcano", volc, (vx, vy), _vm)
-            print(f"  volcano     x {VOLCANO_X:.2f} y {VOLCANO_Y:.2f}   monument, darken-blended "
-                  f"so its own sky drops out")
+            # ---- second pass: the fire, which darken CANNOT carry ------------------------------
+            # The reshot monster (2026-07-29) broke the single-pass assumption. Darken transfers only
+            # what is darker than the destination, and everything that makes this plate a monster —
+            # the volcanic lightning inside the column, the incandescent crater, the lava on the
+            # flanks — is BRIGHTER than our sky. One darken pass would composite the cone and quietly
+            # delete the eruption, which is the whole point of the reshoot.
+            #
+            # The plate is tonally extreme in BOTH directions against its own mid-pale sky, so it gets
+            # one pass each way. Lighten alone is not enough either: the source's pale sky is also
+            # brighter than ours in places and would paste itself back in. So the fire is keyed on
+            # WARMTH rather than brightness — fire runs R-B ≈ 200+, the peach sky about 70, which
+            # separates cleanly at a threshold no amount of exposure tuning could find.
+            fa2 = np.asarray(volc_hot, np.float32)
+            warm_key = np.clip((fa2[..., 0] - fa2[..., 2] - 90.0) / 60.0, 0, 1)
+            warm_key *= np.clip((fa2.max(axis=2) - 120.0) / 70.0, 0, 1)
+            fk = (warm_key * (np.asarray(_vm, np.float32) / 255.0) * 255.0)
+            _fm = Image.fromarray(np.clip(fk, 0, 255).astype(np.uint8), "L") \
+                       .filter(ImageFilter.GaussianBlur(2.0))
+            blend_into(scene, volc_hot, box, _fm.crop((0, 0, bw3, bh3)), "lighten")
+            record("25b_volcano_fire", volc_hot, (vx, vy), _fm)
+            print(f"  volcano     x {VOLCANO_X:.2f} y {VOLCANO_Y:.2f}   monument, darken + a "
+                  f"warmth-keyed lighten pass so the lightning and crater survive")
         else:
             paste(scene, volc, (vx, vy), _vm)
             record("25_volcano", volc, (vx, vy), _vm)
             print(f"  volcano     x {VOLCANO_X:.2f} y {VOLCANO_Y:.2f}   monument dropped onto the treeline")
+
+    # ---- 1c · the lava field: the eruption reaches the ground ----------------------------
+    # Eric dropped two extra fissure plates — "i hit you with a couple extra magma vents cuz they are
+    # sooo cool" — and the best use of them is not a third window. Windows QUOTE the world; these put
+    # the eruption INTO it. Blended onto the plain at the cone's foot, the volcano stops being a
+    # picture of a distant disaster and becomes the reason the left third of this world is dying.
+    #
+    # Two different plates rather than one twice — the same rule the litter band follows, and for the
+    # same reason: one texture used twice reads as wallpaper, and a repeated lava flow would read as a
+    # copy-paste faster than almost anything else on the plate.
+    #
+    # Lighten, not alpha: the plates are incandescent channels on near-black crust, which is the exact
+    # tonal-extreme condition blend_into documents. The dark crust loses to our lit plain and vanishes;
+    # only the glowing rivers survive. Keyed on warmth as well, so the grey ash haze in the source
+    # cannot brighten our ground.
+    # Aspect matters more than position here. The first attempt gave these a 690x97 strip — a 7:1
+    # canvas — and blob_mask's radial term is dominated by the SHORT axis at that ratio: at the left
+    # edge it is still ~18% opaque, which composited as a pale ruled trapezoid on the plain. Same trap
+    # the macro windows hit, same fix, so the mask is explicitly damped to zero at its own bounds
+    # rather than trusted to fall off on its own. Kept near the cone's foot and to the left so the
+    # eruption does not eat the central plain the land cast needs.
+    # The two plates want DIFFERENT blend modes, and that is not a detail. Lava's legibility comes
+    # from the contrast between near-black crust and incandescent channels — lighten discards the
+    # crust by construction (it loses to our lit plain), so a lighten-only lava field arrives as a
+    # warm glow with no form, which is what the first attempt looked like. So the near field is
+    # ALPHA-pasted: crust and channels both land, and a dark crusted flow is the correct thing for
+    # ground to be. The second plate stays a lighten pass, because that is what lighten is genuinely
+    # good at — adding light to a surface rather than adding an object to a scene. One flow, and the
+    # glow it throws on the plain beside it.
+    # PARKED 2026-07-29, and the reason is the law this file keeps re-learning: **a source plate's
+    # geometry cannot be masked away.** Eric's two extra fissure plates are magnificent and they are
+    # extreme CLOSE-UPS — a metre from a vent. Used as mid-distance ground they were cover-fit into a
+    # ~4:1 strip, which crops a thin band of pure fountain glow with none of the crust-and-channel
+    # contrast that makes lava legible, and no blend mode rescued it: lighten dropped the black crust
+    # and gave a formless warm haze, alpha kept the crust and gave a soft pale wedge. Four attempts,
+    # same failure, same cause as `ocean_shelf_dropoff` being a head-on wall.
+    #
+    # The idea is right — the eruption should reach the ground, not just be quoted in a lens — so the
+    # wiring stays and waits for a plate shot FOR this slot: a flow seen at mid distance across a
+    # plain, where the crust reads as ground. `land_lava_flow` in lp_plate_prompt.py. Until then the
+    # magma plates do the job they are actually superb at, which is the window at the cone's foot.
+    for lname, lx, ly, lw, lh, lseed, lmode in [
+            ("land_lava_flow", 0.000, 0.398, 0.205, 0.132, 311, "alpha"),
+            ("land_lava_glow", 0.170, 0.410, 0.150, 0.105, 317, "lighten")]:
+        if not (CAND / f"{lname}.png").exists():
+            continue
+        fw2, fh2 = round(W * lw), round(H * lh)
+        lav = cover(load(f"{lname}.png"), (fw2, fh2))
+        la = np.asarray(lav, np.float32)
+        wk = np.clip((la[..., 0] - la[..., 2] - 70.0) / 70.0, 0, 1)
+        wk *= np.clip((la.max(axis=2) - 90.0) / 80.0, 0, 1)
+        wk *= np.asarray(blob_mask((fw2, fh2), seed=lseed, softness=0.80), np.float32) / 255.0
+        _ex = np.clip(np.minimum(np.arange(fw2), fw2 - 1 - np.arange(fw2)) / (fw2 * 0.16), 0, 1)
+        _ey = np.clip(np.minimum(np.arange(fh2), fh2 - 1 - np.arange(fh2)) / (fh2 * 0.16), 0, 1)
+        wk *= _ey[:, None] * _ex[None, :]
+        if lmode == "alpha":
+            # keep the crust: the mask is shape only, not a warmth key
+            wk = (np.asarray(blob_mask((fw2, fh2), seed=lseed, softness=0.80), np.float32) / 255.0
+                  * _ey[:, None] * _ex[None, :])
+        _lm = Image.fromarray(np.clip(wk * 255, 0, 255).astype(np.uint8), "L") \
+                   .filter(ImageFilter.GaussianBlur(3.0))
+        lx0, ly0 = round(W * lx), round(H * ly)
+        if lmode == "alpha":
+            paste(scene, lav, (lx0, ly0), _lm)
+        else:
+            blend_into(scene, lav, (lx0, ly0, min(W, lx0 + fw2), min(H, ly0 + fh2)),
+                       _lm.crop((0, 0, min(W, lx0 + fw2) - lx0, min(H, ly0 + fh2) - ly0)), "lighten")
+        record(f"26_lava_{lname[-1]}", lav, (lx0, ly0), _lm)
+        print(f"  lava        x {lx:.2f} y {ly:.2f}    {lname} on the plain, {lmode}")
 
     # ---- 2 · ocean wedge, blended in on an irregular coastline --------------------------
     # Built as its own region (lower-right), then blended into the scene with the PRODUCT of two

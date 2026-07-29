@@ -349,6 +349,23 @@ PLATES: dict[str, dict] = {
             "natural color, photographic, nothing stylised"),
         no=f"{NO_WORLD}, snow, ice, sand dune, flat texture swatch, powder, flour, smoke, "
            f"white, bright white, overexposed, blown highlights, cool grey, blue light, daylight"),
+    "land_lava_flow": dict(
+        group="land", ar="3:2",
+        idea="a lava flow ON the plain at mid distance — the eruption reaching the ground",
+        # Written 2026-07-29 after the close-up magma plates failed at this job. They are a metre from
+        # a vent; this slot needs the camera a few hundred metres back, because the plate has to read
+        # as GROUND. Lava's legibility is the contrast between near-black crust and incandescent
+        # channels, so both are asked for explicitly, and the low camera is stated first — "lava flow"
+        # alone is a subject noun and MJ answers subject nouns with a hero close-up.
+        prompt=(
+            "wide landscape photograph taken from a few hundred metres away and slightly above, "
+            "looking across a broad open plain, a long braided lava flow creeping across the middle "
+            "distance from left to right, thick near-black crusted basalt surface broken by a network "
+            "of narrow incandescent orange cracks, the crust matte and dark and clearly the dominant "
+            "surface, a few brighter molten channels, low heat shimmer above it, dry open ground "
+            f"beyond, {WARM}, deep perspective, natural color, photographic, nothing stylised"),
+        no=f"{NO_LIFE}, close-up, macro, fountain, spatter, curtain of fire, volcano cone, "
+           f"mountain, ocean, forest, bright white, overexposed"),
     "geo_magma_vent": dict(
         group="land", ar="3:2",
         idea="the magma window — the volcano's own interior, at the top of the Law #2 cascade",
