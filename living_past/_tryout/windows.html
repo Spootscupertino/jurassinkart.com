@@ -1,0 +1,95 @@
+<meta charset="utf-8">
+<title>Window modes — crisp / hybrid / soft / lens</title>
+<style>
+  *{ box-sizing:border-box; }
+  html,body{ height:100%; }
+  body{ margin:0; background:#07080a; color:#e6dcc2; overflow:hidden;
+        font-family:"Optima","Avenir Next",sans-serif; }
+
+  /* All three are stacked in the same place and cross-faded by opacity rather than swapped by
+     src. Swapping src makes the browser decode on every keypress, which puts a blink between the
+     two states — and a blink is exactly what destroys an A/B, because the eye re-acquires the
+     frame instead of comparing it. Stacked, the change is instantaneous and only the pixels that
+     differ appear to move. */
+  /* Absolute + object-fit rather than a grid stack. Three replaced elements sharing one grid cell
+     size the track from their INTRINSIC width (3000px), so `max-width:100%` resolves against an
+     already-overflowing track and constrains nothing — the plate rendered small and off-centre.
+     Filling a fixed box and letting object-fit do the letterboxing has no such circularity. */
+  .stage{ position:fixed; inset:0; overflow:hidden; }
+  .stage img{ position:absolute; inset:0; width:100%; height:100%;
+              object-fit:contain; display:block; opacity:0; }
+  .stage img.on{ opacity:1; }
+  body.zoom .stage{ overflow:auto; }
+  body.zoom .stage img{ position:static; width:auto; height:auto; object-fit:none;
+                        max-width:none; max-height:none; }
+  body.zoom .stage img:not(.on){ display:none; }
+
+  .bar{ position:fixed; left:0; right:0; bottom:0; padding:14px 20px;
+        display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+        background:linear-gradient(180deg,#0000,#000000d8); transition:opacity .35s; }
+  body.hide .bar{ opacity:0; pointer-events:none; }
+  .name{ font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:#c9a35c; min-width:26ch; }
+  .note{ font-size:11px; color:#8a7c60; letter-spacing:.06em; max-width:62ch; line-height:1.5; }
+  button{ font:inherit; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+          background:#0d0f10; color:#cdbf9f; border:1px solid #b98f4e55; padding:7px 13px;
+          cursor:pointer; }
+  button.on{ background:#b98f4e; color:#14120c; border-color:#b98f4e; }
+  .keys{ font-size:11px; color:#8a7c60; letter-spacing:.10em; }
+  .keys b{ color:#cdbf9f; font-weight:600; }
+  .spacer{ flex:1; }
+</style>
+
+<div class="stage">
+  <img id="i0" src="win_crisp.png"  class="on" alt="crisp">
+  <img id="i1" src="win_hybrid.png" alt="hybrid">
+  <img id="i2" src="win_soft.png"   alt="soft">
+  <img id="i3" src="win_lens.png"   alt="lens">
+  <img id="i4" src="vol_before.png" alt="volcano before">
+</div>
+
+<div class="bar">
+  <span class="name" id="label"></span>
+  <button data-i="0">1 · crisp</button>
+  <button data-i="1">2 · hybrid</button>
+  <button data-i="2">3 · soft</button>
+  <button data-i="3">4 · lens</button>
+  <button data-i="4">5 · volcano before</button>
+  <span class="spacer"></span>
+  <span class="note" id="note"></span>
+  <span class="keys"><b>1-5</b> switch · <b>SPACE</b> hold for crisp · <b>F</b> fullscreen · <b>Z</b> 1:1 · <b>H</b> hide</span>
+</div>
+
+<script>
+const M = [
+  ['CRISP — shipped',  'The rule is the only clean edge on the plate. Everything else is noise-warped precisely so nothing reads as drawn, which is what lets this one straight line read as an instrument rather than an artefact.'],
+  ['HYBRID',           'Rule stays sharp; content falls off before it reaches the brass, and escapes at three points instead of one. Watch the corners — if content pulls away from its own frame it reads as a registration error, not as flow.'],
+  ['SOFT — no rule',   'No frame at all. Ask yourself whether you can still tell the log is MAGNIFIED rather than just nearer — the frame was carrying that claim. Also orphans the four corner register ticks.'],
+  ['LENS — own shape', 'Each window gets its own wandering aperture (no two alike, none a primitive) and its content is bulged as if seen through curved glass. The ring follows the wander, is lit from the upper right like the rest of the plate, and casts a soft shadow down-left so the glass sits PROUD of the poster instead of being a hole in it. This keeps the frame — so the magnification claim survives — while making the outline something the world could own.'],
+  ['VOLCANO — before', 'Modes 1-4 all share the NEW volcano: hard into the left corner, base raised to y 0.40. This is the old one (X 0.108, base 0.45) — note its base sitting right on the far (0.452) and mid (0.505) ground lines, which is the band the land cast has to stand in.'],
+];
+const imgs = [i0,i1,i2,i3,i4], label = document.getElementById('label'), note = document.getElementById('note');
+let cur = 0, held = false;
+
+function show(n, remember=true){
+  imgs.forEach((im,k)=>im.classList.toggle('on', k===n));
+  label.textContent = M[n][0]; note.textContent = M[n][1];
+  document.querySelectorAll('button').forEach(b=>b.classList.toggle('on', +b.dataset.i===n));
+  if(remember) cur = n;
+}
+document.querySelectorAll('button').forEach(b=>b.onclick=()=>show(+b.dataset.i));
+
+addEventListener('keydown', e=>{
+  if(e.code==='Space'){ e.preventDefault(); if(!held){ held=true; show(0,false); } return; }
+  const k = e.key.toLowerCase();
+  if('12345'.includes(k)) show(+k-1);
+  if(k==='f'){ document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen(); }
+  if(k==='z'){ document.body.classList.toggle('zoom'); }
+  if(k==='h'){ document.body.classList.toggle('hide'); }
+});
+addEventListener('keyup', e=>{ if(e.code==='Space'){ held=false; show(cur,false); } });
+
+let t; const idle=()=>{ document.body.classList.remove('hide');
+  clearTimeout(t); t=setTimeout(()=>document.body.classList.add('hide'), 3000); };
+addEventListener('mousemove', idle); idle();
+show(0);
+</script>

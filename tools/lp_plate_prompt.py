@@ -306,14 +306,23 @@ PLATES: dict[str, dict] = {
         # window on the cone shows the material that becomes a named layer at the other end of the
         # plate. The existing `tex_bentonite` tile cannot do it: a window has to look INTO
         # something, and a flat texture swatch composites as a floating slab.
+        # RESHOOT WANTED (2026-07-29). The first plate is technically excellent and unusable: asking
+        # for "pale grey" ash got a brilliant white subject, and a white subject cannot be composited
+        # into a low-orange sunset world in any position. It was tried in the sky (read as a floating
+        # boulder), on the plain (read as a pale rock), and warm-tinted at 0.9 (better, still a lump).
+        # Value, not hue, is the blocker: nothing else in that quarter of the plate is near white.
+        # So the light is now specified as the scene's own — the same low golden key every micro plate
+        # is shot under — and the ash is asked for damp and warm-toned rather than fresh and bright.
         prompt=(
-            "extreme close photograph looking into a freshly fallen bed of pale grey volcanic ash, "
-            "deep soft drifts of fine ash with a cracked crusted surface, one broken edge showing "
-            "the delicate layering beneath, scattered dark angular lapilli and one larger volcanic "
-            "bomb half buried, fine ash still settling in the air, real depth into the drift, "
-            "raking low warm light picking out the ripples, natural color, photographic, "
-            "nothing stylised"),
-        no=f"{NO_WORLD}, snow, ice, sand dune, flat texture swatch, powder, flour, smoke"),
+            "extreme close photograph looking into a freshly fallen bed of volcanic ash, deep soft "
+            "drifts of fine damp warm-grey ash with a cracked crusted surface, one broken edge "
+            "showing the delicate layering beneath, scattered dark angular lapilli and one larger "
+            "volcanic bomb half buried, fine ash still settling in the air, real depth into the "
+            "drift, warm low golden sunset key light raking in from the upper right, long soft "
+            "shadows, late-day amber tone through the whole frame, mid-toned not bright, "
+            "natural color, photographic, nothing stylised"),
+        no=f"{NO_WORLD}, snow, ice, sand dune, flat texture swatch, powder, flour, smoke, "
+           f"white, bright white, overexposed, blown highlights, cool grey, blue light, daylight"),
     "geo_magma_vent": dict(
         group="land", ar="3:2",
         idea="the magma window — the volcano's own interior, at the top of the Law #2 cascade",

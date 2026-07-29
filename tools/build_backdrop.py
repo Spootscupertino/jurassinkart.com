@@ -89,8 +89,21 @@ LAND_BIAS = 0.34      # vertical crop bias on the land plate; < 0.5 keeps more o
 # that made that corner busy, has left with the cone. And the **asteroid whisper** was sharing the
 # left corner with the title; with the volcano there it has no quiet air left, so it moves to the
 # upper centre-left, which is now the emptiest sky on the plate.
-VOLCANO_X = 0.108
-VOLCANO_Y = 0.055
+# Eric, 2026-07-29 (second pass): *"it should all fit up high in that top left corner to give
+# maximum ground space for our land creatures."* This is not a taste note, it is a collision report.
+# At X 0.108 / W 0.300 the cone's base landed at y≈0.425 and its mask faded out at 0.452 — and
+# `place_on_backdrop.PLANES` puts the `far` ground line at 0.452 and `mid` at 0.505. The monument was
+# sitting *on* the two bands the land cast has to stand in, which is why the plate looked like it had
+# no room for animals: it didn't. Pushed hard into the corner (X 0) and shrunk so the base now ends
+# near y 0.39 and its mask is gone by 0.41, clearing both ground lines and handing that whole
+# band back to the cast. Note which knob did the work: raising Y did almost all of it, so the
+# cone only gives up 5% of its width (0.300 -> 0.285) rather than the 22% first tried.
+#
+# Shrinking a hero is the trade, and it is the right one twice over: criticism #7 already wanted the
+# cone subordinate to the T. rex, and a monument that touches two edges of the frame reads bigger
+# than its pixel width because the eye completes it past the trim.
+VOLCANO_X = 0.0
+VOLCANO_Y = 0.030
 VOLCANO_W = 0.300
 # Criticism #7: the volcano and the T. rex compete. Both were large, high-contrast and upper-middle,
 # so the eye had two subjects and settled on neither. The monument is supposed to be the far wall of
@@ -98,7 +111,7 @@ VOLCANO_W = 0.300
 # eats contrast long before it eats scale. So the cone is composited through the same aerial
 # perspective the far plain already gets — flattened toward the haze colour and desaturated — and
 # only trimmed slightly. It stays a monument; it stops being a rival.
-VOLCANO_HAZE = 0.24         # how far the cone is mixed toward the horizon haze
+VOLCANO_HAZE = 0.17         # how far the cone is mixed toward the horizon haze
 VOLCANO_FLATTEN = 0.20      # contrast pulled toward its own mean
 
 # ---- the macro windows -------------------------------------------------------------------------
@@ -121,8 +134,14 @@ MACRO_WINS = [
     # keeper: the band wants edge-to-edge texture and the window wants an enlargeable interior, and
     # those are different pictures. Pointing both at one plate is what made the two windows read as
     # a duplication rather than a system. Falls back to the band's lead if it was never shot.
-    dict(box=(0.018, 0.505, 0.245, 0.945), slots=("micro_log_cavity",),
-         lobe_x=0.68, lift=1.22, over=0.30, seed=181,
+    # `roundness` / `wobble` / `barrel` are the lens parameters (--windows lens). They are per-window
+    # on purpose: Eric, 2026-07-29 — "each window will be its own unique shape to fit whatever it
+    # is". A shared shape is the thing that made four windows read as four crops of one instrument.
+    # The big litter window stays the squarest (a lozenge, so the wide box still fills) and bulges
+    # most, because it is the one the reader is closest to and the Law #2 exemplar.
+    dict(box=(0.018, 0.545, 0.222, 0.945), slots=("micro_log_cavity",),
+         lobe_x=0.68, lift=1.22, over=0.30, seed=181, warm=0.12, dissolve=0.55,
+         roundness=2.8, wobble=0.09, barrel=0.18,
          crop=(0.22, 0.22, 0.78, 0.78), flip=False),
     # `crop` and `flip` differ deliberately. Until the ocean plates are shot this window falls back
     # to the same micro habitat as the first one, and two windows showing the identical image is a
@@ -136,6 +155,7 @@ MACRO_WINS = [
     dict(box=(0.775, 0.560, 0.905, 0.815),
          slots=("ocean_shell_beds", "ocean_marine_snow", "ocean_algae_fringe"), require=True,
          lobe_x=0.34, lift=1.12, over=0.34, seed=193,
+         roundness=2.2, wobble=0.12, barrel=0.13,
          crop=(0.02, 0.30, 0.40, 0.80), flip=True),
     # Eric's idea, and it completes the system: a window on the volcano, showing geology.
     #
@@ -154,16 +174,43 @@ MACRO_WINS = [
     # optic, which is exactly what a magnification window is claiming to be. Criticism #4 was that
     # the window read as an accident; a porthole cannot, because nothing accidental is round.
     # Boxes here are kept square in CANVAS pixels (w/W == h/H * H/W), or the circle is an ellipse.
-    dict(box=(0.352, 0.150, 0.440, 0.353), shape="circle",
+    # Both satellites moved with the cone (2026-07-29). They are no longer *bracketing* it, which was
+    # the old arrangement and the reason all three had to move as a unit: Eric — "i thought the magma
+    # would be at the base of it". A window is a magnification of what is behind it, so the ash sits
+    # on the drifting plume and the magma sits at the cone's foot. That is also a better composition
+    # than a bracket: the pair now runs as a diagonal across the monument, upper-right to lower-left,
+    # instead of two circles flanking it symmetrically.
+    # ASH — on the GROUND, downwind of the cone, beside the lava.
+    #
+    # It sat in the sky for one render and read as a boulder floating in the clouds. The render was
+    # not at fault: `geo_volcanic_ash` is written as "looking into a freshly fallen BED of pale grey
+    # volcanic ash", so it is a ground subject, and the plate MJ returned is correct for its slot.
+    # This is the trap the file already names — check what consumes a slot before blaming the render.
+    # A window magnifies what is behind it, and what is behind the sky is sky.
+    #
+    # On the ground it also earns its keep: an ash-fall bed at the volcano's foot is bed L06 in
+    # `geology_hellcreek.json` ("ash fall from the scene's volcano — the datable marker"), so the
+    # cascade now runs along the base of the cone — magma in the vent, the ash it drops beside it,
+    # and the same bed named again in the cutaway at the bottom of the plate.
+    dict(box=(0.2455, 0.3361, 0.2905, 0.4399), shape="circle",
          slots=("geo_volcanic_ash", "tex_bentonite"),
-         lobe_x=0.40, lift=1.06, over=0.26, seed=197,
-         crop=(0.18, 0.18, 0.72, 0.82), flip=False),
-    dict(box=(0.020, 0.196, 0.108, 0.399), shape="circle",
+         lobe_x=0.40, lift=1.06, over=0.26, seed=197, warm=0.15,
+         roundness=2.15, wobble=0.10, barrel=0.14,
+         crop=(0.30, 0.26, 0.88, 0.86), flip=False),
+    # The magma vent is the most irregular of the four, and that is content-led: it is the one
+    # window looking at something molten and actively moving, so a rim that wanders furthest from
+    # any ideal shape is the honest one.
+    # MAGMA — at the base of the cone, directly under the vent. Smaller than the ash window so the
+    # whole cluster still ends above the `far` ground line (0.452); this one bottoms out at 0.385,
+# which is the cone's own base — the window is sitting on the ground the vent sits on.
+    dict(box=(0.1325, 0.3080, 0.1875, 0.4350), shape="circle",
          slots=("geo_magma_vent",), require=True,
-         lobe_x=0.55, lift=1.00, over=0.26, seed=199,
+         lobe_x=0.55, lift=1.00, over=0.26, seed=199, warm=0.10,
+         roundness=2.1, wobble=0.11, barrel=0.16,
          crop=(0.16, 0.16, 0.74, 0.84), flip=False),
 ]
 BRASS = (185, 143, 78)
+BRASS_HI = (216, 181, 122)   # SCOPE §4 brass highlight #D8B57A — the lit side of a lens rim
 # Eric, 2026-07-29: round the window corners. Applied to every window, not just the one he was
 # looking at — the whole point of the second and third boxes is that they read as the same
 # instrument, and a rounded box beside two square ones is three boxes again.
@@ -268,6 +315,58 @@ def blend_into(scene: Image.Image, im: Image.Image, box, mask: Image.Image, mode
     scene.paste(merged, (x0, y0))
 
 
+def aperture(size, seed: int, roundness: float = 3.2, wobble: float = 0.16) -> np.ndarray:
+    """An organic lens aperture in 0..1 — the shape a window is seen through.
+
+    Eric, 2026-07-29: *"each window will be its own unique shape to fit whatever it is… it feels
+    like a magnifying glass is popping out of the scene."*
+
+    A circle and a rounded rectangle are both **primitives**, and a primitive announces that
+    software drew it. A superellipse whose radius wanders with low-frequency noise is none of the
+    standard shapes and never repeats between seeds, so each window is its own aperture without
+    anyone choosing one.
+
+    `roundness` is the superellipse exponent: **1 is a diamond, 2 is the circle/ellipse, 4+ is a
+    squarish lozenge.** Keep it near 2 for anything meant to read as an optic — 3 is already a
+    visible squircle, which is just a different primitive and defeats the purpose. Only the wide
+    box goes higher, and only because an ellipse leaves a wide frame's corners unused.
+    `wobble` is how far the rim wanders off that ideal; past ~0.15 it stops reading as a lens and
+    starts reading as a torn hole.
+    """
+    w, h = size
+    ny = (np.arange(h, dtype=np.float32)[:, None] - h / 2) / (h / 2)
+    nx = (np.arange(w, dtype=np.float32)[None, :] - w / 2) / (w / 2)
+    ang = (np.arctan2(ny, nx) + np.pi) / (2 * np.pi)
+    # one wander per angle, not per pixel, or the rim gets fuzzy instead of irregular
+    prof = noise((1, 512), octaves=(2, 4, 7), seed=seed)[0]
+    idx = np.clip((ang * 511).astype(np.int32), 0, 511)
+    r = (np.abs(nx) ** roundness + np.abs(ny) ** roundness) ** (1.0 / roundness)
+    return (r / (1.0 + (prof[idx] - 0.5) * 2 * wobble)).astype(np.float32)
+
+
+def barrel(im: Image.Image, k: float) -> Image.Image:
+    """Bulge the centre of `im` outward, the way a hand lens does.
+
+    This is the cue that actually says "magnifier" once the brass ring is gone. A flat crop pasted
+    into a soft-edged hole reads as a patch of another photograph; the same crop with its middle
+    swollen and its rim compressed reads as something seen THROUGH a curved piece of glass, which
+    is the whole claim the window is making about scale.
+    """
+    a = np.asarray(im.convert("RGB"), np.float32)
+    h, w = a.shape[:2]
+    ny = (np.arange(h, dtype=np.float32)[:, None] - h / 2) / (h / 2)
+    nx = (np.arange(w, dtype=np.float32)[None, :] - w / 2) / (w / 2)
+    r = np.sqrt(nx * nx + ny * ny)
+    s = 1.0 - k * np.clip(1.0 - r * r, 0, 1)          # sample tighter near the centre = magnify
+    sx = np.clip((nx * s * 0.5 + 0.5) * (w - 1), 0, w - 1.001)
+    sy = np.clip((ny * s * 0.5 + 0.5) * (h - 1), 0, h - 1.001)
+    x0, y0 = sx.astype(np.int32), sy.astype(np.int32)
+    fx, fy = (sx - x0)[..., None], (sy - y0)[..., None]
+    out = (a[y0, x0] * (1 - fx) * (1 - fy) + a[y0, x0 + 1] * fx * (1 - fy) +
+           a[y0 + 1, x0] * (1 - fx) * fy + a[y0 + 1, x0 + 1] * fx * fy)
+    return Image.fromarray(np.clip(out, 0, 255).astype(np.uint8))
+
+
 def seafloor_profile(W: int, H: int, coast: np.ndarray) -> np.ndarray:
     """Per-column y of the sea bottom, in pixels, measured out from the wandering coastline.
 
@@ -353,6 +452,11 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="Assemble the Living Past back plate")
     ap.add_argument("--out", type=pathlib.Path, default=ROOT / "working/backdrop.png")
     ap.add_argument("--no-grade", action="store_true", help="skip the unifying grade pass")
+    ap.add_argument("--windows", choices=("glass", "crisp", "hybrid", "soft", "lens"), default="glass",
+                    help="how the macro windows meet the plate. glass = custom aperture, no border, dissolving rim (SHIPPED); crisp = ruled instrument; "
+                         "hybrid = crisp rule, content softened inside it, three escape points; "
+                         "soft = no rule at all, content dissolves into the plate; "
+                         "lens = per-window organic aperture + barrel bulge (a hand lens, not a crop)")
     ap.add_argument("--no-weather", action="store_true",
                     help="skip the rain cell (one light, one hour — the state criticism #9 names)")
     ap.add_argument("--layers", type=pathlib.Path, default=None,
@@ -830,6 +934,18 @@ def main(argv=None) -> int:
         ba = ba * gain + 8
         # protect the top end: compress rather than clip, so texture survives in the brightest wood
         ba = np.where(ba > 200, 200 + (ba - 200) * 0.42, ba)
+        # Exposure was never the whole problem. A window also has to be lit by the SAME SUN as the
+        # plate, and `geo_volcanic_ash` proved it: pale grey ash dropped into a low-orange sunset world
+        # read as a boulder pasted on, in the sky and on the ground alike, because no amount of
+        # brightness fixes a hue that belongs to a different time of day. This is the same argument
+        # `place_on_backdrop.py` makes when it refuses to give an underwater animal the sunset haze.
+        #
+        # Multiplicative rather than a mix toward a flat colour: grey material under warm light is
+        # grey times the light, so scaling the channels warms it while leaving every bit of the
+        # texture contrast — which is the one thing a magnification window may not give up.
+        if spec.get("warm"):
+            w = float(spec["warm"])
+            ba *= np.array([1.0 + w * 0.30, 1.0, 1.0 - w * 0.28], np.float32)
         big = Image.fromarray(np.clip(ba, 0, 255).astype(np.uint8))
 
         # The mask is the box UNION a lobe that straddles the box's top edge. An explicit gaussian
@@ -845,6 +961,15 @@ def main(argv=None) -> int:
         # than as a spill. Squashing it keeps the width and kills the slab.
         cx, cy, rad = bw2 * spec["lobe_x"], float(over), bw2 * 0.30
         lobe = np.exp(-(((gx - cx) ** 2 + ((gy - cy) * 2.2) ** 2) / (2 * rad * rad)))
+        # `hybrid` adds two more escape points on other sides. One break reads as a single decision;
+        # three read as something that is genuinely growing out of the frame — which is what "blend
+        # them so they flow organically" is asking for, without touching the rule's crispness.
+        if args.windows == "hybrid":
+            for lx, ly, lr in ((0.06, 0.42, 0.24), (0.72, 1.00, 0.20)):
+                px2, py2 = bw2 * lx, over + bh2 * ly
+                rr = bw2 * lr
+                lobe = np.maximum(lobe, 0.85 * np.exp(
+                    -(((gx - px2) ** 2 + ((gy - py2) * 1.4) ** 2) / (2 * rr * rr))))
         lobe *= 0.72 + 0.55 * noise((ch, cw), octaves=(2, 5, 11), seed=spec["seed"])
         # Force the lobe to zero at the content canvas edges. Same trap as blob_mask's softness:
         # the gaussian is still ~16% opaque at the top-right corner, and 16% opacity that stops
@@ -863,40 +988,175 @@ def main(argv=None) -> int:
         # The CONTENT has to be rounded too, not just the rule drawn over it. A square photograph
         # behind a rounded frame leaves four little corners of image poking out past the brass,
         # which is more obviously wrong than square corners ever were.
-        corner = Image.new("L", (bw2, bh2), 0)
-        if spec.get("shape") == "circle":
-            ImageDraw.Draw(corner).ellipse((0, 0, bw2 - 1, bh2 - 1), fill=255)
+        rfield = None
+        if args.windows == "glass":
+            # THE SHIPPED TREATMENT. Eric, 2026-07-29: *"i like no borders, remember the transparency
+            # looks soo cool. each micro view will be its own custom shape. it really pops on the
+            # poster when you step back and look at it."*
+            #
+            # This is the combination none of the first three modes was: `soft` dropped the rule but
+            # kept a primitive outline, and `lens` got the custom outline but had a brass ring bolted
+            # round it. Here the aperture supplies the custom shape, the bulge supplies the glass, and
+            # the rim DISSOLVES instead of being drawn — so the thing that separates the window from
+            # the plate is magnification and curvature, not a border.
+            #
+            # Why it pops at a distance rather than disappearing: a dissolving edge removes the
+            # highest-frequency detail in the region, and at reading distance high frequency is the
+            # first thing to go anyway. What survives the walk backwards is the low-frequency
+            # difference — a patch of the plate at a different scale and a different contrast — which
+            # is exactly the signal that says "look closer". A ruled border is the opposite: it is
+            # pure high frequency, so it is loud up close and gone at six feet.
+            rfield = aperture((bw2, bh2), seed=spec["seed"],
+                              roundness=spec.get("roundness", 2.2),
+                              wobble=spec.get("wobble", 0.12))
+            # Wander the radius in 2D as well as per-angle, so the dissolve itself is organic. Same
+            # law as every other seam on this plate: nothing in nature has a ruled edge, and that now
+            # includes the edge of the window.
+            warp = 0.90 + 0.20 * noise((bh2, bw2), octaves=(2, 5, 11), seed=spec["seed"] + 7)
+            edge = spec.get("dissolve", 0.38)
+            t = np.clip((1.0 - rfield * warp) / edge, 0, 1)
+            shaped = t * t * (3.0 - 2.0 * t)      # smoothstep: no visible start-of-fade contour
+            big = barrel(big, spec.get("barrel", 0.15))
+        elif args.windows == "lens":
+            # Eric, 2026-07-29: each window its own unique shape, "like a magnifying glass popping
+            # out of the scene". Both halves of that matter and they are separate mechanisms: the
+            # APERTURE stops the outline being a primitive (a circle and a rounded rectangle are
+            # both shapes software owns), and the BARREL bulge is what makes it read as glass rather
+            # than as a differently-shaped crop. Shape alone just relocates the artefact.
+            rfield = aperture((bw2, bh2), seed=spec["seed"],
+                              roundness=spec.get("roundness", 3.2),
+                              wobble=spec.get("wobble", 0.16))
+            # Feather in the shape's OWN units, sized to land at ~2 px, so the glass rim stays crisp
+            # (it is a hard edge in the world) without aliasing along the wander.
+            feath = 2.0 / max(4.0, min(bw2, bh2) / 2.0)
+            shaped = np.clip((1.0 - rfield) / feath, 0, 1)
+            # Outside r = 1 the bulge is identity, so this leaves the escape lobe undistorted for
+            # free — the content that has climbed out of the glass is not seen through it.
+            big = barrel(big, spec.get("barrel", 0.15))
         else:
-            ImageDraw.Draw(corner).rounded_rectangle((0, 0, bw2 - 1, bh2 - 1),
-                                                     radius=round(W * WIN_RADIUS), fill=255)
+            corner = Image.new("L", (bw2, bh2), 0)
+            if spec.get("shape") == "circle":
+                ImageDraw.Draw(corner).ellipse((0, 0, bw2 - 1, bh2 - 1), fill=255)
+            else:
+                ImageDraw.Draw(corner).rounded_rectangle((0, 0, bw2 - 1, bh2 - 1),
+                                                         radius=round(W * WIN_RADIUS), fill=255)
+            shaped = np.asarray(corner, np.float32) / 255.0
+        # ---- the three window modes (--windows) ---------------------------------------------
+        # `crisp` is the shipped behaviour and the argument behind it: every other edge on the plate
+        # is noise-warped precisely so nothing reads as drawn, so the one clean edge reads as an
+        # INSTRUMENT of the poster rather than a compositing artefact.
+        # `soft` is the opposite proposition — no rule at all, the content simply dissolving into
+        # the plate. `hybrid` keeps the crisp rule and softens only what is inside it.
+        if args.windows in ("soft", "hybrid"):
+            # radial falloff measured in units of the shape's own half-size, so it behaves the same
+            # on the tall circles and the wide rectangle
+            ny = (np.arange(bh2, dtype=np.float32)[:, None] - bh2 / 2) / (bh2 / 2)
+            nx = (np.arange(bw2, dtype=np.float32)[None, :] - bw2 / 2) / (bw2 / 2)
+            r2 = np.sqrt(np.clip(nx * nx + ny * ny, 0, None))
+            start = 0.30 if args.windows == "soft" else 0.72   # where the fade begins
+            fade = np.clip((1.0 - r2) / max(1e-3, 1.0 - start), 0, 1)
+            fade *= 0.55 + 0.75 * noise((bh2, bw2), octaves=(2, 5, 12), seed=spec["seed"] + 5)
+            shaped = shaped * np.clip(fade, 0, 1)
         mask = np.zeros((ch, cw), np.float32)
-        mask[over:, :bw2] = np.asarray(corner, np.float32) / 255.0    # the framed content
+        mask[over:, :bw2] = shaped                                    # the framed content
         mask = np.maximum(mask, lobe)                                 # the part that escapes
+
+        # A window may now sit hard against the top edge — Eric wants the volcano cluster high in the
+        # corner — and then its escape lobe starts ABOVE the canvas. Both consumers of that origin
+        # fail differently and neither fails loudly: PIL's alpha_composite rejects a negative
+        # destination outright, and the numpy slice for the rule's cut degenerates to height 0 and
+        # raises a broadcast error. Trim the content down to the canvas rather than nudging the box,
+        # because moving the box to suit the compositor is letting the code pick the composition.
+        py0 = my0 - over
+        if py0 < 0:
+            big = big.crop((0, -py0, big.width, big.height))
+            mask, lobe = mask[-py0:, :], lobe[-py0:, :]
+            ch, py0 = mask.shape[0], 0
+
+        # ---- the glass sits PROUD of the plate ------------------------------------------------
+        # This is what "popping out of the scene" actually needs, and the aperture shape alone does
+        # not supply it: a hole and a lens can have identical outlines. What separates them is that
+        # a lens is an object in front of the poster, so it casts onto it. Shadow first, under the
+        # content; the lit rim comes after, on top of the ring.
+        # Direction is not free — the whole plate is keyed from the upper right (the micro plates are
+        # shot "raking in from the upper right", the strata are lit from there, the grade agrees), so
+        # the shadow falls down-left or the window belongs to a different world than its own contents.
+        if rfield is not None and args.windows == "lens":
+            sdx, sdy = -round(bw2 * 0.020), round(bh2 * 0.026)
+            sm = np.zeros((H, W), np.float32)
+            ty0, tx0 = my0 + sdy, mx0 + sdx
+            sy0, sx0 = max(0, ty0), max(0, tx0)
+            sy1, sx1 = min(H, ty0 + bh2), min(W, tx0 + bw2)
+            if sy1 > sy0 and sx1 > sx0:
+                sm[sy0:sy1, sx0:sx1] = shaped[sy0 - ty0:sy1 - ty0, sx0 - tx0:sx1 - tx0]
+            _sh = Image.fromarray((np.clip(sm, 0, 1) * 150).astype(np.uint8), "L") \
+                       .filter(ImageFilter.GaussianBlur(max(3.0, W * 0.006)))
+            _shl = Image.merge("RGBA", (*Image.new("RGB", (W, H), (8, 7, 9)).split(), _sh))
+            scene.alpha_composite(_shl)
+            LAYERS.append((f"6{2 + wi * 2}_macro_window_{wi + 1}_dropshadow", _shl))
         _mm = Image.fromarray((np.clip(mask, 0, 1) * 255).astype(np.uint8), "L") \
-                   .filter(ImageFilter.GaussianBlur(1.6))
-        paste(scene, big, (mx0, my0 - over), _mm)
-        record(f"6{2 + wi * 2}_macro_window_{wi + 1}", big, (mx0, my0 - over), _mm)
+                   .filter(ImageFilter.GaussianBlur(5.0 if args.windows in ("soft", "hybrid") else 1.6))
+        paste(scene, big, (mx0, py0), _mm)
+        record(f"6{2 + wi * 2}_macro_window_{wi + 1}", big, (mx0, py0), _mm)
+
+        if args.windows in ("soft", "glass"):
+            _lbl = ("no border, dissolving rim, own shape"
+                    if args.windows == "glass" else "SOFT, no rule")
+            print(f"  macro win {wi + 1} {spec['box'][0]:.2f},{spec['box'][1]:.2f}      "
+                  f"{slot.replace('micro_', '').replace('ocean_', '')} — {_lbl}")
+            continue
 
         # the brass rule, genuinely interrupted where the habitat crosses it
-        rule = Image.new("L", (W, H), 0)
-        rd = ImageDraw.Draw(rule)
         rad = round(W * WIN_RADIUS)
         rw3 = max(2, round(H * 0.0035 * (1 if wi == 0 else 0.7)))
-        if spec.get("shape") == "circle":
-            rd.ellipse((mx0, my0, mx1, my1), outline=255, width=rw3)
+        if rfield is not None:
+            # The ring is pulled from the same radius field as the aperture, so the metal follows the
+            # wander exactly. Drawing it as a separate primitive would put a ruled ellipse next to an
+            # organic edge and undo the whole point.
+            #
+            # The profile needs a PLATEAU, not a peak. `1 - |r-1|/t` is triangular: it only reaches
+            # full alpha on the single contour r == 1, so a nominally 5 px ring averages well under
+            # half strength and the metal reads as a ghost beside the crisp variant's solid stroke.
+            # Full alpha out to 0.55t, falling to nothing at 1.25t, matches a drawn stroke's weight
+            # while keeping an antialiased edge on both sides.
+            t = rw3 / max(4.0, min(bw2, bh2) / 2.0)
+            prof = np.clip((1.25 - np.abs(rfield - 1.0) / t) / 0.70, 0, 1)
+            ra = np.zeros((H, W), np.float32)
+            ra[my0:my0 + bh2, mx0:mx0 + bw2] = prof * 255.0
         else:
-            rd.rounded_rectangle((mx0, my0, mx1, my1), radius=rad, outline=255, width=rw3)
-        ra = np.asarray(rule, np.float32)
+            rule = Image.new("L", (W, H), 0)
+            rd = ImageDraw.Draw(rule)
+            if spec.get("shape") == "circle":
+                rd.ellipse((mx0, my0, mx1, my1), outline=255, width=rw3)
+            else:
+                rd.rounded_rectangle((mx0, my0, mx1, my1), radius=rad, outline=255, width=rw3)
+            ra = np.asarray(rule, np.float32)
         cut = np.zeros((H, W), np.float32)
-        y0c, x0c = my0 - over, mx0
+        y0c, x0c = py0, mx0
         cut[y0c:y0c + ch, x0c:x0c + cw] = lobe
         ra *= 1.0 - np.clip(cut * 1.9, 0, 1)
-        _rule = Image.merge("RGBA", (*Image.new("RGB", (W, H), BRASS).split(),
+        # Flat brass is correct for small repeated furniture (SCOPE §4 brass finish), but a ring that
+        # is claiming to be the edge of a physical lens is not small repeated furniture — it is a
+        # round object, and a round object lit from one side is brighter on that side. Without this
+        # the ring reads as a drawn outline sitting ON the plate rather than as metal above it.
+        ringrgb = Image.new("RGB", (W, H), BRASS)
+        if rfield is not None:
+            ny2 = (np.arange(bh2, dtype=np.float32)[:, None] - bh2 / 2) / (bh2 / 2)
+            nx2 = (np.arange(bw2, dtype=np.float32)[None, :] - bw2 / 2) / (bw2 / 2)
+            n = np.sqrt(np.clip(nx2 * nx2 + ny2 * ny2, 1e-6, None))
+            lit = np.clip(0.5 + 0.5 * (nx2 / n * 0.70 + (-ny2 / n) * 0.71), 0, 1) ** 1.3
+            patch = (np.array(BRASS, np.float32) * (1 - lit[..., None])
+                     + np.array(BRASS_HI, np.float32) * lit[..., None])
+            ringrgb.paste(Image.fromarray(np.clip(patch, 0, 255).astype(np.uint8), "RGB"),
+                          (mx0, my0))
+        _rule = Image.merge("RGBA", (*ringrgb.split(),
                                      Image.fromarray(ra.astype(np.uint8), "L")))
         scene.alpha_composite(_rule)
         LAYERS.append((f"6{3 + wi * 2}_macro_window_{wi + 1}_rule", _rule))
+        _how = (f"LENS r{spec.get('roundness', 3.2):.1f} w{spec.get('wobble', 0.16):.2f} "
+                f"k{spec.get('barrel', 0.15):.2f}" if rfield is not None else "breaks its frame")
         print(f"  macro win {wi + 1} {spec['box'][0]:.2f},{spec['box'][1]:.2f}      "
-              f"{slot.replace('micro_', '').replace('ocean_', '')} breaks its frame (Law #2)")
+              f"{slot.replace('micro_', '').replace('ocean_', '')} {_how} (Law #2)")
 
     # ---- 4c3 · registration ticks: the rule, established as vocabulary --------------------
     # Two windows are a system only if the poster has already told you that a brass straight line is
@@ -914,10 +1174,13 @@ def main(argv=None) -> int:
         sy2 = 1 if cyr == 0 else -1
         td.line((px, py, px + sx2 * tk, py), fill=150, width=tw2)
         td.line((px, py, px, py + sy2 * round(tk * 0.62)), fill=150, width=tw2)
-    _tk = Image.merge("RGBA", (*Image.new("RGB", (W, H), BRASS).split(), ticks))
-    scene.alpha_composite(_tk)
-    LAYERS.append(("68_registration_ticks", _tk))
-    print("  ticks       4 corners       brass register marks — the rule as vocabulary, not accident")
+    # In `soft` mode the windows have no rule, so corner register marks are vocabulary for a
+    # language the poster no longer speaks — four brass ticks and nothing else ruled anywhere.
+    if args.windows not in ("soft", "glass"):
+        _tk = Image.merge("RGBA", (*Image.new("RGB", (W, H), BRASS).split(), ticks))
+        scene.alpha_composite(_tk)
+        LAYERS.append(("68_registration_ticks", _tk))
+        print("  ticks       4 corners       brass register marks — the rule as vocabulary, not accident")
 
     # ---- 4d · the asteroid whisper (SCOPE §217) -----------------------------------------
     # A single faint cold point with a short streak, high in the empty top-left indigo. Subtle

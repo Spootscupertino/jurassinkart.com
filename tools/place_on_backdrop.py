@@ -22,7 +22,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from compose_organism import ORGS, isolate, parse_width_m
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-BACKDROP = ROOT / "living_past/plates/backdrop_v5.png"
+BACKDROP = ROOT / "living_past/plates/backdrop_v7.png"
 
 # plane -> (scale multiplier, y as fraction of canvas height, anchor)
 #
