@@ -66,6 +66,12 @@ SEAFLOOR = [(0.00, 0.330), (0.04, 0.430), (0.075, 0.570), (0.115, 0.760),
 # it was worse than the blue panel it replaced. Everything under the surface is seen *through*
 # water, so it loses red first, then contrast, then everything.
 WATER_TINT = np.array([26, 74, 84], np.float32)
+# SCOPE §4 locks four ocean depth zones (SUNLIT / TWILIGHT / DEEP / OCEAN FLOOR) and specifies that
+# the painted poster marks them with brass hairlines fading in from the right edge. The lines are
+# furniture and belong to the annotation layer; the *tonal* boundary is art and belongs here. These
+# are the boundaries as a fraction of the water column, plus how much extra absorption each one
+# steps by — small, because a boundary the eye can find is not the same as a boundary drawn.
+ZONE_STEPS = ((0.16, 0.055), (0.40, 0.055), (0.72, 0.040))
 WATER_MIN = 0.26      # absorption even in the shallows, at the top of the shelf
 WATER_MAX = 0.66      # absorption out over the abyssal plain
 
@@ -498,7 +504,7 @@ def main(argv=None) -> int:
     # rather than stack.
     SKY_REGION = 0.46
     TRIPTYCH = [("sky_high_cirrus.png", 0.030, 0.150, 41),
-                ("sky_mid_cumulus.png", 0.155, 0.150, 43),
+                ("sky_mid_cumulus.png", 0.132, 0.122, 43),
                 ("sky_horizon_glow.png", 0.275, 0.135, 47)]
     have_tri = [t for t in TRIPTYCH if (CAND / t[0]).exists()]
     if have_tri:
@@ -647,6 +653,42 @@ def main(argv=None) -> int:
         paste(ocean, det, (0, t), Image.fromarray(dm.astype(np.uint8), "L"))
         print(f"  ocean det   y {y0:.2f}-{y1:.2f}     {name[6:-4].replace('_', ' ')}")
 
+    # ---- 2a1b · the water column reads as ZONES, not as one wash ---------------------------
+    # Item 5, and the measurement that reframed it. Eric: "bring the ocean even more up in the right
+    # corner so we can expand on the different layers." But the waterline IS the horizon — measured,
+    # land and ocean both meet at y≈0.30, and the 0.40 transition on the land side is the near plain's
+    # crest, not the skyline — so it cannot be raised on the right without the horizon breaking at the
+    # coastline. The ocean already owns 70% of the height over there. What was missing was never room,
+    # it was DIFFERENTIATION: one smooth gradient from surface to floor, which is a wash, not zones.
+    #
+    # Applied to the region AFTER the shelf and the detail passes are in it, so every submerged thing
+    # inherits one water column — the same ordering argument the seafloor's own absorption makes.
+    # Two corrections, both physical. Light falls off exponentially (Beer-Lambert), so most of the
+    # loss belongs near the surface, which is exactly why the sunlit zone is thin and bright and the
+    # twilight under it goes dark fast. Then each of SCOPE's four zone boundaries gets a small extra
+    # step, so the eye can FIND the boundary with no line drawn: the tonal edge does the work the
+    # brass hairlines will later merely label (§4). The envelope stays gentle because the plate
+    # already carries a falloff of its own — the aim is structure, not more darkness.
+    oa = np.asarray(ocean.convert("RGB"), np.float32)
+    surf = 0.16                       # the region's top 16% dissolves into the sky; water starts below
+    lt = np.clip((np.arange(oh, dtype=np.float32) / oh - surf) / (1 - surf), 0, 1)[:, None, None]
+    kc = 3.1
+    abz = 0.06 + 0.28 * ((1.0 - np.exp(-kc * lt)) / (1.0 - np.exp(-kc)))
+    for zb, amt in ZONE_STEPS:
+        abz = abz + amt * (0.5 + 0.5 * np.tanh((lt - zb) * 26.0))
+    abz = np.clip(abz, 0.0, 0.90)
+    # The tint has to FADE OUT with depth, and getting this wrong is instructive: WATER_TINT is a mid
+    # teal, so mixing toward it at full strength in the abyss *lightens* near-black pixels — the first
+    # attempt took the deepest water from 14 to 22 and made the void shallower, which is precisely the
+    # thing this file protects (the abyss is the Mosasaurus's scale weapon). Physically the tint is
+    # scattered sunlight, so it can only exist where sunlight still does. Colour lives in the upper
+    # column; the deep gets darkness instead.
+    oa = oa * (1 - abz * (1.0 - 0.88 * lt)) + WATER_TINT * (abz * (1.0 - 0.88 * lt))
+    oa *= 1.0 - 0.58 * ((1.0 - np.exp(-2.6 * lt)) / (1.0 - np.exp(-2.6)))
+    ocean = Image.fromarray(np.clip(oa, 0, 255).astype(np.uint8)).convert("RGBA")
+    print(f"  ocean zones surface->floor  sunlit/twilight/deep/floor at "
+          f"{'/'.join(f'{z:.2f}' for z, _ in ZONE_STEPS)} of the column (tonal, unlabelled)")
+
     paste(scene, ocean.convert("RGB"), (ox, oy), m)
     record("30_ocean", ocean.convert("RGB"), (ox, oy), m)
     print(f"  ocean       x~{COAST_X:.2f}          shelf -> drop-off -> abyss (wandering coastline)")
@@ -671,11 +713,29 @@ def main(argv=None) -> int:
     floor_a = fa * (1 - depth_t) + da * depth_t
     # light dies with depth, fast. This is the whole scale weapon: the eye reads the darkening as
     # distance, and the Mosasaurus hanging above it inherits that distance as size.
-    floor_a *= 1.0 - 0.62 * depth_t ** 1.15
+    floor_a *= 1.0 - 0.66 * (1.0 - np.exp(-2.6 * depth_t)) / (1.0 - np.exp(-2.6))
     # ...and everything down there is being looked at through several hundred metres of seawater.
     # See WATER_TINT: absorption is what tells the eye "submerged" rather than "lit ground", and
     # without it the shelf is a tan dune sitting in the middle of the sky.
-    absorb = (WATER_MIN + (WATER_MAX - WATER_MIN) * depth_t)
+    # Item 5, and the measurement that reframed it. Eric asked to "bring the ocean even more up in
+    # the right corner so we can expand on the different layers" — but the waterline IS the horizon
+    # (measured: land and ocean both meet at y≈0.30; the 0.40 transition is the near plain's crest),
+    # so it cannot be raised on the right without breaking the horizon at the coastline. The ocean
+    # already owns 70% of the height there. What was missing was not room, it was DIFFERENTIATION:
+    # absorption was a straight line from WATER_MIN to WATER_MAX, and a linear ramp is a wash, not a
+    # set of zones.
+    #
+    # Two corrections, both physical. Light falls off exponentially with depth (Beer-Lambert), so
+    # most of the loss belongs in the first stretch — which is exactly why the sunlit zone is thin
+    # and bright and the twilight below it goes dark fast. And each of SCOPE's four zone boundaries
+    # gets a small extra step, so the eye can find the boundary without a ruled line being drawn:
+    # the tonal band edge does the work the brass hairlines will later label (§4).
+    k = 3.1
+    absorb = WATER_MIN + (WATER_MAX - WATER_MIN) * (
+        (1.0 - np.exp(-k * depth_t)) / (1.0 - np.exp(-k)))
+    for zb, amt in ZONE_STEPS:
+        absorb = absorb + amt * (0.5 + 0.5 * np.tanh((depth_t - zb) * 26.0))
+    absorb = np.clip(absorb, 0.0, 0.93)
     floor_a = floor_a * (1 - absorb) + WATER_TINT * absorb
     floor_a = floor_a * (1 - 0.16 * depth_t) + np.array([8, 15, 26], np.float32) * (0.16 * depth_t)
     # Shell beds are not suspended in the water column — they ARE the bottom. Wired as a midwater
@@ -862,13 +922,22 @@ def main(argv=None) -> int:
              ("micro_moss_cushion",     0.150, 0.2350, 0.253, 0.235, False),
              ("micro_fern_crozier",     0.268, 0.0900, 0.173, 0.330, False),
              ("micro_mushroom_cluster", 0.335, 0.2100, 0.293, 0.273, True),
-             ("micro_puddle_edge",      0.415, 0.1500, 0.300, 0.280, False),
+             ("micro_puddle_edge",      0.352, 0.1500, 0.215, 0.280, False),
              ("micro_bark_crevice",     0.050, 0.0600, 0.157, 0.310, True)]
     placed = [m for m in MICRO if (CAND / f"{m[0]}.png").exists()]
     if not placed and (CAND / "micro_hollow.png").exists():
         # the pre-set fallback: one hollow, twice, mirrored so it doesn't read as one image reused
         placed = [("micro_hollow", 0.015, 0.1250, 0.393, 0.360, False),
                   ("micro_hollow", 0.335, 0.2100, 0.313, 0.290, True)]
+    # "All stay on the land side" was a comment, not a mechanism, and the comment was wrong: the
+    # mushrooms run to x 0.628 and the puddle to 0.715 against a coastline at 0.55, so both were
+    # compositing over open water. The puddle made it obvious — a freshwater rain pool in the sea,
+    # with the blob mask's own bounds showing as a ruled rectangle in the water (the trap this file
+    # already documents: a mask still partly opaque where its canvas ends IS a straight edge).
+    # So it is enforced here instead. Same seed, warp and tilt as the coastline itself, so the front
+    # band ends exactly where the water begins rather than at some second, disagreeing line.
+    land_hold = organic_mask((W, H), "x", COAST_X + 0.012, 0.055, seed=17, warp=0.09,
+                             tilt=-COAST_TILT).point(lambda v: 255 - v)
     for i, (slot, fx, fy, fw, fh, flip) in enumerate(placed):
         mw, mh = round(W * fw), round(H * fh)
         fy = round(H * fy)
@@ -876,9 +945,14 @@ def main(argv=None) -> int:
         if flip:
             src = src.transpose(Image.FLIP_LEFT_RIGHT)
         hab = cover(src, (mw, mh))
+        mx0, my0 = round(W * fx), ft + fy
         _hm = blob_mask((mw, mh), seed=133 + i * 29, softness=0.80)
-        paste(scene, hab, (round(W * fx), ft + fy), _hm)
-        record(f"60_micro_{i+1}_{slot}", hab, (round(W * fx), ft + fy), _hm)
+        _hm = Image.fromarray(
+            (np.asarray(_hm, np.float32)
+             * (np.asarray(land_hold.crop((mx0, my0, mx0 + mw, my0 + mh)), np.float32) / 255.0)
+             ).astype(np.uint8), "L")
+        paste(scene, hab, (mx0, my0), _hm)
+        record(f"60_micro_{i+1}_{slot}", hab, (mx0, my0), _hm)
     if placed:
         print(f"  micro       front x{len(placed):<7} {', '.join(m[0].replace('micro_', '') for m in placed)}")
 
