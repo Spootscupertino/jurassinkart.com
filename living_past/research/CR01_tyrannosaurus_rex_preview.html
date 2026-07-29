@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>T. rex encyclopedia content preview</title>
+  <style>
+    html, body, iframe { width: 100%; height: 100%; margin: 0; border: 0; background: #0d0b07; }
+  </style>
+</head>
+<body>
+  <iframe id="page" src="../organism_page.html" title="T. rex encyclopedia preview"></iframe>
+  <script>
+    const frame = document.querySelector("#page");
+
+    const setText = (root, selector, value) => {
+      const node = root.querySelector(selector);
+      if (node) node.textContent = value;
+    };
+
+    const makeSection = (doc, title, className = "") => {
+      const section = doc.createElement("section");
+      if (className) section.className = className;
+      const heading = doc.createElement("h2");
+      heading.textContent = title;
+      section.append(heading);
+      return section;
+    };
+
+    frame.addEventListener("load", async () => {
+      const response = await fetch("./CR01_tyrannosaurus_rex_content.json");
+      const data = await response.json();
+      const doc = frame.contentDocument;
+
+      setText(doc, ".hero h1", data.scientificName);
+      setText(doc, ".hero .sub", `Land Animal · ${data.diet} · Late Cretaceous, ${data.ageRange_Ma[0]}–${data.ageRange_Ma[1]} Ma`);
+      setText(doc, ".hero .badge", "● Well-documented reconstruction");
+
+      const factValues = doc.querySelectorAll(".facts .fv");
+      const facts = [data.size, `${data.ageRange_Ma[0]}–${data.ageRange_Ma[1]} Ma`, data.diet, data.habitat];
+      factValues.forEach((node, index) => { node.textContent = facts[index]; });
+
+      setText(doc, ".blurb", data.blurb);
+      setText(doc, ".main .body-copy", data.notes);
+
+      const notes = doc.querySelector(".funfacts");
+      notes.replaceChildren();
+      data.funFacts.forEach((fact) => {
+        const item = doc.createElement("li");
+        item.textContent = fact;
+        notes.append(item);
+      });
+
+      setText(doc, ".survivor p", data.survivor);
+      setText(doc, ".distrib p", data.distribution);
+
+      const evidence = makeSection(doc, "What the fossils tell us", "evidence");
+      const evidenceGroups = [
+        ["Direct evidence", data.fossilEvidence.directEvidence],
+        ["Supported inference", data.fossilEvidence.supportedInference],
+        ["Artistic reconstruction", data.fossilEvidence.artisticReconstruction]
+      ];
+      evidenceGroups.forEach(([label, entries]) => {
+        const subhead = doc.createElement("h3");
+        subhead.textContent = label;
+        const list = doc.createElement("ul");
+        list.className = "funfacts";
+        entries.forEach((entry) => {
+          const item = doc.createElement("li");
+          item.textContent = entry;
+          list.append(item);
+        });
+        evidence.append(subhead, list);
+      });
+      notes.closest(".main").append(evidence);
+
+      const deep = makeSection(doc, "Deeper dive", "deeper-dive");
+      data.deeperDive.forEach((entry) => {
+        const article = doc.createElement("article");
+        article.className = "deep-card";
+        const label = doc.createElement("div");
+        label.className = "deep-kind";
+        label.textContent = entry.kind.replace("_", " ");
+        const link = doc.createElement("a");
+        link.href = entry.url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = entry.title;
+        const byline = doc.createElement("div");
+        byline.className = "deep-byline";
+        byline.textContent = `${entry.creator}${entry.year ? ` · ${entry.year}` : ""}`;
+        const description = doc.createElement("p");
+        description.textContent = entry.description;
+        article.append(label, link, byline, description);
+        deep.append(article);
+      });
+      notes.closest(".main").append(deep);
+
+      const refs = doc.querySelector(".refs");
+      refs.replaceChildren();
+      data.references.forEach((reference, index) => {
+        const link = doc.createElement("a");
+        link.href = reference.url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = `[${index + 1}]`;
+        link.title = `${reference.authors.join(", ")} (${reference.year ?? "n.d."}). ${reference.title}.`;
+        refs.append(link, doc.createTextNode(" "));
+      });
+
+      const style = doc.createElement("style");
+      style.textContent = `
+        .main .body-copy { white-space: pre-line; }
+        .evidence, .deeper-dive { margin-top: 36px; }
+        .evidence h3 {
+          margin: 24px 0 6px; color: var(--ivory); font-family: var(--sans);
+          font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+        }
+        .deep-card {
+          border-top: 1px solid var(--hair); padding: 16px 0;
+        }
+        .deep-card:first-of-type { border-top: 0; }
+        .deep-kind {
+          color: var(--brass); font-size: 10px; letter-spacing: .18em;
+          margin-bottom: 5px; text-transform: uppercase;
+        }
+        .deep-card a {
+          color: var(--brass-hi); font-family: var(--body); font-size: 20px;
+          font-style: italic; text-decoration: none;
+        }
+        .deep-byline { color: var(--muted); font-size: 12px; margin-top: 4px; }
+        .deep-card p { color: #e4dabf; font-size: 14px; line-height: 1.55; }
+        .refs a { display: inline-block; margin: 0 5px 5px 0; }
+      `;
+      doc.head.append(style);
+    });
+  </script>
+</body>
+</html>

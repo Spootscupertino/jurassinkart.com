@@ -1,0 +1,257 @@
+{
+  "id": "CR24",
+  "slug": "baculites",
+  "section": "shoreline",
+  "position": 8,
+  "commonName": "Baculites",
+  "scientificName": "Baculites",
+  "researchScientificName": "Baculites sp.",
+  "pronunciation": "BACK-you-lights",
+  "type": "invertebrate",
+  "pose": "long straight tapering chambered shell with head and tentacles at aperture",
+  "size": "up to about 1 m (3.3 ft), species dependent",
+  "ageRange_Ma": [
+    83,
+    66
+  ],
+  "diet": "Carnivore",
+  "habitat": "Marine water of the retreating Western Interior Seaway",
+  "confidence": "reasonable_inference",
+  "status": "roster",
+  "stage": {
+    "x": 0.702,
+    "plane": "shelf"
+  },
+  "blurb": "Baculites was an ammonite uncoiled into a long chambered shell. It belonged in the sea, not a freshwater bank. Its fossils can mark slices of Cretaceous time with extraordinary precision, but CR24 belongs only where the poster’s shoreline opens onto the last Western Interior Seaway.",
+  "notes": "Baculites looks like an ammonite pulled straight. Its long tapering shell retained internal chambers separated by septa, while the living animal occupied the open end. Intricate suture lines mark where septa met the shell wall. Those patterns help paleontologists identify species even when specimens are incomplete.\n\nIt was a marine cephalopod, related more broadly to living squid, cuttlefish, octopuses, and nautiluses. It was not a squid in a shell and not a direct ancestor of nautilus. Ammonites form an extinct branch with their own shell construction and evolutionary history.\n\nShell shape does not settle swimming orientation. Reconstructions have proposed horizontal, oblique, or more vertical positions, and buoyancy models depend on chamber geometry and soft-tissue placement. The poster’s horizontal pose is one hypothesis, not a direct observation. The shell itself, chambers, aperture, and sutures are evidence-led; exposed soft parts are much less securely known.\n\nJaw elements and rare gut evidence from ammonites support predatory or opportunistic feeding on small organisms, but Baculites species did not leave a simple universal menu. Short arms or tentacles around the head are reasonable cephalopod anatomy. Their exact number, length, color, and arrangement are not preserved for this animal.\n\nBaculites is especially important to geologists. Species evolved and replaced one another rapidly across broad marine basins, making them useful index fossils. Carefully identified occurrences can correlate rock layers and divide the Maastrichtian into ammonite zones. A generic 83–66 Ma roster range describes the genus broadly, not one species living unchanged for seventeen million years.\n\nThat distinction matters at Hell Creek. Most of the formation records rivers and floodplains. Marine fossils belong to the underlying Fox Hills Formation, the marine Breien Member or tongues, and other seaway-influenced beds. A Baculites floating beside a freshwater gar would collapse separate facies into one aquarium. CR24 belongs on the seaward shelf portion of the cross-section, spatially separated from inland-water animals.\n\nTerminal Maastrichtian species identity also requires care. Famous Baculites species and zones differ by region and age, and the youngest Western Interior records do not justify using any convenient older Campanian species. The payload stays at Baculites sp. until a specimen and stratigraphic unit are selected for the exact scene.\n\nMany species were smaller than one metre; a metre is an upper illustrative scale rather than a default. Shell completeness, crushing, and missing living chamber can complicate length estimates. Art should not make every baculite gigantic.\n\nCR24 therefore works as a geological guide as much as an animal. Its straight shell visualizes cephalopod experimentation; its suture lines tell time; and its required marine placement teaches that a formation and region can preserve neighboring environments without every organism sharing one pool. At the K–Pg boundary, ammonites disappeared, while nautiloids and coleoids survived. The resemblance to living cephalopods is kinship, not continuity of Baculites itself.\n\nShell chemistry offers another research path. Successive layers grew at the aperture, and isotopes preserved in carbonate have been used to investigate water conditions and possible movement through the water column. Such studies depend on preservation and environmental assumptions; they do not turn one shell into a daily travel diary. The living chamber also creates a scale trap. A broken fossil may retain only the chambered phragmocone, while the missing body chamber once extended the shell. Conversely, deformation can alter proportions. Final art should be checked against a complete specimen of the selected species. Because ammonite zones are precise, choosing the organism after choosing the rock is essential. The team should first decide whether CR24 represents the Breien Member, Fox Hills shore, or another explicitly marine slice. Only then should a specialist select the species. Generic Baculites keeps the concept honest until that geological decision is fixed.",
+  "funFacts": [
+    "An uncoiled ammonite — The straight shell still contained chambers and complex sutures.",
+    "Fossils that tell time — Rapid species turnover makes Baculites valuable for correlating marine rocks.",
+    "Orientation uncertain — Shell buoyancy can be modeled, but no fossil records a living swimming posture.",
+    "Sea only — CR24 belongs in marine-influenced strata or the seaward shelf, not Hell Creek’s ordinary rivers."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C01"
+      ],
+      "referenceIds": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C03"
+      ],
+      "referenceIds": [
+        "R03",
+        "R04"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C04"
+      ],
+      "referenceIds": [
+        "R05"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C06"
+      ],
+      "referenceIds": [
+        "R06",
+        "R07"
+      ]
+    }
+  ],
+  "survivor": "Baculites and all other ammonites vanished at the end of the Cretaceous. Living nautiluses share an external chambered shell, while squid, cuttlefish, and octopuses share cephalopod ancestry and sophisticated eyes, arms, and jet propulsion. None is a surviving ammonite. Their different fates show that even closely related marine groups responded differently to the K–Pg crisis, with one spectacular shell-building radiation ending while other cephalopods continued. This comparison should be read at lineage level: shared anatomy records kinship, while differences record continued evolution after the Cretaceous.",
+  "distribution": "Baculites was widespread in Late Cretaceous seas, including the Western Interior Seaway. For this poster it belongs in the seaward shelf or a specifically marine Hell Creek tongue such as the Breien Member, never an ordinary inland river. The genus spans much of the Late Cretaceous, but species-level zones are shorter. Terminal Maastrichtian inclusion must use a locally and stratigraphically appropriate species; generic Baculites sp. is the current safe label. Future maps should attach every occurrence to a traceable specimen, formation, horizon, and published identification rather than extending the range from resemblance alone.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Straight chambered shells preserve septa, sutures, growth, and damage.",
+      "Marine occurrences establish seaway habitat.",
+      "Species succession supports biostratigraphic zonation."
+    ],
+    "supportedInference": [
+      "Buoyancy models constrain but do not settle living orientation.",
+      "Small prey and planktonic/benthic items are plausible foods.",
+      "One metre is an upper illustrative size."
+    ],
+    "artisticReconstruction": [
+      "Soft-part anatomy, tentacle number/length, color, eyes, and pattern.",
+      "Horizontal swimming posture.",
+      "Exact species pending locality choice."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "research",
+      "title": "Baculites from the Western Interior",
+      "creator": "William A. Cobban",
+      "year": 1962,
+      "url": "https://pubs.usgs.gov/pp/0393a/report.pdf",
+      "description": "Explore the foundational specimen-based work behind Baculites identification and zones.",
+      "endorsementDisclaimer": "Editorially selected; no endorsement implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Ammonites",
+      "creator": "Natural History Museum, London",
+      "year": null,
+      "url": "https://www.nhm.ac.uk/discover/what-is-an-ammonite.html",
+      "description": "Meet ammonite shells, sutures, and extinction in an accessible overview.",
+      "endorsementDisclaimer": "Editorially selected; no endorsement implied."
+    },
+    {
+      "kind": "public_resource",
+      "title": "Marine Breien Member of Hell Creek",
+      "creator": "Hoganson and Murphy",
+      "year": 2002,
+      "url": "https://doi.org/10.1130/0-8137-2361-2.247",
+      "description": "See exactly why a marine animal can occur within the broader Hell Creek record.",
+      "endorsementDisclaimer": "Editorially selected; no endorsement implied."
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "Exact terminal Maastrichtian species and placement require final plate locality choice."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29",
+  "references": [
+    {
+      "id": "R01",
+      "title": "Treatise on Invertebrate Paleontology, Ammonoidea",
+      "authors": [
+        "W. J. Arkell et al."
+      ],
+      "year": 1957,
+      "sourceType": "Peer-reviewed monograph",
+      "publication": "Geological Society of America",
+      "doi": null,
+      "url": "https://journals.ku.edu/InvertebratePaleo",
+      "supportsClaims": [
+        "C01",
+        "C02"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "Ammonoid Paleobiology",
+      "authors": [
+        "Neil H. Landman et al."
+      ],
+      "year": 1996,
+      "sourceType": "Scholarly monograph",
+      "publication": "Springer",
+      "doi": "10.1007/978-1-4757-9153-2",
+      "url": "https://doi.org/10.1007/978-1-4757-9153-2",
+      "supportsClaims": [
+        "C01",
+        "C02",
+        "C05"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "Upper Cretaceous Baculites of the Western Interior",
+      "authors": [
+        "William A. Cobban"
+      ],
+      "year": 1962,
+      "sourceType": "USGS monograph",
+      "publication": "USGS Professional Paper 393-A",
+      "doi": null,
+      "url": "https://pubs.usgs.gov/pp/0393a/report.pdf",
+      "supportsClaims": [
+        "C03"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "Ammonite biostratigraphy of the Western Interior",
+      "authors": [
+        "William A. Cobban",
+        "John B. Reeside Jr."
+      ],
+      "year": 1952,
+      "sourceType": "USGS research",
+      "publication": "GSA Bulletin",
+      "doi": "10.1130/0016-7606(1952)63[1011:CACOTW]2.0.CO;2",
+      "url": "https://doi.org/10.1130/0016-7606(1952)63%5B1011:CACOTW%5D2.0.CO;2",
+      "supportsClaims": [
+        "C03"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "Buoyancy and orientation of orthoconic cephalopods",
+      "authors": [
+        "David J. Peterman et al."
+      ],
+      "year": 2019,
+      "sourceType": "Peer-reviewed modeling",
+      "publication": "PeerJ",
+      "doi": "10.7717/peerj.7922",
+      "url": "https://doi.org/10.7717/peerj.7922",
+      "supportsClaims": [
+        "C04"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "Marine Breien Member of the Hell Creek Formation",
+      "authors": [
+        "John W. Hoganson",
+        "Edward C. Murphy"
+      ],
+      "year": 2002,
+      "sourceType": "Peer-reviewed geology",
+      "publication": "GSA SP 361",
+      "doi": "10.1130/0-8137-2361-2.247",
+      "url": "https://doi.org/10.1130/0-8137-2361-2.247",
+      "supportsClaims": [
+        "C06"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "The Hell Creek Formation, Montana",
+      "authors": [
+        "Denver W. Fowler"
+      ],
+      "year": 2020,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Geosciences",
+      "doi": "10.3390/geosciences10110435",
+      "url": "https://doi.org/10.3390/geosciences10110435",
+      "supportsClaims": [
+        "C06"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "End-Cretaceous ammonite extinction",
+      "authors": [
+        "Neil H. Landman et al."
+      ],
+      "year": 2014,
+      "sourceType": "Peer-reviewed research",
+      "publication": "Nature Communications",
+      "doi": "10.1038/ncomms5196",
+      "url": "https://doi.org/10.1038/ncomms5196",
+      "supportsClaims": [
+        "C05",
+        "C07"
+      ]
+    }
+  ]
+}

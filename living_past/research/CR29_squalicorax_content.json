@@ -1,0 +1,257 @@
+{
+  "id": "CR29",
+  "slug": "squalicorax",
+  "section": "ocean",
+  "position": 5,
+  "commonName": "Crow shark",
+  "scientificName": "Squalicorax",
+  "pronunciation": "SKWA-lih-kor-aks",
+  "type": "fish",
+  "size": "3-5 m",
+  "ageRange_Ma": [
+    93.0,
+    66.0
+  ],
+  "diet": "Carnivore",
+  "habitat": "Coastal and open marine water",
+  "confidence": "reasonable_inference",
+  "status": "roster",
+  "stage": {
+    "x": 0.948,
+    "plane": "deep"
+  },
+  "blurb": "Squalicorax sharks carried flattened, serrated teeth suited to cutting flesh. Their teeth occur worldwide and sometimes sit beside bite marks on turtles, marine reptiles, and dinosaurs washed to sea, recording both predation and scavenging. Because most species are known mainly from teeth, body size and exact appearance remain less certain than the bite evidence.",
+  "notes": "Squalicorax, the “crow shark,” was a widespread Cretaceous shark recognized most often by its distinctive teeth. The crowns are flattened side to side, triangular or curved depending on position and species, and bear serrated cutting edges. Sharks replace teeth continuously, so a single animal could contribute many teeth to the sediment. That abundance makes the genus visible across the world while also creating a taxonomic trap: isolated teeth preserve feeding tools better than whole bodies.\n\nA rare articulated Squalicorax skeleton from Kansas shows a streamlined lamniform shark rather than a fantasy monster. Cartilage usually decays, leaving teeth, calcified vertebral centra, and occasional patches of harder tissue. Reconstructions should follow the complete specimen and living lamniform proportions while admitting that species differed. The poster’s 3–5 m roster range combines estimates across a genus; it is not one measured terminal-Maastrichtian individual.\n\nSerrated teeth could slice flesh. Bite marks matching Squalicorax teeth occur on bones of marine reptiles, turtles, fishes, and even terrestrial dinosaurs carried into marine settings. Some traces record feeding on carcasses, including scavenging after a large mosasaur died. Others cannot distinguish an attack on living prey from consumption after death. Calling the shark an opportunistic predator and scavenger is better than forcing every mark into one category.\n\nThe genus had a long Late Cretaceous range and a broad geographic distribution. Species assigned to Squalicorax occur in North America, Europe, Africa, Asia, and the Southern Hemisphere. Several range into the Maastrichtian. Species identifications and boundaries have changed as researchers compare tooth shape, position in the jaw, and rare skeletons. A genus-level label is therefore appropriate for the panorama.\n\nSqualicorax was not a modern great white transported back in time. Both are lamniform sharks in broad classification, but body proportions, teeth, ecology, and relationships differ. The illustration may borrow only general shark mechanics: lateral tail beats, paired fins for control, gills, and countershading as a plausible but unpreserved color scheme.\n\nWestern Interior fossils document Squalicorax especially well in older Cretaceous marine units. Maastrichtian occurrences elsewhere establish survival near the end of the period, while the precise species and population occupying the final remnants of the seaway vary with locality. The poster compresses this distribution into a representative marine community and should say so.\n\nShark teeth also illuminate fossilization. A tooth beside a skeleton may come from the animal that made a bite, from later scavenging, or simply from background shedding. Researchers look for embedded teeth, matching gouges, repeated marks, healing, and the sedimentary context before assigning behavior. Association alone is suggestive, not automatic proof.\n\nReproduction is unknown for Squalicorax. Living lamniforms show several reproductive modes, but transferring one exact strategy would be speculation. Schooling, migration distances, depth limits, and sensory performance are also not directly preserved. Sharks almost certainly used electroreception as part of their inherited sensory system, but its exact sensitivity cannot be measured in this extinct genus.\n\nThe honest portrait is a medium-to-large cutting-toothed shark moving through marine water, capable of hunting and scavenging. Its strongest evidence lies in teeth, rare skeletons, and feeding traces. Color, precise size, species identity, and the depicted encounter remain reconstruction choices.\n\nThe feeding traces also teach careful scene reconstruction. A gouge with the correct spacing and serration pattern can identify a likely tooth maker, but an unhealed mark does not say whether the victim was alive. The poster can show Squalicorax approaching food, yet a chase, kill, or social feeding event would require evidence the trace itself does not contain. Rare skeletons remain essential checks on proportions inferred from teeth. They anchor the fins, vertebral column, and overall silhouette while the much larger tooth sample reveals distribution and feeding contacts.",
+  "funFacts": [
+    "Conveyor-belt teeth — Continuous replacement helps explain why Squalicorax teeth are far more common than skeletons.",
+    "Serrated cutters — Flattened crowns with saw-like edges suited slicing rather than shell crushing.",
+    "Marks on giants — Matching bite traces occur on turtles, mosasaurs, and other vertebrate bones, often recording scavenging.",
+    "Not a great white — Squalicorax was its own Cretaceous lamniform lineage, not the modern shark carried backward in time."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C01"
+      ],
+      "referenceIds": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C02"
+      ],
+      "referenceIds": [
+        "R01"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C03"
+      ],
+      "referenceIds": [
+        "R03",
+        "R04"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C04"
+      ],
+      "referenceIds": [
+        "R02",
+        "R05"
+      ]
+    }
+  ],
+  "distribution": "Squalicorax species are recorded from Late Cretaceous marine deposits on multiple continents, including extensive Western Interior Seaway occurrences. Several species reach Maastrichtian strata, but isolated-tooth taxonomy and changing species concepts complicate precise maps. The public map should show broad marine distribution and label the poster animal only to genus. Older, strongly sampled WIS records and terminal occurrences should use different map shading so a long genus range does not imply one continuous population. Confirmed locality dots should remain taxon-specific.",
+  "survivor": "Squalicorax vanished at the end of the Cretaceous and has no living descendant. It belonged within the broader lamniform shark radiation, whose living members include makos, sand tigers, and the great white. Those sharks retain the general lamniform toolkit—replaceable teeth, streamlined swimming, acute senses—but none is simply a crow shark unchanged. The comparison links an extinct branch to a surviving shark lineage while avoiding a false ancestor-and-descendant story. The extinct genus remains a separate branch within that history.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Teeth document serrated cutting dentition and replacement.",
+      "A rare articulated skeleton constrains body shape.",
+      "Bite traces and associated teeth record feeding on vertebrate carcasses."
+    ],
+    "supportedInference": [
+      "The genus combined predation and scavenging.",
+      "3–5 m is a composite approximate range.",
+      "Terminal local placement is plausible at genus level."
+    ],
+    "artisticReconstruction": [
+      "Color and countershading.",
+      "Exact species and body proportions within the bracket.",
+      "Depth and behavior in the depicted moment."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "museum",
+      "title": "Cretaceous Shark Fossils",
+      "creator": "Sternberg Museum of Natural History",
+      "year": null,
+      "url": "https://sternberg.fhsu.edu/",
+      "description": "See teeth and marine fossils from the Western Interior Seaway.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "research",
+      "title": "Squalicorax and dinosaur scavenging",
+      "creator": "David Schwimmer and colleagues",
+      "year": 1997,
+      "url": "https://doi.org/10.2307/3515245",
+      "description": "Read how tooth-mark evidence supports marine scavenging on dinosaur remains.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Shark evolution",
+      "creator": "Natural History Museum, London",
+      "year": null,
+      "url": "https://www.nhm.ac.uk/discover/shark-evolution-a-450-million-year-timeline.html",
+      "description": "Place crow sharks within the much longer history of sharks.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    }
+  ],
+  "references": [
+    {
+      "id": "R01",
+      "title": "The Cretaceous shark Squalicorax",
+      "authors": [
+        "Henri Cappetta"
+      ],
+      "year": 2012,
+      "sourceType": "Peer-reviewed monograph",
+      "publication": "Handbook of Paleoichthyology",
+      "doi": null,
+      "url": "https://pfeil-verlag.de/",
+      "supportsClaims": [
+        "C01",
+        "C02"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "An articulated skeleton of Squalicorax falcatus",
+      "authors": [
+        "Kenshu Shimada",
+        "others"
+      ],
+      "year": 2005,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Palaios",
+      "doi": null,
+      "url": "https://pubs.geoscienceworld.org/palaios",
+      "supportsClaims": [
+        "C01",
+        "C04"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "Scavenging by sharks of the genus Squalicorax in the Late Cretaceous",
+      "authors": [
+        "David R. Schwimmer",
+        "J. D. Stewart",
+        "G. Dent Williams"
+      ],
+      "year": 1997,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Palaios",
+      "doi": "10.2307/3515245",
+      "url": "https://doi.org/10.2307/3515245",
+      "supportsClaims": [
+        "C03"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "A large new mosasaur from the Upper Cretaceous of the Netherlands",
+      "authors": [
+        "Rudi W. Dortangs",
+        "others"
+      ],
+      "year": 2002,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Netherlands Journal of Geosciences",
+      "doi": "10.1017/S0016774600020515",
+      "url": "https://doi.org/10.1017/S0016774600020515",
+      "supportsClaims": [
+        "C03"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "Revision of Squalicorax species",
+      "authors": [
+        "Mikael Siverson",
+        "others"
+      ],
+      "year": 2007,
+      "sourceType": "Peer-reviewed systematic research",
+      "publication": "Bulletin of the New Mexico Museum",
+      "doi": null,
+      "url": "https://www.nmmnhs.org/",
+      "supportsClaims": [
+        "C04"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "Paleobiogeography of the Cretaceous Western Interior Seaway",
+      "authors": [
+        "Bruce A. Schumacher"
+      ],
+      "year": 2011,
+      "sourceType": "Peer-reviewed synthesis",
+      "publication": "GSA Special Paper",
+      "doi": "10.1130/2011.2469(07)",
+      "url": "https://doi.org/10.1130/2011.2469(07)",
+      "supportsClaims": [
+        "C05"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "Shark tooth functional morphology",
+      "authors": [
+        "Lisa Whitenack",
+        "Philip Motta"
+      ],
+      "year": 2010,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Journal of Morphology",
+      "doi": null,
+      "url": "https://onlinelibrary.wiley.com/journal/10974687",
+      "supportsClaims": [
+        "C02"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Shark evolution timeline",
+      "authors": [
+        "Natural History Museum, London"
+      ],
+      "year": null,
+      "sourceType": "Official museum resource",
+      "publication": "Natural History Museum",
+      "doi": null,
+      "url": "https://www.nhm.ac.uk/discover/shark-evolution-a-450-million-year-timeline.html",
+      "supportsClaims": [
+        "C04"
+      ]
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "Genus-level synthesis; no outreach."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29"
+}

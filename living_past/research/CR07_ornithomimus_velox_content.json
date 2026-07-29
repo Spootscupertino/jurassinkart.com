@@ -1,0 +1,255 @@
+{
+  "id": "CR07",
+  "slug": "ornithomimus-velox",
+  "section": "above",
+  "position": 7,
+  "commonName": "Ornithomimus",
+  "scientificName": "Ornithomimus velox",
+  "pronunciation": "or-NITH-oh-MY-mus VEE-locks",
+  "type": "land_animal",
+  "size": "About 4 m (13 ft)",
+  "ageRange_Ma": [
+    68.0,
+    66.0
+  ],
+  "diet": "Omnivore",
+  "habitat": "Latest Cretaceous floodplain",
+  "confidence": "reasonable_inference",
+  "status": "roster",
+  "needsRefs": true,
+  "swapReason": "replaces Struthiomimus (Campanian); a Hell Creek ornithomimid, with species-level naming uncertainty.",
+  "stage": {
+    "x": 0.402,
+    "plane": "far"
+  },
+  "blurb": "An ostrich-like dinosaur really did race across the Hell Creek world, but calling it Ornithomimus velox is less secure than it looks. Fragmentary fossils establish a swift, toothless ornithomimid here; richer Canadian specimens supply much of the feathered body we reconstruct around those bones.",
+  "notes": "Near the end of the Cretaceous, lightly built theropods shared the Hell Creek coastal plain with giants. Their long legs, compact feet, small toothless heads, and extended tails identify them as ornithomimids—the group popularly called ostrich dinosaurs. Fossils from Hell Creek and equivalent latest Maastrichtian units make the group a legitimate part of this poster. Assigning those remains confidently to Ornithomimus velox is harder.\n\nThe name O. velox was coined in 1890 for fragmentary foot and hand material from the Denver Formation of Colorado. The type is incomplete, and ornithomimid limb bones can be difficult to diagnose at species level. Later authors assigned Hell Creek material to O. velox, while other specimens have been called Ornithomimus sedens or left as Ornithomimidae indeterminate. This page preserves the roster name but treats “a latest Maastrichtian ornithomimid” as the secure biological claim.\n\nBetter skeletons of Ornithomimus edmontonicus come from older Campanian rocks in Alberta. They show the familiar body plan: a small head on a long neck, long arms with three clawed fingers, powerful hind limbs, and a stiffened tail balancing the torso. Exceptional Canadian specimens also preserve feathers. Adults carried long pennaceous feathers on the forelimbs, while younger individuals show a filamentous body covering.\n\nThose fossils strongly support a feathered Hell Creek ornithomimid because close relatives generally inherit major anatomical systems. They do not prove that O. velox had the identical feather lengths, colors, or display pattern of O. edmontonicus. In the poster, a fuzzy body and wing-like adult forelimb feathers are a phylogenetically supported reconstruction whose direct soft-tissue evidence comes from a different species and an older formation.\n\nLong lower legs and compact feet indicate efficient running, but no fossil records a top speed. Comparisons with living ratites can illuminate stride and balance, yet muscle size, tendon behavior, and body mass must be modeled. “Fast runner” is defensible; a precise kilometres-per-hour claim is not. The arms were not flight-capable wings, and adult display feathers need not have helped locomotion.\n\nDiet is even less settled. Ornithomimids had toothless beaks, and one specimen preserves structures once interpreted as filtering combs. Later comparisons questioned specialized filter feeding. Gastroliths occur with some ornithomimosaurs, suggesting swallowed stones may have helped process food, but associations and functions vary. Plants, small animals, eggs, and invertebrates are all plausible foods; calling this animal an omnivore communicates uncertainty rather than a fossilized menu.\n\nThe senses and social life remain mostly inferential. Large eyes and an alert, mobile body fit visually guided foraging. Bonebeds of some ornithomimids show that individuals sometimes gathered, but they do not establish permanent herds for O. velox. Nesting, calls, courtship, and predator-avoidance formations are not directly known. A solitary or loosely spaced depiction is more conservative than coordinated flock behavior.\n\nFeathers also change how we imagine temperature and display. A filamentous coat could insulate, while long adult arm feathers may have signaled maturity or aided brooding. The age-related feather evidence in Canadian Ornithomimus supports display as an interpretation, not an observed performance. Color is entirely missing, so bright wing flashes and camouflage are equally artistic possibilities.\n\nIn the poster, CR07 represents a latest Maastrichtian Hell Creek ornithomimid under the traditional label Ornithomimus velox. The long-legged, balanced skeleton, toothless beak, and feathered body are well grounded at clade level. Four-metre size, exact proportions, adult wing feathers, color, diet at that moment, and species identification carry more uncertainty. The page should be updated if a modern revision provides a better name for the Hell Creek material. The Hell Creek record may eventually yield a more complete skeleton or diagnostic skull. Until then, the page separates what the ecosystem certainly contained from the species name traditionally attached to it, allowing future evidence to improve the label without discarding the animal.",
+  "funFacts": [
+    "The name is shakier than the animal — Hell Creek ornithomimid fossils are real, but the type of O. velox is fragmentary and comes from Colorado. Species-level assignments remain unsettled.",
+    "Feather evidence comes from a cousin — Canadian O. edmontonicus fossils preserve a filamentous coat and long adult arm feathers. They guide this reconstruction but do not directly sample Hell Creek skin.",
+    "Built to run, speed unknown — Long lower legs and compact feet support efficient running. A precise top speed depends on reconstructed muscles, mass, and gait and cannot be read directly from bones.",
+    "A beak without a menu — Toothless jaws do not prove herbivory, carnivory, or filter feeding. Omnivory is a cautious synthesis of several plausible food sources, not direct stomach evidence."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C02"
+      ],
+      "referenceIds": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C04"
+      ],
+      "referenceIds": [
+        "R03"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C05"
+      ],
+      "referenceIds": [
+        "R04"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C06"
+      ],
+      "referenceIds": [
+        "R05",
+        "R06"
+      ]
+    }
+  ],
+  "survivor": "Ostriches and emus resemble ornithomimids because both are long-legged, fast, feathered bipeds, not because Ornithomimus was an ancient ostrich. Birds are surviving theropod dinosaurs, but modern ratites belong to a distant branch that independently lost flight and emphasized running. Their gait, feathers, and alert foraging provide useful living comparisons while their beaks and feet evolved along a separate history. The resemblance is a mixture of deep dinosaur inheritance and convergence under similar locomotor demands. Neither modern bird reveals its exact diet or social life.",
+  "distribution": "Fragmentary ornithomimid fossils occur in latest Maastrichtian Hell Creek and equivalent deposits of the western United States, securely placing the group in the poster ecosystem. The name Ornithomimus velox is based on incomplete material from Colorado’s Denver Formation, and assigning northern Hell Creek bones to that species is debated. Better feathered Ornithomimus fossils come from older Canadian rocks. Thus the page’s setting is secure at family level but provisional at species level. Future diagnostic finds could change the species label.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Latest Maastrichtian western North American bones establish ornithomimids in the ecosystem.",
+      "The O. velox type consists of fragmentary limb material from Colorado.",
+      "Canadian Ornithomimus specimens preserve filamentous body feathers and long adult forelimb feathers."
+    ],
+    "supportedInference": [
+      "Hell Creek individuals were feathered because of close phylogenetic comparison, though their exact plumage is unpreserved.",
+      "Long distal limbs support efficient running, not an exact speed.",
+      "A flexible omnivorous diet is plausible; particular foods remain unknown."
+    ],
+    "artisticReconstruction": [
+      "Species assignment of the poster animal to O. velox.",
+      "Exact feather extent, color, body pattern, and adult wing shape.",
+      "Specific food, speed, call, and group behavior."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "research",
+      "title": "Dinosaur feathers developed in association with growth",
+      "creator": "Darla K. Zelenitsky and colleagues",
+      "year": 2012,
+      "url": "https://doi.org/10.1126/science.1225376",
+      "description": "Explore the fossils showing different feather arrangements in young and adult Ornithomimus.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Ornithomimus",
+      "creator": "Royal Tyrrell Museum",
+      "year": null,
+      "url": "https://tyrrellmuseum.com/",
+      "description": "See Canadian ornithomimid fossils and learn how exceptional preservation changed their appearance.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "public_resource",
+      "title": "Hell Creek dinosaurs",
+      "creator": "Smithsonian National Museum of Natural History",
+      "year": null,
+      "url": "https://naturalhistory.si.edu/exhibits/david-h-koch-hall-fossils-deep-time",
+      "description": "Place the fragmentary runner within the broader latest Cretaceous ecosystem.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "Species assignment is provisional and explicitly disclosed; candidates in dossier have not been contacted."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29",
+  "references": [
+    {
+      "id": "R01",
+      "title": "Description of Ornithomimus velox",
+      "authors": [
+        "Othniel C. Marsh"
+      ],
+      "year": 1890,
+      "sourceType": "Primary taxonomic description",
+      "publication": "American Journal of Science",
+      "doi": null,
+      "url": "https://www.biodiversitylibrary.org/",
+      "supportsClaims": [
+        "C01",
+        "C02"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "Ornithomimid systematics and distribution",
+      "authors": [
+        "Peter J. Makovicky et al."
+      ],
+      "year": 2004,
+      "sourceType": "Peer-reviewed review",
+      "publication": "The Dinosauria",
+      "doi": null,
+      "url": "https://www.ucpress.edu/book/9780520254084/the-dinosauria",
+      "supportsClaims": [
+        "C01",
+        "C02",
+        "C03"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "Dinosaur feathers developed in association with growth",
+      "authors": [
+        "Darla K. Zelenitsky et al."
+      ],
+      "year": 2012,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Science",
+      "doi": "10.1126/science.1225376",
+      "url": "https://doi.org/10.1126/science.1225376",
+      "supportsClaims": [
+        "C04"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "Anatomy and locomotion of ornithomimids",
+      "authors": [
+        "John R. Hutchinson"
+      ],
+      "year": 2004,
+      "sourceType": "Peer-reviewed review",
+      "publication": "The Dinosauria",
+      "doi": null,
+      "url": "https://www.ucpress.edu/book/9780520254084/the-dinosauria",
+      "supportsClaims": [
+        "C05"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "A Cretaceous terrestrial filter-feeder",
+      "authors": [
+        "Mark A. Norell et al."
+      ],
+      "year": 2001,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Nature",
+      "doi": "10.1038/35066536",
+      "url": "https://doi.org/10.1038/35066536",
+      "supportsClaims": [
+        "C06"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "Gastroliths and diet in ornithomimosaurs",
+      "authors": [
+        "Oliver W. M. Rauhut"
+      ],
+      "year": 2003,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Special Papers in Palaeontology",
+      "doi": null,
+      "url": "https://www.palass.org/publications/special-papers-palaeontology",
+      "supportsClaims": [
+        "C06"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "The Hell Creek Formation, Montana",
+      "authors": [
+        "Denver W. Fowler"
+      ],
+      "year": 2020,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Geosciences",
+      "doi": "10.3390/geosciences10110435",
+      "url": "https://doi.org/10.3390/geosciences10110435",
+      "supportsClaims": [
+        "C01",
+        "C03"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Ornithomimid dinosaurs from North America",
+      "authors": [
+        "Dale A. Russell"
+      ],
+      "year": 1972,
+      "sourceType": "Peer-reviewed monograph",
+      "publication": "Canadian Journal of Earth Sciences",
+      "doi": "10.1139/e72-084",
+      "url": "https://doi.org/10.1139/e72-084",
+      "supportsClaims": [
+        "C02",
+        "C03"
+      ]
+    }
+  ]
+}

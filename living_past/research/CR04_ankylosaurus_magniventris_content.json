@@ -1,0 +1,270 @@
+{
+  "id": "CR04",
+  "slug": "ankylosaurus-magniventris",
+  "section": "above",
+  "position": 4,
+  "commonName": "Ankylosaurus",
+  "scientificName": "Ankylosaurus magniventris",
+  "pronunciation": "ang-kih-loh-SORE-us mag-nih-VEN-tris",
+  "type": "land_animal",
+  "size": "6–8 m (20–26 ft)",
+  "ageRange_Ma": [
+    68.0,
+    66.0
+  ],
+  "diet": "Herbivore",
+  "habitat": "Coastal-plain floodplains",
+  "confidence": "well_documented",
+  "status": "roster",
+  "stage": {
+    "x": 0.078,
+    "plane": "mid"
+  },
+  "blurb": "Ankylosaurus was a low, broad herbivore protected by a mosaic of bony armor and a tail ending in a massive club. Fossils and engineering models show that this was not merely decoration: large adults could swing the club hard enough to make even a predator approach carefully.",
+  "notes": "Ankylosaurus magniventris lived in western North America during the final part of the Cretaceous. Its fossils occur in the Hell Creek Formation and roughly equivalent latest Maastrichtian rocks, so it belongs securely in the poster’s broad time and region. It is much rarer than Triceratops or Edmontosaurus, however, and no single complete skeleton supplies every detail in familiar museum reconstructions.\n\nAdults are commonly estimated at six to eight metres long. Size estimates vary because the known skeletons are incomplete and individuals differ. The body was unusually broad, carried low on four limbs, with a short, wide skull, small leaf-shaped teeth, and a beak at the front of the jaws. Enlarged nasal passages and a complex looping airway occupied much of the skull; proposed functions include heat and moisture exchange as well as smell, but fossils cannot isolate one purpose.\n\nArmor covered the upper body. Osteoderms—bones formed in the skin—ranged from small pebbles to broad plates and keeled elements. Their arrangement is reconstructed by comparing multiple specimens and better-preserved relatives because many pieces were scattered after death. The belly is not known to have carried the same heavy shield. Keratin probably covered at least some osteoderms in life, changing their outline beyond the bare bone.\n\nThe tail club combined a stiff handle and an enlarged terminal knob. Interlocking vertebrae and bundles of ossified tendons limited flexing near the end, while paired osteoderms formed the knob. Biomechanical modeling found that large clubs could generate substantial impact forces; smaller clubs were less formidable. This supports defensive use, though no fossil captures a swing or identifies every target.\n\nA related ankylosaur, Zuul, preserves injuries on the flanks consistent with blows from another tail club. That evidence strengthens the possibility that clubs also mattered in fights between members of the same species. It is not direct evidence for Ankylosaurus behavior, so this page uses it only as a comparison. Defense against Tyrannosaurus remains plausible, not exclusive.\n\nThe mouth suggests selective browsing. Small teeth and a broad muzzle could crop low plants, while recent work on ankylosaur jaws indicates more chewing ability than older hinge-jaw caricatures allowed. Fossil gut contents from other ankylosaurs include ferns and other vegetation, but they cannot be copied directly into an Ankylosaurus menu. Its exact food preferences and digestive system remain uncertain.\n\nPosture has also improved in modern reconstructions. Ankylosaurus did not drag a limp club behind it. The tail base had to move the stiffened distal section, and the hips and hind limbs provided a stable platform. Its hands and feet were broad but anatomically dinosaurian, not generic elephant feet. The head probably stayed relatively low, matching a browsing animal whose defenses made height less urgent.\n\nSkin color, display pattern, and the living surface of the armor are unknown. The bony plates need not have been exposed like a shell; skin and keratin covered them. The club’s sheath, if present, is not preserved well enough to specify. We also cannot tell whether individuals traveled alone, paired seasonally, or gathered in loose groups.\n\nIn the poster, CR04 is a broad adult with a low head, properly supported body, irregular armor mosaic, and a stiff tail terminating in a large club. Those foundations are evidence-based across known specimens. Exact plate placement, body mass, keratin outlines, colors, scars, and the moment of defensive readiness are reconstructed. Its coexistence with Tyrannosaurus in the Hell Creek world is secure; a particular duel between them is not. Even the club changed through life. Young ankylosaurids developed the specialized handle and terminal osteoderms gradually, so a juvenile would not simply be a miniature adult with an equally effective weapon. The poster shows a mature individual because its large club is the best-supported defensive reconstruction.",
+  "funFacts": [
+    "Armor grew inside the skin — Ankylosaurus plates were osteoderms, bones embedded in the hide. Their living covering of skin and keratin means bare fossil plates are not the animal’s complete surface.",
+    "The club had a handle — Interlocking tail vertebrae and ossified tendons stiffened the far end of the tail, allowing the hips and flexible base to accelerate the terminal knob.",
+    "Size changed the weapon — Mechanical models indicate that the largest tail clubs could deliver damaging impacts, while small clubs produced much lower forces. Not every individual carried the same weapon.",
+    "Its nose took the scenic route — CT studies reveal long, looping nasal passages inside the broad skull. They may have helped condition inhaled air and supported smell, but a single function is not proven."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C04"
+      ],
+      "referenceIds": [
+        "R02",
+        "R03"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C05"
+      ],
+      "referenceIds": [
+        "R04"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C06"
+      ],
+      "referenceIds": [
+        "R04"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C07"
+      ],
+      "referenceIds": [
+        "R05"
+      ]
+    }
+  ],
+  "survivor": "No living animal is closely comparable to Ankylosaurus; birds are its only surviving dinosaur cousins at a great evolutionary distance. Armadillos, crocodilians, and pangolins independently evolved protective body coverings, but their armor differs in structure and ancestry. Glyptodonts carried bony osteoderms yet were mammals, not dinosaurs. The comparison illustrates convergence: when predators make attack costly, natural selection can repeatedly favor low bodies and reinforced skin. Ankylosaurus combined that familiar defensive principle with a uniquely specialized dinosaur tail club.",
+  "distribution": "Ankylosaurus magniventris is known from latest Cretaceous formations of western North America, including the Hell Creek Formation and equivalent units in the northern Great Plains and western Canada. The fossils are comparatively uncommon and often incomplete. Their depositional settings include coastal-plain rivers and floodplains west of the retreating Western Interior Seaway. The species fits the poster’s time and broad region, although its precise abundance, habitat preference, and range boundaries cannot be mapped confidently from the limited sample.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Skulls, partial skeletons, osteoderms, and tail clubs establish a broad quadruped with embedded armor and a stiffened terminal weapon.",
+      "Interlocking distal tail vertebrae, ossified tendons, and paired knob osteoderms establish club construction.",
+      "CT scans directly reveal complex looping nasal passages."
+    ],
+    "supportedInference": [
+      "Mechanical models support damaging impacts from large adult clubs.",
+      "Armor arrangement and missing body regions are restored by combining specimens and comparing relatives.",
+      "Low browsing follows skull height, muzzle, and teeth; exact plant choices are unknown."
+    ],
+    "artisticReconstruction": [
+      "Exact osteoderm map, keratin extent, body color, patterns, and scars.",
+      "The club’s momentary posture and any confrontation with Tyrannosaurus.",
+      "Social organization, sound, and individual temperament."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "research",
+      "title": "Arbour and Snively on ankylosaur tail-club biomechanics",
+      "creator": "Victoria Arbour and Eric Snively",
+      "year": 2009,
+      "url": "https://doi.org/10.1371/journal.pone.0006738",
+      "description": "Explore how anatomy and engineering reveal what different-sized tail clubs could do.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Ankylosaurus",
+      "creator": "American Museum of Natural History",
+      "year": null,
+      "url": "https://www.amnh.org/exhibitions/permanent/ornithischian-dinosaurs/ankylosaurus",
+      "description": "See how incomplete fossils are combined to understand this armored dinosaur.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "public_resource",
+      "title": "The Dino 101 armored dinosaur collection",
+      "creator": "Royal Tyrrell Museum",
+      "year": null,
+      "url": "https://tyrrellmuseum.com/",
+      "description": "Explore ankylosaur fossils and current research at a museum built around western North America’s dinosaur record.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "Research synthesis prepared from cited sources; reviewer candidates in dossier have not been contacted."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29",
+  "references": [
+    {
+      "id": "R01",
+      "title": "Redescription of Ankylosaurus magniventris",
+      "authors": [
+        "Kenneth Carpenter"
+      ],
+      "year": 2004,
+      "sourceType": "Peer-reviewed review",
+      "publication": "The Armored Dinosaurs",
+      "doi": null,
+      "url": "https://iupress.org/9780253342993/the-armored-dinosaurs/",
+      "supportsClaims": [
+        "C01",
+        "C02",
+        "C03"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "The ankylosaurid dinosaurs of North America",
+      "authors": [
+        "Walter P. Coombs Jr."
+      ],
+      "year": 1978,
+      "sourceType": "Peer-reviewed monograph",
+      "publication": "Palaeontographica Americana",
+      "doi": null,
+      "url": "https://www.biodiversitylibrary.org/",
+      "supportsClaims": [
+        "C03",
+        "C04"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "The ankylosaurian body armor",
+      "authors": [
+        "Torsten M. Scheyer",
+        "P. Martin Sander"
+      ],
+      "year": 2004,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Journal of Vertebrate Paleontology",
+      "doi": "10.1671/0272-4634(2004)024[0874:HOTSIO]2.0.CO;2",
+      "url": "https://doi.org/10.1671/0272-4634(2004)024%5B0874:HOTSIO%5D2.0.CO;2",
+      "supportsClaims": [
+        "C04"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "Finite element analysis of ankylosaurid dinosaur tail club impacts",
+      "authors": [
+        "Victoria M. Arbour",
+        "Eric Snively"
+      ],
+      "year": 2009,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "PLOS ONE",
+      "doi": "10.1371/journal.pone.0006738",
+      "url": "https://doi.org/10.1371/journal.pone.0006738",
+      "supportsClaims": [
+        "C05",
+        "C06"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "Nasal airflow in ankylosaurs",
+      "authors": [
+        "Jason M. Bourke et al."
+      ],
+      "year": 2018,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "PLOS ONE",
+      "doi": "10.1371/journal.pone.0207381",
+      "url": "https://doi.org/10.1371/journal.pone.0207381",
+      "supportsClaims": [
+        "C07"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "Tail weaponry in ankylosaurs and intraspecific combat",
+      "authors": [
+        "Victoria M. Arbour et al."
+      ],
+      "year": 2022,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Biology Letters",
+      "doi": "10.1098/rsbl.2022.0444",
+      "url": "https://doi.org/10.1098/rsbl.2022.0444",
+      "supportsClaims": [
+        "C06"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "The Hell Creek Formation, Montana",
+      "authors": [
+        "Denver W. Fowler"
+      ],
+      "year": 2020,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Geosciences",
+      "doi": "10.3390/geosciences10110435",
+      "url": "https://doi.org/10.3390/geosciences10110435",
+      "supportsClaims": [
+        "C01",
+        "C08"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Ankylosaurus",
+      "authors": [
+        "American Museum of Natural History"
+      ],
+      "year": null,
+      "sourceType": "Official museum resource",
+      "publication": "AMNH",
+      "doi": null,
+      "url": "https://www.amnh.org/exhibitions/permanent/ornithischian-dinosaurs/ankylosaurus",
+      "supportsClaims": [
+        "C02",
+        "C03"
+      ]
+    },
+    {
+      "id": "R09",
+      "title": "Ankylosaur feeding mechanics",
+      "authors": [
+        "Paul M. Barrett"
+      ],
+      "year": 2001,
+      "sourceType": "Peer-reviewed review",
+      "publication": "The Armored Dinosaurs",
+      "doi": null,
+      "url": "https://iupress.org/9780253342993/the-armored-dinosaurs/",
+      "supportsClaims": [
+        "C08"
+      ]
+    }
+  ]
+}

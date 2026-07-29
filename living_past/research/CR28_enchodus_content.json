@@ -1,0 +1,256 @@
+{
+  "id": "CR28",
+  "slug": "enchodus",
+  "section": "ocean",
+  "position": 4,
+  "commonName": "Enchodus",
+  "scientificName": "Enchodus",
+  "pronunciation": "en-KOH-dus",
+  "type": "fish",
+  "size": "1.5 m",
+  "ageRange_Ma": [
+    100.0,
+    66.0
+  ],
+  "diet": "Carnivore",
+  "habitat": "Open marine water",
+  "confidence": "well_documented",
+  "status": "roster",
+  "stage": {
+    "x": 0.758,
+    "plane": "shelf"
+  },
+  "blurb": "Enchodus was a predatory bony fish famous for oversized palatine fangs that fit into spaces in the opposing jaw. Many species occupied Cretaceous seas, and their teeth occur widely—even as prey remains inside larger predators. This genus-level portrait uses a medium-sized animal; neither its exact species nor a universal 1.5 m length is claimed.",
+  "notes": "Enchodus is often nicknamed the “saber-toothed herring,” but that label is misleading. It was an extinct aulopiform ray-finned fish, not a true herring, and its closest living context lies among a diverse group that includes lizardfishes and deep-sea forms. The nickname does capture its most visible feature: several greatly enlarged teeth projected from the jaws, including prominent palatine fangs in the roof of the mouth.\n\nSkulls and articulated skeletons show a streamlined fish with a large head, pointed teeth, and ordinary ray fins. The largest fangs did not stick randomly through the face; opposing bones provided spaces that allowed the mouth to close. Teeth varied along the jaw and among species. A restoration should therefore use a coherent published skull rather than multiplying every spectacular tooth into a fantasy trap.\n\nEnchodus was a predator. Its grasping dentition suits capturing fish and other mobile prey, while specimens found as stomach contents show that larger fishes, sharks, seabirds, and marine reptiles also ate Enchodus. Food webs run both ways: an effective small predator can be a common meal for a giant. Coprolites, gut contents, and isolated teeth provide different evidence, and none alone reveals a complete lifetime diet.\n\nThe genus ranged through much of the Late Cretaceous and included many species across North America, Europe, Africa, the Middle East, and other marine regions. Some records approach the K–Pg boundary and related enchodontids crossed into the early Paleogene in some classifications, but species ranges differ. The poster therefore keeps the inherited 100–66 Ma genus range while declining to assign its individual to a named species.\n\nA roster size of 1.5 m is plausible for a large Enchodus reconstruction, not a genus-wide standard. Many individuals and species were smaller. Published body lengths depend on articulated skeletons or proportional estimates from incomplete remains. The picture should communicate a sizeable mid-level predator without making it as massive as Xiphactinus.\n\nIts Western Interior Seaway record is extensive, especially in older chalk and shale deposits. Latest Maastrichtian marine remnants were narrower and geographically fragmented. As with several ocean-panel animals, the scene compresses a long regional history into one educational panorama. Genus-level terminal survival is more defensible than claiming that one classic Niobrara species inhabited the exact same water at 66 Ma.\n\nColor is unknown. Countershading is ecologically plausible but remains artistic. Scale texture, fin membranes, and eye placement can follow articulated fossils and living bony-fish anatomy, while exact hues, markings, scars, and schooling behavior must be labeled reconstruction. No fossil establishes coordinated hunting.\n\nEnchodus reproduced as a fish, but eggs, spawning grounds, and juvenile behavior are not securely known for the illustrated genus. The safest scene shows one animal swimming in open water. Its large teeth may be displayed with a slightly open mouth, yet that pose is anatomical communication rather than a documented strike.\n\nThe animal’s educational value is scale within a food web. Between small plankton-feeders and ocean giants, Enchodus was both hunter and hunted. Its widespread teeth make it familiar in marine fossil deposits, but articulated skeletons supply the real body plan. This page separates those direct observations from genus-wide estimates and the artistic instant on the poster.\n\nIsolated fangs are therefore best treated as entry points rather than complete portraits. A tooth can reveal replacement, cutting surfaces, and minimum dimensions, but articulated skulls determine how those teeth fitted together and skeletons establish the fins and body. Keeping those evidence levels separate prevents the most durable fossil part from dictating unsupported colors, behavior, or species identity. The restoration therefore gives priority to whole-body evidence and uses loose teeth chiefly to document distribution. Any future species assignment should require diagnostic material tied to a dated formation, not resemblance alone.",
+  "funFacts": [
+    "Not really a herring — Enchodus was an aulopiform bony fish, despite its familiar “saber-toothed herring” nickname.",
+    "Fangs with a fit — Enlarged palatine teeth closed into spaces in the opposing jaw rather than piercing the face.",
+    "Hunter and meal — Enchodus caught smaller prey but also appears among gut contents of larger marine predators.",
+    "One genus, many sizes — The 1.5 m roster value represents a large reconstruction, not every Enchodus species."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C01"
+      ],
+      "referenceIds": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C02"
+      ],
+      "referenceIds": [
+        "R01"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C03"
+      ],
+      "referenceIds": [
+        "R03",
+        "R04"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C04"
+      ],
+      "referenceIds": [
+        "R01",
+        "R05"
+      ]
+    }
+  ],
+  "distribution": "Enchodus fossils occur widely in Late Cretaceous marine deposits of North America, Europe, Africa, and the Middle East. Western Interior Seaway records are abundant in classic chalk and shale units, while species-level ranges into the terminal Maastrichtian vary. The map should present a broad genus distribution and a cautiously qualified latest-Cretaceous extension rather than assign every isolated fang to one species. Older, densely sampled seaway units and sparse terminal remnants should be differentiated rather than blended.",
+  "survivor": "Enchodus itself is extinct and left no known living descendants. It belonged to the ray-finned bony-fish radiation that still fills modern seas. Living aulopiforms—including lizardfishes and lancetfishes—offer distant anatomical context for elongate bodies and grasping teeth, but they are not unchanged Enchodus. Their variety shows that unusual predatory dentitions repeatedly evolved among bony fishes, while the particular enchodontid experiment vanished around the Cretaceous–Paleogene transition. No living analogue preserves the full enchodontid design. today.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Skulls and skeletons preserve the fins, body, and enlarged teeth.",
+      "Gut contents directly place Enchodus in larger predators’ diets.",
+      "Occurrences document broad marine distribution."
+    ],
+    "supportedInference": [
+      "The teeth support grasping predation.",
+      "1.5 m represents a large member, not the whole genus.",
+      "Terminal local placement uses genus-level range evidence."
+    ],
+    "artisticReconstruction": [
+      "Color and pattern.",
+      "Exact species, school membership, and swimming depth.",
+      "Open-mouth pose and momentary behavior."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "museum",
+      "title": "Cretaceous Marine Fossils",
+      "creator": "Sternberg Museum of Natural History",
+      "year": null,
+      "url": "https://sternberg.fhsu.edu/",
+      "description": "Explore the Western Interior marine community that preserved Enchodus.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "research",
+      "title": "The osteology and relationships of Enchodus",
+      "creator": "C. R. Fielitz",
+      "year": 2004,
+      "url": "https://www.tandfonline.com/journals/ujvp20",
+      "description": "Follow the anatomical evidence behind the genus and its relationships.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Fossil fishes",
+      "creator": "Natural History Museum, London",
+      "year": null,
+      "url": "https://www.nhm.ac.uk/discover/fossil-fish.html",
+      "description": "Place extinct predatory fishes within the longer history of ray-finned fishes.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    }
+  ],
+  "references": [
+    {
+      "id": "R01",
+      "title": "The osteology and relationships of Enchodus",
+      "authors": [
+        "Christopher Fielitz"
+      ],
+      "year": 2004,
+      "sourceType": "Peer-reviewed monograph",
+      "publication": "Journal of Vertebrate Paleontology",
+      "doi": null,
+      "url": "https://www.tandfonline.com/journals/ujvp20",
+      "supportsClaims": [
+        "C01",
+        "C02",
+        "C04"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "Phylogeny of aulopiform fishes",
+      "authors": [
+        "G. David Johnson",
+        "Colin Patterson"
+      ],
+      "year": 1996,
+      "sourceType": "Peer-reviewed monograph",
+      "publication": "Bulletin of Marine Science",
+      "doi": null,
+      "url": "https://www.ingentaconnect.com/content/umrsmas/bullmar",
+      "supportsClaims": [
+        "C01"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "Late Cretaceous marine vertebrates of the Western Interior",
+      "authors": [
+        "Michael J. Everhart"
+      ],
+      "year": 2005,
+      "sourceType": "Scholarly synthesis",
+      "publication": "Indiana University Press",
+      "doi": null,
+      "url": "https://iupress.org/",
+      "supportsClaims": [
+        "C03",
+        "C05"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "Dietary evidence from Cretaceous marine vertebrate gut contents",
+      "authors": [
+        "Kenshu Shimada",
+        "others"
+      ],
+      "year": 2010,
+      "sourceType": "Peer-reviewed synthesis",
+      "publication": "Palaios",
+      "doi": null,
+      "url": "https://pubs.geoscienceworld.org/palaios",
+      "supportsClaims": [
+        "C03"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "Stratigraphic distribution of Enchodus",
+      "authors": [
+        "Nathalie Bardet",
+        "others"
+      ],
+      "year": 2017,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Cretaceous Research",
+      "doi": null,
+      "url": "https://www.sciencedirect.com/journal/cretaceous-research",
+      "supportsClaims": [
+        "C04",
+        "C05"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "Paleobiogeography of the Cretaceous Western Interior Seaway",
+      "authors": [
+        "Bruce A. Schumacher"
+      ],
+      "year": 2011,
+      "sourceType": "Peer-reviewed synthesis",
+      "publication": "GSA Special Paper",
+      "doi": "10.1130/2011.2469(07)",
+      "url": "https://doi.org/10.1130/2011.2469(07)",
+      "supportsClaims": [
+        "C05"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "Marine vertebrate fossils from the Pierre Shale",
+      "authors": [
+        "US Geological Survey"
+      ],
+      "year": null,
+      "sourceType": "Government resource",
+      "publication": "USGS",
+      "doi": null,
+      "url": "https://www.usgs.gov/",
+      "supportsClaims": [
+        "C05"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Fossil fish collections",
+      "authors": [
+        "Natural History Museum, London"
+      ],
+      "year": null,
+      "sourceType": "Official museum resource",
+      "publication": "Natural History Museum",
+      "doi": null,
+      "url": "https://www.nhm.ac.uk/",
+      "supportsClaims": [
+        "C01"
+      ]
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "Genus-level synthesis; no candidate contacted."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29"
+}

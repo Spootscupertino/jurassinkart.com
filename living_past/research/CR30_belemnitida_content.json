@@ -1,0 +1,264 @@
+{
+  "id": "CR30",
+  "slug": "belemnite",
+  "section": "ocean",
+  "position": 6,
+  "commonName": "Belemnite",
+  "scientificName": "Belemnitida (indet.)",
+  "pronunciation": "beh-LEM-nih-tie-dah",
+  "type": "invertebrate",
+  "size": "30 cm",
+  "ageRange_Ma": [
+    72.0,
+    66.0
+  ],
+  "diet": "Carnivore",
+  "habitat": "Marine shelf water",
+  "confidence": "reasonable_inference",
+  "status": "roster",
+  "notesRoster": "declining in the Western Interior by the latest Maastrichtian.",
+  "framing_mode": "figure",
+  "pose": "squid-like cephalopod in full lateral view, streamlined mantle tapering to a pointed internal guard at the rear, ten arms bearing small hooks extended forward, mid-swim",
+  "complete": "the whole animal from arm tips to the pointed tail guard visible",
+  "surface": "cleanly detailed smooth mantle, fins and arm hooks",
+  "ar": "3:2",
+  "stage": {
+    "x": 0.688,
+    "plane": "shelf"
+  },
+  "blurb": "Belemnites were squid-like coleoids whose internal skeleton included a hard, bullet-shaped guard. Those guards fossilize readily; soft bodies, fins, arms, hooks, and ink sacs are rarer. The poster shows an indeterminate Maastrichtian belemnite, enlarged for visibility, because its exact Western Interior species and terminal abundance remain uncertain.",
+  "notes": "A belemnite was a cephalopod, related within the larger coleoid branch to living squid, cuttlefish, and octopuses. It carried its main hard parts inside the body. The dense, usually bullet-shaped rostrum or guard formed the rear portion of a multipart internal skeleton; farther forward lay a chambered phragmocone and a thin supporting pro-ostracum. Beachcombers and fossil hunters usually find the durable guard, not the whole animal.\n\nExceptional fossils preserve more. Soft outlines, ink sacs, arm hooks, and muscle attachments show an animal with a streamlined mantle, fins, a head with large eyes, and ten arm-like appendages. The precise fin shape and arm proportions vary among belemnite groups and are not directly preserved for this indeterminate poster animal. Its squid-like appearance is strongly supported at the order level, while the exact silhouette remains comparative.\n\nBelemnites were active marine predators. Hooked arms could restrain small prey, and a beak processed food. Stable isotopes and guard chemistry have been used to investigate habitat and water temperature, but guards can be altered after burial and different portions grew at different times. Chemical values require screening rather than translation into an exact swimming depth.\n\nThe 30 cm roster size describes the intended whole animal, not merely its fossil guard. Species ranged widely in size, and incomplete preservation makes total-length conversion uncertain. On the poster this organism is below the visual threshold for true-scale readability and is deliberately enlarged; the page and key must state its actual roster size and enlargement factor.\n\nMaastrichtian belemnitellids are well documented across the Northern Hemisphere. A recent synthesis records Belemnitella and related genera in Europe and notes Maastrichtian occurrences in the North American Atlantic Coastal Plain and Western Interior. Their distribution shifted through the stage, and some lineages declined regionally while others became abundant elsewhere near its end. “Belemnitida indeterminate” is therefore more defensible than selecting a species without a locality-specific specimen.\n\nThe Western Interior Seaway was retreating during the Maastrichtian, altering connections, salinity, and shelf habitat. Fossil coleoids are reported from Campanian–Maastrichtian Western Interior deposits, but their record is much thinner than abundant ammonites. The scene uses a plausible representative and openly labels confidence as reasonable inference.\n\nBelemnite guards are not external spears and should not protrude naked behind a living animal. They were surrounded by soft tissue. Likewise, the phragmocone was internal. The poster pose correctly treats the guard as an internal support shaping the tapered rear mantle, while explanatory art may show it in a cutaway.\n\nColor patterns are unknown for this individual. Living coleoids can change color, but projecting sophisticated rapid displays onto an indeterminate belemnite is possible rather than demonstrated. A subdued pattern is artistic. Exact schooling, diel migration, reproductive behavior, and lifespan are unverified.\n\nBelemnites disappeared at the K–Pg boundary. Modern squid are relatives, not their descendants in a simple straight line. They help readers understand jet propulsion, mantle breathing, arms, beaks, and camera-like eyes, but the fossil guard marks a distinct extinct design.\n\nThis reconstruction is strongest where the fossil anatomy speaks broadly—internal guard, chambered skeleton, hooked arms, mantle, fins—and cautious where the local record thins. It turns an easily recognized stone fossil into the living animal it once supported without pretending that every soft-tissue detail survived.\n\nA web cutaway can clarify the relationship among the guard, phragmocone, and surrounding mantle without exposing those structures on the living poster animal. That paired presentation is especially useful here: it explains why the common fossil is only one internal component and why soft-tissue restorations must draw on exceptional specimens and close relatives rather than the guard alone. The resulting image can remain recognizably belemnite without turning an indeterminate fossil into a falsely precise species portrait. Its confidence badge records that boundary for readers.",
+  "funFacts": [
+    "The “bullet” was inside — The familiar stone guard lay within the rear mantle, not exposed like a spear.",
+    "More than a guard — Exceptional fossils preserve hooks, ink sacs, and soft outlines that reveal a squid-like animal.",
+    "A chemical archive — Growth layers in calcitic guards can record environmental signals, though burial alteration must be screened.",
+    "Tiny on the titan scale — The 30 cm animal is enlarged in the scene for legibility and labeled accordingly."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C01"
+      ],
+      "referenceIds": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C02"
+      ],
+      "referenceIds": [
+        "R02",
+        "R03"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C03"
+      ],
+      "referenceIds": [
+        "R04",
+        "R05"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C04"
+      ],
+      "referenceIds": [
+        "R01"
+      ]
+    }
+  ],
+  "distribution": "Belemnitellid belemnites occupied Northern Hemisphere Maastrichtian seas, with especially rich European records and occurrences in the North American Atlantic Coastal Plain and Western Interior. Because guards are often isolated and taxonomy is specialized, this page maps Belemnitida broadly and leaves the poster animal indeterminate. Regional decline does not mean identical global decline at every moment. The display should distinguish confirmed formation-level occurrences from generalized range and avoid transferring European species names to North American fragments.",
+  "survivor": "Belemnites did not survive the K–Pg extinction, but their larger coleoid family story continues in squid, cuttlefish, and octopuses. Living squid offer a useful working comparison: mantle-driven jetting, fins for control, arms around a beaked mouth, large eyes, and ink. They are collateral relatives, not belemnites with the guard removed. The extinct animal’s chambered internal skeleton and massive calcitic guard distinguish its branch from every modern swimmer. No living squid retains the same complete internal skeleton.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Guards, phragmocones, hooks, and rare soft tissues establish the basic anatomy.",
+      "Maastrichtian guards document Northern Hemisphere occurrence.",
+      "Growth increments and chemistry are measurable."
+    ],
+    "supportedInference": [
+      "The whole-animal silhouette combines exceptional relatives.",
+      "Active predation follows hooks, beak, and body plan.",
+      "Terminal WIS presence is plausible but taxonomically unresolved."
+    ],
+    "artisticReconstruction": [
+      "Color and display ability.",
+      "Exact fins, arm posture, and species.",
+      "Swimming depth and group behavior."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "research",
+      "title": "Belemnitellidae from the Maastrichtian Northern Hemisphere",
+      "creator": "J. W. M. Jagt and colleagues",
+      "year": 2024,
+      "url": "https://doi.org/10.1017/njg.2024.15",
+      "description": "Explore current taxonomy and shifting Maastrichtian distributions.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Belemnites",
+      "creator": "Natural History Museum, London",
+      "year": null,
+      "url": "https://www.nhm.ac.uk/discover/what-is-a-belemnite.html",
+      "description": "Connect the common bullet-shaped fossil with the complete living animal.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "public_resource",
+      "title": "Fossil Coleoids from the Late Cretaceous Western Interior",
+      "creator": "Musée national d'histoire naturelle Luxembourg",
+      "year": 2010,
+      "url": "https://ps.mnhn.lu/ferrantia/publications/Ferrantia59.pdf",
+      "description": "Review the specialized fossil record of coleoids in the Western Interior.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    }
+  ],
+  "references": [
+    {
+      "id": "R01",
+      "title": "Belemnitellidae from the Maastrichtian Northern Hemisphere",
+      "authors": [
+        "J. W. M. Jagt",
+        "others"
+      ],
+      "year": 2024,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Netherlands Journal of Geosciences",
+      "doi": "10.1017/njg.2024.15",
+      "url": "https://doi.org/10.1017/njg.2024.15",
+      "supportsClaims": [
+        "C01",
+        "C04",
+        "C05"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "Treatise on Invertebrate Paleontology: Coleoidea",
+      "authors": [
+        "J. A. Jeletzky"
+      ],
+      "year": 1966,
+      "sourceType": "Scholarly monograph",
+      "publication": "Geological Society of America",
+      "doi": null,
+      "url": "https://journals.ku.edu/InvertebratePaleo",
+      "supportsClaims": [
+        "C01",
+        "C02"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "Soft parts of fossil coleoids",
+      "authors": [
+        "Dirk Fuchs",
+        "others"
+      ],
+      "year": 2013,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Lethaia",
+      "doi": null,
+      "url": "https://onlinelibrary.wiley.com/journal/15023931",
+      "supportsClaims": [
+        "C02"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "Belemnite palaeobiology and stable isotopes",
+      "authors": [
+        "Robert Stevens",
+        "others"
+      ],
+      "year": 2015,
+      "sourceType": "Peer-reviewed synthesis",
+      "publication": "Earth-Science Reviews",
+      "doi": null,
+      "url": "https://www.sciencedirect.com/journal/earth-science-reviews",
+      "supportsClaims": [
+        "C03"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "U-Pb dating of belemnites and rugose corals",
+      "authors": [
+        "others"
+      ],
+      "year": 2024,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Chemical Geology",
+      "doi": "10.1016/j.chemgeo.2023.121862",
+      "url": "https://doi.org/10.1016/j.chemgeo.2023.121862",
+      "supportsClaims": [
+        "C03"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "Fossil Coleoids from the Late Cretaceous Western Interior",
+      "authors": [
+        "Neal Larson",
+        "others"
+      ],
+      "year": 2010,
+      "sourceType": "Conference proceedings",
+      "publication": "Ferrantia",
+      "doi": null,
+      "url": "https://ps.mnhn.lu/ferrantia/publications/Ferrantia59.pdf",
+      "supportsClaims": [
+        "C05"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "Paleoceanography of the Maastrichtian Western Interior Seaway",
+      "authors": [
+        "James Cochran",
+        "others"
+      ],
+      "year": 2003,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Palaeogeography Palaeoclimatology Palaeoecology",
+      "doi": "10.1016/S0031-0182(02)00642-9",
+      "url": "https://doi.org/10.1016/S0031-0182(02)00642-9",
+      "supportsClaims": [
+        "C05"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "What is a belemnite?",
+      "authors": [
+        "Natural History Museum, London"
+      ],
+      "year": null,
+      "sourceType": "Official museum resource",
+      "publication": "Natural History Museum",
+      "doi": null,
+      "url": "https://www.nhm.ac.uk/discover/what-is-a-belemnite.html",
+      "supportsClaims": [
+        "C01",
+        "C02"
+      ]
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "Indeterminate treatment; no outreach."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29"
+}

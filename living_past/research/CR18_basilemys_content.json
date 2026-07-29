@@ -1,0 +1,268 @@
+{
+  "id": "CR18",
+  "slug": "basilemys",
+  "section": "shoreline",
+  "position": 2,
+  "commonName": "Basilemys",
+  "scientificName": "Basilemys",
+  "researchScientificName": "Basilemys sp.",
+  "pronunciation": "bass-ih-LEM-iss",
+  "type": "marine_reptile",
+  "pose": "three-quarter view from slightly above, walking on four sturdy feet, low domed sculptured shell, head and neck extended forward",
+  "size": "about 1 m (3.3 ft)",
+  "ageRange_Ma": [
+    68,
+    66
+  ],
+  "diet": "Probably herbivorous or omnivorous",
+  "habitat": "Well-drained ground near coastal-plain waterways",
+  "confidence": "reasonable_inference",
+  "status": "roster",
+  "stage": {
+    "x": 0.492,
+    "plane": "shore"
+  },
+  "blurb": "Basilemys carried its defense on its back: a thick, richly sculptured shell unlike that of any living turtle. Although found in river-laid rocks, its sturdy limbs and shell anatomy point toward a mainly terrestrial animal walking the Hell Creek floodplain rather than a marine turtle paddling along the coast.",
+  "notes": "A turtle shell may look like one object, but to a paleontologist it is a mosaic of bones, seams, surface textures, and growth history. In Basilemys, that mosaic is unusually distinctive. The outer shell bears dense pits and small raised knobs arranged into a textured pattern. Even a fragment can therefore advertise the presence of a large nanhsiungchelyid turtle in Late Cretaceous rocks.\n\nThe Hell Creek–Lance landscape was crossed by rivers, yet a fossil in river sediment did not necessarily live like a river turtle. Water transports bones from banks and floodplains. Basilemys had a high, robust shell and stout limbs that researchers have interpreted as adaptations for life mainly on land. It was not a sea turtle and did not have flipper-shaped limbs. The poster’s placement on exposed shore ground is consequently a useful meeting point between its terrestrial anatomy and a water-shaped environment.\n\nAt roughly a metre long in broad public estimates, Basilemys ranked among the larger turtles of its community. Exact total length is difficult because shells are more common than complete skeletons and because species and individuals differ. The roster wisely stops at the genus. Several named Basilemys species occur at different times and places across western North America, and species-level identification depends on diagnostic anatomy. A generic label avoids pretending that every sculptured Hell Creek shell has a simple species name.\n\nIts diet is also less certain than the original roster’s firm “herbivore.” Nanhsiungchelyids are often reconstructed as terrestrial plant eaters, and a beaked turtle could crop or crush food without teeth. But direct stomach contents for Hell Creek Basilemys are not available. Plant matter, fungi, invertebrates, or mixed foods are all possibilities depending on jaw function and opportunity. “Probably herbivorous or omnivorous” states the ecological inference without turning it into a fossilized menu.\n\nThe shell provides our strongest visual evidence. Its sculpturing can be shown directly, while the horny scutes that covered the bones are reconstructed from sulci and comparison with living turtles. Sturdy, non-flipper limbs support a walking pose. The exact skin folds, claws, eye color, shell color, and facial expression are not preserved. A slightly extended neck makes the animal readable in the composition, but records no particular moment in its life.\n\nBasilemys belonged to Nanhsiungchelyidae, an extinct turtle family with a Cretaceous distribution across Asia and North America. None survived into the modern world. Living tortoises make an appealing ecological comparison because they are terrestrial and carry domed shells, but they are not close stand-ins. Similar demands can produce broadly similar bodies on separate branches of the turtle tree.\n\nThe genus spans more than the final two million years represented by this poster, but the page is specifically anchored to latest Maastrichtian records from the northern Western Interior. That distinction prevents a common time-travel error: importing anatomy or ecology from a differently aged species without saying so. Broader studies help interpret the family; the local occurrence justifies the cast member.\n\nIn the poster, CR18 walks near the water but is not emerging as a swimmer. Its whole shell and all four feet are visible, emphasizing the evidence for a sturdy land-going turtle. The sculptured texture is a scientific anchor. Color, behavior, and the choice to catch it mid-step remain art. That combination makes Basilemys valuable: it reveals how a famous dinosaur ecosystem also supported large, specialized turtles unlike anything alive today.\n\nTurtle shells also carry a preservation warning. Individual plates can separate after death, move with sediment, and become mixed with other animals at a site. Researchers identify their position from shape, surface ornament, and the seams left by overlying scutes. A convincing assignment may rest on several matching features rather than one impressive-looking fragment. This is why the page emphasizes shell texture but retains genus-level caution. The fossil record can establish a distinctive armored turtle in the ecosystem while leaving the number of species, individual variation, and precise soft-bodied ecology less certain. The reconstruction should likewise resist a tortoise costume. Basilemys had its own shell proportions and evolutionary history. Modern terrestrial turtles help test how sturdy limbs support weight and how a beak processes food, but their colors, foot shape, and behavior cannot simply be transferred.",
+  "funFacts": [
+    "A shell with a fingerprint — Dense pits and raised tubercles give Basilemys shell fragments a characteristic sculptured surface useful for identification.",
+    "Found by water, built for land — Robust limbs and shell form support a mainly terrestrial interpretation even when remains occur in river-laid rocks.",
+    "No turtle teeth — Like living turtles, Basilemys used a horny beak over its jaws; the beak itself is not normally preserved.",
+    "A lost turtle experiment — Nanhsiungchelyids spread across Cretaceous Asia and North America, but the entire family is extinct."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C02"
+      ],
+      "referenceIds": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C03",
+        "C07"
+      ],
+      "referenceIds": [
+        "R01",
+        "R03"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C05"
+      ],
+      "referenceIds": [
+        "R04"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C06"
+      ],
+      "referenceIds": [
+        "R02",
+        "R05"
+      ]
+    }
+  ],
+  "survivor": "No nanhsiungchelyid turtle survives. Modern tortoises are useful ecological comparisons because they walk on sturdy limbs and carry high, protective shells, but resemblance does not make them descendants of Basilemys. All living turtles share a far older inheritance—shell bones integrated with the ribs and vertebrae, toothless beaks, and a body plan unlike that of any other vertebrate. Basilemys represents an extinct branch that built a terrestrial life in its own distinctive way, complete with heavily sculptured armor.",
+  "distribution": "Basilemys ranged widely across Late Cretaceous western North America, but the poster requires only a genus-level latest Maastrichtian occurrence in the Hell Creek–Lance region. Those formations record river channels and floodplains; terrestrial remains could enter channel deposits after death or during floods. CR18 should therefore stand on ground near water, not swim in the open sea. The genus label is deliberate because isolated shell fragments may not preserve the anatomy needed for a secure species assignment.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Thick shell bones preserve characteristic pitted and tuberculate sculpturing.",
+      "Shell and limb material establish a large, robust turtle without marine flippers.",
+      "Latest Cretaceous fossils establish the genus in western North American communities."
+    ],
+    "supportedInference": [
+      "Shell proportions and sturdy limbs support a mainly terrestrial lifestyle.",
+      "A plant-heavy or mixed diet is plausible, but direct gut contents are absent.",
+      "Horny scutes and a beak are reconstructed from shell sulci and turtle anatomy."
+    ],
+    "artisticReconstruction": [
+      "Shell and skin colors, eye color, and soft-tissue texture.",
+      "The exact neck extension and walking moment.",
+      "Any specific food choice, social interaction, or response to nearby dinosaurs."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "research",
+      "title": "New specimen of Basilemys praeclara and its bearing on Nanhsiungchelyidae",
+      "creator": "Walter G. Joyce and Tyler R. Lyson",
+      "year": 2015,
+      "url": "https://doi.org/10.1017/S002233600002535X",
+      "description": "Explore how a more complete shell and skeleton help researchers interpret this unusual turtle family.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "museum",
+      "title": "An Illustrated Guide to Latest Cretaceous Vertebrate Microfossils of the Hell Creek Formation",
+      "creator": "Smithsonian National Museum of Natural History",
+      "year": 2012,
+      "url": "https://www.naturalhistory.si.edu/sites/default/files/media/file/fossil-id-guide062812-accessible.pdf",
+      "description": "Learn how shell fragments become evidence for the diverse turtle community living alongside dinosaurs.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "public_resource",
+      "title": "Turtles as paleoclimatic proxies",
+      "creator": "Walter G. Joyce and colleagues",
+      "year": 2016,
+      "url": "https://doi.org/10.1016/j.earscirev.2015.09.005",
+      "description": "See how turtle distributions can illuminate ancient climates—and why anatomy, geography, and preservation must be interpreted together.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "Research synthesis prepared from cited sources. Candidate reviewers are listed only in the dossier."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29",
+  "references": [
+    {
+      "id": "R01",
+      "title": "New specimen of Basilemys praeclara and its bearing on the relationships of Nanhsiungchelyidae",
+      "authors": [
+        "Walter G. Joyce",
+        "Tyler R. Lyson"
+      ],
+      "year": 2015,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Journal of Paleontology",
+      "doi": "10.1017/S002233600002535X",
+      "url": "https://doi.org/10.1017/S002233600002535X",
+      "supportsClaims": [
+        "C02",
+        "C03",
+        "C04"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "Basilemys morrinensis, a new species of nanhsiungchelyid turtle",
+      "authors": [
+        "Caleb M. Brown",
+        "Donald M. Henderson"
+      ],
+      "year": 2018,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Journal of Vertebrate Paleontology",
+      "doi": "10.1080/02724634.2018.1431922",
+      "url": "https://doi.org/10.1080/02724634.2018.1431922",
+      "supportsClaims": [
+        "C02",
+        "C06"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "The shell morphology of the Late Cretaceous turtle Basilemys",
+      "authors": [
+        "Walter G. Joyce",
+        "Tyler R. Lyson"
+      ],
+      "year": 2010,
+      "sourceType": "Peer-reviewed comparative research",
+      "publication": "Bulletin of the Peabody Museum of Natural History",
+      "doi": null,
+      "url": "https://peabody.yale.edu/explore/publications/bulletin",
+      "supportsClaims": [
+        "C03",
+        "C07"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "The origin and early diversification of turtles",
+      "authors": [
+        "Walter G. Joyce"
+      ],
+      "year": 2017,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Annual Review of Ecology, Evolution, and Systematics",
+      "doi": "10.1146/annurev-ecolsys-110316-022901",
+      "url": "https://doi.org/10.1146/annurev-ecolsys-110316-022901",
+      "supportsClaims": [
+        "C05",
+        "C08"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "Turtles as paleoclimatic proxies",
+      "authors": [
+        "Walter G. Joyce",
+        "Jérémy Anquetin",
+        "Tyler R. Lyson"
+      ],
+      "year": 2016,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Earth-Science Reviews",
+      "doi": "10.1016/j.earscirev.2015.09.005",
+      "url": "https://doi.org/10.1016/j.earscirev.2015.09.005",
+      "supportsClaims": [
+        "C06",
+        "C08"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "The Hell Creek Formation, Montana: a stratigraphic review and revision",
+      "authors": [
+        "Denver W. Fowler"
+      ],
+      "year": 2020,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Geosciences",
+      "doi": "10.3390/geosciences10110435",
+      "url": "https://doi.org/10.3390/geosciences10110435",
+      "supportsClaims": [
+        "C01",
+        "C07"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "Comparative taphonomy and paleoecological reconstruction of two microvertebrate accumulations from the Hell Creek Formation",
+      "authors": [
+        "L. R. Pearson",
+        "D. J. Nichols",
+        "J. P. Hartman"
+      ],
+      "year": 2008,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "PALAIOS",
+      "doi": "10.2110/palo.2007.p07-006r",
+      "url": "https://doi.org/10.2110/palo.2007.p07-006r",
+      "supportsClaims": [
+        "C01",
+        "C07"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "An Illustrated Guide to Latest Cretaceous Vertebrate Microfossils of the Hell Creek Formation",
+      "authors": [
+        "Smithsonian National Museum of Natural History"
+      ],
+      "year": 2012,
+      "sourceType": "Official museum guide",
+      "publication": "Smithsonian Institution",
+      "doi": null,
+      "url": "https://www.naturalhistory.si.edu/sites/default/files/media/file/fossil-id-guide062812-accessible.pdf",
+      "supportsClaims": [
+        "C01",
+        "C02"
+      ]
+    }
+  ]
+}

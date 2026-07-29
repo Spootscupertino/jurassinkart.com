@@ -1,0 +1,272 @@
+{
+  "id": "CR05",
+  "slug": "dakotaraptor-steini",
+  "section": "above",
+  "position": 5,
+  "commonName": "Dakotaraptor",
+  "scientificName": "Dakotaraptor steini",
+  "pronunciation": "duh-KOH-tuh-RAP-tor STY-nye",
+  "type": "land_animal",
+  "size": "About 5–6 m as originally reconstructed; uncertain",
+  "ageRange_Ma": [
+    67.0,
+    66.0
+  ],
+  "diet": "Carnivore",
+  "habitat": "Hell Creek coastal plain",
+  "confidence": "reasonable_inference",
+  "status": "roster",
+  "needsRefs": true,
+  "swapReason": "replaces Pteranodon (86 Ma, out of interval); proposed large feathered Hell Creek dromaeosaur.",
+  "stage": {
+    "x": 0.258,
+    "plane": "fg"
+  },
+  "blurb": "Dakotaraptor is the poster’s most scientifically fragile dinosaur. Its named fossils came from the right rocks, but the original specimen mixed bones from different animals, and later work has questioned which pieces truly belong together. This reconstruction is therefore a transparent hypothesis—not a secure portrait.",
+  "notes": "In 2015, Dakotaraptor steini was named from bones collected in the Hell Creek Formation of South Dakota. The description proposed a dromaeosaurid roughly five to six metres long: far larger than Velociraptor, with a long lower leg, an enlarged sickle claw on the second toe, and quill knobs on an arm bone interpreted as evidence of large feathers. Such an animal would have added a second kind of substantial theropod predator to the world of Tyrannosaurus.\n\nThe geological fit is sound at a broad level. The fossils attributed to the type collection came from latest Maastrichtian Hell Creek rocks, the same regional ecosystem represented by this volume. Dromaeosaurid teeth and fragmentary bones are known from Hell Creek. The harder question is whether the named skeleton represents one coherent large dromaeosaur, and whether every celebrated feature belongs to it.\n\nA correction soon showed that the supposed furcula, or wishbone, in the original material was actually part of a turtle shell. That mistake does not by itself erase the dinosaur bones, but it demonstrates that the collection contained remains from more than one animal. Later researchers also argued that some proposed Dakotaraptor bones overlap in size and anatomy with the turtle Axestemys and that the original assemblage may be chimeric.\n\nThere are additional taxonomic problems. The type material was collected as separated elements rather than a fully articulated skeleton. Some bones assigned to the individual cannot be securely associated with one another. A proposed second specimen was later discussed as belonging to the large oviraptorosaur Anzu. The name Dakotaraptor remains in scientific use, and some theropod elements may indeed represent a large Hell Creek dromaeosaur, but the published body plan cannot be treated with the confidence given to Triceratops or Tyrannosaurus.\n\nFeathers are a strong evolutionary inference for dromaeosaurids. Close relatives preserve pennaceous feathers, and the original Dakotaraptor paper described evenly spaced bumps on an ulna as quill knobs. Yet because association of the material is contested, even that apparently direct feature must be phrased carefully for Dakotaraptor itself. A feathered poster animal is phylogenetically reasonable; the exact wing size and feather arrangement are reconstructed.\n\nThe enlarged second-toe claw is another famous feature of dromaeosaurids. Functional studies of related animals support using the claw in restraining prey rather than imagining it only as a slashing knife. Dakotaraptor’s own ecology, prey selection, speed, and social behavior are not directly recorded. Pack hunting is especially unsupported. Several individuals in one dramatic scene would be storytelling, not fossil evidence.\n\nSize is equally conditional. Five to six metres comes from the original composite reconstruction and scaling of referred elements. If key bones belong to different taxa or individuals, that estimate must be revisited. The public fast fact therefore retains the roster’s intended scale while labeling it uncertain. This is not a technical footnote: size determines how viewers interpret the animal’s ecological role.\n\nIn this poster, CR05 should be understood as a plausible large feathered Hell Creek dromaeosaur presented under the published name Dakotaraptor steini. Its general theropod balance, feathered covering, grasping hands, and raised second toe follow dromaeosaur evidence. Its precise proportions, size, color, plumage pattern, and behavior are provisional. If future reassessment concludes that the type cannot diagnose a valid genus, the encyclopedia must update openly rather than preserve an outdated certainty. This uncertainty is scientifically useful. It shows why association matters: bones found near one another do not automatically form one skeleton. Paleontologists test matching size, duplication, preservation, anatomy, and collection records before rebuilding an individual. Dakotaraptor is therefore a case study in how a striking hypothesis can remain provisional while specimens are rechecked.",
+  "funFacts": [
+    "A turtle entered the skeleton — A bone first identified as Dakotaraptor’s wishbone was later shown to be part of a trionychid turtle shell, proving that the original fossil lot mixed more than one animal.",
+    "The size is conditional — The familiar five-to-six-metre estimate depends on bones assigned to a composite reconstruction. If those elements do not belong together, the animal’s proportions and scale require revision.",
+    "Feathers are reasonable, not fully mapped — Dromaeosaur relatives preserve feathers, and the original paper reported quill knobs. The disputed association means Dakotaraptor’s exact wing and plumage remain uncertain.",
+    "No fossil pack — Nothing in the named material demonstrates coordinated group hunting. A lone animal is the more conservative poster choice, while any social scene would be artistic storytelling."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C04"
+      ],
+      "referenceIds": [
+        "R02"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C05"
+      ],
+      "referenceIds": [
+        "R01",
+        "R03"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C06"
+      ],
+      "referenceIds": [
+        "R01",
+        "R04"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C08"
+      ],
+      "referenceIds": [
+        "R05"
+      ]
+    }
+  ],
+  "survivor": "Birds are living dinosaurs and preserve the feathered, lightweight-bodied legacy of theropods, but no bird descends from Dakotaraptor itself. Hawks and cassowaries can help viewers imagine visual signaling, powerful feet, and active balance, yet neither is a behavioral substitute for a dromaeosaur. The comparison is most useful for feathers: complex plumage is not decoration added to an otherwise reptilian animal, but part of a deep theropod inheritance. Dakotaraptor’s exact feathers remain unknown because its fossil association is disputed.",
+  "distribution": "Material named Dakotaraptor came from the Hell Creek Formation of South Dakota, placing the proposed animal in the correct latest Maastrichtian coastal-plain ecosystem. That locality is secure for the fossil lot, but attribution of individual bones is not. Fragmentary dromaeosaur material elsewhere in Hell Creek demonstrates that members of the group lived in the region; it does not automatically belong to Dakotaraptor steini. The page therefore distinguishes a sound ecosystem-level occurrence from an unstable specimen-level reconstruction.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "A mixed fossil lot from Hell Creek contains theropod bones originally named Dakotaraptor steini.",
+      "Some Hell Creek fossils independently establish the presence of dromaeosaurids in the ecosystem.",
+      "A supposed furcula was reidentified as turtle shell, directly demonstrating mixed taxonomic content."
+    ],
+    "supportedInference": [
+      "A large feathered dromaeosaur in Hell Creek remains plausible, but the named animal’s diagnosis and proportions need reassessment.",
+      "Feathering follows close dromaeosaur relatives; the original quill-knob claim depends on the disputed ulna assignment.",
+      "A raised second toe and grasping foot follow dromaeosaur anatomy, but exact predatory use is inferred."
+    ],
+    "artisticReconstruction": [
+      "The five-to-six-metre body outline, precise limb proportions, complete plumage, and colors.",
+      "Any prey choice, speed, vocalization, or social behavior.",
+      "Treating all originally assigned bones as one individual."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "research",
+      "title": "A giant dromaeosaurid theropod from the Hell Creek Formation",
+      "creator": "Robert A. DePalma and colleagues",
+      "year": 2015,
+      "url": "https://doi.org/10.17161/paleo.1808.18764",
+      "description": "Read the original description, then compare its claims with the published correction and later reassessments.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "research",
+      "title": "Correction: Dakotaraptor steini",
+      "creator": "Robert A. DePalma and colleagues",
+      "year": 2016,
+      "url": "https://doi.org/10.17161/paleo.1808.22417",
+      "description": "See the formal correction that reidentified the proposed wishbone as part of a turtle shell.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Hell Creek paleontology",
+      "creator": "Burpee Museum of Natural History",
+      "year": null,
+      "url": "https://burpee.org/",
+      "description": "Explore a museum actively engaged with Hell Creek fossils and the challenges of reconstructing fragmentary animals.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "High-risk taxon. The page must retain its explicit uncertainty until a modern reassessment resolves the chimeric type material."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29",
+  "references": [
+    {
+      "id": "R01",
+      "title": "A giant dromaeosaurid theropod from the Hell Creek Formation",
+      "authors": [
+        "Robert A. DePalma et al."
+      ],
+      "year": 2015,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Paleontological Contributions",
+      "doi": "10.17161/paleo.1808.18764",
+      "url": "https://doi.org/10.17161/paleo.1808.18764",
+      "supportsClaims": [
+        "C01",
+        "C02",
+        "C05",
+        "C06"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "Correction: A giant dromaeosaurid theropod from the Hell Creek Formation",
+      "authors": [
+        "Robert A. DePalma et al."
+      ],
+      "year": 2016,
+      "sourceType": "Peer-reviewed correction",
+      "publication": "Paleontological Contributions",
+      "doi": "10.17161/paleo.1808.22417",
+      "url": "https://doi.org/10.17161/paleo.1808.22417",
+      "supportsClaims": [
+        "C04"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "The fossil record of turtles from the Hell Creek Formation",
+      "authors": [
+        "Walter G. Joyce",
+        "Tyler R. Lyson"
+      ],
+      "year": 2015,
+      "sourceType": "Peer-reviewed research",
+      "publication": "Bulletin Peabody Museum",
+      "doi": null,
+      "url": "https://peabody.yale.edu/explore/publications",
+      "supportsClaims": [
+        "C04",
+        "C05"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "A review of dromaeosaurid systematics and feather evidence",
+      "authors": [
+        "Alan H. Turner et al."
+      ],
+      "year": 2012,
+      "sourceType": "Peer-reviewed monograph",
+      "publication": "Bulletin AMNH",
+      "doi": "10.1206/748.1",
+      "url": "https://doi.org/10.1206/748.1",
+      "supportsClaims": [
+        "C06",
+        "C07"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "The raptor prey restraint model",
+      "authors": [
+        "Denver W. Fowler et al."
+      ],
+      "year": 2011,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "PLOS ONE",
+      "doi": "10.1371/journal.pone.0028964",
+      "url": "https://doi.org/10.1371/journal.pone.0028964",
+      "supportsClaims": [
+        "C07",
+        "C08"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "The Hell Creek Formation, Montana",
+      "authors": [
+        "Denver W. Fowler"
+      ],
+      "year": 2020,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Geosciences",
+      "doi": "10.3390/geosciences10110435",
+      "url": "https://doi.org/10.3390/geosciences10110435",
+      "supportsClaims": [
+        "C03"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "Feather quill knobs in the dinosaur Velociraptor",
+      "authors": [
+        "Alan H. Turner et al."
+      ],
+      "year": 2007,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Science",
+      "doi": "10.1126/science.1145076",
+      "url": "https://doi.org/10.1126/science.1145076",
+      "supportsClaims": [
+        "C06"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Dromaeosaurid theropod teeth from the Hell Creek Formation",
+      "authors": [
+        "Derek W. Larson"
+      ],
+      "year": 2008,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Journal of Vertebrate Paleontology",
+      "doi": null,
+      "url": "https://www.tandfonline.com/journals/ujvp20",
+      "supportsClaims": [
+        "C03"
+      ]
+    },
+    {
+      "id": "R09",
+      "title": "A new oviraptorosaur, Anzu wyliei",
+      "authors": [
+        "Matthew C. Lamanna et al."
+      ],
+      "year": 2014,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "PLOS ONE",
+      "doi": "10.1371/journal.pone.0092022",
+      "url": "https://doi.org/10.1371/journal.pone.0092022",
+      "supportsClaims": [
+        "C05"
+      ]
+    }
+  ]
+}

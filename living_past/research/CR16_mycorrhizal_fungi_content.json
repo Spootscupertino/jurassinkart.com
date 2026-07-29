@@ -1,0 +1,251 @@
+{
+  "id": "CR16",
+  "slug": "mycorrhizal-fungi",
+  "section": "underground",
+  "position": 8,
+  "commonName": "Mycorrhizal fungi",
+  "scientificName": "Glomeromycota (indet.)",
+  "researchScientificName": "Mycorrhizal fungi (indeterminate)",
+  "pronunciation": "my-koh-RYE-zuhl FUN-jeye",
+  "type": "plant",
+  "pose": "branching fungal hyphae interacting with a plant root in microscopic view",
+  "size": "microscopic soil network, enlarged",
+  "ageRange_Ma": [
+    72,
+    66
+  ],
+  "diet": "Plant–fungus symbiosis",
+  "habitat": "Hell Creek–Lance coastal-plain soil and litter reconstruction",
+  "confidence": "speculative",
+  "status": "roster",
+  "stage": {
+    "x": 0.36,
+    "plane": "soil"
+  },
+  "blurb": "The underground world cannot be reconstructed from skeletons alone. Fossils show that root–fungus partnerships are hundreds of millions of years old and therefore predate Hell Creek. CR16 therefore shows a mycorrhizal fungal network as a transparent ecosystem hypothesis: biologically plausible, useful for understanding soil life, but not a claim that this exact organism has been recovered from Hell Creek.",
+  "notes": "The Hell Creek Formation preserves rivers, floodplains, soils, roots, and abundant signs of life above ground. It does not preserve every participant equally. A mycorrhizal fungal network is included to make that uneven record visible. Fossils show that root–fungus partnerships are hundreds of millions of years old and therefore predate Hell Creek. That broad history makes the organism possible in a latest Cretaceous soil scene, but possibility is not the same as a local body fossil.\n\nNo Hell Creek fossil identifies Glomeromycota or preserves the exact root colonization drawn in the poster. Small or soft-bodied organisms are especially difficult to track. They may decay before burial, leave only ambiguous traces, or be preserved in deposits unlike the river sediments that dominate Hell Creek. Absence from the current fossil list can mean true absence, poor preservation, incomplete collecting, or failure to recognize a trace. The page therefore avoids a genus or species name.\n\nThe ecological role shown is exchanging soil nutrients and water for plant-derived carbon. That role is based mainly on anatomy and biology in living members of the broader group, supported by its deep evolutionary history. It is not a direct observation from 66 million years ago. Even when a lineage is old, modern behavior cannot simply be projected backward unchanged. Early members may have differed in diet, development, sociality, or habitat.\n\nThe poster’s anatomy is intentionally readable. At true scale this subject would be tiny or microscopic beside the dinosaurs, so it is enlarged in the underground cutaway. Size is stated as illustrative rather than measured from a Hell Creek specimen. Diagnostic features make the group recognizable, but some conspicuous details may be borrowed from living representatives because the local fossil does not preserve them.\n\nSoils are ecosystems, not empty brown space. Roots change moisture and chemistry; microbes and fungi exchange nutrients; invertebrates open passages, consume material, and become prey. By including an uncertain small organism, the scene points to processes that must have occurred even when the responsible species cannot be named. The reconstruction is strongest at the level of function and weakest at the level of identity.\n\nThis distinction matters because an encyclopedia can accidentally make a picture seem more certain than the evidence behind it. A detailed illustration feels specific: every segment, strand, egg, or root contact appears chosen for a reason. Here, detail serves readability, not identification. The secure story is that Cretaceous terrestrial ecosystems contained complex communities of small organisms and that mycorrhizal fungi had an evolutionary history relevant to this interval. The insecure story would be that the exact individual drawn here occupied this exact patch of Hell Creek soil. We accept the first and explicitly decline the second.\n\nLiving mycorrhizal fungi show what such organisms can do, not exactly what this Cretaceous form did. They are comparison points for explaining anatomy and ecology. Evolution over tens of millions of years prevents us from treating a living species as a frozen fossil. The “Still With Us Today” connection is continuity of a broad lineage or role, never a claim of unchanged species.\n\nIn the poster, CR16 is a deliberate evidence lesson. Its presence says that a living floodplain required small actors as well as famous vertebrates. Its label remains indeterminate, its confidence is low, and the page states the missing local evidence plainly. The pose, color, scale, exact location, and interaction with surrounding soil are artistic. If a future Hell Creek fossil narrows the identification, the digital page can be revised while the printed scene remains honestly labeled.\n\nFuture evidence could strengthen or remove this entry. A diagnostic body fossil, amber inclusion, eggshell association, trace fossil with an identifiable maker, or microscopic root preservation would each answer different questions. Until then, the confidence badge and indeterminate label carry real scientific meaning: the page teaches not only what ancient life may have contained, but how researchers know when a reconstruction has reached beyond the preserved record.",
+  "funFacts": [
+    "The preservation filter — No Hell Creek fossil identifies Glomeromycota or preserves the exact root colonization drawn in the poster. Tiny and soft organisms are often missing even from rich fossil ecosystems.",
+    "A group is not a species — The label is deliberately indeterminate. It identifies a broad biological model without inventing a fossil species name.",
+    "The poster enlarges it — The underground figure is made visible for teaching and is not drawn at the same scale as the large surface animals.",
+    "Function is firmer than identity — Fossils show that root–fungus partnerships are hundreds of millions of years old and therefore predate Hell Creek; the exact Hell Creek participant remains unresolved."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C03"
+      ],
+      "referenceIds": [
+        "R03"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C04"
+      ],
+      "referenceIds": [
+        "R04"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C05"
+      ],
+      "referenceIds": [
+        "R05"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C06"
+      ],
+      "referenceIds": [
+        "R06"
+      ]
+    }
+  ],
+  "survivor": "Living mycorrhizal fungi remain part of soils and food webs today, offering a living comparison for the role shown here. They do not prove that the Hell Creek organism had the same species, size, color, behavior, or anatomy. The connection is deliberately broad: an old lineage and an ecological process that survived while particular forms changed. Modern biology helps us ask better questions of the fossil record; it should not be used to fill every gap as though evolution had paused.",
+  "distribution": "This entry does not map a named fossil species. Its broad lineage is documented from Cretaceous or older deposits, while the poster setting is the latest Cretaceous Hell Creek–Lance coastal plain of western North America. No Hell Creek fossil identifies Glomeromycota or preserves the exact root colonization drawn in the poster. The illustrated location among roots is an ecosystem reconstruction based on plausible habitat and modern functional comparison. It must not be converted into a locality point, species range, or claim of a body fossil from the poster site.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Devonian fossils preserve arbuscule-like fungal structures within early plant tissues.",
+      "Molecular and fossil evidence place mycorrhizal partnerships long before the Late Cretaceous.",
+      "No Hell Creek specimen directly establishes the fungal lineage, host plant, or network shown."
+    ],
+    "supportedInference": [
+      "A member of the broad group could plausibly have occupied a latest Cretaceous soil ecosystem.",
+      "The ecological role shown is inferred from living biology and evolutionary continuity.",
+      "Hell Creek soils provided a possible setting for the interaction."
+    ],
+    "artisticReconstruction": [
+      "The exact taxon, body size, color, and individual anatomy.",
+      "The pose, behavior, and placement beside a particular root.",
+      "Any implication of a recovered Hell Creek body fossil or nest."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "research",
+      "title": "Glomalean fungi from the Ordovician",
+      "creator": "Dirk Redecker, Robin Kodner, and Louise E. Graham",
+      "year": 2000,
+      "url": "https://doi.org/10.1126/science.289.5486.1920",
+      "description": "Explore the scientific evidence behind the lineage’s antiquity and the limits of reconstructing its Cretaceous members.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Fossil Insect and Invertebrate Collections",
+      "creator": "Smithsonian National Museum of Natural History",
+      "year": null,
+      "url": "https://naturalhistory.si.edu/research/paleobiology/collections-access",
+      "description": "See how collections preserve, compare, and reinterpret the fragmentary record of small ancient organisms.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "public_resource",
+      "title": "Mycorrhizae",
+      "creator": "USDA Forest Service",
+      "year": null,
+      "url": "https://www.fs.usda.gov/wildflowers/beauty/mycorrhizae/",
+      "description": "Compare the fossil hypothesis with an authoritative guide to the biology or ecological role of living representatives.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "Research synthesis prepared from the cited sources. Candidate reviewers are listed only in the internal dossier and have not been contacted."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29",
+  "references": [
+    {
+      "id": "R01",
+      "title": "The Hell Creek Formation, Montana: a stratigraphic review and revision based on a sequence stratigraphic approach",
+      "authors": [
+        "Denver W. Fowler"
+      ],
+      "year": 2020,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Geosciences",
+      "doi": "10.3390/geosciences10110435",
+      "url": "https://doi.org/10.3390/geosciences10110435",
+      "supportsClaims": [
+        "C01",
+        "C02",
+        "C10"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "The role of soils in learning and inspiration, physical and intellectual",
+      "authors": [
+        "Gregory J. Retallack"
+      ],
+      "year": 2001,
+      "sourceType": "Scholarly monograph",
+      "publication": "Soils of the Past",
+      "doi": null,
+      "url": "https://www.wiley.com/en-us/Soils+of+the+Past%3A+An+Introduction+to+Paleopedology%2C+2nd+Edition-p-9780632053766",
+      "supportsClaims": [
+        "C02",
+        "C09"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "Glomalean fungi from the Ordovician",
+      "authors": [
+        "Dirk Redecker, Robin Kodner, and Louise E. Graham"
+      ],
+      "year": 2000,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Science",
+      "doi": "10.1126/science.289.5486.1920",
+      "url": "https://doi.org/10.1126/science.289.5486.1920",
+      "supportsClaims": [
+        "C03"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "Fungal associations in the Early Devonian Rhynie chert",
+      "authors": [
+        "Christine Strullu-Derrien and colleagues"
+      ],
+      "year": 2018,
+      "sourceType": "Peer-reviewed review",
+      "publication": "New Phytologist",
+      "doi": null,
+      "url": "https://nph.onlinelibrary.wiley.com/",
+      "supportsClaims": [
+        "C04"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "Arbuscular mycorrhiza: the mother of plant root endosymbioses",
+      "authors": [
+        "Paola Bonfante and Andrea Genre"
+      ],
+      "year": 2008,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Nature Reviews Microbiology",
+      "doi": "10.1038/nrmicro1987",
+      "url": "https://doi.org/10.1038/nrmicro1987",
+      "supportsClaims": [
+        "C05"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "Evolutionary history of mycorrhizal symbioses",
+      "authors": [
+        "Marc-André Selosse and colleagues"
+      ],
+      "year": 2015,
+      "sourceType": "Peer-reviewed review",
+      "publication": "New Phytologist",
+      "doi": null,
+      "url": "https://nph.onlinelibrary.wiley.com/",
+      "supportsClaims": [
+        "C06"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "Mycorrhizal Associations",
+      "authors": [
+        "Mark Brundrett"
+      ],
+      "year": 2008,
+      "sourceType": "Scholarly reference",
+      "publication": "mycorrhizas.info",
+      "doi": null,
+      "url": "https://mycorrhizas.info/",
+      "supportsClaims": [
+        "C07"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Mycorrhizae",
+      "authors": [
+        "USDA Forest Service"
+      ],
+      "year": null,
+      "sourceType": "Official government resource",
+      "publication": "USDA Forest Service",
+      "doi": null,
+      "url": "https://www.fs.usda.gov/wildflowers/beauty/mycorrhizae/",
+      "supportsClaims": [
+        "C08"
+      ]
+    }
+  ]
+}

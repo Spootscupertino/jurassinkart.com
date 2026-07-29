@@ -1,0 +1,210 @@
+{
+  "id": "CR01",
+  "slug": "tyrannosaurus-rex",
+  "section": "above",
+  "position": 1,
+  "commonName": "Tyrannosaurus rex",
+  "scientificName": "Tyrannosaurus rex",
+  "pronunciation": "tie-RAN-oh-SORE-us recks",
+  "type": "land_animal",
+  "pose": "three-quarter view angled about thirty degrees from the front, mid-stride, jaws wide open in a full roar baring rows of teeth, head turned toward camera, long tail sweeping out behind",
+  "size": "12–13 m (39–43 ft)",
+  "ageRange_Ma": [68.0, 66.0],
+  "diet": "Carnivore",
+  "habitat": "River-laced coastal plain",
+  "confidence": "well_documented",
+  "status": "roster",
+  "stage": {"x": 0.105, "plane": "fg"},
+  "blurb": "At the end of the Cretaceous, Tyrannosaurus rex was not a movie monster dropped into an empty landscape. It was a living predator in a wet coastal world—following river corridors, testing herds, breaking bone when it fed, and sharing the floodplain with prey dangerous enough to fight back.",
+  "notes": "Imagine western North America between about 68 and 66 million years ago. The broad coastal plain east of the young Rocky Mountains is crossed by shifting rivers. Channels cut into older mud; floods spread fresh sediment; ponds, marshy ground, and wooded patches interrupt the flatter land. The retreating Western Interior Seaway lies to the east. This is the Hell Creek–Lance world in which Tyrannosaurus rex lived—not a single unchanging swamp, but a changing mosaic shaped by water.\n\nAn adult rex moving through this country could reach roughly 12–13 metres in length. Its skeleton carried an enormous, deep skull in front and a long, muscular tail behind, balanced over two powerful hind limbs. Digital body reconstructions show why its mass cannot be read from length alone: estimates change with the amount of muscle, fat, and other soft tissue restored around the bones. Several well-preserved adults probably weighed many tonnes, but any exact figure remains a model rather than a measurement taken from a living animal.\n\nThe head was its principal feeding tool. Broad, serrated teeth were built to withstand heavy loads, and biomechanical models estimate that adults could generate forces high enough to deeply puncture and fragment bone. Fossils agree with the engineering. Tyrannosaur teeth are found worn or broken, prey bones carry deep punctures, and fragments of bone occur in large tyrannosaur coprolites. Bone was not merely touched during feeding; it could be crushed, swallowed, and partly digested.\n\nRex was capable of attacking live prey. One set of hadrosaur tail vertebrae grew new bone around a tyrannosaur tooth crown embedded in them. The hadrosaur survived the bite long enough to heal, turning the injury into unusually direct evidence of an unsuccessful attack. That does not mean every meal was hunted. Like large carnivores today, Tyrannosaurus probably took advantage of carcasses when it found them. The fossils reject a strict hunter-versus-scavenger choice: the animal could hunt, while its powerful jaws also made carrion valuable.\n\nIts senses helped guide that head. Reconstructed skull geometry suggests substantial forward overlap between the visual fields, supporting useful depth perception. Studies of tyrannosaur brains and skull spaces also indicate strong smell and hearing capabilities, although fossils cannot tell us exactly what a rex noticed first in a real encounter. On open ground it may have seen movement; under trees or along a muddy channel, scent and sound could have mattered just as much.\n\nThe old upright, tail-dragging rex has been replaced by a horizontally balanced animal. Yet a modern reconstruction still contains uncertainty. Skin impressions from Tyrannosaurus preserve tiny scales on parts of the neck, pelvis, and tail, supporting scales in those sampled areas. They do not preserve the whole body, so they cannot prove that every patch of skin looked the same. No fossil currently tells us its colors. A mostly scaly adult is well supported; the exact facial covering, pattern, display colors, and any limited filaments remain reconstruction choices.\n\nGrowth is another place where the picture is changing. Bone tissue records age and growth, and earlier studies used several small, lightly built tyrannosaurs to build a dramatic teenage growth story for T. rex. In 2025, a major anatomical and histological study concluded that key small specimens belong instead to the distinct genus Nanotyrannus. If that result holds, many familiar T. rex growth curves need to be recalculated from specimens whose identity is secure. We can confidently portray a massive adult, but should be cautious about declaring exactly how a young rex looked or how quickly each life stage changed.\n\nIn this poster, CR01 is an adult crossing the foreground of the Hell Creek–Lance coastal plain. Its tail is held clear of the ground, its weight is carried over the hips, and its body is given substantial living volume rather than shrink-wrapped to the skeleton. The visible skin is predominantly fine-scaled, while color and moment-to-moment behavior are artistic. The open mouth communicates the animal’s extraordinary feeding machinery; it should not be read as proof that Tyrannosaurus habitually roared, because its actual vocal sounds remain unknown.",
+  "funFacts": [
+    "A failed hunt fossilized — A hadrosaur tail healed around an embedded tyrannosaur tooth crown. Because healing happened while the prey was alive, the specimen is direct evidence that Tyrannosaurus attacked living animals—and that at least one target escaped.",
+    "Built to break bone — A biomechanical study estimated adult bite forces of about 8,500–34,500 newtons, depending on tooth position and individual size. The combination of force, thick teeth, and concentrated pressure helps explain deep punctures and fragmented bone.",
+    "Scales preserved, colors missing — Fossil skin from the neck, pelvis, and tail preserves small scales. Those patches support a mostly scaly adult reconstruction, but no known fossil records the animal’s color pattern or samples every part of its body.",
+    "The family album changed — A 2025 study identified important small Hell Creek tyrannosaurs as Nanotyrannus rather than juvenile T. rex. Familiar claims about the appearance and growth of teenage rex now require re-testing with securely identified specimens."
+  ],
+  "funFactSources": [
+    {"index": 0, "claimIds": ["C09"], "referenceIds": ["R04"]},
+    {"index": 1, "claimIds": ["C06", "C07"], "referenceIds": ["R03"]},
+    {"index": 2, "claimIds": ["C12", "C13"], "referenceIds": ["R06"]},
+    {"index": 3, "claimIds": ["C15"], "referenceIds": ["R08"]}
+  ],
+  "survivor": "No living animal is a miniature T. rex, and birds did not descend from Tyrannosaurus itself. Birds are, however, the only dinosaurs that survived the end-Cretaceous extinction. They share a deeper theropod ancestry with rex, so a chicken, raven, or ostrich preserves pieces of the same larger evolutionary story: lightweight, air-filled bones, upright hind limbs, and a highly active body plan transformed along a different branch of the dinosaur family tree. Even an ordinary backyard bird is part of that astonishing continuity.",
+  "distribution": "Confirmed Tyrannosaurus rex fossils come from latest Maastrichtian rocks of western North America, especially the Hell Creek Formation of Montana and the Dakotas and the Lance Formation of Wyoming, with records extending into adjacent parts of the northern Great Plains and western Canada. These rocks record river channels, floodplains, soils, ponds, and wet lowlands on a broad coastal plain west of the retreating Western Interior Seaway. The precise outer limits of the species’ range remain uncertain.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Adult skeletons establish the horizontally balanced, two-legged body plan, large skull, small two-fingered forelimbs, and long counterbalancing tail.",
+      "Teeth, bite-marked bones, bone-bearing coprolites, and a healed hadrosaur injury record bone consumption and an attack on live prey.",
+      "Skin impressions preserve small scales on sampled areas of the neck, pelvis, and tail."
+    ],
+    "supportedInference": [
+      "Biomechanical models support extremely forceful biting and a many-tonne adult body, but the exact values depend on model assumptions.",
+      "Skull geometry supports substantial binocular overlap; other sensory capabilities are inferred from preserved cranial anatomy and comparisons with living archosaurs.",
+      "A predominantly scaly adult is supported by the available skin patches, although full-body coverage is not preserved."
+    ],
+    "artisticReconstruction": [
+      "Body color and pattern, eye color, scars not tied to a specimen, and the precise amount of soft tissue around the face.",
+      "The exact instant of behavior shown in the poster, including the open-mouth display.",
+      "Any claim about a roar or other specific vocal sound."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "research",
+      "title": "Nanotyrannus and Tyrannosaurus coexisted at the close of the Cretaceous",
+      "creator": "Lindsay E. Zanno and James G. Napoli",
+      "year": 2025,
+      "url": "https://doi.org/10.1038/s41586-025-09801-6",
+      "description": "Explore the primary study that changed how researchers identify the smaller tyrannosaurs once used to reconstruct T. rex growth.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Tyrannosaurus rex Fossil",
+      "creator": "American Museum of Natural History",
+      "year": null,
+      "url": "https://www.amnh.org/exhibitions/permanent/saurischian-dinosaurs/tyrannosaurus-rex",
+      "description": "Meet AMNH 5027 and see how one historic skeleton helped transform the public reconstruction from an upright tail-dragger to a balanced animal.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "public_resource",
+      "title": "David H. Koch Hall of Fossils—Deep Time Virtual Tour",
+      "creator": "Smithsonian National Museum of Natural History",
+      "year": null,
+      "url": "https://naturalhistory.si.edu/exhibits/david-h-koch-hall-fossils-deep-time",
+      "description": "Tour the Nation’s T. rex in an ecosystem-focused fossil hall that connects the animal to changing environments and extinction.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "Research synthesis prepared from the cited sources. Candidate reviewers are listed only in the internal dossier and have not been contacted."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29",
+  "references": [
+    {
+      "id": "R01",
+      "title": "Tyrannosaur paleobiology: new research on ancient exemplar organisms",
+      "authors": ["Stephen L. Brusatte", "Mark A. Norell", "Thomas D. Carr", "Gregory M. Erickson", "John R. Hutchinson", "Amy M. Balanoff", "Gabe S. Bever", "Jonah N. Choiniere", "Peter J. Makovicky", "Xing Xu"],
+      "year": 2010,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Science",
+      "doi": "10.1126/science.1193304",
+      "url": "https://doi.org/10.1126/science.1193304",
+      "supportsClaims": ["C03", "C05", "C10", "C11", "C17"]
+    },
+    {
+      "id": "R02",
+      "title": "A computational analysis of limb and body dimensions in Tyrannosaurus rex with implications for locomotion, ontogeny, and growth",
+      "authors": ["John R. Hutchinson", "Karl T. Bates", "Julia Molnar", "Vivian Allen", "Peter J. Makovicky"],
+      "year": 2011,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "PLOS ONE",
+      "doi": "10.1371/journal.pone.0026037",
+      "url": "https://doi.org/10.1371/journal.pone.0026037",
+      "supportsClaims": ["C04", "C05"]
+    },
+    {
+      "id": "R03",
+      "title": "The biomechanics behind extreme osteophagy in Tyrannosaurus rex",
+      "authors": ["Paul M. Gignac", "Gregory M. Erickson"],
+      "year": 2017,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Scientific Reports",
+      "doi": "10.1038/s41598-017-02161-w",
+      "url": "https://doi.org/10.1038/s41598-017-02161-w",
+      "supportsClaims": ["C06", "C07", "C08"]
+    },
+    {
+      "id": "R04",
+      "title": "Physical evidence of predatory behavior in Tyrannosaurus rex",
+      "authors": ["Robert A. DePalma II", "David A. Burnham", "Larry D. Martin", "Bruce M. Rothschild", "Peter L. Larson"],
+      "year": 2013,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Proceedings of the National Academy of Sciences",
+      "doi": "10.1073/pnas.1216534110",
+      "url": "https://doi.org/10.1073/pnas.1216534110",
+      "supportsClaims": ["C09"]
+    },
+    {
+      "id": "R05",
+      "title": "Binocular vision in theropod dinosaurs",
+      "authors": ["Kent A. Stevens"],
+      "year": 2006,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Journal of Vertebrate Paleontology",
+      "doi": "10.1671/0272-4634(2006)26[321:BVITD]2.0.CO;2",
+      "url": "https://doi.org/10.1671/0272-4634(2006)26%5B321:BVITD%5D2.0.CO;2",
+      "supportsClaims": ["C10"]
+    },
+    {
+      "id": "R06",
+      "title": "Tyrannosauroid integument reveals conflicting patterns of gigantism and feather evolution",
+      "authors": ["Phil R. Bell", "Nicolás E. Campione", "W. Scott Persons IV", "Philip J. Currie", "Peter L. Larson", "Darren H. Tanke", "Robert T. Bakker"],
+      "year": 2017,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Biology Letters",
+      "doi": "10.1098/rsbl.2017.0092",
+      "url": "https://doi.org/10.1098/rsbl.2017.0092",
+      "supportsClaims": ["C12", "C13"]
+    },
+    {
+      "id": "R07",
+      "title": "The Hell Creek Formation, Montana: a stratigraphic review and revision based on a sequence stratigraphic approach",
+      "authors": ["Denver W. Fowler"],
+      "year": 2020,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Geosciences",
+      "doi": "10.3390/geosciences10110435",
+      "url": "https://doi.org/10.3390/geosciences10110435",
+      "supportsClaims": ["C01", "C02", "C16"]
+    },
+    {
+      "id": "R08",
+      "title": "Nanotyrannus and Tyrannosaurus coexisted at the close of the Cretaceous",
+      "authors": ["Lindsay E. Zanno", "James G. Napoli"],
+      "year": 2025,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Nature",
+      "doi": "10.1038/s41586-025-09801-6",
+      "url": "https://doi.org/10.1038/s41586-025-09801-6",
+      "supportsClaims": ["C14", "C15"]
+    },
+    {
+      "id": "R09",
+      "title": "Tyrannosaurus rex",
+      "authors": ["Stephen L. Brusatte"],
+      "year": 2024,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Nature Ecology & Evolution",
+      "doi": "10.1038/s41559-024-02325-8",
+      "url": "https://doi.org/10.1038/s41559-024-02325-8",
+      "supportsClaims": ["C03", "C05", "C16", "C17"]
+    },
+    {
+      "id": "R10",
+      "title": "Tyrannosaurus rex",
+      "authors": ["Smithsonian Institution"],
+      "year": 2014,
+      "sourceType": "Official museum resource",
+      "publication": "Smithsonian Institution",
+      "doi": null,
+      "url": "https://www.si.edu/newsdesk/factsheets/tyrannosaurus-rex",
+      "supportsClaims": ["C01", "C02", "C03", "C11", "C16"]
+    },
+    {
+      "id": "R11",
+      "title": "Why are birds the only surviving dinosaurs?",
+      "authors": ["Lisa Hendry", "Natural History Museum, London"],
+      "year": null,
+      "sourceType": "Official museum resource",
+      "publication": "Natural History Museum, London",
+      "doi": null,
+      "url": "https://www.nhm.ac.uk/discover/why-are-birds-the-only-surviving-dinosaurs.html",
+      "supportsClaims": ["C18"]
+    }
+  ]
+}

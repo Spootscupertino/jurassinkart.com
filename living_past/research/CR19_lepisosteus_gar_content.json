@@ -1,0 +1,263 @@
+{
+  "id": "CR19",
+  "slug": "gar",
+  "section": "shoreline",
+  "position": 3,
+  "commonName": "Gar",
+  "scientificName": "Lepisosteus",
+  "researchScientificName": "Lepisosteus sp.",
+  "pronunciation": "lep-ih-SOSS-tee-us",
+  "type": "fish",
+  "pose": "full lateral view, long narrow jaws, cylindrical body clad in diamond-shaped scales, fins set far back, swimming just below the surface",
+  "size": "up to about 2 m (6.6 ft)",
+  "ageRange_Ma": [
+    68,
+    66
+  ],
+  "diet": "Carnivore",
+  "habitat": "Rivers, ponds, and quiet backwaters",
+  "confidence": "well_documented",
+  "status": "roster",
+  "stage": {
+    "x": 0.612,
+    "plane": "shore"
+  },
+  "blurb": "Diamond-armored scales flash beneath the muddy water. Gar were already successful predators by the end of the Cretaceous, using long tooth-lined jaws to seize smaller animals in rivers and ponds. Their lineage survives today, making this fish one of the poster’s clearest bridges between Hell Creek and living waters.",
+  "notes": "The Hell Creek floodplain was full of fish. Screen-washing sediment through fine mesh recovers thousands of tiny vertebrate fossils, and hard, shiny gar scales are among the most recognizable. Each scale is coated in ganoin, an enamel-like tissue that produces the diamond armor still seen in living gars. Those abundant fragments tell us gar-line fishes were ordinary members of the waterways beneath the dinosaurs.\n\nCR19 is labeled Lepisosteus, but that name needs restraint. Isolated scales and teeth can securely identify lepisosteids more often than a particular genus or species. Several fossil gar lineages had similar durable armor, and complete diagnostic skeletons are uncommon in Hell Creek. The page therefore writes “Lepisosteus sp.” as the roster identity while acknowledging that many local fragments are safest at family level, Lepisosteidae.\n\nThe classic gar body is long and cylindrical, with the dorsal and anal fins placed far back near the tail. A long snout carries rows of pointed teeth. This is a fish built for short acceleration rather than endless high-speed pursuit. Living gars hover or move slowly, then lunge at fish and other small prey. Fossil anatomy supports a similar feeding toolkit, but no Hell Creek scale alone records a hunt. The poster’s poised swimming behavior is a supported ecological reconstruction.\n\nSize is another place where genus and species matter. Modern Lepisosteus species range widely, and giant alligator gar belongs to the separate genus Atractosteus. A two-metre roster value should be treated as an upper illustrative size, not the measured length of every latest Maastrichtian Lepisosteus. Without an associated skeleton, scales do not provide a simple total-length ruler.\n\nGar biology offers a remarkable living comparison. Modern gars can gulp air at the surface and use a vascularized swim bladder as an accessory breathing organ, allowing them to tolerate warm or oxygen-poor water. That capability is documented in living lepisosteids; it is plausible for close fossil relatives but not directly preserved in a Hell Creek specimen. We can explain the lineage’s physiology without pretending to watch CR19 breathe.\n\nThe fossil record also corrects the phrase “living fossil.” Gars retain an ancient-looking body plan, but their lineage has evolved, diversified, and changed its geography. Molecular and anatomical studies place them among holosteans, together with bowfin, on a branch separate from the vast teleost radiation. A modern spotted gar is not a Cretaceous species rescued unchanged from time. It is a living endpoint of continued evolution.\n\nHell Creek rivers flowed across a low coastal plain, and some eastern sections record brackish or marine influence. Gars today are primarily freshwater fishes, though some tolerate brackish water. The strongest staging for CR19 is therefore inside a river, pond, or backwater near shore—not in the open Western Interior Seaway. Its presence helps make the poster’s water ecologically layered rather than treating every aquatic animal as marine.\n\nThe reconstruction’s diamond scales, long jaws, and rear-set fins are evidence-led. Exact coloration, pattern, sex, and momentary behavior are artistic. The animal’s survival story belongs at the lineage level: recognizable gar anatomy spans deep time, while the species swimming in North American waters today are modern organisms with their own histories. That balance—continuity without pretending stasis—is what makes gar such a powerful guide into the Living Past.\n\nThose durable scales also create a sampling lesson. A screen-washed site may contain many gar elements because armor survives transport and weathering better than delicate fish bone. Counts therefore document a common component of the assemblage, but they are not a direct head count of the ancient river. Current, burial, and the distance a carcass traveled all matter. The page uses abundance to describe gar as an established part of Hell Creek waters, not to calculate how many swam past one bank. A final visual restraint concerns the jaws. Living gars often wait almost motionless and strike sideways, yet the exact attack mechanics of a fossil taxon require its own skull and muscle reconstruction. CR19 can be shown poised among plants or suspended in open water. It should not receive an elaborate feeding behavior merely because a modern relative was filmed doing it.",
+  "funFacts": [
+    "Armor in the sieve — Ganoid scales are hard, shiny, and durable, so isolated gar armor is common at Hell Creek microfossil sites.",
+    "A name with limits — Many fragments identify Lepisosteidae securely but cannot always prove the genus Lepisosteus; the page keeps that uncertainty visible.",
+    "Breathing two ways — Living gars use gills and can gulp air into a vascularized swim bladder, helping them survive oxygen-poor water.",
+    "Ancient does not mean unchanged — Modern gars preserve a long-lived body plan, but genomic research shows an evolving lineage rather than a species frozen in time."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C02"
+      ],
+      "referenceIds": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C01",
+        "C03"
+      ],
+      "referenceIds": [
+        "R01",
+        "R03"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C06"
+      ],
+      "referenceIds": [
+        "R04",
+        "R05"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C07"
+      ],
+      "referenceIds": [
+        "R05",
+        "R06"
+      ]
+    }
+  ],
+  "survivor": "Seven living gar species inhabit North and Central America and Cuba. They share the fossil lineage’s long jaws, rear-set fins, and interlocking ganoid scales, and they can supplement gill breathing by gulping air. Yet they are not unchanged Cretaceous relics. Living Lepisosteus and Atractosteus are branches of an evolutionary history that continued through extinction, climate change, and shifting rivers. Calling them survivors is accurate at the lineage level; calling a modern species identical to CR19 would erase more than 66 million years of evolution.",
+  "distribution": "Lepisosteid scales and teeth are abundant in latest Maastrichtian Hell Creek microvertebrate sites across Montana and the Dakotas, with related records in Lance-age deposits. They indicate freshwater channel, pond, and backwater communities on the coastal plain. Some sites experienced brackish influence, which gars can tolerate to varying degrees, but the open sea is not the default placement. Because isolated scales may not diagnose Lepisosteus rather than another lepisosteid, the poster identity should retain a visible “sp.” or family-level caveat.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Teeth, jaws, scales, and rarer associated material establish gar-line fishes in latest Cretaceous waterways.",
+      "Diamond-shaped ganoid scales directly support the armored surface.",
+      "Skull and fin anatomy in fossil gars establishes the long-jawed, rear-finned body plan."
+    ],
+    "supportedInference": [
+      "Ambush predation is supported by feeding anatomy and living gar comparison.",
+      "Tolerance of low oxygen and air gulping are plausible lineage traits but are documented most directly in living gars.",
+      "Two metres is an illustrative upper size, not a local specimen measurement."
+    ],
+    "artisticReconstruction": [
+      "Color, pattern, eye appearance, and exact body condition.",
+      "The specific swimming depth and alert pose.",
+      "The prey it is watching and whether it is about to gulp air."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "research",
+      "title": "The spotted gar genome illuminates vertebrate evolution",
+      "creator": "Ingo Braasch and colleagues",
+      "year": 2016,
+      "url": "https://doi.org/10.1038/ng.3526",
+      "description": "Explore how a living gar genome helps connect major branches of the vertebrate family tree.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Latest Cretaceous Vertebrate Microfossils of the Hell Creek Formation",
+      "creator": "Smithsonian National Museum of Natural History",
+      "year": 2012,
+      "url": "https://www.naturalhistory.si.edu/sites/default/files/media/file/fossil-id-guide062812-accessible.pdf",
+      "description": "Learn to recognize the scales and teeth that reveal Hell Creek’s abundant fishes.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "public_resource",
+      "title": "GarLab",
+      "creator": "Michigan State University",
+      "year": null,
+      "url": "https://www.garlab.org/",
+      "description": "Meet living gars through an active research program studying their development, evolution, and conservation.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "Species/genus resolution is deliberately conservative; no outreach occurred."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29",
+  "references": [
+    {
+      "id": "R01",
+      "title": "An Illustrated Guide to Latest Cretaceous Vertebrate Microfossils of the Hell Creek Formation",
+      "authors": [
+        "Smithsonian National Museum of Natural History"
+      ],
+      "year": 2012,
+      "sourceType": "Official museum guide",
+      "publication": "Smithsonian Institution",
+      "doi": null,
+      "url": "https://www.naturalhistory.si.edu/sites/default/files/media/file/fossil-id-guide062812-accessible.pdf",
+      "supportsClaims": [
+        "C01",
+        "C02",
+        "C03"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "Comparative taphonomy and paleoecological reconstruction of two Hell Creek microvertebrate accumulations",
+      "authors": [
+        "L. R. Pearson",
+        "D. J. Nichols",
+        "J. P. Hartman"
+      ],
+      "year": 2008,
+      "sourceType": "Peer-reviewed research",
+      "publication": "PALAIOS",
+      "doi": "10.2110/palo.2007.p07-006r",
+      "url": "https://doi.org/10.2110/palo.2007.p07-006r",
+      "supportsClaims": [
+        "C02",
+        "C08"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "Phylogenetic relationships of fossil and Recent gars",
+      "authors": [
+        "Lance Grande"
+      ],
+      "year": 2010,
+      "sourceType": "Peer-reviewed monograph",
+      "publication": "American Society of Ichthyologists and Herpetologists Special Publication",
+      "doi": null,
+      "url": "https://www.jstor.org/stable/20787261",
+      "supportsClaims": [
+        "C01",
+        "C03",
+        "C04",
+        "C07"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "Air-breathing in fishes: evolution, diversity, and adaptation",
+      "authors": [
+        "Jeffrey B. Graham"
+      ],
+      "year": 1997,
+      "sourceType": "Scholarly monograph",
+      "publication": "Academic Press",
+      "doi": "10.1016/B978-0-12-294860-2.X5000-2",
+      "url": "https://doi.org/10.1016/B978-0-12-294860-2.X5000-2",
+      "supportsClaims": [
+        "C06"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "The spotted gar genome illuminates vertebrate evolution",
+      "authors": [
+        "Ingo Braasch et al."
+      ],
+      "year": 2016,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Nature Genetics",
+      "doi": "10.1038/ng.3526",
+      "url": "https://doi.org/10.1038/ng.3526",
+      "supportsClaims": [
+        "C06",
+        "C07"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "The bowfin genome illuminates the developmental evolution of ray-finned fishes",
+      "authors": [
+        "Andrew M. Thompson et al."
+      ],
+      "year": 2021,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Nature Genetics",
+      "doi": "10.1038/s41588-021-00914-y",
+      "url": "https://doi.org/10.1038/s41588-021-00914-y",
+      "supportsClaims": [
+        "C07"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "The Hell Creek Formation, Montana: a stratigraphic review",
+      "authors": [
+        "Denver W. Fowler"
+      ],
+      "year": 2020,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Geosciences",
+      "doi": "10.3390/geosciences10110435",
+      "url": "https://doi.org/10.3390/geosciences10110435",
+      "supportsClaims": [
+        "C08"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Marine Breien Member of the Hell Creek Formation",
+      "authors": [
+        "John W. Hoganson",
+        "Edward C. Murphy"
+      ],
+      "year": 2002,
+      "sourceType": "Peer-reviewed geological study",
+      "publication": "GSA Special Paper 361",
+      "doi": "10.1130/0-8137-2361-2.247",
+      "url": "https://doi.org/10.1130/0-8137-2361-2.247",
+      "supportsClaims": [
+        "C08"
+      ]
+    }
+  ]
+}

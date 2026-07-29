@@ -1,0 +1,265 @@
+{
+  "id": "CR10",
+  "slug": "cimolestes",
+  "section": "underground",
+  "position": 2,
+  "commonName": "Cimolestes",
+  "scientificName": "Cimolestes",
+  "researchScientificName": "Cimolestes (indeterminate species)",
+  "pronunciation": "sigh-moh-LESS-teez",
+  "type": "mammal",
+  "pose": "low three-quarter view, whole body in an alert crouch, all four limbs and tail visible",
+  "size": "about 20 cm (8 in), reconstruction",
+  "ageRange_Ma": [
+    72,
+    66
+  ],
+  "diet": "Insectivore / omnivore",
+  "habitat": "Hell Creek–Lance coastal-plain soil and litter reconstruction",
+  "confidence": "reasonable_inference",
+  "status": "roster",
+  "stage": {
+    "x": 0.238,
+    "plane": "soil"
+  },
+  "blurb": "Cimolestes represents the small-mammal world mostly hidden beneath dinosaur feet. Its teeth are real and identifiable; nearly everything about the living silhouette must be rebuilt by comparison. The result is best understood as a careful portrait of a lineage, not a photograph of one securely known Hell Creek species.",
+  "notes": "A handful of teeth can carry an astonishing amount of information. In the Hell Creek and Lance formations, isolated mammal teeth are far more common than complete skeletons. Their cusps, ridges, roots, and wear patterns let paleontologists distinguish many small forms that shared the landscape. Cimolestes is one of those names, applied to an extinct group of small eutherian-line mammals known chiefly from dental and jaw material.\n\nThe name requires caution. Species historically assigned to Cimolestes span different places and intervals, and the genus has often served as a convenient home for broadly similar teeth. Modern studies have revised relationships and moved species as new comparisons become possible. The poster therefore labels CR10 as Cimolestes without pretending that a complete, species-level Hell Creek animal has been recovered. The identification is a taxonomic working hypothesis anchored most strongly in teeth.\n\nThose teeth have pointed cusps suited to piercing and shearing. They support a diet that included insects and other small animal matter, perhaps supplemented opportunistically by varied foods. “Insectivore” is a useful shorthand, not a preserved grocery list. A tooth can show how forces were applied and what kinds of processing were possible; it rarely identifies every food eaten across a lifetime.\n\nThe reconstructed body is even less direct. Small generalized mammals of this part of the family tree are commonly restored with a long body, flexible limbs, fur, mobile whiskers, and a tail. These choices come from broader mammalian anatomy and close fossil relatives, not a Hell Creek Cimolestes skin outline. A 20-centimetre length is a presentation estimate rather than a measurement from an articulated specimen. The exact body mass, ear size, color, and locomotor style remain unknown.\n\nWhy place it in the soil cutaway? Small mammals likely used vegetation, litter, crevices, and burrows as shelter from weather and predators, and burrowing behavior is widespread among living small mammals. Yet no burrow in this poster is assigned to Cimolestes by a body fossil found inside it. The scene communicates a plausible refuge and foraging zone. It should not be cited as direct evidence that this genus was a dedicated subterranean specialist.\n\nCimolestes also illustrates how classification changes. It has sometimes been discussed near the ancestry of later placental groups, but broad similarities do not make it a direct ancestor of any living species. Cretaceous eutherian relationships are reconstructed from incomplete character sets, and the branching order shifts as taxa and anatomical data are reanalyzed. The honest message is evolutionary proximity, not a straight line from this animal to shrews or moles.\n\nIn the poster, CR10 is a small furred animal paused among roots. The pointed snout and generalized feet are comparative reconstruction; the scale is deliberately enlarged in the underground field-guide view so readers can see it. Teeth, age, and broad ecosystem membership are the secure core. The soft body, nocturnal mood, and moment of insect hunting are scientifically plausible but visually invented.\n\nThe page also resists turning rarity into lifestyle. A small mammal might have been active by night, by day, or in short intervals around temperature and predation risk; fossil teeth do not preserve a daily schedule. Likewise, large eyes, a pink nose, and a shrew-like gait may make an illustration familiar but are not secured by the named material. These are exactly the details a future articulated skeleton could change.\n\nCollection method shapes the evidence too. Screen-washing large volumes of sediment can recover teeth only millimetres across that ordinary surface collecting would miss. That makes mammal diversity visible, but it favors durable dental remains over soft tissues and complete bodies. Our reconstruction should therefore look alive without pretending that the fossil record is equally complete from tooth crown to tail tip.",
+  "funFacts": [
+    "A species can begin with a tooth — Tiny mammal crowns preserve distinctive cusp arrangements, allowing paleontologists to recognize community members even when the rest of the skeleton is missing.",
+    "The name has moved — Cimolestes has accumulated and lost species as researchers revise Cretaceous mammal relationships. A genus label is a testable classification, not a permanent verdict.",
+    "Insect-eater is shorthand — Sharp cusps support piercing and shearing small prey, but they cannot prove that insects were the only food.",
+    "The fur is inferred — Hair is a deep mammalian feature, yet no Hell Creek Cimolestes specimen preserves the color, density, or outline shown in the reconstruction."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C03"
+      ],
+      "referenceIds": [
+        "R03"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C04"
+      ],
+      "referenceIds": [
+        "R04"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C05"
+      ],
+      "referenceIds": [
+        "R05"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C06"
+      ],
+      "referenceIds": [
+        "R06"
+      ]
+    }
+  ],
+  "survivor": "Cimolestes is often described as a eutherian-line mammal, placing it on the broad side of the mammal tree that also contains living placentals. That does not make it the direct ancestor of shrews, moles, or any other modern group. A living shrew is a helpful ecological comparison for a small, active hunter of invertebrates, but its resemblance is partly convergence. The surviving connection is a deep branch of mammalian history, not an unchanged body plan carried to the present.",
+  "distribution": "Fossils assigned to Cimolestes and closely related forms occur in Late Cretaceous deposits of western North America, including the Hell Creek–Lance interval. Most records are isolated teeth and jaws from sediments laid down by rivers and on floodplains. Such fossils establish presence in the regional fauna but rarely reveal a precise microhabitat. The poster places the animal among roots and leaf litter as a plausible small-mammal refuge; it does not claim a Cimolestes body was recovered from that exact setting.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Diagnostic teeth and jaws establish a small mammal with pointed, tribosphenic-patterned cheek teeth.",
+      "Stratigraphic occurrences place assigned material in the latest Cretaceous western interior.",
+      "Dental characters support piercing and shearing food."
+    ],
+    "supportedInference": [
+      "Diet probably included insects and other small animal matter.",
+      "A generalized furred body is reconstructed from broader mammalian anatomy.",
+      "Use of litter, root spaces, or burrows is ecologically plausible."
+    ],
+    "artisticReconstruction": [
+      "Exact body length, proportions, fur color, ears, and whiskers.",
+      "The alert crouch and specific underground position.",
+      "Species-level identity where only incomplete dental material is available."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "research",
+      "title": "Mammalian faunal dynamics during the last 1.8 million years of the Cretaceous",
+      "creator": "Gregory P. Wilson",
+      "year": 2005,
+      "url": "https://doi.org/10.1007/s10914-005-6943-4",
+      "description": "See how thousands of small teeth reveal mammal communities changing through the final part of the Cretaceous.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Fossil Mammals Collection",
+      "creator": "Smithsonian National Museum of Natural History",
+      "year": null,
+      "url": "https://naturalhistory.si.edu/research/paleobiology/collections-access",
+      "description": "Explore the collection work that turns fragmentary jaws and teeth into evidence about vanished mammal communities.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "public_resource",
+      "title": "Introduction to the Mammalia",
+      "creator": "University of California Museum of Paleontology",
+      "year": null,
+      "url": "https://ucmp.berkeley.edu/mammal/mammal.html",
+      "description": "Place Cimolestes within the much larger story of mammalian anatomy and evolution.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "Research synthesis prepared from the cited sources. Candidate reviewers are listed only in the internal dossier and have not been contacted."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29",
+  "references": [
+    {
+      "id": "R01",
+      "title": "The Hell Creek Formation, Montana: a stratigraphic review and revision based on a sequence stratigraphic approach",
+      "authors": [
+        "Denver W. Fowler"
+      ],
+      "year": 2020,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Geosciences",
+      "doi": "10.3390/geosciences10110435",
+      "url": "https://doi.org/10.3390/geosciences10110435",
+      "supportsClaims": [
+        "C01",
+        "C02",
+        "C10"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "Mammalian faunal dynamics during the last 1.8 million years of the Cretaceous in Garfield County, Montana",
+      "authors": [
+        "Gregory P. Wilson"
+      ],
+      "year": 2005,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Journal of Mammalian Evolution",
+      "doi": "10.1007/s10914-005-6943-4",
+      "url": "https://doi.org/10.1007/s10914-005-6943-4",
+      "supportsClaims": [
+        "C01",
+        "C02",
+        "C03"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "Mammals from the age of dinosaurs: origins, evolution, and structure",
+      "authors": [
+        "Zhe-Xi Luo"
+      ],
+      "year": 2007,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Annual Review of Ecology, Evolution, and Systematics",
+      "doi": "10.1146/annurev.ecolsys.38.091206.095707",
+      "url": "https://doi.org/10.1146/annurev.ecolsys.38.091206.095707",
+      "supportsClaims": [
+        "C04",
+        "C05",
+        "C08"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "Phylogeny, classification, and evolution of South American cimolestan mammals",
+      "authors": [
+        "Malcolm C. McKenna"
+      ],
+      "year": 1975,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Bulletin of the American Museum of Natural History",
+      "doi": null,
+      "url": "https://digitallibrary.amnh.org/",
+      "supportsClaims": [
+        "C04",
+        "C07"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "The origin and evolution of tribosphenic molars in Mesozoic mammals",
+      "authors": [
+        "Zhe-Xi Luo",
+        "Richard L. Cifelli",
+        "Zofia Kielan-Jaworowska"
+      ],
+      "year": 2001,
+      "sourceType": "Peer-reviewed research",
+      "publication": "Science",
+      "doi": "10.1126/science.292.5521.1535",
+      "url": "https://doi.org/10.1126/science.292.5521.1535",
+      "supportsClaims": [
+        "C03",
+        "C05"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "Mammals from the Age of Dinosaurs",
+      "authors": [
+        "Zofia Kielan-Jaworowska",
+        "Richard L. Cifelli",
+        "Zhe-Xi Luo"
+      ],
+      "year": 2004,
+      "sourceType": "Scholarly monograph",
+      "publication": "Columbia University Press",
+      "doi": null,
+      "url": "https://cup.columbia.edu/book/mammals-from-the-age-of-dinosaurs/9780231119184",
+      "supportsClaims": [
+        "C02",
+        "C04",
+        "C05",
+        "C08"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "Fossil Mammals Collection",
+      "authors": [
+        "Smithsonian National Museum of Natural History"
+      ],
+      "year": null,
+      "sourceType": "Official museum resource",
+      "publication": "Smithsonian Institution",
+      "doi": null,
+      "url": "https://naturalhistory.si.edu/research/paleobiology/collections-access",
+      "supportsClaims": [
+        "C01",
+        "C09"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Introduction to the Mammalia",
+      "authors": [
+        "University of California Museum of Paleontology"
+      ],
+      "year": null,
+      "sourceType": "Official university resource",
+      "publication": "UCMP",
+      "doi": null,
+      "url": "https://ucmp.berkeley.edu/mammal/mammal.html",
+      "supportsClaims": [
+        "C06",
+        "C08"
+      ]
+    }
+  ]
+}

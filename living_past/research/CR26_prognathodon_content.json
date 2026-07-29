@@ -1,0 +1,270 @@
+{
+  "id": "CR26",
+  "slug": "prognathodon",
+  "section": "ocean",
+  "position": 2,
+  "commonName": "Prognathodon",
+  "scientificName": "Prognathodon",
+  "pronunciation": "prog-NATH-oh-don",
+  "type": "marine_reptile",
+  "size": "7-12 m",
+  "ageRange_Ma": [
+    68.0,
+    66.0
+  ],
+  "diet": "Carnivore",
+  "habitat": "Warm shelf seas",
+  "confidence": "reasonable_inference",
+  "status": "roster",
+  "needsRefs": true,
+  "swapReason": "replaces Elasmosaurus (Campanian; Seaway retreated by 66 Ma); large durophagous Maastrichtian mosasaur, coexisted with Mosasaurus.",
+  "stage": {
+    "x": 0.662,
+    "plane": "deep"
+  },
+  "blurb": "Prognathodon names a varied group of robust-jawed mosasaurs, not one identical worldwide species. Thick teeth and powerful skulls suggest prey could include hard or resistant food, yet newer tooth-wear studies complicate the simple “shell crusher” label. This reconstruction represents a plausible large Maastrichtian member while keeping its species deliberately unresolved.",
+  "notes": "Prognathodon swam through Late Cretaceous seas as one branch of the mosasaur radiation. Like Mosasaurus, it was a marine squamate rather than a dinosaur. Its body carried four steering paddles and was driven chiefly by a deep tail. The name on this page stops at genus because Prognathodon includes several species spread across different regions and intervals, and their relationships continue to be revised.\n\nThe most striking fossils are skulls. Several species have short, deep snouts, massive jaws, and stout teeth compared with the longer, more blade-like dentitions of some other mosasaurs. That construction inspired the familiar description “durophagous,” meaning adapted to consume resistant prey. Tooth-shape analyses place several Prognathodon species in crushing or crushing-and-cutting feeding guilds. Yet a guild is a hypothesis about capability, not a fossilized menu. A robust tooth might process shelled animals, thick fish, carrion, or other prey without proving the frequency of each.\n\nThree-dimensional dental microwear from the type Maastrichtian adds a useful warning. Microscopic textures distinguish some feeding signals, but the sampled Prognathodon teeth did not simply produce the expected signature of habitual hard-object feeding. Wear records recent contact at a tooth surface and can vary with preservation, tooth position, and what an individual ate shortly before death. The best public wording is therefore “capable of handling resistant prey,” not “specialized shell crusher that ate only ammonites and turtles.”\n\nA nearly complete Prognathodon saturator from the Netherlands preserves an exceptionally stout skull and much of the skeleton. Its bones were scattered and marked after death, with shark teeth nearby, showing how a large predator could become food on the seafloor. Other named species occur in Maastrichtian Morocco, Angola, Jordan, Europe, and North America. Moroccan tooth assemblages show several mosasaur feeding guilds coexisting near the end of the Cretaceous, suggesting ecological partitioning rather than one predator monopolizing every prey type.\n\nThe roster’s 7–12 m size is deliberately broad. Prognathodon is a genus, so one number cannot describe every species; many remains are incomplete; and body length is often scaled from skull or vertebral measurements. The poster animal should read as large, but it is not meant to stand for a precisely measured 12 m individual. Its placement in the 68–66 Ma scene represents the genus’s Maastrichtian persistence globally. A particular latest-Maastrichtian Western Interior Seaway species is less secure than the well-dated Mosasaurus record beside it.\n\nSwimming anatomy follows close mosasaur relatives. Soft-tissue fossils outside Prognathodon support a tail fluke and streamlined outline, while paddles provided control. Exact fin proportions, skin texture, coloration, and countershading are not preserved for the genus. The image may plausibly use a subdued marine pattern, but that is art, not evidence. A dorsal fin should not be added.\n\nAs an air-breathing reptile, Prognathodon had to surface. Mosasaurs probably gave live birth in water, based on very young and embryonic fossils in the clade, although birth behavior is not directly known for this genus. Social hunting, migration routes, dive duration, and communication likewise remain untested. One individual moving through open water is the most honest narrative choice.\n\nThe result is intentionally less specific than a species portrait. Prognathodon is useful precisely because it reveals variation among terminal-Cretaceous mosasaurs: robust jaws, diverse teeth, broad geography, and uncertain diets tested by multiple kinds of evidence. The reconstruction communicates that ecological role while leaving room for taxonomy and microwear research to change the details.\n\nThe fossils also preserve an important distinction between feeding equipment and feeding history. Jaw depth and tooth form describe what loads the animal could withstand, while microscopic wear samples actual contacts over a much shorter interval. When those records differ, neither should be discarded. Together they show a versatile predator whose individual meals, life stage, and local prey community mattered.",
+  "funFacts": [
+    "A genus, not one animal — Prognathodon includes multiple species from several oceans, so its 7–12 m roster size is a broad composite range.",
+    "Powerful, but not typecast — Robust jaws support crushing ability, while dental microwear cautions against treating every individual as an exclusive shell specialist.",
+    "Predator becomes prey — The Dutch P. saturator skeleton bears evidence of post-mortem scavenging by sharks.",
+    "Different jobs in one sea — Maastrichtian Moroccan teeth reveal mosasaurs occupying several feeding guilds, including a crush-and-cut role for Prognathodon."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C01"
+      ],
+      "referenceIds": [
+        "R01",
+        "R03"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C03",
+        "C04"
+      ],
+      "referenceIds": [
+        "R02",
+        "R05"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C05"
+      ],
+      "referenceIds": [
+        "R01"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C06"
+      ],
+      "referenceIds": [
+        "R02"
+      ]
+    }
+  ],
+  "distribution": "Species assigned to Prognathodon occur in Campanian–Maastrichtian marine rocks across Europe, Africa, the Middle East, North America, and New Zealand. Particularly informative Maastrichtian records come from the Netherlands–Belgium type area and Morocco’s phosphate basins. Because the page identifies only the genus, this broad map must not imply that one species occupied all regions simultaneously; its exact terminal Western Interior Seaway presence is less secure than its global Maastrichtian record. Coastlines and marine connections shifted substantially during that long span, further limiting a single outline.",
+  "survivor": "No mosasaur survived the K–Pg extinction, and Prognathodon has no living descendant. Its broader squamate kin survive as lizards and snakes. Modern sea snakes show that a squamate can become an efficient marine swimmer and give birth in water, but they evolved their marine lives independently and are not miniature mosasaurs. Comparing the two highlights convergent solutions—lungs, elongated bodies, tail propulsion—while the four-paddled, giant Prognathodon body remains an extinct experiment. No living species preserves that exact combination.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Skulls and teeth establish robust jaws and varied tooth forms.",
+      "P. saturator preserves much of a large skeleton and post-mortem shark scavenging traces.",
+      "Maastrichtian occurrences span several marine provinces."
+    ],
+    "supportedInference": [
+      "Robust teeth indicate capacity for resistant prey, but not an exclusive diet.",
+      "Tail-driven swimming is transferred from soft-tissue evidence in related mosasaurs.",
+      "The 7–12 m bracket combines species and scaling methods."
+    ],
+    "artisticReconstruction": [
+      "Species identity of the poster individual.",
+      "Color, pattern, scars, and exact tail-fin outline.",
+      "Depth, behavior, and prey choice at the depicted instant."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "research",
+      "title": "A large new mosasaur from the Upper Cretaceous of the Netherlands",
+      "creator": "Rudi Dortangs and colleagues",
+      "year": 2002,
+      "url": "https://doi.org/10.1017/S0016774600020515",
+      "description": "Examine the unusually complete, massively built Prognathodon saturator skeleton.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "research",
+      "title": "Mosasaur tooth morphoguilds from Morocco",
+      "creator": "Nathalie Bardet and colleagues",
+      "year": 2015,
+      "url": "https://doi.org/10.1016/j.gr.2014.08.014",
+      "description": "Explore ecological variety among mosasaurs just before the K–Pg crisis.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Cretaceous Sea",
+      "creator": "Natuurhistorisch Museum Maastricht",
+      "year": null,
+      "url": "https://www.nhmmaastricht.nl/",
+      "description": "Connect type-Maastrichtian fossils with their geological and museum setting.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    }
+  ],
+  "references": [
+    {
+      "id": "R01",
+      "title": "A large new mosasaur from the Upper Cretaceous of the Netherlands",
+      "authors": [
+        "Rudi W. Dortangs",
+        "Anne S. Schulp",
+        "Eric W. A. Mulder",
+        "John W. M. Jagt",
+        "others"
+      ],
+      "year": 2002,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Netherlands Journal of Geosciences",
+      "doi": "10.1017/S0016774600020515",
+      "url": "https://doi.org/10.1017/S0016774600020515",
+      "supportsClaims": [
+        "C01",
+        "C05"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "Mosasaurids from the Maastrichtian Phosphates of Morocco",
+      "authors": [
+        "Nathalie Bardet",
+        "Alexandra Houssaye",
+        "others"
+      ],
+      "year": 2015,
+      "sourceType": "Peer-reviewed synthesis",
+      "publication": "Gondwana Research",
+      "doi": "10.1016/j.gr.2014.08.014",
+      "url": "https://doi.org/10.1016/j.gr.2014.08.014",
+      "supportsClaims": [
+        "C02",
+        "C03",
+        "C06"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "A new species of Prognathodon from the Maastrichtian of Angola",
+      "authors": [
+        "Anne S. Schulp",
+        "Michael J. Polcyn",
+        "Octávio Mateus",
+        "Louis L. Jacobs"
+      ],
+      "year": 2008,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Netherlands Journal of Geosciences",
+      "doi": "10.1017/S0016774600021351",
+      "url": "https://doi.org/10.1017/S0016774600021351",
+      "supportsClaims": [
+        "C01",
+        "C07"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "A new species of Prognathodon from the Maastrichtian of Harrana-Jordan",
+      "authors": [
+        "Hani F. Kaddumi"
+      ],
+      "year": 2009,
+      "sourceType": "Primary description",
+      "publication": "Fossils of the Harrana Fauna",
+      "doi": null,
+      "url": "https://www.nhm.ac.uk/",
+      "supportsClaims": [
+        "C07"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "Three-dimensional dental microwear texture analysis of Maastrichtian mosasaur teeth",
+      "authors": [
+        "F. M. Holwerda",
+        "Anne S. Schulp",
+        "others"
+      ],
+      "year": 2023,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Scientific Reports",
+      "doi": "10.1038/s41598-023-42369-7",
+      "url": "https://doi.org/10.1038/s41598-023-42369-7",
+      "supportsClaims": [
+        "C03",
+        "C04"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "On diving and diet resource partitioning in type-Maastrichtian mosasaurs",
+      "authors": [
+        "A. S. Schulp",
+        "others"
+      ],
+      "year": 2013,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Netherlands Journal of Geosciences",
+      "doi": "10.1017/S001677460000010X",
+      "url": "https://doi.org/10.1017/S001677460000010X",
+      "supportsClaims": [
+        "C08"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "Cranial palaeopathologies in a Late Cretaceous mosasaur from the Netherlands",
+      "authors": [
+        "B. M. Rothschild",
+        "others"
+      ],
+      "year": 2020,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Cretaceous Research",
+      "doi": "10.1016/j.cretres.2020.104425",
+      "url": "https://doi.org/10.1016/j.cretres.2020.104425",
+      "supportsClaims": [
+        "C09"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Mosasaur remains from the Maastrichtian of Denmark",
+      "authors": [
+        "Jesper Milàn",
+        "others"
+      ],
+      "year": 2023,
+      "sourceType": "Peer-reviewed synthesis",
+      "publication": "Zoological Journal of the Linnean Society",
+      "doi": "10.1093/zoolinnean/zlag071",
+      "url": "https://doi.org/10.1093/zoolinnean/zlag071",
+      "supportsClaims": [
+        "C07"
+      ]
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "Genus-level synthesis; reviewer candidates are internal only and uncontacted."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29"
+}

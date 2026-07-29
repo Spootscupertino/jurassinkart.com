@@ -1,0 +1,251 @@
+{
+  "id": "CR13",
+  "slug": "earthworm",
+  "section": "underground",
+  "position": 5,
+  "commonName": "Earthworm",
+  "scientificName": "Oligochaeta (indet.)",
+  "researchScientificName": "Clitellata (earthworm-grade, indeterminate)",
+  "pronunciation": "kly-tell-AY-tuh",
+  "type": "invertebrate",
+  "pose": "long ringed worm in an S-curve with a visible clitellum",
+  "size": "about 10 cm (4 in), illustrative",
+  "ageRange_Ma": [
+    72,
+    66
+  ],
+  "diet": "Detritivore, illustrative",
+  "habitat": "Hell Creek–Lance coastal-plain soil and litter reconstruction",
+  "confidence": "speculative",
+  "status": "roster",
+  "stage": {
+    "x": 0.196,
+    "plane": "macro"
+  },
+  "blurb": "The underground world cannot be reconstructed from spectacular skeletons alone. Soil-dwelling clitellate worms have an ancient molecular history and worm-made trace fossils can preserve burrowing. CR13 therefore shows an earthworm-like annelid as a transparent ecosystem hypothesis: biologically plausible, useful for understanding soil life, but not a claim that this exact organism has been recovered from Hell Creek.",
+  "notes": "The Hell Creek Formation preserves rivers, floodplains, soils, roots, and abundant signs of life above ground. It does not preserve every participant equally. An earthworm-like annelid is included to make that uneven record visible. Soil-dwelling clitellate worms have an ancient molecular history and worm-made trace fossils can preserve burrowing. That broad history makes the organism possible in a latest Cretaceous soil scene, but possibility is not the same as a local body fossil.\n\nSoft bodies almost never fossilize, and no body fossil establishes this modern-looking earthworm in Hell Creek. Small or soft-bodied organisms are especially difficult to track. They may decay before burial, leave only ambiguous traces, or be preserved in deposits unlike the river sediments that dominate Hell Creek. Absence from the current fossil list can mean true absence, poor preservation, incomplete collecting, or failure to recognize a trace. The page therefore avoids a genus or species name.\n\nThe ecological role shown is mixing soil and processing organic matter. That role is based mainly on anatomy and biology in living members of the broader group, supported by its deep evolutionary history. It is not a direct observation from 66 million years ago. Even when a lineage is old, modern behavior cannot simply be projected backward unchanged. Early members may have differed in diet, development, sociality, or habitat.\n\nThe poster’s anatomy is intentionally readable. At true scale this subject would be tiny or microscopic beside the dinosaurs, so it is enlarged in the underground cutaway. Size is stated as illustrative rather than measured from a Hell Creek specimen. Diagnostic features make the group recognizable, but some conspicuous details may be borrowed from living representatives because the local fossil does not preserve them.\n\nSoils are ecosystems, not empty brown space. Roots change moisture and chemistry; microbes and fungi exchange nutrients; invertebrates open passages, consume material, and become prey. By including an uncertain small organism, the scene points to processes that must have occurred even when the responsible species cannot be named. The reconstruction is strongest at the level of function and weakest at the level of identity.\n\nThis distinction matters because an encyclopedia can accidentally make a picture seem more certain than the evidence behind it. A detailed illustration feels specific: every segment, strand, egg, or root contact appears chosen for a reason. Here, detail serves readability, not identification. The secure story is that Cretaceous terrestrial ecosystems contained complex communities of small organisms and that earthworms had an evolutionary history relevant to this interval. The insecure story would be that the exact individual drawn here occupied this exact patch of Hell Creek soil. We accept the first and explicitly decline the second.\n\nLiving earthworms show what such organisms can do, not exactly what this Cretaceous form did. They are comparison points for explaining anatomy and ecology. Evolution over tens of millions of years prevents us from treating a living species as a frozen fossil. The “Still With Us Today” connection is continuity of a broad lineage or role, never a claim of unchanged species.\n\nIn the poster, CR13 is a deliberate evidence lesson. Its presence says that a living floodplain required small actors as well as famous vertebrates. Its label remains indeterminate, its confidence is low, and the page states the missing local evidence plainly. The pose, color, scale, exact location, and interaction with surrounding soil are artistic. If a future Hell Creek fossil narrows the identification, the digital page can be revised while the printed scene remains honestly labeled.\n\nFuture evidence could strengthen or remove this entry. A diagnostic body fossil, amber inclusion, eggshell association, trace fossil with an identifiable maker, or microscopic root preservation would each answer different questions. Until then, the confidence badge and indeterminate label carry real scientific meaning: the page teaches not only what ancient life may have contained, but how researchers know when a reconstruction has reached beyond the preserved record.",
+  "funFacts": [
+    "The preservation filter — Soft bodies almost never fossilize, and no body fossil establishes this modern-looking earthworm in Hell Creek. Tiny and soft organisms are often missing even from rich fossil ecosystems.",
+    "A group is not a species — The label is deliberately indeterminate. It identifies a broad biological model without inventing a fossil species name.",
+    "The poster enlarges it — The underground figure is made visible for teaching and is not drawn at the same scale as the large surface animals.",
+    "Function is firmer than identity — Soil-dwelling clitellate worms have an ancient molecular history and worm-made trace fossils can preserve burrowing; the exact Hell Creek participant remains unresolved."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C03"
+      ],
+      "referenceIds": [
+        "R03"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C04"
+      ],
+      "referenceIds": [
+        "R04"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C05"
+      ],
+      "referenceIds": [
+        "R05"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C06"
+      ],
+      "referenceIds": [
+        "R06"
+      ]
+    }
+  ],
+  "survivor": "Living earthworms remain part of soils and food webs today, offering a living comparison for the role shown here. They do not prove that the Hell Creek organism had the same species, size, color, behavior, or anatomy. The connection is deliberately broad: an old lineage and an ecological process that survived while particular forms changed. Modern biology helps us ask better questions of the fossil record; it should not be used to fill every gap as though evolution had paused.",
+  "distribution": "This entry does not map a named fossil species. Its broad lineage is documented from Cretaceous or older deposits, while the poster setting is the latest Cretaceous Hell Creek–Lance coastal plain of western North America. Soft bodies almost never fossilize, and no body fossil establishes this modern-looking earthworm in Hell Creek. The illustrated location among roots is an ecosystem reconstruction based on plausible habitat and modern functional comparison. It must not be converted into a locality point, species range, or claim of a body fossil from the poster site.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Hell Creek paleosols record biologically active soils.",
+      "Burrows can be preserved as trace fossils, but assigning an isolated burrow to an earthworm is difficult.",
+      "No body fossil supports the exact anatomy, 10-centimetre size, or clitellum shown here."
+    ],
+    "supportedInference": [
+      "A member of the broad group could plausibly have occupied a latest Cretaceous soil ecosystem.",
+      "The ecological role shown is inferred from living biology and evolutionary continuity.",
+      "Hell Creek soils provided a possible setting for the interaction."
+    ],
+    "artisticReconstruction": [
+      "The exact taxon, body size, color, and individual anatomy.",
+      "The pose, behavior, and placement beside a particular root.",
+      "Any implication of a recovered Hell Creek body fossil or nest."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "research",
+      "title": "The formation of vegetable mould through the action of worms",
+      "creator": "Charles Darwin",
+      "year": 1881,
+      "url": "https://www.biodiversitylibrary.org/item/62924",
+      "description": "Explore the scientific evidence behind the lineage’s antiquity and the limits of reconstructing its Cretaceous members.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Fossil Insect and Invertebrate Collections",
+      "creator": "Smithsonian National Museum of Natural History",
+      "year": null,
+      "url": "https://naturalhistory.si.edu/research/paleobiology/collections-access",
+      "description": "See how collections preserve, compare, and reinterpret the fragmentary record of small ancient organisms.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "public_resource",
+      "title": "Earthworms",
+      "creator": "USDA Natural Resources Conservation Service",
+      "year": null,
+      "url": "https://www.nrcs.usda.gov/",
+      "description": "Compare the fossil hypothesis with an authoritative guide to the biology or ecological role of living representatives.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "Research synthesis prepared from the cited sources. Candidate reviewers are listed only in the internal dossier and have not been contacted."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29",
+  "references": [
+    {
+      "id": "R01",
+      "title": "The Hell Creek Formation, Montana: a stratigraphic review and revision based on a sequence stratigraphic approach",
+      "authors": [
+        "Denver W. Fowler"
+      ],
+      "year": 2020,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Geosciences",
+      "doi": "10.3390/geosciences10110435",
+      "url": "https://doi.org/10.3390/geosciences10110435",
+      "supportsClaims": [
+        "C01",
+        "C02",
+        "C10"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "The role of soils in learning and inspiration, physical and intellectual",
+      "authors": [
+        "Gregory J. Retallack"
+      ],
+      "year": 2001,
+      "sourceType": "Scholarly monograph",
+      "publication": "Soils of the Past",
+      "doi": null,
+      "url": "https://www.wiley.com/en-us/Soils+of+the+Past%3A+An+Introduction+to+Paleopedology%2C+2nd+Edition-p-9780632053766",
+      "supportsClaims": [
+        "C02",
+        "C09"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "The formation of vegetable mould through the action of worms",
+      "authors": [
+        "Charles Darwin"
+      ],
+      "year": 1881,
+      "sourceType": "Historical scientific monograph",
+      "publication": "John Murray",
+      "doi": null,
+      "url": "https://www.biodiversitylibrary.org/item/62924",
+      "supportsClaims": [
+        "C03"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "Earthworm evolution: a molecular clock analysis",
+      "authors": [
+        "Samuel W. James and colleagues"
+      ],
+      "year": 2011,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Molecular Phylogenetics and Evolution",
+      "doi": null,
+      "url": "https://www.sciencedirect.com/journal/molecular-phylogenetics-and-evolution",
+      "supportsClaims": [
+        "C04"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "Biology and Ecology of Earthworms",
+      "authors": [
+        "Clive A. Edwards and Patrick J. Bohlen"
+      ],
+      "year": 1996,
+      "sourceType": "Scholarly monograph",
+      "publication": "Springer",
+      "doi": null,
+      "url": "https://link.springer.com/book/10.1007/978-0-585-26067-2",
+      "supportsClaims": [
+        "C05"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "Soil Biology Guide",
+      "authors": [
+        "Daniel L. Dindal"
+      ],
+      "year": 1990,
+      "sourceType": "Scholarly reference",
+      "publication": "Wiley",
+      "doi": null,
+      "url": "https://www.wiley.com/",
+      "supportsClaims": [
+        "C06"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "Trace Fossils: Concepts, Problems, Prospects",
+      "authors": [
+        "William Miller III"
+      ],
+      "year": 2007,
+      "sourceType": "Scholarly monograph",
+      "publication": "Elsevier",
+      "doi": null,
+      "url": "https://www.sciencedirect.com/book/9780444529497/trace-fossils",
+      "supportsClaims": [
+        "C07"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Earthworms",
+      "authors": [
+        "USDA Natural Resources Conservation Service"
+      ],
+      "year": null,
+      "sourceType": "Official government resource",
+      "publication": "USDA",
+      "doi": null,
+      "url": "https://www.nrcs.usda.gov/",
+      "supportsClaims": [
+        "C08"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,252 @@
+{
+  "id": "CR08",
+  "slug": "pachycephalosaurus-wyomingensis",
+  "section": "above",
+  "position": 8,
+  "commonName": "Pachycephalosaurus",
+  "scientificName": "Pachycephalosaurus wyomingensis",
+  "pronunciation": "PACK-ee-sef-ah-loh-SORE-us why-oh-ming-EN-sis",
+  "type": "land_animal",
+  "size": "4–5 m (13–16 ft)",
+  "ageRange_Ma": [
+    68.0,
+    66.0
+  ],
+  "diet": "Herbivore",
+  "habitat": "Hell Creek–Lance coastal plain",
+  "confidence": "reasonable_inference",
+  "status": "roster",
+  "stage": {
+    "x": 0.196,
+    "plane": "far"
+  },
+  "blurb": "Pachycephalosaurus carried a skull roof thick enough to dominate every reconstruction, yet fossils do not show exactly how it used that dome. Growth transformed the head dramatically, probably turning the spiky “Dracorex” and “Stygimoloch” forms into younger stages of the same remarkable animal.",
+  "notes": "Pachycephalosaurus wyomingensis lived in the final million years of the Cretaceous and is documented in the Hell Creek and Lance formations. Its famous skulls fit the poster’s time and place securely. The rest of the body is much less complete, so familiar full-body reconstructions borrow proportions from better-known pachycephalosaurs and other small ornithischian dinosaurs.\n\nThe adult skull carried a thick, rounded frontoparietal dome bordered by knobs and short spikes. CT studies reveal internal organization and blood-vessel channels, but the living surface included tissues no fossil fully preserves. A keratin covering may have altered the dome’s appearance. Its color, temperature, and role in display remain unknown.\n\nFor decades, the dome invited comparisons with head-butting sheep. Biomechanical models show that the skull could withstand some loading, and lesions occur at relatively high frequency on domes. These findings are consistent with combat, but they do not identify the exact behavior. Animals might have struck head-on, hit flanks, pushed, displayed, or combined several actions. A dramatic collision is plausible, not observed fact.\n\nGrowth provides the page’s most important scientific story. Small, flat-headed skulls named Dracorex and intermediate, spike-bearing skulls named Stygimoloch have porous, rapidly remodeling bone. Researchers proposed that they represent juvenile and subadult stages of Pachycephalosaurus. As the animal matured, the dome expanded while spikes and knobs changed shape or were resorbed.\n\nThat synonymy is influential and widely adopted, but it is still an interpretation built from a limited sample. Some analyses retain doubts about whether every named specimen belongs in one growth series. The poster uses an adult Pachycephalosaurus and notes the leading hypothesis without saying the issue is closed. “Dracorex was definitely a baby” would be stronger than the evidence warrants.\n\nThe jaws ended in a small beak and carried leaf-shaped teeth, while the front of the mouth included unusual pointed teeth. Plant eating is well supported at a broad level, but those anterior teeth have encouraged suggestions of omnivory. No secure gut contents reveal a menu. Leaves, fruits, seeds, and occasional animal food remain possibilities rather than measured dietary proportions.\n\nBody size is usually estimated near four to five metres, but postcranial remains are sparse and scaling introduces uncertainty. The animal probably moved bipedally with a long balancing tail. Exact hand posture, torso depth, muscles, and running ability are reconstructed. It should not be drawn as only a dome attached to a generic dinosaur body.\n\nSocial behavior is unknown. Skull ornament could have conveyed age, species identity, condition, or dominance, and combat might have occurred without permanent herds. Bonebeds do not provide a clear Pachycephalosaurus social record. Sex differences have also been proposed but cannot yet be assigned confidently from the known sample.\n\nSkin impressions, feathers, and color are not directly known for this species. A predominantly scaly reconstruction is conservative for a large ornithischian, but absence of preserved covering is not proof of every body region. Small filaments in distant relatives do not license a specific coat here.\n\nIn the poster, CR08 is a mature individual with a high dome and reduced marginal spikes. Its bipedal balance, beak, teeth, and adult skull follow fossils; much of the body outline follows relatives. Color, skin texture, soft covering of the dome, sex, scars, and behavior are artistic. The animal belongs in the ecosystem, while the famous head-butting moment remains an evidence-labeled possibility. Dome growth also complicates species counts in the ecosystem. If the flat and spiky skulls are younger stages, three famous names collapse into one changing animal. If some prove distinct, diversity was greater. Histology and larger samples—not visual strangeness alone—must decide between those alternatives. That question remains scientifically open.",
+  "funFacts": [
+    "A skull that remodeled itself — Bone texture suggests flat-headed Dracorex-like juveniles grew a dome while prominent spikes changed or shrank as they matured.",
+    "Damage on the dome — Surveys have found lesions on pachycephalosaur skull roofs, consistent with repeated impacts, though they cannot reveal the exact fighting style.",
+    "A body built from comparisons — Adult skulls are far better known than complete skeletons. Full-body art must combine direct material with proportions from related pachycephalosaurs.",
+    "Teeth complicate the menu — Leaf-shaped cheek teeth support plant eating, while pointed front teeth leave room for broader feeding behavior. Exact foods remain unknown."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C04"
+      ],
+      "referenceIds": [
+        "R02",
+        "R03"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C03"
+      ],
+      "referenceIds": [
+        "R04"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C06"
+      ],
+      "referenceIds": [
+        "R01"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C05"
+      ],
+      "referenceIds": [
+        "R05"
+      ]
+    }
+  ],
+  "survivor": "Birds are the only living dinosaurs, but none is a close ecological copy of Pachycephalosaurus. Bighorn sheep offer a tempting comparison because reinforced heads can function in combat, yet mammal horns, necks, brains, and impact postures differ sharply from a pachycephalosaur dome. The useful lesson is convergence, not identity: unrelated animals can turn the head into a display or fighting structure. Living species also remind us that display, pushing, flank blows, and direct collisions can coexist within one behavioral system.",
+  "distribution": "Pachycephalosaurus wyomingensis is known from latest Maastrichtian rocks of western North America, including the Hell Creek Formation of Montana and the Dakotas and the Lance Formation of Wyoming. This places an adult securely in the poster’s coastal-plain world. Species records are dominated by skull material, and the proposed inclusion of Dracorex and Stygimoloch expands the growth series rather than the geographic range. Exact abundance and habitat preference remain difficult to infer from the uneven record.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Domed adult skulls establish the thick roof, surrounding knobs, beak, and teeth.",
+      "Histology records active remodeling in smaller flat- and spike-headed specimens.",
+      "Lesions occur on some domes."
+    ],
+    "supportedInference": [
+      "Dracorex and Stygimoloch probably represent younger growth stages, though synonymy remains testable.",
+      "Combat is consistent with mechanics and pathology; exact strike style is unresolved.",
+      "A 4–5 m bipedal body is reconstructed from incomplete remains and relatives."
+    ],
+    "artisticReconstruction": [
+      "Body color, skin, dome covering, scars, and sex.",
+      "A particular head-butting, flank-striking, or display event.",
+      "Exact diet, social structure, speed, and calls."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "research",
+      "title": "Extreme cranial ontogeny in Pachycephalosaurus",
+      "creator": "John R. Horner and Mark B. Goodwin",
+      "year": 2009,
+      "url": "https://doi.org/10.1371/journal.pone.0007626",
+      "description": "Explore the growth evidence linking Dracorex and Stygimoloch with adult Pachycephalosaurus.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "research",
+      "title": "Pachycephalosaur domes and cranial combat",
+      "creator": "Joseph E. Peterson and colleagues",
+      "year": 2013,
+      "url": "https://doi.org/10.1371/journal.pone.0068620",
+      "description": "See how skull lesions test ideas about impact behavior.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Pachycephalosaurus",
+      "creator": "Museum of the Rockies",
+      "year": null,
+      "url": "https://www.museumoftherockies.org/",
+      "description": "Explore Hell Creek skulls and the growth research behind changing names.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "Growth synonymy is presented as the leading hypothesis, not settled fact."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29",
+  "references": [
+    {
+      "id": "R01",
+      "title": "The anatomy and relationships of Pachycephalosauria",
+      "authors": [
+        "Teresa Maryańska et al."
+      ],
+      "year": 2004,
+      "sourceType": "Peer-reviewed review",
+      "publication": "The Dinosauria",
+      "doi": null,
+      "url": "https://www.ucpress.edu/book/9780520254084/the-dinosauria",
+      "supportsClaims": [
+        "C01",
+        "C06"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "Extreme cranial ontogeny in Pachycephalosaurus",
+      "authors": [
+        "John R. Horner",
+        "Mark B. Goodwin"
+      ],
+      "year": 2009,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "PLOS ONE",
+      "doi": "10.1371/journal.pone.0007626",
+      "url": "https://doi.org/10.1371/journal.pone.0007626",
+      "supportsClaims": [
+        "C04"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "Cranial ontogeny in pachycephalosaurids",
+      "authors": [
+        "Mark B. Goodwin",
+        "John R. Horner"
+      ],
+      "year": 2004,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Paleobiology",
+      "doi": "10.1666/0094-8373(2004)030<0253:COPDAS>2.0.CO;2",
+      "url": "https://doi.org/10.1666/0094-8373(2004)030%3C0253:COPDAS%3E2.0.CO;2",
+      "supportsClaims": [
+        "C04"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "Distributions of cranial pathologies provide evidence for head-butting",
+      "authors": [
+        "Joseph E. Peterson et al."
+      ],
+      "year": 2013,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "PLOS ONE",
+      "doi": "10.1371/journal.pone.0068620",
+      "url": "https://doi.org/10.1371/journal.pone.0068620",
+      "supportsClaims": [
+        "C03"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "The dentition and diet of pachycephalosaurs",
+      "authors": [
+        "Philip J. Currie et al."
+      ],
+      "year": 2016,
+      "sourceType": "Peer-reviewed research",
+      "publication": "Cretaceous Research",
+      "doi": null,
+      "url": "https://www.sciencedirect.com/journal/cretaceous-research",
+      "supportsClaims": [
+        "C05"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "Biomechanics of pachycephalosaur domes",
+      "authors": [
+        "Eric Snively",
+        "Andrew Cox"
+      ],
+      "year": 2008,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Palaeontologia Electronica",
+      "doi": null,
+      "url": "https://palaeo-electronica.org/",
+      "supportsClaims": [
+        "C03"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "The Hell Creek Formation, Montana",
+      "authors": [
+        "Denver W. Fowler"
+      ],
+      "year": 2020,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Geosciences",
+      "doi": "10.3390/geosciences10110435",
+      "url": "https://doi.org/10.3390/geosciences10110435",
+      "supportsClaims": [
+        "C01"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Pachycephalosaurus",
+      "authors": [
+        "Smithsonian Institution"
+      ],
+      "year": null,
+      "sourceType": "Official museum resource",
+      "publication": "Smithsonian",
+      "doi": null,
+      "url": "https://naturalhistory.si.edu/",
+      "supportsClaims": [
+        "C01",
+        "C06"
+      ]
+    }
+  ]
+}

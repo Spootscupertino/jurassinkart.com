@@ -1,0 +1,260 @@
+{
+  "id": "CR25",
+  "slug": "mosasaurus-hoffmannii",
+  "section": "ocean",
+  "position": 1,
+  "commonName": "Mosasaurus",
+  "scientificName": "Mosasaurus hoffmannii",
+  "pronunciation": "MOH-zah-SORE-us hoff-MAHN-ee-eye",
+  "type": "marine_reptile",
+  "pose": "large streamlined mosasaur in lateral three-quarter view, propelled by a deep tail fin with four paddle-like limbs steering, jaws partly open",
+  "size": "12-17 m",
+  "ageRange_Ma": [
+    70.0,
+    66.0
+  ],
+  "diet": "Carnivore",
+  "habitat": "Open marine shelf and seaway",
+  "confidence": "well_documented",
+  "status": "roster",
+  "stage": {
+    "x": 0.815,
+    "plane": "deep"
+  },
+  "blurb": "Near the Cretaceous shoreline, Mosasaurus hoffmannii was a giant ocean-going lizard, not a swimming dinosaur. Its long skull carried cutting and crushing teeth, while paddle-shaped limbs steered a body driven mainly by its deep tail. Fossils place the species in both European seas and the retreating North American interior seaway.",
+  "notes": "Picture a broad, warm sea near the close of the Cretaceous. Its water covers continental shelves and, in North America, reaches into the shrinking Western Interior Seaway. Mosasaurus hoffmannii belongs in this marine world. It was a squamate—a member of the larger lizard-and-snake branch—not a dinosaur, whale, or crocodile. Its ancestors had moved from land into water millions of years earlier, and the adult body was thoroughly adapted for life offshore.\n\nThe skull was long and powerfully built. Rows of large, conical teeth had cutting edges, and extra teeth on the palate helped control slippery or struggling prey. Joints within a mosasaur skull allowed some movement, but popular images of a snake-like jaw unhinging to swallow anything greatly overstate the mechanism. The lower jaws remained connected, and prey handling was constrained by real bones, muscles, and tooth rows. Bite traces and stomach-region remains across mosasaurs show that these reptiles ate fish, ammonites, turtles, seabirds, and other marine reptiles, although no single menu should be assigned to every individual of M. hoffmannii.\n\nThe body was not an eel-shaped serpent propelled by wriggling alone. Soft-tissue outlines in related mosasaurs reveal a deep, crescent-like tail fin. The tail supplied the main thrust; four paddle-shaped limbs helped steer, brake, and stabilize. A dorsal fin is not preserved and is therefore omitted. Because the exact skin colors of Mosasaurus are unknown, the poster’s pattern is artistic, as are scars and the instant of open-jawed behavior.\n\nBody size deserves caution. Fragmentary giant specimens and different scaling methods have produced widely repeated extreme lengths, while more conservative reconstructions are shorter. The roster retains its inherited 12–17 m range as an editorial size bracket, not a measured span for the South Dakota animal or a claim that every adult reached the upper number. The important scale truth is simpler: this was a very large marine predator, but the fossil record does not give one unquestionable maximum.\n\nA particularly useful North American record comes from the Trail City Member of the Fox Hills Formation in South Dakota. Harrell and Martin identified an articulated skull as M. hoffmannii and dated its horizon to about 68.3–67.6 million years ago. That fossil establishes the species in the northern Western Interior Seaway during the interval represented by the poster. It does not establish a 17 m body. Other fossils occur around the Maastrichtian type area of the Netherlands and Belgium and in additional latest-Cretaceous marine deposits, showing a broad transatlantic distribution under changing taxonomy.\n\nMosasaur teeth were replaced throughout life. Isolated teeth are common, but identifying a species from a tooth alone can be difficult because tooth shape varies along the jaw and converges among predators. More complete skulls preserve stronger anatomical evidence. Bone chemistry and dental microwear add ecological clues, yet both require careful sampling and do not translate into a day-by-day biography.\n\nReproduction is another limit. Mosasaurs gave birth at sea rather than hauling onto beaches to lay eggs, as supported by embryos and very young individuals in marine deposits. Exactly where M. hoffmannii mated or gave birth, how long it cared for young, and whether it hunted socially remain unknown. The poster therefore shows one animal, moving through open water rather than performing a documented group behavior.\n\nThis reconstruction uses the secure marine body plan: a streamlined torso, steering paddles, and a tail-powered profile. The precise tail outline is inferred from related mosasaurs because a complete soft-tissue silhouette is not preserved for this species. The result is evidence-led but transparent: the animal, age, and ocean setting are well grounded; maximum length, color, and momentary behavior remain bounded reconstruction choices.",
+  "funFacts": [
+    "A lizard in the ocean — Mosasaurus belonged to Squamata, the reptile group that includes living lizards and snakes; it was not a marine dinosaur.",
+    "A dated American record — A South Dakota skull from the Trail City Member places M. hoffmannii at about 68.3–67.6 Ma, but that specimen does not support a 17 m length.",
+    "Tail first — Soft-tissue fossils of related mosasaurs show that a deep tail fin, rather than the paddles, produced most swimming thrust.",
+    "Built-in replacements — Like other mosasaurs, it continually replaced teeth, leaving abundant isolated teeth but making species-level identifications from single teeth hazardous."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C01"
+      ],
+      "referenceIds": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C05"
+      ],
+      "referenceIds": [
+        "R04"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C03"
+      ],
+      "referenceIds": [
+        "R03"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C07"
+      ],
+      "referenceIds": [
+        "R01",
+        "R06"
+      ]
+    }
+  ],
+  "distribution": "Confirmed material referred to Mosasaurus hoffmannii occurs in upper Maastrichtian marine rocks around the Netherlands and Belgium and in other northern Atlantic deposits. An articulated skull from the Trail City Member of South Dakota’s Fox Hills Formation provides a firm northern Western Interior Seaway occurrence at about 68.3–67.6 Ma. Reports from farther afield depend on taxonomic revision, so the map should show a broad northern transatlantic marine range without implying that every isolated tooth belongs to this species.",
+  "survivor": "Mosasaurus left no living descendants. Its nearest living context lies within Squamata, the great reptile radiation containing lizards and snakes, but no modern squamate repeats the mosasaur body plan at giant scale. Sea snakes and marine iguanas returned to water independently and use different combinations of lungs, limbs, and tails. Their existence helps explain how a fundamentally air-breathing reptile can become marine, while emphasizing that the spectacular mosasaur experiment ended at the K–Pg boundary. That distinction keeps evolutionary continuity accurate.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Skulls and skeletons establish a long toothed head, streamlined trunk, paddle-like limbs, and marine occurrence.",
+      "The Trail City skull directly records M. hoffmannii in South Dakota at about 68.3–67.6 Ma.",
+      "Teeth and jaw anatomy document replacement and a grasping, cutting feeding apparatus."
+    ],
+    "supportedInference": [
+      "A deep tail fin and tail-powered swimming are inferred from soft-tissue preservation in close mosasaur relatives.",
+      "Dietary breadth is reconstructed from tooth form, microwear, bite traces, and gut contents across mosasaurs.",
+      "The 12–17 m roster range brackets competing reconstructions rather than a single measured specimen."
+    ],
+    "artisticReconstruction": [
+      "Skin color, pattern, eye appearance, and scars.",
+      "The exact tail-fin outline for M. hoffmannii and all unpreserved soft tissue.",
+      "Open-mouth behavior, swimming depth, and solitude in the depicted instant."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "research",
+      "title": "A mosasaur from the Maastrichtian Fox Hills Formation",
+      "creator": "T. Lynn Harrell Jr. and James E. Martin",
+      "year": 2015,
+      "url": "https://doi.org/10.1017/njg.2014.27",
+      "description": "Read the primary account of the dated South Dakota skull and its taxonomic implications.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Mosasaurus",
+      "creator": "Natuurhistorisch Museum Maastricht",
+      "year": null,
+      "url": "https://www.nhmmaastricht.nl/",
+      "description": "Explore the institution associated with the type-Maastrichtian mosasaur record and its public collections.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "research",
+      "title": "Three-dimensional dental microwear in Maastrichtian mosasaurs",
+      "creator": "F. M. Holwerda and colleagues",
+      "year": 2023,
+      "url": "https://doi.org/10.1038/s41598-023-42369-7",
+      "description": "See how microscopic tooth wear helps test dietary differences among coexisting mosasaurs.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    }
+  ],
+  "references": [
+    {
+      "id": "R01",
+      "title": "The Phylogeny and Evolution of Mosasaurid Reptiles",
+      "authors": [
+        "Michael J. Polcyn",
+        "L. L. Jacobs"
+      ],
+      "year": 2005,
+      "sourceType": "Peer-reviewed synthesis",
+      "publication": "Netherlands Journal of Geosciences",
+      "doi": "10.1017/S0016774600020965",
+      "url": "https://doi.org/10.1017/S0016774600020965",
+      "supportsClaims": [
+        "C01",
+        "C02"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "The origin and early evolution of snakes and mosasaurids",
+      "authors": [
+        "Michael W. Caldwell"
+      ],
+      "year": 2012,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Zoological Journal of the Linnean Society",
+      "doi": "10.1111/j.1096-3642.2012.00806.x",
+      "url": "https://doi.org/10.1111/j.1096-3642.2012.00806.x",
+      "supportsClaims": [
+        "C01"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "A soft-tissue preserved mosasaur with a bilobed tail fluke",
+      "authors": [
+        "Johan Lindgren",
+        "Hani F. Kaddumi",
+        "Michael J. Polcyn"
+      ],
+      "year": 2013,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Nature Communications",
+      "doi": "10.1038/ncomms3423",
+      "url": "https://doi.org/10.1038/ncomms3423",
+      "supportsClaims": [
+        "C03"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "A mosasaur from the Maastrichtian Fox Hills Formation of the northern Western Interior Seaway",
+      "authors": [
+        "T. Lynn Harrell Jr.",
+        "James E. Martin"
+      ],
+      "year": 2015,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Netherlands Journal of Geosciences",
+      "doi": "10.1017/njg.2014.27",
+      "url": "https://doi.org/10.1017/njg.2014.27",
+      "supportsClaims": [
+        "C04",
+        "C05"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "Three-dimensional dental microwear texture analysis of Maastrichtian mosasaur teeth",
+      "authors": [
+        "F. M. Holwerda",
+        "Anne S. Schulp",
+        "others"
+      ],
+      "year": 2023,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Scientific Reports",
+      "doi": "10.1038/s41598-023-42369-7",
+      "url": "https://doi.org/10.1038/s41598-023-42369-7",
+      "supportsClaims": [
+        "C06"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "Mosasaur tooth replacement and implantation",
+      "authors": [
+        "Michael W. Caldwell"
+      ],
+      "year": 2007,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Bulletin of the Geological Society of Denmark",
+      "doi": null,
+      "url": "https://2dgf.dk/publikationer/bulletin/",
+      "supportsClaims": [
+        "C07"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "Mosasaur remains from the Maastrichtian of Denmark",
+      "authors": [
+        "Jesper Milàn",
+        "others"
+      ],
+      "year": 2023,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Zoological Journal of the Linnean Society",
+      "doi": "10.1093/zoolinnean/zlag071",
+      "url": "https://doi.org/10.1093/zoolinnean/zlag071",
+      "supportsClaims": [
+        "C08"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Live birth in Cretaceous marine lizards",
+      "authors": [
+        "Michael J. Polcyn",
+        "Louis L. Jacobs",
+        "others"
+      ],
+      "year": 2014,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Palaeontology",
+      "doi": "10.1111/pala.12110",
+      "url": "https://doi.org/10.1111/pala.12110",
+      "supportsClaims": [
+        "C09"
+      ]
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "Research synthesis prepared from the cited sources. Candidate reviewers appear only in the dossier and have not been contacted."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29"
+}

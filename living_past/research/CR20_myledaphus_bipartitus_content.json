@@ -1,0 +1,263 @@
+{
+  "id": "CR20",
+  "slug": "guitarfish-ray",
+  "section": "shoreline",
+  "position": 4,
+  "commonName": "Guitarfish ray",
+  "scientificName": "Myledaphus bipartitus",
+  "pronunciation": "my-LED-ah-fus bye-PAR-tih-tus",
+  "type": "fish",
+  "pose": "seen from directly above, broad flattened pectoral disc, blunt snout, long slender tail extended behind",
+  "size": "roughly 30–60 cm (1–2 ft)",
+  "ageRange_Ma": [
+    68,
+    66
+  ],
+  "diet": "Hard-prey feeder",
+  "habitat": "Freshwater and estuarine channels",
+  "confidence": "reasonable_inference",
+  "status": "roster",
+  "stage": {
+    "x": 0.648,
+    "plane": "shore"
+  },
+  "blurb": "A ray in a dinosaur river sounds misplaced, but Myledaphus is one of Hell Creek’s most revealing fishes. Its pavement-like teeth were built to crush hard prey, and abundant shed teeth record a cartilaginous animal whose skeleton rarely fossilized. It carried a marine-shaped ancestry deep into freshwater.",
+  "notes": "Most sharks and rays leave teeth more readily than skeletons because much of their internal support is cartilage. Myledaphus bipartitus follows that rule spectacularly. Its small, low-crowned teeth occur in dense microfossil collections across Late Cretaceous western North America. Seen one at a time they look modest; assembled into dental pavement, they form a crushing surface suited to hard food.\n\nFor decades Myledaphus was commonly called a guitarfish or guitarfish-like ray. New skeletal work is refining where it belongs among batomorphs, the broader ray group. The safe public description is a freshwater-tolerant ray with a flattened body, not a claim that it belonged inside any living guitarfish family. Its broad fins and long tail remain a reasonable silhouette, while exact disc proportions should follow described skeletal material rather than a modern species copied whole.\n\nThe teeth reveal function better than menu. Broad crushing crowns suit durophagy—feeding on resistant items such as mollusks or crustaceans. They do not identify each meal. Hell Creek rivers held mollusks and other invertebrates that could have been eaten, but without gut contents or a prey item preserved in the mouth, the page says “hard-prey feeder” and avoids a single exclusive food.\n\nAge studies of Myledaphus used growth increments in vertebral centra, somewhat like counting internal rings. Those analyses suggest individuals could live for years and grow through recognizable stages, though estimates depend on how increments formed and which specimens are sampled. This is a useful glimpse of a population rather than just a tooth type.\n\nFreshwater placement is central. Rays originated in a largely marine radiation, and most living species remain marine, but several lineages tolerate or permanently inhabit fresh water. Myledaphus fossils occur in nonmarine deposits, including Hell Creek river systems, supporting freshwater tolerance. Some coastal-plain channels also felt brackish influence, so an estuarine edge is possible. The animal should not be automatically moved into the open ocean simply because it was a ray.\n\nIts 30-centimetre roster size is plausible for a modest individual, but published estimates and specimens vary. A range of roughly 30–60 centimetres is more honest than one precise length. Teeth cannot straightforwardly yield whole-body size, and a flattened cartilaginous skeleton is easily lost or distorted.\n\nModern freshwater stingrays offer an ecological comparison but are not descendants of Myledaphus. They demonstrate that a ray body can solve the challenges of rivers, including bottom-oriented feeding and sensing. Living guitarfishes likewise illustrate a body outline, not identity. Myledaphus belonged to its own extinct branch.\n\nIn the poster, CR20 is viewed from above in shallow water. That pose makes its flattened disc legible while keeping it in the freshwater-to-estuarine transition supported by its record. The crushing teeth are the strongest direct clue to ecology. Skin color, spots, exact tail ornament, swimming behavior, and the prey beneath it are artistic. Even the common name “guitarfish ray” is a teaching handle rather than a final phylogenetic verdict.\n\nMyledaphus earns its place because it complicates easy categories. Hell Creek was not only dinosaurs on land, rays were not only ocean animals, and tiny teeth can sometimes outnumber grand skeletons as evidence. It is an organism reconstructed from abundance in pieces.\n\nDental pavements renewed themselves. Like other sharks and rays, Myledaphus produced replacement teeth rather than depending on one permanent set. A single individual could therefore contribute many teeth during life, and water could gather shed teeth from different times into one deposit. High tooth counts demonstrate repeated presence but cannot be translated directly into a population count. The flattened form presents another challenge. Cartilage can calcify in patterns that preserve portions of the skeleton, but crushing may distort width and outline. Recent anatomical descriptions are more informative than copying a living guitarfish photograph, especially for the snout, fin margins, and tail. Finally, freshwater tolerance is not proof of lifelong residence at one salinity. Coastal rivers shift with seasons, tides, and channel position. Some populations may have moved through a gradient. The fossils establish that the lineage entered nonmarine systems; they do not record CR20's travel history.",
+  "funFacts": [
+    "A mouth paved for crushing — Low, broad teeth formed a dental pavement capable of processing hard prey rather than slicing flesh.",
+    "Cartilage disappears, teeth remain — The mineralized teeth are far more common than articulated skeletons, shaping what we know about Myledaphus.",
+    "A freshwater ray — Nonmarine occurrences show that Myledaphus tolerated river systems, though some habitats may have been brackish.",
+    "Growth inside a vertebra — Increment studies of vertebral centra have been used to estimate age and growth in this extinct ray."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C02",
+        "C03"
+      ],
+      "referenceIds": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C01"
+      ],
+      "referenceIds": [
+        "R01",
+        "R03"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C04",
+        "C07"
+      ],
+      "referenceIds": [
+        "R02",
+        "R04"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C05"
+      ],
+      "referenceIds": [
+        "R05"
+      ]
+    }
+  ],
+  "survivor": "No living ray is Myledaphus. Modern river stingrays in South America and freshwater whiprays in Asia and Australia independently show that batomorph bodies can thrive away from the sea. Guitarfishes provide another visual comparison, with broad pectoral fins blending into an elongated tail region. These are analogues, not direct descendants. Myledaphus represents an extinct freshwater-tolerant experiment whose closest placement is still being refined as better skeletal material joins the enormous tooth record. This comparison should be read at lineage level: shared anatomy records kinship, while differences record continued evolution after the Cretaceous.",
+  "distribution": "Myledaphus bipartitus is widespread in Late Cretaceous western North America and occurs in Hell Creek microvertebrate assemblages of the northern Great Plains. Its fossils in nonmarine channel and floodplain deposits support freshwater tolerance; nearby estuarine or brackish settings remain possible on the coastal plain. This makes shallow inland or transitional water the defensible poster setting. It should not be used as evidence that the main Hell Creek floodplain was open marine, nor should every ray tooth from every facies be treated identically.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Abundant low-crowned teeth establish crushing dentitions and widespread occurrence.",
+      "Rare skeletal material establishes a flattened ray body and clarifies anatomy.",
+      "Vertebral centra preserve growth increments used in age studies."
+    ],
+    "supportedInference": [
+      "Hard-shelled invertebrates are plausible prey, but individual meals are unknown.",
+      "Freshwater tolerance follows from nonmarine fossil settings; exact salinity at each site varies.",
+      "Whole-body length estimates remain approximate."
+    ],
+    "artisticReconstruction": [
+      "Color, pattern, eye appearance, and exact disc outline where fossils are incomplete.",
+      "Swimming posture and position in the water column.",
+      "Specific prey and any tail markings or defensive structures not tied to described material."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "research",
+      "title": "Skeletal morphology and phylogenetic relationships of Myledaphus bipartitus",
+      "creator": "Jürgen Kriwet and colleagues",
+      "year": 2026,
+      "url": "https://research.jku.at/en/publications/skeletal-morphology-and-phylogenetic-relationships-of-the-late-cr/",
+      "description": "Explore the new skeletal evidence refining this ray’s body and family relationships.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Myledaphus bipartitus",
+      "creator": "North Dakota Geological Survey",
+      "year": null,
+      "url": "https://www.dmr.nd.gov/ndfossil/poster/PDF/Myledaphus%20bipartitus.pdf",
+      "description": "See an official state fossil resource focused on the small teeth that identify this freshwater ray.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "public_resource",
+      "title": "Latest Cretaceous Vertebrate Microfossils of Hell Creek",
+      "creator": "Smithsonian National Museum of Natural History",
+      "year": 2012,
+      "url": "https://www.naturalhistory.si.edu/sites/default/files/media/file/fossil-id-guide062812-accessible.pdf",
+      "description": "Place Myledaphus teeth among the many tiny remains used to reconstruct Hell Creek waterways.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "Current phylogenetic wording is intentionally conservative pending full assessment of new skeletal work."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29",
+  "references": [
+    {
+      "id": "R01",
+      "title": "Skeletal morphology and phylogenetic relationships of the Late Cretaceous freshwater ray Myledaphus bipartitus",
+      "authors": [
+        "Jürgen Kriwet et al."
+      ],
+      "year": 2026,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Journal of Systematic Palaeontology",
+      "doi": null,
+      "url": "https://research.jku.at/en/publications/skeletal-morphology-and-phylogenetic-relationships-of-the-late-cr/",
+      "supportsClaims": [
+        "C01",
+        "C02",
+        "C06"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "Myledaphus bipartitus",
+      "authors": [
+        "North Dakota Geological Survey"
+      ],
+      "year": null,
+      "sourceType": "Official geological survey resource",
+      "publication": "North Dakota Geological Survey",
+      "doi": null,
+      "url": "https://www.dmr.nd.gov/ndfossil/poster/PDF/Myledaphus%20bipartitus.pdf",
+      "supportsClaims": [
+        "C02",
+        "C03",
+        "C04"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "Latest Cretaceous Vertebrate Microfossils of the Hell Creek Formation",
+      "authors": [
+        "Smithsonian National Museum of Natural History"
+      ],
+      "year": 2012,
+      "sourceType": "Official museum guide",
+      "publication": "Smithsonian Institution",
+      "doi": null,
+      "url": "https://www.naturalhistory.si.edu/sites/default/files/media/file/fossil-id-guide062812-accessible.pdf",
+      "supportsClaims": [
+        "C01",
+        "C04"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "Comparative taphonomy and paleoecological reconstruction of two Hell Creek microvertebrate accumulations",
+      "authors": [
+        "L. R. Pearson",
+        "D. J. Nichols",
+        "J. P. Hartman"
+      ],
+      "year": 2008,
+      "sourceType": "Peer-reviewed research",
+      "publication": "PALAIOS",
+      "doi": "10.2110/palo.2007.p07-006r",
+      "url": "https://doi.org/10.2110/palo.2007.p07-006r",
+      "supportsClaims": [
+        "C04",
+        "C07"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "Age and growth in Myledaphus bipartitus, a Late Cretaceous freshwater guitarfish",
+      "authors": [
+        "A. G. Neuman",
+        "M. Brinkman"
+      ],
+      "year": 2005,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Journal of Vertebrate Paleontology",
+      "doi": null,
+      "url": "https://www.tandfonline.com/journals/ujvp20",
+      "supportsClaims": [
+        "C05"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "The Hell Creek Formation, Montana: a stratigraphic review",
+      "authors": [
+        "Denver W. Fowler"
+      ],
+      "year": 2020,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Geosciences",
+      "doi": "10.3390/geosciences10110435",
+      "url": "https://doi.org/10.3390/geosciences10110435",
+      "supportsClaims": [
+        "C07"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "Marine Breien Member of the Hell Creek Formation",
+      "authors": [
+        "John W. Hoganson",
+        "Edward C. Murphy"
+      ],
+      "year": 2002,
+      "sourceType": "Peer-reviewed geological study",
+      "publication": "GSA Special Paper 361",
+      "doi": "10.1130/0-8137-2361-2.247",
+      "url": "https://doi.org/10.1130/0-8137-2361-2.247",
+      "supportsClaims": [
+        "C07"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Phylogeny and classification of living and fossil batoid fishes",
+      "authors": [
+        "Marcelo R. de Carvalho"
+      ],
+      "year": 2004,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Biology of Sharks and Their Relatives",
+      "doi": null,
+      "url": "https://www.routledge.com/Biology-of-Sharks-and-Their-Relatives/Carrier-Musick-Heithaus/p/book/9781032097299",
+      "supportsClaims": [
+        "C06",
+        "C08"
+      ]
+    }
+  ]
+}

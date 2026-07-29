@@ -1,0 +1,257 @@
+{
+  "id": "CR23",
+  "slug": "horseshoe-crab",
+  "section": "shoreline",
+  "position": 7,
+  "commonName": "Horseshoe crab",
+  "scientificName": "Xiphosura (indet.)",
+  "researchScientificName": "Xiphosura indet.",
+  "pronunciation": "zif-oh-SURE-ah",
+  "type": "invertebrate",
+  "pose": "dorsal view, domed horseshoe-shaped carapace, hinged abdomen and long straight tail spine",
+  "size": "about 30 cm (12 in)",
+  "ageRange_Ma": [
+    72,
+    66
+  ],
+  "diet": "Bottom-feeding omnivore",
+  "habitat": "Marine or brackish shore, if locally present",
+  "confidence": "speculative",
+  "status": "roster",
+  "stage": {
+    "x": 0.668,
+    "plane": "shore"
+  },
+  "blurb": "Horseshoe crabs are genuine deep-time survivors—but that does not automatically place one in every Cretaceous river delta. CR23 represents an indeterminate xiphosuran at a marine-influenced shore. Its anatomy is defensible from the lineage; its exact presence in terminal Hell Creek requires a local specimen or citation before publication.",
+  "notes": "The horseshoe-shaped shield, hinged rear body, and long tail spine make xiphosurans instantly recognizable. They are chelicerate arthropods, more closely related to arachnids than to true crabs. Their lineage reaches far back into the Paleozoic, but its history includes many extinct forms, ecological shifts, and anatomical experiments.\n\nCR23 is deliberately labeled Xiphosura indeterminate. That means the poster is not claiming a named genus or species. It should also not imply that a modern Limulus has been copied unchanged into the Maastrichtian. A generic xiphosuran silhouette is reasonable for the clade, while exact proportions and ornament require a local fossil.\n\nPlacement is the central problem. Modern horseshoe crabs are marine and coastal, often using shallow water and beaches. Some fossil xiphosurans entered brackish or freshwater settings. Most Hell Creek deposits are fluvial, although the Breien Member and related eastern facies record marine influence. A horseshoe crab belongs only in that transitional or marine-influenced part of the reconstructed world—not in an ordinary inland pond by default.\n\nAt present, this dossier does not verify a diagnostic terminal Maastrichtian Hell Creek–Lance xiphosuran body fossil. That is a material gap, not a reason to invent certainty. The cast member can remain as an explicitly provisional representative of the nearby coast, or it can later be replaced if a locality-specific source cannot be produced.\n\nThe tail spine, or telson, is not a weapon in the ordinary sense. Living horseshoe crabs use it mainly to help right themselves when overturned. Their walking legs and mouthparts handle worms, mollusks, and other bottom food. Using living behavior to interpret an indeterminate fossil is an analogy, not direct evidence of CR23’s meal.\n\nHorseshoe crabs molt an external skeleton, and their lightly mineralized bodies preserve less readily than shells or bone. Exceptional burial can capture complete outlines, while ordinary deposits may leave little. Absence is therefore difficult to interpret, but poor preservation cannot substitute for a positive occurrence.\n\nFour living species survive in Asia and eastern North America. They are often called living fossils because the broad body plan is ancient. Genomic and fossil research instead reveals continued evolution, including ancient genome duplications and extinct lineages unlike living forms.\n\nIn the poster, show CR23 at the marine-influenced waterline with no species-level label. The dorsal shield, articulated rear section, walking appendages, and telson are evidence-led at clade level. Color, size, sex, exact spine count, and behavior are artistic until tied to a specimen. This page’s most important fact is therefore editorial honesty: deep-time plausibility is not the same as local proof.\n\nThe body itself is divided into functional regions. The broad prosomal shield covers the front, the opisthosoma carries additional appendages including book gills, and the telson projects behind. Living animals use multiple pairs of limbs for walking, handling food, and moving water across respiratory surfaces. Those details provide a clade-level framework, but marginal spines vary and should not be guessed from a modern species. Reproduction is equally tempting to overborrow. Living horseshoe crabs gather in shallow coastal water and lay eggs in sediment, sometimes in spectacular seasonal events. Nothing in the current local evidence establishes a nesting aggregation for CR23. Until a specimen citation is found, this page functions as a transparent candidate profile rather than a finished local biography. That status lets buyers see science operating as verification, including the possibility that a beautiful and plausible cast member may need to move or leave.\n\nA further caution concerns the word survivor. The xiphosuran lineage passed through the end-Cretaceous crisis, but without a local CR23 specimen we cannot narrate its population at the boundary. Modern persistence documents the broader branch, not this provisional individual, its species, or a continuous residence in the Western Interior.",
+  "funFacts": [
+    "Not a crab — Horseshoe crabs are chelicerates, closer to spiders and scorpions than true crabs.",
+    "A righting pole — The telson helps living animals turn over; it is not primarily a stinger.",
+    "Ancient, not unchanged — Xiphosurans evolved many extinct forms while only four species survive today.",
+    "Local proof pending — A terminal Hell Creek–Lance occurrence must be verified before CR23 is presented as a documented local animal."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C01"
+      ],
+      "referenceIds": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C03"
+      ],
+      "referenceIds": [
+        "R03"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C04"
+      ],
+      "referenceIds": [
+        "R01",
+        "R04"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C06"
+      ],
+      "referenceIds": [
+        "R05",
+        "R06"
+      ]
+    }
+  ],
+  "survivor": "Four horseshoe crab species live today: one along the Atlantic and Gulf coasts of North America and three in Asia. Their broad shields and telsons echo ancient xiphosurans, but they are not unchanged fossils. The surviving species carry their own evolutionary histories and face modern pressures including harvest, habitat loss, and shoreline change. They connect the poster to living seas while reminding us that a lineage can be ancient and still vulnerable. This comparison should be read at lineage level: shared anatomy records kinship, while differences record continued evolution after the Cretaceous.",
+  "distribution": "Xiphosurans have a long global fossil record in marine, brackish, and sometimes freshwater settings. For this poster, the only defensible position is a marine-influenced shoreline such as environments represented by the Breien incursion—not the generic inland Hell Creek floodplain. A diagnostic terminal Maastrichtian local occurrence has not yet been verified in this dossier; CR23 must remain provisional until one is documented. Future maps should attach every occurrence to a traceable specimen, formation, horizon, and published identification rather than extending the range from resemblance alone.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "The xiphosuran fossil record establishes the clade long before the Late Cretaceous.",
+      "Living and fossil anatomy supports shield, opisthosoma, limbs, and telson.",
+      "Marine-influenced Hell Creek facies are geologically documented."
+    ],
+    "supportedInference": [
+      "A coastal representative is biogeographically plausible but not yet locally verified.",
+      "Bottom feeding and righting behavior derive mainly from living analogues.",
+      "Thirty centimetres is illustrative."
+    ],
+    "artisticReconstruction": [
+      "Exact taxon, color, ornament, size, and sex.",
+      "Specific feeding or crawling behavior.",
+      "Presence at this exact time and locality pending a specimen citation."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "research",
+      "title": "Horseshoe crab phylogeny and classification",
+      "creator": "James C. Lamsdell",
+      "year": 2016,
+      "url": "https://doi.org/10.7717/peerj.1049",
+      "description": "Explore the diversity hidden behind the familiar horseshoe shape.",
+      "endorsementDisclaimer": "Editorially selected; no endorsement implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Horseshoe Crabs",
+      "creator": "Smithsonian Ocean",
+      "year": null,
+      "url": "https://ocean.si.edu/ocean-life/invertebrates/horseshoe-crabs",
+      "description": "Meet living species and their coastal ecology.",
+      "endorsementDisclaimer": "Editorially selected; no endorsement implied."
+    },
+    {
+      "kind": "public_resource",
+      "title": "Marine Breien Member of Hell Creek",
+      "creator": "Hoganson and Murphy",
+      "year": 2002,
+      "url": "https://doi.org/10.1130/0-8137-2361-2.247",
+      "description": "Understand the marine incursion required by CR23’s placement.",
+      "endorsementDisclaimer": "Editorially selected; no endorsement implied."
+    }
+  ],
+  "scientificReview": {
+    "status": "Taxon-locality verification required",
+    "reviewedBy": [],
+    "editorialNote": "Do not publish as documented Hell Creek fauna until verified."
+  },
+  "contentVersion": "0.9.0-provisional",
+  "lastReviewed": "2026-07-29",
+  "references": [
+    {
+      "id": "R01",
+      "title": "Horseshoe crab phylogeny and classification",
+      "authors": [
+        "James C. Lamsdell"
+      ],
+      "year": 2016,
+      "sourceType": "Peer-reviewed research",
+      "publication": "PeerJ",
+      "doi": "10.7717/peerj.1049",
+      "url": "https://doi.org/10.7717/peerj.1049",
+      "supportsClaims": [
+        "C01",
+        "C04"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "Evolutionary history of Xiphosura",
+      "authors": [
+        "Russell D. C. Bicknell",
+        "Stephen Pates"
+      ],
+      "year": 2020,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Frontiers in Earth Science",
+      "doi": "10.3389/feart.2020.00098",
+      "url": "https://doi.org/10.3389/feart.2020.00098",
+      "supportsClaims": [
+        "C01",
+        "C04"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "Horseshoe Crabs",
+      "authors": [
+        "Smithsonian Ocean"
+      ],
+      "year": null,
+      "sourceType": "Official museum resource",
+      "publication": "Smithsonian",
+      "doi": null,
+      "url": "https://ocean.si.edu/ocean-life/invertebrates/horseshoe-crabs",
+      "supportsClaims": [
+        "C03",
+        "C05"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "Joint assembly and genetic mapping of the Atlantic horseshoe crab genome",
+      "authors": [
+        "Austin et al."
+      ],
+      "year": 2014,
+      "sourceType": "Peer-reviewed research",
+      "publication": "GigaScience",
+      "doi": "10.1186/2047-217X-3-9",
+      "url": "https://doi.org/10.1186/2047-217X-3-9",
+      "supportsClaims": [
+        "C04"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "Marine Breien Member of the Hell Creek Formation",
+      "authors": [
+        "John W. Hoganson",
+        "Edward C. Murphy"
+      ],
+      "year": 2002,
+      "sourceType": "Peer-reviewed geology",
+      "publication": "GSA SP 361",
+      "doi": "10.1130/0-8137-2361-2.247",
+      "url": "https://doi.org/10.1130/0-8137-2361-2.247",
+      "supportsClaims": [
+        "C06"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "The Hell Creek Formation, Montana",
+      "authors": [
+        "Denver W. Fowler"
+      ],
+      "year": 2020,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Geosciences",
+      "doi": "10.3390/geosciences10110435",
+      "url": "https://doi.org/10.3390/geosciences10110435",
+      "supportsClaims": [
+        "C06"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "Conservation of Asian horseshoe crabs",
+      "authors": [
+        "Paul K. S. Shin et al."
+      ],
+      "year": 2009,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Biodiversity and Conservation",
+      "doi": null,
+      "url": "https://link.springer.com/journal/10531",
+      "supportsClaims": [
+        "C05"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "The American horseshoe crab",
+      "authors": [
+        "Carl N. Shuster Jr. et al."
+      ],
+      "year": 2003,
+      "sourceType": "Scholarly monograph",
+      "publication": "Harvard University Press",
+      "doi": null,
+      "url": "https://www.hup.harvard.edu/books/9780674011595",
+      "supportsClaims": [
+        "C03",
+        "C05"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,264 @@
+{
+  "id": "CR17",
+  "slug": "borealosuchus-sternbergii",
+  "section": "shoreline",
+  "position": 1,
+  "commonName": "Borealosuchus",
+  "scientificName": "Borealosuchus sternbergii",
+  "pronunciation": "bor-ee-AL-oh-SOO-kus STERN-berg-eye",
+  "type": "marine_reptile",
+  "pose": "full lateral three-quarter view, low-slung crocodilian sprawl on four splayed legs, long armoured tail extended straight behind, jaws slightly parted",
+  "size": "about 4 m (13 ft)",
+  "ageRange_Ma": [
+    68,
+    66
+  ],
+  "diet": "Carnivore",
+  "habitat": "Rivers, ponds, and coastal-plain wetlands",
+  "confidence": "reasonable_inference",
+  "status": "roster",
+  "stage": {
+    "x": 0.535,
+    "plane": "shore"
+  },
+  "blurb": "At a muddy Hell Creek waterline, Borealosuchus filled a familiar-looking role without being a modern crocodile. Its armored body, long tail, and tooth-lined jaws suited an amphibious hunter, but fragmentary fossils leave the exact menu—and much of its living appearance—open to careful inference.",
+  "notes": "Late in the Maastrichtian, rivers crossed a broad lowland west of the retreating Western Interior Seaway. Channels shifted, floods spread mud and sand, and quiet ponds formed beside wooded floodplains. This is the proper setting for Borealosuchus sternbergii: inland fresh or perhaps locally brackish water, not the open sea. Calling it a “marine reptile” is a roster convenience, not a biological description.\n\nBorealosuchus was a eusuchian crocodyliform, part of the broader lineage near the ancestry of living crocodilians. It looked recognizably crocodile-like because the same amphibious body plan was already effective: a long low skull, many conical teeth, short sturdy limbs, a muscular tail, and rows of bony plates called osteoderms embedded in the skin. Yet it should not be casually labeled a modern crocodile or alligator. Its exact position near the base of Crocodylia has shifted among anatomical analyses.\n\nThe species name sternbergii was originally attached to Leidyosuchus material and later transferred when Borealosuchus was erected. That taxonomic history matters. Isolated teeth and armor occur much more readily than complete, diagnostic skeletons, so not every crocodile-like fragment from Hell Creek can be confidently assigned to this species. The poster uses the named species because it is reported from the latest Cretaceous northern Great Plains, while the page keeps claims bounded by what its fossils can actually show.\n\nAt around several metres long, an adult would have been a substantial shoreline predator. Its teeth were suited to gripping rather than chewing. Fish, turtles, small vertebrates, and carrion are plausible foods, but a detailed species-specific diet is not preserved. The animal could have waited near a bank or moved through shallow water, powered by the tail, in a way broadly comparable to living crocodilians. Those comparisons explain a functional possibility; they do not fossilize a particular hunting scene.\n\nThe armor is more secure. Crocodyliform osteoderms form a protective dorsal covering and can also interact with muscles and body support. The poster’s tiled back therefore rests on skeletal evidence and close comparative anatomy. Skin color, eye color, scars, and the exact arrangement of unsampled soft tissues remain artistic. So does the slightly open mouth. No fossil records a hiss, bellow, or any other particular sound.\n\nBorealosuchus also belongs to a story larger than one landscape. Species assigned to the genus range from the Late Cretaceous into the Paleogene of North America, showing that this crocodile-line body plan crossed the end-Cretaceous boundary even though B. sternbergii itself should not automatically be claimed as a survivor. Survival belongs to lineages and documented occurrences, not to a familiar-looking reconstruction.\n\nIn the poster, CR17 rests at the water’s edge rather than swimming offshore. That placement is ecologically defensible for an amphibious freshwater crocodyliform in the Hell Creek–Lance coastal plain. Its four feet, belly, tail, and armor are visible so viewers can distinguish a whole animal from the isolated pieces that often dominate the fossil record. The broad silhouette is evidence-led; its momentary alertness and coloration are reconstruction.\n\nThe safest way to meet Borealosuchus is therefore as neither monster nor living fossil frozen in time. It was one successful experiment in the long crocodile-line history: familiar in outline, distinct in anatomy, and at home where Late Cretaceous land and water met.\n\nIts fossils also demonstrate why waterways dominate vertebrate collections. Animals living beside channels may die near water, while floods move resistant teeth, bones, and armor into concentrated deposits. That process can make aquatic and shoreline animals conspicuous without providing a census of the living community. Abundance in a fossil sample reflects habitat, durability, transport, and collecting method together. For Borealosuchus, the geological setting strengthens an amphibious interpretation but does not reveal population density, territory size, or how often individuals encountered dinosaurs. Those questions remain outside the evidence used here.",
+  "funFacts": [
+    "Not quite a crocodile — Borealosuchus belongs close to the crocodilian crown, but analyses do not simply place it inside any living crocodile or alligator group.",
+    "A renamed reptile — Material once called Leidyosuchus sternbergii was reassigned when Borealosuchus was established, a reminder that fossil names change as comparisons improve.",
+    "Armor under the skin — Its back carried osteoderms, bony plates that supported the armored crocodile-like silhouette used in the poster.",
+    "Shoreline, not open ocean — Hell Creek records river and floodplain environments; Borealosuchus is best staged beside inland water, even though the poster roster calls it a marine reptile."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C03"
+      ],
+      "referenceIds": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C02"
+      ],
+      "referenceIds": [
+        "R01"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C05"
+      ],
+      "referenceIds": [
+        "R02",
+        "R03"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C01",
+        "C07"
+      ],
+      "referenceIds": [
+        "R04",
+        "R05"
+      ]
+    }
+  ],
+  "survivor": "Living crocodiles, alligators, caimans, and gharials are the nearest everyday comparison, but none is a surviving Borealosuchus. They share a deeper eusuchian inheritance: armored skin, a muscular swimming tail, a secondary palate, and a body capable of moving between water and land. The resemblance is real evolutionary continuity, not proof that crocodilians stopped changing. Modern species have their own specialized skulls, senses, behaviors, and ecologies, while Borealosuchus occupied an earlier branch near the origin of the living radiation.",
+  "distribution": "Borealosuchus sternbergii is reported from latest Cretaceous deposits of the northern Western Interior, including the Hell Creek and equivalent Lance-age record of the northern Great Plains. The defensible poster setting is a river, pond margin, or wet floodplain on the low coastal plain. Some Hell Creek strata record brackish or marine incursions, but that does not turn this animal into an open-ocean reptile. Species-level identification should be reserved for diagnostic material rather than every isolated crocodyliform tooth or osteoderm.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Skull and postcranial material establish a long-snouted, armored, four-limbed crocodyliform body.",
+      "Teeth and jaws establish a grasping carnivorous feeding apparatus.",
+      "Latest Cretaceous occurrences place the species in the northern Western Interior record."
+    ],
+    "supportedInference": [
+      "An amphibious lifestyle and tail-powered swimming follow from anatomy and comparison with other eusuchians.",
+      "Fish and small shoreline vertebrates are plausible prey, but no fixed menu is known.",
+      "A roughly crocodile-like soft-tissue envelope is reasonable around the skeleton."
+    ],
+    "artisticReconstruction": [
+      "Color, pattern, eye appearance, scars, and precise soft-tissue contours.",
+      "The slightly open jaws and immediate behavior.",
+      "Any particular call, social behavior, or hunting event."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "research",
+      "title": "Borealosuchus, a replacement name for the Eocene crocodyliform Leidyosuchus",
+      "creator": "Christopher A. Brochu",
+      "year": 1997,
+      "url": "https://doi.org/10.1080/02724634.1997.10010999",
+      "description": "Follow the taxonomic work that established the genus and separated these fossils from a historical catch-all.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "museum",
+      "title": "An Illustrated Guide to the Latest Cretaceous Vertebrate Microfossils of the Hell Creek Formation",
+      "creator": "Smithsonian National Museum of Natural History",
+      "year": 2012,
+      "url": "https://www.naturalhistory.si.edu/sites/default/files/media/file/fossil-id-guide062812-accessible.pdf",
+      "description": "See how fragmentary teeth, scales, and armor help identify the less-famous vertebrates of Hell Creek.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "public_resource",
+      "title": "The Hell Creek Formation, Montana: a stratigraphic review",
+      "creator": "Denver W. Fowler",
+      "year": 2020,
+      "url": "https://doi.org/10.3390/geosciences10110435",
+      "description": "Explore the changing river and coastal-plain setting that makes a shoreline crocodyliform ecologically coherent.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "Research synthesis prepared from cited sources. Candidate reviewers appear only in the dossier and have not been contacted."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29",
+  "references": [
+    {
+      "id": "R01",
+      "title": "Borealosuchus, a replacement name for the Eocene crocodyliform Leidyosuchus",
+      "authors": [
+        "Christopher A. Brochu"
+      ],
+      "year": 1997,
+      "sourceType": "Peer-reviewed taxonomic research",
+      "publication": "Journal of Vertebrate Paleontology",
+      "doi": "10.1080/02724634.1997.10010999",
+      "url": "https://doi.org/10.1080/02724634.1997.10010999",
+      "supportsClaims": [
+        "C02",
+        "C03"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "Phylogenetic approaches toward crocodylian history",
+      "authors": [
+        "Christopher A. Brochu"
+      ],
+      "year": 2003,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Annual Review of Earth and Planetary Sciences",
+      "doi": "10.1146/annurev.earth.31.100901.141308",
+      "url": "https://doi.org/10.1146/annurev.earth.31.100901.141308",
+      "supportsClaims": [
+        "C03",
+        "C04",
+        "C05",
+        "C08"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "The evolution of the crocodyliform locomotor apparatus",
+      "authors": [
+        "John R. Hutchinson"
+      ],
+      "year": 2001,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Zoological Journal of the Linnean Society",
+      "doi": "10.1111/j.1096-3642.2001.tb01309.x",
+      "url": "https://doi.org/10.1111/j.1096-3642.2001.tb01309.x",
+      "supportsClaims": [
+        "C05",
+        "C06"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "The Hell Creek Formation, Montana: a stratigraphic review and revision",
+      "authors": [
+        "Denver W. Fowler"
+      ],
+      "year": 2020,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Geosciences",
+      "doi": "10.3390/geosciences10110435",
+      "url": "https://doi.org/10.3390/geosciences10110435",
+      "supportsClaims": [
+        "C01",
+        "C07"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "Marine Breien Member (Maastrichtian) of the Hell Creek Formation in North Dakota",
+      "authors": [
+        "John W. Hoganson",
+        "Edward C. Murphy"
+      ],
+      "year": 2002,
+      "sourceType": "Peer-reviewed geological study",
+      "publication": "Geological Society of America Special Paper 361",
+      "doi": "10.1130/0-8137-2361-2.247",
+      "url": "https://doi.org/10.1130/0-8137-2361-2.247",
+      "supportsClaims": [
+        "C01",
+        "C07"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "Comparative taphonomy and paleoecological reconstruction of two microvertebrate accumulations from the Hell Creek Formation",
+      "authors": [
+        "L. R. Pearson",
+        "D. J. Nichols",
+        "J. P. Hartman"
+      ],
+      "year": 2008,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "PALAIOS",
+      "doi": "10.2110/palo.2007.p07-006r",
+      "url": "https://doi.org/10.2110/palo.2007.p07-006r",
+      "supportsClaims": [
+        "C01",
+        "C07"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "An Illustrated Guide to latest Cretaceous Vertebrate Microfossils of the Hell Creek Formation",
+      "authors": [
+        "Smithsonian National Museum of Natural History"
+      ],
+      "year": 2012,
+      "sourceType": "Official museum guide",
+      "publication": "Smithsonian Institution",
+      "doi": null,
+      "url": "https://www.naturalhistory.si.edu/sites/default/files/media/file/fossil-id-guide062812-accessible.pdf",
+      "supportsClaims": [
+        "C02",
+        "C07"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Crocodylian diversity in space and time",
+      "authors": [
+        "Paul M. Barrett",
+        "Richard J. Butler"
+      ],
+      "year": 2009,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Zoological Journal of the Linnean Society",
+      "doi": "10.1111/j.1096-3642.2009.00517.x",
+      "url": "https://doi.org/10.1111/j.1096-3642.2009.00517.x",
+      "supportsClaims": [
+        "C08"
+      ]
+    }
+  ]
+}

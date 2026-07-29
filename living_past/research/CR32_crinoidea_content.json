@@ -1,0 +1,262 @@
+{
+  "id": "CR32",
+  "slug": "crinoid",
+  "section": "ocean",
+  "position": 8,
+  "commonName": "Crinoid",
+  "scientificName": "Crinoidea (indet.)",
+  "pronunciation": "cry-NOY-dee-ah",
+  "type": "invertebrate",
+  "size": "10-40 cm",
+  "ageRange_Ma": [
+    72.0,
+    66.0
+  ],
+  "diet": "Filter feeder",
+  "habitat": "Firm patches on marine seafloor",
+  "confidence": "speculative",
+  "status": "roster",
+  "framing_mode": "plate",
+  "pose": "a stalked sea lily anchored upright, long segmented stalk topped by a small cup and a crown of feathery arms fanned open for filter feeding",
+  "complete": "the whole organism from root-like holdfast through the stalk to every feathery arm tip",
+  "surface": "cleanly detailed calcite plating and fine feathery pinnules",
+  "ar": "2:3",
+  "stage": {
+    "x": 0.878,
+    "plane": "abyss"
+  },
+  "blurb": "Crinoids are echinoderms—relatives of sea stars—with feathery arms that gather suspended food. Their calcite skeletons often fall into thousands of ring-shaped pieces after death, so a complete Late Cretaceous sea lily is a cautious reconstruction assembled from relatives. It is enlarged on the poster and left deliberately indeterminate.",
+  "notes": "A crinoid is an animal, despite the flower-like name “sea lily.” It belongs to Echinodermata with sea stars, brittle stars, sea urchins, and sea cucumbers. The typical stalked body has a holdfast, a column built from stacked calcite ossicles, a cup or calyx containing major organs, and branching arms lined with small pinnules.\n\nTube feet and cilia move suspended particles along grooves toward the mouth. “Filter feeder” is convenient public language, though “suspension feeder” is more precise because the arms collect particles from moving water rather than pumping water through a closed filter. Arm posture responds to current direction and speed. Exact food particle sizes and feeding rates are not preserved for this indeterminate animal.\n\nCrinoid skeletons are made of many porous calcite plates linked by soft tissue. After death they commonly disarticulate rapidly. Columnals—the ring or star-shaped stalk pieces—can be abundant while whole crowns remain rare. That taphonomic pattern means an isolated stem fragment proves a crinoid lived in the broader deposit but may not establish crown shape, species, or whether it had a long stalk.\n\nThe Late Cretaceous included both stalked and unstalked crinoids. Comatulids, or feather stars, lose the juvenile stalk and can crawl or swim; many sea lilies retain one. The roster explicitly requests a stalked form, but the taxon is only Crinoidea indeterminate. Without a locality-linked articulated specimen, a long-stalked seafloor reconstruction remains speculative and is labeled accordingly.\n\nThe 10–40 cm roster size spans a small whole animal. Its thin arms would vanish beside metre-scale marine reptiles at true scale, so the poster enlarges it for legibility. The scale key must give actual size and enlargement. The stem should anchor to a firm object or consolidated patch, not emerge magically from featureless water.\n\nCrinoid fragments occur in many marine rocks, including Cretaceous deposits of North America. However, the exact 68–66 Ma Western Interior taxon, body form, and abundance were not securely established from the consulted sources. Retreating seaways shifted substrates and circulation, and a generic crinoid should not be used to claim a deep four-kilometre abyss. The Western Interior was largely an epicontinental sea, and “abyss” here is a compositional layer rather than literal paleodepth.\n\nColor does not fossilize in these specimens. Living crinoids show striking reds, yellows, browns, and banded patterns, but transferring them is artistic. Arm spread can be based on suspension feeding, while the exact current, number of branches, pinnule density, stalk flexibility, and attached organisms should be conservative.\n\nUnlike mosasaurs and ammonites, crinoids survived the K–Pg extinction. Hundreds of living species occupy modern oceans. Most conspicuous shallow-water forms are feather stars, while stalked sea lilies generally occur deeper, although living distribution cannot be copied directly into Cretaceous ecology.\n\nThe reconstruction’s confidence is intentionally speculative at the local taxonomic level, not because crinoid anatomy is mysterious. The class is well understood and living members clarify function. The uncertainty lies in selecting this exact stalked silhouette for the final Western Interior scene. The page makes that boundary productive: scattered ossicles, comparative anatomy, and art combine to restore a plausible animal without claiming a fossil that has not been found.\n\nThe class-level identification also limits what a columnal can prove. Its central opening, articular surface, and shape may narrow affinity, but a loose ossicle does not recover the number of arms, crown branching, stalk length, or holdfast. Those features should come from an articulated, age-appropriate relative and remain visibly provisional until a local specimen supplies them. This same caution applies to habitat. A holdfast indicates attachment, but the substrate, current strength, and water depth require sedimentary context; they cannot be read from an isolated stem ring.",
+  "funFacts": [
+    "Animal flower — Sea lilies are echinoderms related to sea stars, not plants.",
+    "A skeleton of pieces — Hundreds of calcite ossicles often separate after death, leaving stem rings far more often than complete crowns.",
+    "Food rides the current — Feathery arms and tube feet collect particles and move them along grooves to the mouth.",
+    "Still with us — Crinoids survived K–Pg; living feather stars and stalked sea lilies inhabit today’s oceans."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C01"
+      ],
+      "referenceIds": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C02"
+      ],
+      "referenceIds": [
+        "R03",
+        "R04"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C03"
+      ],
+      "referenceIds": [
+        "R01",
+        "R05"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C04"
+      ],
+      "referenceIds": [
+        "R02",
+        "R06"
+      ]
+    }
+  ],
+  "distribution": "Crinoids have a global marine fossil record and survive worldwide today. Disarticulated Cretaceous ossicles occur broadly, but this page does not claim a securely identified stalked species in the final 68–66 Ma Western Interior Seaway. The map should show class-level marine distribution and mark the poster occurrence as a plausible, time-and-place-specific reconstruction rather than a confirmed local taxon. Modern deep-sea localities must not be projected backward as Cretaceous range points, and loose columnals remain class-level evidence unless diagnostic.",
+  "survivor": "Crinoids are genuine survivors. Living feather stars flourish on reefs and slopes, while stalked sea lilies persist mainly in deeper water. Their arms, pinnules, food grooves, calcite plates, and five-rayed organization make unusually strong analogues for fossil function. Yet a modern species is not the same as CR32, and modern depth preferences cannot be projected unchanged into the Cretaceous. What survived is the crinoid body plan, diversified through many branches and habitats. This is survival through diversification, not an unchanged fossil species.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Ossicles and rare articulated fossils establish crinoid construction.",
+      "Living crinoids directly demonstrate suspension feeding mechanics.",
+      "Cretaceous fragments document broad class presence."
+    ],
+    "supportedInference": [
+      "A complete crown can be reconstructed from related articulated forms.",
+      "Current-facing arms collected particles.",
+      "Actual size falls within a small class-level bracket."
+    ],
+    "artisticReconstruction": [
+      "A stalked CR32 in the exact 68–66 Ma WIS scene.",
+      "Color, branching details, holdfast substrate, and current.",
+      "Enlargement and placement in an ‘abyss’ composition layer."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "museum",
+      "title": "Crinoids",
+      "creator": "Smithsonian Ocean",
+      "year": null,
+      "url": "https://ocean.si.edu/ocean-life/invertebrates/crinoids",
+      "description": "Meet living sea lilies and feather stars as context for fossil anatomy.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "research",
+      "title": "Crinoid functional morphology",
+      "creator": "Tomasz K. Baumiller",
+      "year": 2008,
+      "url": "https://ucmp.berkeley.edu/echinodermata/crinoidea.html",
+      "description": "Explore how stalks, arms, currents, and feeding work together.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Fossil crinoids",
+      "creator": "University of California Museum of Paleontology",
+      "year": null,
+      "url": "https://ucmp.berkeley.edu/echinodermata/crinoidea.html",
+      "description": "Connect scattered ossicles to the architecture of the whole animal.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    }
+  ],
+  "references": [
+    {
+      "id": "R01",
+      "title": "Treatise on Invertebrate Paleontology: Crinoidea",
+      "authors": [
+        "Raymond C. Moore",
+        "others"
+      ],
+      "year": 1978,
+      "sourceType": "Scholarly monograph",
+      "publication": "Geological Society of America",
+      "doi": null,
+      "url": "https://journals.ku.edu/InvertebratePaleo",
+      "supportsClaims": [
+        "C01",
+        "C03"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "Evolution and extinction of the Crinoidea",
+      "authors": [
+        "Tomasz K. Baumiller",
+        "Charles G. Messing"
+      ],
+      "year": 2007,
+      "sourceType": "Peer-reviewed synthesis",
+      "publication": "Annual Review of Earth and Planetary Sciences",
+      "doi": null,
+      "url": "https://www.annualreviews.org/journal/earth",
+      "supportsClaims": [
+        "C01",
+        "C04"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "Post-mortem disarticulation of crinoids",
+      "authors": [
+        "Tomasz K. Baumiller",
+        "William I. Ausich"
+      ],
+      "year": 1992,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Palaios",
+      "doi": null,
+      "url": "https://pubs.geoscienceworld.org/palaios",
+      "supportsClaims": [
+        "C02"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "Experimental crinoid taphonomy",
+      "authors": [
+        "Forest J. Gahn",
+        "Tomasz K. Baumiller"
+      ],
+      "year": 2004,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Palaios",
+      "doi": null,
+      "url": "https://pubs.geoscienceworld.org/palaios",
+      "supportsClaims": [
+        "C02"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "Feeding ecology of living crinoids",
+      "authors": [
+        "Charles G. Messing"
+      ],
+      "year": 1997,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Oceanography and Marine Biology",
+      "doi": null,
+      "url": "https://www.nova.edu/ocean/",
+      "supportsClaims": [
+        "C03"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "Crinoids through time",
+      "authors": [
+        "University of California Museum of Paleontology"
+      ],
+      "year": null,
+      "sourceType": "Official museum resource",
+      "publication": "UCMP",
+      "doi": null,
+      "url": "https://ucmp.berkeley.edu/echinodermata/crinoidea.html",
+      "supportsClaims": [
+        "C04"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "Crinoids",
+      "authors": [
+        "Smithsonian Ocean"
+      ],
+      "year": null,
+      "sourceType": "Official museum resource",
+      "publication": "Smithsonian Institution",
+      "doi": null,
+      "url": "https://ocean.si.edu/ocean-life/invertebrates/crinoids",
+      "supportsClaims": [
+        "C04"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Cretaceous crinoid diversity",
+      "authors": [
+        "Hans Hess",
+        "others"
+      ],
+      "year": 2011,
+      "sourceType": "Scholarly synthesis",
+      "publication": "Fossil Crinoids",
+      "doi": null,
+      "url": "https://www.cambridge.org/",
+      "supportsClaims": [
+        "C01"
+      ]
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "Local placement is explicitly speculative; no outreach."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29"
+}

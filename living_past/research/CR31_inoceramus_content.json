@@ -1,0 +1,262 @@
+{
+  "id": "CR31",
+  "slug": "inoceramus",
+  "section": "ocean",
+  "position": 7,
+  "commonName": "Inoceramus",
+  "scientificName": "Inoceramus",
+  "pronunciation": "in-oh-SER-ah-mus",
+  "type": "invertebrate",
+  "size": "0.5-2 m",
+  "ageRange_Ma": [
+    72.0,
+    66.0
+  ],
+  "diet": "Filter feeder",
+  "habitat": "Marine seafloor",
+  "confidence": "reasonable_inference",
+  "status": "roster",
+  "notesRoster": "inoceramids decline through the Maastrichtian; kept as an iconic giant bivalve, flagged.",
+  "pose": "a single large thick-shelled bivalve resting slightly agape, three-quarter angle showing the strongly concentric ribbed shell, the growth rings and the straight hinge",
+  "complete": "the whole shell, both valves and the hinge within the frame",
+  "surface": "cleanly detailed heavy concentric shell ribbing and prismatic nacre",
+  "ar": "1:1",
+  "stage": {
+    "x": 0.722,
+    "plane": "abyss"
+  },
+  "blurb": "Inoceramus represents the great ribbed inoceramid bivalves that carpeted many Cretaceous seafloors. Some grew enormous, and their calcitic shells record growth and seawater chemistry. Yet the group appears to have disappeared roughly 2.5–3.5 million years before the K–Pg boundary, making this a deliberately time-compressed visitor—not a true inhabitant of 68–66 Ma.",
+  "notes": "Inoceramus is the familiar name for a diverse set of inoceramid bivalves. Their shells often have a long hinge, strong concentric growth folds, and a thick prismatic calcite layer that survives where more delicate shell material dissolves. They were mollusks with two valves, related broadly to living clams and mussels, and lived on or just above marine seafloors.\n\nSome inoceramids reached remarkable sizes. The inherited 0.5–2 m roster range captures medium to giant forms, but it should not be treated as the size of every Inoceramus species. Large shells grew over time and could host oysters, worms, or other encrusters, turning one animal into hard habitat on a soft seabed. Complete shell geometry, muscle scars, and hinge structures constrain the body; exposed soft parts, siphons, mantle color, and gape remain comparative reconstruction.\n\nLike living bivalves, inoceramids probably filtered suspended particles from water using gills. Shell form and stable isotopes have been used to infer habitat, growth, temperature, and salinity. Those interpretations depend on preservation. Calcite can retain primary signals well, but recrystallization and burial fluids may alter chemistry. A growth line is not automatically annual unless independently calibrated.\n\nThe most important fact on this page is temporal. Inoceramids underwent a major extinction before the end-Cretaceous impact. High-resolution studies place their disappearance in the late Maastrichtian, commonly about 2.5–3.5 million years before the K–Pg boundary, with regional details and taxonomy affecting the estimate. That places the group outside this poster’s tightly stated 68–66 Ma focus. No younger evidence consulted here justifies hiding that mismatch.\n\nThe animal remains because the roster deliberately presents an iconic Cretaceous seafloor and because educational honesty can make the mismatch useful. It is a time-compressed reconstruction: Inoceramus represents an earlier Maastrichtian chapter of the same broad marine world, not a claim of coexistence with the terminal animals at 66 Ma. The page, card, and caption should state this visibly. If the production later enforces a literal single instant, CR31 should be swapped rather than silently redated.\n\nGeographically, inoceramids were widespread in Cretaceous seas, including the Western Interior Seaway. Shells serve as biostratigraphic and paleoenvironmental tools in chalks and shales. Their abundance and robust calcite also create preservation bias: a shell bed may exaggerate durability relative to original living abundance or transport shells after death.\n\nThe poster should place the bivalve on the seafloor, not floating in the abyss. A slightly open gape is plausible for life, but the exact soft body should remain mostly hidden. The heavy ribs and straight hinge are evidence-led. Shell color, mantle edge, attached organisms, sediment plume, and exact orientation are artistic unless tied to a specimen.\n\nInoceramids did not survive to modern seas. Living oysters, mussels, and large clams demonstrate bivalve filter feeding and shell growth but are not direct unchanged descendants. The group’s pre-K–Pg disappearance also teaches that the final extinction was preceded by ecological turnover; not every classic Cretaceous organism waited for the asteroid.\n\nThis page therefore carries lower scene confidence despite excellent fossils. Anatomy and broad ecology are well documented. The chronological placement is not. By labeling the compression, the project preserves a dramatic fossil organism without converting artistic composition into a false range extension.\n\nThe time gap is large enough to matter visually and editorially. A clearly marked inset, ghosted placement, or “earlier Maastrichtian” label is more honest than letting the viewer infer coexistence. This treatment also reveals that extinction was a sequence of ecological changes, not a single list of organisms all disappearing at the same second after impact. The shell itself needs no such apology: its growth folds, hinge, mineral structure, and role as seafloor substrate come from direct specimens. Only the poster’s date compresses the record.",
+  "funFacts": [
+    "Gone before impact — Inoceramids appear to have vanished about 2.5–3.5 million years before the K–Pg boundary.",
+    "Shell as habitat — Giant valves could provide rare hard surfaces for encrusting organisms on soft seafloors.",
+    "A chemical notebook — Preserved calcite growth layers can record environmental change, after alteration is screened.",
+    "Time-compressed on purpose — CR31 represents an earlier Maastrichtian seafloor and should not be read as living at 68–66 Ma."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C04"
+      ],
+      "referenceIds": [
+        "R04",
+        "R05"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C03"
+      ],
+      "referenceIds": [
+        "R02",
+        "R03"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C02"
+      ],
+      "referenceIds": [
+        "R06",
+        "R07"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C05"
+      ],
+      "referenceIds": [
+        "R04",
+        "R05"
+      ]
+    }
+  ],
+  "distribution": "Inoceramids were widespread through Cretaceous oceans and abundant in Western Interior Seaway strata, where their durable calcitic shells aid correlation and environmental reconstruction. The genus-level map spans multiple intervals and species. Crucially, the group’s late-Maastrichtian disappearance predates the 68–66 Ma poster window by roughly 2.5–3.5 million years; its presence in the scene is explicitly time-compressed. A confirmed-range layer should therefore stop before the poster window, with a separate editorial symbol explaining the earlier-Maastrichtian cameo. The group’s earlier wide range remains scientifically valuable.",
+  "survivor": "Inoceramids are extinct, but bivalves remain one of the ocean’s great success stories. Mussels, oysters, scallops, and giant clams still build two-valved shells, filter water, and create habitat. They are analogues and distant relatives, not living Inoceramus. Modern bivalves help reconstruct gills, mantle, growth, and suspension feeding, while the unusual prismatic shell, great hinge, and pre-K–Pg extinction mark inoceramids as a distinct lost branch. Their disappearance left no modern member of the lineage. today. Modern oceans retain no member.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Shells establish hinge, ribs, growth, and giant size.",
+      "Encrusters preserve shell-as-substrate interactions.",
+      "Stratigraphy records extinction before K–Pg."
+    ],
+    "supportedInference": [
+      "Suspension feeding follows bivalve anatomy and shell form.",
+      "Geochemistry may record habitat after preservation screening.",
+      "Soft-body restoration uses living bivalves."
+    ],
+    "artisticReconstruction": [
+      "Presence in a 68–66 Ma scene is deliberate time compression.",
+      "Mantle color, exact gape, attachments, and sediment.",
+      "Precise depth and orientation."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "research",
+      "title": "Inoceramid extinction and Maastrichtian environmental change",
+      "creator": "MacLeod and Huber",
+      "year": 1996,
+      "url": "https://doi.org/10.1130/0091-7613(1996)024%3C0139:RMEBSC%3E2.3.CO;2",
+      "description": "Examine evidence that inoceramids disappeared before the K–Pg boundary.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Inoceramid bivalves",
+      "creator": "Smithsonian National Museum of Natural History",
+      "year": null,
+      "url": "https://naturalhistory.si.edu/",
+      "description": "Explore Cretaceous marine shells and their collection context.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "research",
+      "title": "Maastrichtian Western Interior paleoceanography",
+      "creator": "Cochran and colleagues",
+      "year": 2003,
+      "url": "https://doi.org/10.1016/S0031-0182(02)00642-9",
+      "description": "See how fossil shells help reconstruct the retreating seaway.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    }
+  ],
+  "references": [
+    {
+      "id": "R01",
+      "title": "Treatise on Invertebrate Paleontology: Bivalvia",
+      "authors": [
+        "Norman D. Newell",
+        "others"
+      ],
+      "year": 1969,
+      "sourceType": "Scholarly monograph",
+      "publication": "Geological Society of America",
+      "doi": null,
+      "url": "https://journals.ku.edu/InvertebratePaleo",
+      "supportsClaims": [
+        "C01"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "Inoceramid bivalve life habits",
+      "authors": [
+        "E. G. Kauffman"
+      ],
+      "year": 1975,
+      "sourceType": "Peer-reviewed synthesis",
+      "publication": "Paleobiology",
+      "doi": null,
+      "url": "https://www.cambridge.org/core/journals/paleobiology",
+      "supportsClaims": [
+        "C01",
+        "C03"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "Giant inoceramids as benthic islands",
+      "authors": [
+        "E. G. Kauffman"
+      ],
+      "year": 1981,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Journal of Paleontology",
+      "doi": null,
+      "url": "https://www.cambridge.org/core/journals/journal-of-paleontology",
+      "supportsClaims": [
+        "C03"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "Reorganization of Maastrichtian benthic communities and inoceramid extinction",
+      "authors": [
+        "Kenneth G. MacLeod",
+        "Brian T. Huber"
+      ],
+      "year": 1996,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Geology",
+      "doi": "10.1130/0091-7613(1996)024<0139:RMEBSC>2.3.CO;2",
+      "url": "https://doi.org/10.1130/0091-7613(1996)024%3C0139:RMEBSC%3E2.3.CO;2",
+      "supportsClaims": [
+        "C04",
+        "C05"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "Timing of the end-Cretaceous inoceramid extinction",
+      "authors": [
+        "Kenneth G. MacLeod"
+      ],
+      "year": 1994,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Paleobiology",
+      "doi": null,
+      "url": "https://www.cambridge.org/core/journals/paleobiology",
+      "supportsClaims": [
+        "C04",
+        "C05"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "Paleoenvironment of the Western Interior Seaway from mollusc isotopes",
+      "authors": [
+        "James Cochran",
+        "others"
+      ],
+      "year": 2003,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Palaeogeography Palaeoclimatology Palaeoecology",
+      "doi": "10.1016/S0031-0182(02)00642-9",
+      "url": "https://doi.org/10.1016/S0031-0182(02)00642-9",
+      "supportsClaims": [
+        "C02"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "Late Cretaceous climate from macrofossil clumped isotopes",
+      "authors": [
+        "Peter Douglas",
+        "others"
+      ],
+      "year": 2013,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Earth and Planetary Science Letters",
+      "doi": "10.1016/j.epsl.2012.11.036",
+      "url": "https://doi.org/10.1016/j.epsl.2012.11.036",
+      "supportsClaims": [
+        "C02"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Inoceramid collections",
+      "authors": [
+        "Smithsonian Institution"
+      ],
+      "year": null,
+      "sourceType": "Official museum resource",
+      "publication": "National Museum of Natural History",
+      "doi": null,
+      "url": "https://naturalhistory.si.edu/",
+      "supportsClaims": [
+        "C01"
+      ]
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "Chronological mismatch is explicitly disclosed; no outreach."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29"
+}

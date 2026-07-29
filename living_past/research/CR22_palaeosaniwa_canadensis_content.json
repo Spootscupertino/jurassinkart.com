@@ -1,0 +1,256 @@
+{
+  "id": "CR22",
+  "slug": "palaeosaniwa",
+  "section": "shoreline",
+  "position": 6,
+  "commonName": "Palaeosaniwa",
+  "scientificName": "Palaeosaniwa canadensis",
+  "pronunciation": "pay-lee-oh-SAN-ih-wah can-ah-DEN-sis",
+  "type": "land_animal",
+  "pose": "large robust lizard walking low to the ground with long tail and alert head",
+  "size": "perhaps 2–3 m (6.5–10 ft)",
+  "ageRange_Ma": [
+    68,
+    66
+  ],
+  "diet": "Carnivore",
+  "habitat": "Terrestrial coastal plain near rivers",
+  "confidence": "speculative",
+  "status": "roster",
+  "stage": {
+    "x": 0.452,
+    "plane": "fg"
+  },
+  "blurb": "Palaeosaniwa was among the largest land lizards of Late Cretaceous North America, but it reaches us mostly in pieces. Robust jaws and sharp teeth support a predator or scavenger; a complete three-metre monitor-like body does not. This page keeps the impressive animal and the uncertainty together.",
+  "notes": "Palaeosaniwa canadensis is a lesson in how paleontologists build an animal from incomplete evidence. Isolated skull bones, vertebrae, and teeth show a very large predatory lizard in latest Cretaceous North America. They do not provide the kind of complete articulated skeleton that would settle every proportion shown in art.\n\nIts teeth are recurved and cutting, and the jaws were robust. Those features support carnivory: small vertebrates, eggs, carrion, and other manageable foods are plausible. Yet no direct gut contents establish a menu. The poster places it near a dinosaur nesting landscape, but proximity must not become a claim that it habitually raided nests.\n\nPalaeosaniwa is often compared with monitor lizards and sometimes placed near varanoid relationships. Squamate phylogeny has changed as new characters and analytical methods are added, so “monitor-grade” is safer than “a true modern monitor.” It was a squamate—part of the lizard and snake radiation—but no living species is its unchanged descendant.\n\nSize estimates of two to three metres make it dramatic, but fragmentary fossils make exact total length uncertain. Reconstructions commonly scale from related lizards, and tail length can dominate the total. The page therefore uses “perhaps” and avoids presenting three metres as a measured skeleton.\n\nThe Hell Creek–Lance world was a river-laced coastal plain. Palaeosaniwa was terrestrial, although a large lizard could move along banks and exploit shoreline food. Its assignment to the shoreline section is compositional rather than evidence for aquatic habits. Keep its feet on land; do not turn it into a swimming marine lizard.\n\nFossils assigned to Palaeosaniwa occur across a broader Late Cretaceous interval than the poster’s final two million years. Latest Maastrichtian records justify its inclusion, but fragmentary specimens and changing taxonomy require careful locality-by-locality checks. A tooth from the wrong age should not be imported merely because it resembles the genus.\n\nThe reconstructed body is necessarily comparative. A long tail, sprawling limbs, scaly skin, and robust head are reasonable for a giant terrestrial lizard. Exact limb proportions, soft-tissue bulk, tongue display, color, pattern, and behavior are artistic. Venom should not be asserted: proposed venom systems in fossil and living squamates are debated and are not directly demonstrated for Palaeosaniwa.\n\nCR22 is shown alert on the bank, a place where terrestrial and aquatic food webs overlap. That scene is plausible without inventing an attack. Its scientific value lies in scale and uncertainty: mammals were not the only small-bodied neighbors under dinosaurs, and “lizard” did not always mean tiny. But the honest portrait remains bounded by scattered bones rather than cinematic certainty.\n\nIsolated teeth create a special identification problem. Tooth shape can reflect diet as well as ancestry, so unrelated predators may converge on similar recurved crowns. Position within the jaw also changes shape. A responsible assignment compares size, curvature, cutting edges, attachment, associated bones, locality, and age rather than matching a silhouette. Body mass is even harder to estimate than length. Lizards with the same total length may differ greatly in trunk depth and tail proportion. No mass appears in the fast facts because scaling a fragmentary animal through a living monitor would create false precision. Finally, shoreline use does not imply specialization. A general terrestrial carnivore might visit water to drink, search stranded prey, or travel along open banks. Any one behavior is plausible; none is directly recorded. CR22's placement communicates overlap between habitats without assigning a permanent niche.\n\nBecause skin is almost never preserved with the assigned remains, scales are inferred from squamate biology rather than observed on this taxon. Even a defensible scaly covering leaves scale size, arrangement, folds, and display structures unresolved. The image should preserve that uncertainty instead of decorating it with modern monitor details.",
+  "funFacts": [
+    "A giant known in pieces — Much of Palaeosaniwa’s reconstruction comes from isolated cranial and postcranial bones.",
+    "Cutting teeth — Recurved, sharp teeth support carnivory but do not reveal an exact menu.",
+    "Monitor-grade, not a modern monitor — It belongs among advanced squamates, while its precise relationships remain analytical questions.",
+    "Shore cast, land animal — Its bank placement is ecological staging, not evidence for a marine lifestyle."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C01"
+      ],
+      "referenceIds": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C02"
+      ],
+      "referenceIds": [
+        "R01",
+        "R03"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C03"
+      ],
+      "referenceIds": [
+        "R02",
+        "R04"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C06"
+      ],
+      "referenceIds": [
+        "R05",
+        "R06"
+      ]
+    }
+  ],
+  "survivor": "Monitor lizards provide the closest familiar body-plan comparison: active predatory squamates with long tails, recurved teeth, and strong limbs. They are not living Palaeosaniwa. Modern monitors diversified on their own branch, while Palaeosaniwa belongs to an extinct Late Cretaceous lineage whose exact placement remains debated. The deeper survivor is Squamata itself—the enormously successful group containing all living lizards and snakes—rather than any one modern species. This comparison should be read at lineage level: shared anatomy records kinship, while differences record continued evolution after the Cretaceous.",
+  "distribution": "Palaeosaniwa canadensis is reported from Late Cretaceous western North America, including latest Maastrichtian Hell Creek–Lance assemblages. The local landscape was terrestrial and fluvial; shoreline placement means a land animal walking near water. Species assignments based on isolated teeth or bones warrant caution, and the genus’ broader temporal range should not be confused with a claim that every referred occurrence lived at 68–66 Ma. Future maps should attach every occurrence to a traceable specimen, formation, horizon, and published identification rather than extending the range from resemblance alone.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Robust jaw bones and recurved teeth establish a large carnivorous squamate.",
+      "Vertebrae and other bones establish a large terrestrial lizard body.",
+      "Latest Maastrichtian referred material supports inclusion."
+    ],
+    "supportedInference": [
+      "Two-to-three-metre length depends on scaling incomplete remains.",
+      "A monitor-like silhouette is comparative, not a complete fossil outline.",
+      "Predation and scavenging are both plausible."
+    ],
+    "artisticReconstruction": [
+      "Color, pattern, tongue, soft-tissue bulk, and sex.",
+      "Exact limb and tail proportions beyond preserved material.",
+      "Nest-raiding, venom, or a specific encounter."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "research",
+      "title": "The phylogeny and evolution of anguimorph lizards",
+      "creator": "Jack L. Conrad",
+      "year": 2008,
+      "url": "https://doi.org/10.1206/310.1",
+      "description": "Explore the anatomical framework used to place large fossil lizards.",
+      "endorsementDisclaimer": "Editorially selected; no endorsement implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Hell Creek Microfossil Guide",
+      "creator": "Smithsonian National Museum of Natural History",
+      "year": 2012,
+      "url": "https://www.naturalhistory.si.edu/sites/default/files/media/file/fossil-id-guide062812-accessible.pdf",
+      "description": "See how isolated teeth and bones reveal small and medium Hell Creek vertebrates.",
+      "endorsementDisclaimer": "Editorially selected; no endorsement implied."
+    },
+    {
+      "kind": "public_resource",
+      "title": "The Hell Creek Formation, Montana",
+      "creator": "Denver W. Fowler",
+      "year": 2020,
+      "url": "https://doi.org/10.3390/geosciences10110435",
+      "description": "Explore the land-and-water setting around this terrestrial lizard.",
+      "endorsementDisclaimer": "Editorially selected; no endorsement implied."
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "Fragmentary taxon; specialist review strongly recommended."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29",
+  "references": [
+    {
+      "id": "R01",
+      "title": "Revision of the Late Cretaceous lizard Palaeosaniwa canadensis",
+      "authors": [
+        "Richard C. Fox"
+      ],
+      "year": 1978,
+      "sourceType": "Peer-reviewed taxonomic research",
+      "publication": "Canadian Journal of Earth Sciences",
+      "doi": null,
+      "url": "https://cdnsciencepub.com/journal/cjes",
+      "supportsClaims": [
+        "C01",
+        "C02"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "The phylogeny and evolution of anguimorph lizards",
+      "authors": [
+        "Jack L. Conrad"
+      ],
+      "year": 2008,
+      "sourceType": "Peer-reviewed monograph",
+      "publication": "Bulletin of the AMNH",
+      "doi": "10.1206/310.1",
+      "url": "https://doi.org/10.1206/310.1",
+      "supportsClaims": [
+        "C01",
+        "C03"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "Squamate diversity in the latest Cretaceous of North America",
+      "authors": [
+        "Nicholas R. Longrich et al."
+      ],
+      "year": 2012,
+      "sourceType": "Peer-reviewed research",
+      "publication": "PNAS",
+      "doi": "10.1073/pnas.1208448109",
+      "url": "https://doi.org/10.1073/pnas.1208448109",
+      "supportsClaims": [
+        "C02",
+        "C05"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "Phylogeny and classification of Squamata",
+      "authors": [
+        "Jacques A. Gauthier et al."
+      ],
+      "year": 2012,
+      "sourceType": "Peer-reviewed research",
+      "publication": "Bulletin of the Peabody Museum",
+      "doi": "10.3374/014.053.0101",
+      "url": "https://doi.org/10.3374/014.053.0101",
+      "supportsClaims": [
+        "C03"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "The Hell Creek Formation, Montana",
+      "authors": [
+        "Denver W. Fowler"
+      ],
+      "year": 2020,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Geosciences",
+      "doi": "10.3390/geosciences10110435",
+      "url": "https://doi.org/10.3390/geosciences10110435",
+      "supportsClaims": [
+        "C06"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "Comparative taphonomy of Hell Creek microvertebrate sites",
+      "authors": [
+        "L. R. Pearson et al."
+      ],
+      "year": 2008,
+      "sourceType": "Peer-reviewed research",
+      "publication": "PALAIOS",
+      "doi": "10.2110/palo.2007.p07-006r",
+      "url": "https://doi.org/10.2110/palo.2007.p07-006r",
+      "supportsClaims": [
+        "C06"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "Hell Creek Microfossil Guide",
+      "authors": [
+        "Smithsonian National Museum of Natural History"
+      ],
+      "year": 2012,
+      "sourceType": "Museum guide",
+      "publication": "Smithsonian",
+      "doi": null,
+      "url": "https://www.naturalhistory.si.edu/sites/default/files/media/file/fossil-id-guide062812-accessible.pdf",
+      "supportsClaims": [
+        "C01",
+        "C05"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Vertebrate biostratigraphy of the Hell Creek Formation",
+      "authors": [
+        "John W. Hoganson et al."
+      ],
+      "year": 2004,
+      "sourceType": "Government research",
+      "publication": "North Dakota Geological Survey",
+      "doi": null,
+      "url": "https://pubs.usgs.gov/publication/70221502",
+      "supportsClaims": [
+        "C05",
+        "C06"
+      ]
+    }
+  ]
+}

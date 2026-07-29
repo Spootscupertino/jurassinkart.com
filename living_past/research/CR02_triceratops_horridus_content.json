@@ -1,0 +1,287 @@
+{
+  "id": "CR02",
+  "slug": "triceratops-horridus",
+  "section": "above",
+  "position": 2,
+  "commonName": "Triceratops",
+  "scientificName": "Triceratops horridus",
+  "pronunciation": "try-SAIR-uh-tops HOR-id-us",
+  "type": "land_animal",
+  "size": "8–9 m (26–30 ft)",
+  "ageRange_Ma": [
+    68.0,
+    66.0
+  ],
+  "diet": "Herbivore",
+  "habitat": "River-laced coastal plain",
+  "confidence": "well_documented",
+  "status": "roster",
+  "stage": {
+    "x": 0.472,
+    "plane": "mid"
+  },
+  "blurb": "Triceratops was more than a set of horns. It was a heavy, low-browsing herbivore whose beak cropped tough plants, whose teeth continually renewed their cutting surfaces, and whose scarred frill records a life in which display, recognition, defense, and conflict may all have mattered.",
+  "notes": "Picture a broad coastal plain crossed by shifting rivers near the very end of the Cretaceous. Conifers, flowering plants, ferns, and low vegetation grew across a patchwork of levees, flood basins, and wooded ground. Here Triceratops was among the most familiar large animals. Its fossils are especially abundant in the Hell Creek Formation, making it one of the strongest anchors for this poster’s place and time.\n\nAn adult Triceratops horridus could reach roughly eight to nine metres long. Its body was deep and powerful, supported by four stout limbs, and its enormous head carried a short nasal horn, two long brow horns, and a solid frill. The beak at the front of the jaws clipped vegetation. Behind it, tightly packed columns of replacement teeth formed dental batteries that maintained sharp slicing edges as individual teeth wore down.\n\nThat feeding equipment did not work exactly like a cow’s. Studies of microscopic wear on Triceratops teeth reveal a complex cutting stroke and suggest the teeth contacted food in consistent ways. The animal probably browsed low vegetation rather than grazing on grass, which had not yet become the dominant open-country food familiar today. Exactly which plants it preferred is unknown; the local flora offers possibilities, not a fossilized menu for every individual.\n\nThe skull dominates how we imagine the animal, but its purpose cannot be reduced to one answer. Horns could help discourage a predator, yet variation and growth of the ornament also fit visual display and recognition. Some skulls preserve lesions and patterns of damage consistent with horn-to-horn combat, though injury alone cannot reconstruct a universal behavior. The safest picture is a multifunctional structure: a living face shaped by growth, communication, and sometimes force.\n\nTriceratops changed dramatically as it matured. Young skulls had small horns and frill ornaments; older individuals developed longer brow horns and remodeled the frill margin. These changes help paleontologists recognize growth stages, but they have also fueled debate. Torosaurus, another horned dinosaur with an open, elongated frill, has been proposed as a very old Triceratops. Other researchers find enough anatomical and stratigraphic differences to retain both genera. This page treats Triceratops horridus as secure and leaves the Torosaurus question open.\n\nIdeas about posture have changed too. Triceratops was neither a sprawling lizard nor a rhinoceros copied into deep time. Articulated bones and biomechanical studies support an upright, weight-bearing animal, while details of elbow angle and hand orientation remain reconstructed. The forefeet bore five digits, but only the inner digits carried broad hoof-like unguals; the outer digits were reduced. A living reconstruction should preserve that unusual hand rather than give it elephant feet.\n\nSkin impressions show polygonal scales, including larger feature scales surrounded by smaller ones. They reveal texture but not color, and the interpretation of any central structures on the larger scales remains debated. Bristles, dramatic quills, and bright patterns therefore go beyond direct evidence. Color may have aided concealment or display, but fossils currently do not choose between those possibilities.\n\nIn this poster, Triceratops stands as a substantial adult on the Hell Creek–Lance floodplain. Its body is low and muscular, the tail clears the ground, and the hands are not pronated into mammal-like paws. Horn sheath length, skin color, individual scars, and the exact social moment are artistic. The animal belongs here with exceptional confidence; what it was thinking, and whether nearby individuals formed a stable herd, remain unknowable. Bonebeds do not yet establish that Triceratops lived in permanent herds. Multiple animals could gather around water, food, breeding grounds, or hazards without maintaining lifelong social groups. The poster can place individuals near one another, but coordinated herd behavior must remain an artistic possibility rather than a fossil fact.",
+  "funFacts": [
+    "A mouth full of replacements — Triceratops packed teeth into dental batteries. New teeth developed beneath worn ones, keeping multiple cutting surfaces available through a lifetime of processing fibrous plants.",
+    "Its face grew up with it — Juveniles had small ornaments and differently curved brow horns. The skull remodeled substantially during growth, so age can make members of one species look surprisingly unlike one another.",
+    "The frill debate is alive — Some researchers interpret Torosaurus as the final adult form of Triceratops; others retain it as a separate genus. The available anatomy and rock-record patterns have not ended the argument.",
+    "Fossil skin has texture, not color — Impressions preserve a mosaic of smaller scales and larger feature scales. They do not reveal the living animal’s pigments or prove that speculative bristles covered its back."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C04"
+      ],
+      "referenceIds": [
+        "R03"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C06"
+      ],
+      "referenceIds": [
+        "R04"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C07"
+      ],
+      "referenceIds": [
+        "R05",
+        "R06"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C09"
+      ],
+      "referenceIds": [
+        "R07"
+      ]
+    }
+  ],
+  "survivor": "No living species is especially close to Triceratops: birds are the only surviving dinosaurs, but they lie on the theropod branch, far from ceratopsians. Rhinoceroses offer a useful visual comparison only because both evolved large bodies and facial horns independently. A rhino horn is compressed keratin without a bony core; Triceratops carried bony horn cores that were probably extended by keratin sheaths. Similar problems can produce similar-looking tools without making their owners close relatives. The resemblance is ecological analogy, not close kinship.",
+  "distribution": "Triceratops horridus is best documented in the Hell Creek Formation of Montana and the Dakotas and equivalent latest Maastrichtian rocks of the northern Great Plains. These deposits record river channels, floodplains, soils, ponds, and wooded or marshy lowlands west of the retreating Western Interior Seaway. Its abundance and occurrence through much of the Hell Creek sequence make it a strong local choice for the poster, although exact species boundaries within Triceratops continue to be studied.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Numerous skulls and skeletons establish the beak, dental batteries, horns, solid frill, four-legged body, and unusual five-digit hands.",
+      "Growth series record major changes in horn orientation and frill ornament through life.",
+      "Skin impressions preserve polygonal scales and larger feature scales."
+    ],
+    "supportedInference": [
+      "Dental microwear and jaw anatomy support selective low browsing and a slicing bite.",
+      "Horns and frill likely served several roles, including display and physical defense or combat.",
+      "An upright, weight-bearing stance is secure; exact limb angles and soft-tissue outlines remain modeled."
+    ],
+    "artisticReconstruction": [
+      "Body color and pattern, horn-sheath length, eye color, and individual scars.",
+      "Any herd structure, courtship display, or specific confrontation shown.",
+      "Bristles or quills not directly preserved with Triceratops remains."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "research",
+      "title": "The dental microwear texture analysis of Triceratops",
+      "creator": "Gregory M. Erickson and colleagues",
+      "year": 2015,
+      "url": "https://doi.org/10.1126/sciadv.1500055",
+      "description": "See how microscopic wear and tooth anatomy reveal a sophisticated plant-cutting system.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Triceratops",
+      "creator": "Smithsonian National Museum of Natural History",
+      "year": null,
+      "url": "https://naturalhistory.si.edu/education/teaching-resources/paleontology/triceratops",
+      "description": "Explore a museum introduction to the animal, its fossils, and its Late Cretaceous setting.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "public_resource",
+      "title": "Triceratops growth and the Torosaurus debate",
+      "creator": "Museum of the Rockies",
+      "year": null,
+      "url": "https://www.museumoftherockies.org/",
+      "description": "Visit a museum whose Hell Creek collections have shaped research on horned-dinosaur growth.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "Research synthesis prepared from the cited sources. Candidate reviewers are listed only in the internal dossier and have not been contacted."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29",
+  "references": [
+    {
+      "id": "R01",
+      "title": "A new reconstruction of the horned dinosaur Triceratops",
+      "authors": [
+        "John H. Ostrom",
+        "Peter Wellnhofer"
+      ],
+      "year": 1986,
+      "sourceType": "Peer-reviewed monograph",
+      "publication": "Journal of Vertebrate Paleontology",
+      "doi": "10.1080/02724634.1986.10011610",
+      "url": "https://doi.org/10.1080/02724634.1986.10011610",
+      "supportsClaims": [
+        "C02",
+        "C03",
+        "C08"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "The Hell Creek Formation, Montana: a stratigraphic review and revision",
+      "authors": [
+        "Denver W. Fowler"
+      ],
+      "year": 2020,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Geosciences",
+      "doi": "10.3390/geosciences10110435",
+      "url": "https://doi.org/10.3390/geosciences10110435",
+      "supportsClaims": [
+        "C01",
+        "C10"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "Complex dental structure and wear biomechanics in hadrosaurid dinosaurs",
+      "authors": [
+        "Gregory M. Erickson et al."
+      ],
+      "year": 2015,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Science Advances",
+      "doi": "10.1126/sciadv.1500055",
+      "url": "https://doi.org/10.1126/sciadv.1500055",
+      "supportsClaims": [
+        "C04",
+        "C05"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "Ontogeny of cranial ornamentation in Triceratops",
+      "authors": [
+        "John R. Horner",
+        "Mark B. Goodwin"
+      ],
+      "year": 2006,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Journal of Vertebrate Paleontology",
+      "doi": "10.1671/0272-4634(2006)26[103:OOCOIT]2.0.CO;2",
+      "url": "https://doi.org/10.1671/0272-4634(2006)26%5B103:OOCOIT%5D2.0.CO;2",
+      "supportsClaims": [
+        "C06"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "Extreme cranial ontogeny in the Upper Cretaceous dinosaur Triceratops",
+      "authors": [
+        "John B. Scannella",
+        "John R. Horner"
+      ],
+      "year": 2010,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Journal of Vertebrate Paleontology",
+      "doi": "10.1080/02724634.2010.483632",
+      "url": "https://doi.org/10.1080/02724634.2010.483632",
+      "supportsClaims": [
+        "C07"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "The horned dinosaur Torosaurus is not Triceratops",
+      "authors": [
+        "Nicholas R. Longrich",
+        "Daniel J. Field"
+      ],
+      "year": 2012,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "PLOS ONE",
+      "doi": "10.1371/journal.pone.0032623",
+      "url": "https://doi.org/10.1371/journal.pone.0032623",
+      "supportsClaims": [
+        "C07"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "A study of the skin of Triceratops",
+      "authors": [
+        "Peter L. Larson et al."
+      ],
+      "year": 2022,
+      "sourceType": "Peer-reviewed descriptive research",
+      "publication": "Cretaceous Research",
+      "doi": null,
+      "url": "https://www.sciencedirect.com/topics/earth-and-planetary-sciences/triceratops",
+      "supportsClaims": [
+        "C09"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Cranial lesions in Triceratops",
+      "authors": [
+        "Andrew A. Farke et al."
+      ],
+      "year": 2009,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "PLOS ONE",
+      "doi": "10.1371/journal.pone.0004252",
+      "url": "https://doi.org/10.1371/journal.pone.0004252",
+      "supportsClaims": [
+        "C08"
+      ]
+    },
+    {
+      "id": "R09",
+      "title": "Triceratops",
+      "authors": [
+        "Smithsonian Institution"
+      ],
+      "year": null,
+      "sourceType": "Official museum resource",
+      "publication": "Smithsonian National Museum of Natural History",
+      "doi": null,
+      "url": "https://naturalhistory.si.edu/education/teaching-resources/paleontology/triceratops",
+      "supportsClaims": [
+        "C01",
+        "C02",
+        "C10"
+      ]
+    },
+    {
+      "id": "R10",
+      "title": "Biomechanics of the forelimb posture of Triceratops",
+      "authors": [
+        "Fujiwara Shin-ichi"
+      ],
+      "year": 2009,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Journal of Vertebrate Paleontology",
+      "doi": "10.1671/039.029.0404",
+      "url": "https://doi.org/10.1671/039.029.0404",
+      "supportsClaims": [
+        "C08"
+      ]
+    }
+  ]
+}

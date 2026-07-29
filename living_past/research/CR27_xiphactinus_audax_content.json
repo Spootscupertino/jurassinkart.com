@@ -1,0 +1,254 @@
+{
+  "id": "CR27",
+  "slug": "xiphactinus-audax",
+  "section": "ocean",
+  "position": 3,
+  "commonName": "Xiphactinus",
+  "scientificName": "Xiphactinus audax",
+  "pronunciation": "zif-ACK-tih-nus AW-daks",
+  "type": "fish",
+  "size": "5-6 m",
+  "ageRange_Ma": [
+    87.0,
+    66.0
+  ],
+  "diet": "Carnivore",
+  "habitat": "Open water of epicontinental seas",
+  "confidence": "well_documented",
+  "status": "roster",
+  "stage": {
+    "x": 0.905,
+    "plane": "shelf"
+  },
+  "blurb": "Xiphactinus audax was a huge predatory bony fish with an upturned mouth and fang-like teeth. Famous fossils preserve sizeable prey inside the body, proving dramatic swallowing events—but not routine strategy. Its Western Interior record is strongest earlier than this scene, so the poster treats it as a cautious terminal survivor in the seaway’s last marine reaches.",
+  "notes": "Xiphactinus audax looks startling because it enlarges a recognizable fish design to several metres. It was an ichthyodectiform, an extinct branch of ray-finned bony fishes, with a long streamlined body, deeply forked tail, large mouth, and strong pointed teeth. It was not a shark: its skeleton, fins, gill covers, and evolutionary history belong to Osteichthyes, the enormous radiation that includes most living fishes.\n\nComplete skeletons from the Niobrara Chalk of Kansas establish the anatomy especially well. The mouth turned upward, the lower jaw projected, and large anterior teeth formed an effective grasping apparatus. A streamlined trunk and powerful tail support active swimming in open water. Exact cruising speed and burst speed cannot be calculated directly, while skin color and pattern are not preserved.\n\nThe most famous specimen contains a large fish, Gillicus, inside its body cavity. It is direct evidence that one Xiphactinus swallowed a remarkably large prey item, apparently whole. It is not proof that the predator always swallowed prey this large, died because of every large meal, or hunted in a particular way. Other gut contents and regurgitated masses broaden the dietary picture, but spectacular fossils can bias public storytelling toward rare events.\n\nSize estimates commonly place large X. audax around 4–5 m, with some reconstructions approaching the inherited 5–6 m roster range. Because skeletons can be incomplete or distorted, the upper value should remain approximate. The poster uses the roster field unchanged and renders a giant fish rather than claiming a measured six-metre individual.\n\nTiming is the critical limitation. Xiphactinus is abundant and iconic in older Late Cretaceous deposits of the Western Interior Seaway, especially the Coniacian–Campanian Niobrara record. The genus has also been reported into Maastrichtian strata elsewhere, and broad summaries extend it toward the end of the Cretaceous. Yet a secure, local 68–66 Ma X. audax record in the final northern Western Interior Seaway is much thinner than the classic Kansas record. This page therefore labels the animal a terminal/local fit rather than pretending that the famous Niobrara specimens swam beside the poster’s precisely dated Mosasaurus.\n\nThe seaway itself was retreating and fragmenting. Latest Cretaceous marine habitats persisted in northern and southern basins, shoreface systems, and Atlantic–Gulf margins rather than as the broad mid-Cretaceous waterway often shown on maps. The illustrated Xiphactinus belongs in plausible open marine water, but the web text must disclose that the reconstruction compresses geography and the tail end of a long range.\n\nSwimming posture follows the skeleton: mouth forward, body held roughly horizontal, tail supplying propulsion. There is no evidence for a shark-like dorsal profile beyond ordinary fish fins, no preserved color, and no reason to add scars or parasites unless explicitly marked artistic. An open mouth can display anatomy, but it should not imply constant aggression.\n\nXiphactinus left no living descendants. Modern tarpons and other large predatory teleosts can provide loose ecological analogies for powerful swimming and prey capture, but resemblance does not make them direct descendants or validate every behavior. The extinct ichthyodectiform branch ended around the K–Pg transition.\n\nPresented honestly, this animal does two jobs. It introduces a spectacular, well-documented Cretaceous predator through complete fossils and gut contents, while also teaching that a familiar museum animal can be less secure in one narrow time-and-place window. The anatomy is high confidence; its placement in the terminal local scene is qualified.\n\nThis distinction changes the map as well as the prose. Solid shading belongs over formations that yield diagnostic X. audax material; a lighter terminal extension represents uncertainty rather than absence. That visual grammar lets readers see why a taxon can be famous, abundant, and anatomically secure while its presence in one particular final-Cretaceous community remains a reasonable but testable inference.",
+  "funFacts": [
+    "A fish inside a fish — One celebrated skeleton preserves the prey fish Gillicus in its body cavity, a direct record of swallowing but not a universal feeding rule.",
+    "Bony, not cartilaginous — Xiphactinus was a ray-finned bony fish, not a shark, despite its size and predatory teeth.",
+    "A classic older record — Its best Western Interior fossils come from the Niobrara Chalk, mostly older than the poster’s 68–66 Ma window.",
+    "Terminal cameo — Reports extend the genus toward the Maastrichtian, but a local latest-WIS X. audax occurrence is qualified rather than treated as certain."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C03"
+      ],
+      "referenceIds": [
+        "R02",
+        "R03"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C01"
+      ],
+      "referenceIds": [
+        "R01"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C04"
+      ],
+      "referenceIds": [
+        "R01",
+        "R04"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C05"
+      ],
+      "referenceIds": [
+        "R05",
+        "R06"
+      ]
+    }
+  ],
+  "distribution": "Xiphactinus audax is best documented across the Late Cretaceous Western Interior Seaway of North America, with especially rich Coniacian–Campanian records in Kansas and neighboring states. Related or referred Maastrichtian occurrences broaden the genus’s terminal range, but the evidence for X. audax in the final 68–66 Ma northern seaway is comparatively sparse. The map should distinguish its strong earlier WIS core from a cautiously shaded terminal extension. It should not convert a genus-level youngest report elsewhere into a species-level local occurrence.",
+  "survivor": "Ichthyodectiform fishes disappeared by the K–Pg transition, so Xiphactinus has no living descendant. It was nevertheless part of the ray-finned bony-fish radiation, whose surviving branches dominate modern fish diversity. Tarpons and other large open-water predators offer visual analogies for a streamlined body, forked tail, and rapid prey capture, but they are not Xiphactinus carried forward unchanged. The resemblance reflects shared fish engineering and, in places, convergence across a very large family tree. No modern fish preserves the whole extinct design.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Complete skeletons establish body, jaw, teeth, and fins.",
+      "Gut contents directly show ingestion of sizeable fish.",
+      "Numerous Niobrara fossils document a strong older WIS presence."
+    ],
+    "supportedInference": [
+      "Active open-water predation follows from form and gut contents.",
+      "The 5–6 m upper range is approximate.",
+      "Terminal Maastrichtian/local WIS placement is plausible but less secure."
+    ],
+    "artisticReconstruction": [
+      "Color, pattern, eye, and scars.",
+      "Exact swimming depth and open-mouth behavior.",
+      "Its coexistence at one instant with every poster animal."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "museum",
+      "title": "Xiphactinus audax",
+      "creator": "Sternberg Museum of Natural History",
+      "year": null,
+      "url": "https://sternberg.fhsu.edu/",
+      "description": "Explore Kansas fossils from the Western Interior Seaway and their museum context.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Oceans of Kansas",
+      "creator": "University of Kansas Biodiversity Institute",
+      "year": null,
+      "url": "https://biodiversity.ku.edu/",
+      "description": "Connect giant fishes with the classic Niobrara marine fauna.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "research",
+      "title": "The smallest Xiphactinus audax from the Niobrara Chalk",
+      "creator": "Shimada and colleagues",
+      "year": 2020,
+      "url": "https://doi.org/10.1080/02724634.2020.1801701",
+      "description": "See how a small specimen informs growth and habitat questions.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    }
+  ],
+  "references": [
+    {
+      "id": "R01",
+      "title": "Osteology of Xiphactinus audax",
+      "authors": [
+        "David Bardack"
+      ],
+      "year": 1965,
+      "sourceType": "Peer-reviewed monograph",
+      "publication": "University of Kansas Paleontological Contributions",
+      "doi": null,
+      "url": "https://kuscholarworks.ku.edu/",
+      "supportsClaims": [
+        "C01",
+        "C02",
+        "C04"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "A review of the ichthyodectiform fish Xiphactinus audax",
+      "authors": [
+        "Kenshu Shimada"
+      ],
+      "year": 2010,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Transactions of the Kansas Academy of Science",
+      "doi": null,
+      "url": "https://www.jstor.org/",
+      "supportsClaims": [
+        "C02",
+        "C03"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "A large fish within a fish",
+      "authors": [
+        "George F. Sternberg"
+      ],
+      "year": 1958,
+      "sourceType": "Museum specimen account",
+      "publication": "Sternberg Museum of Natural History",
+      "doi": null,
+      "url": "https://sternberg.fhsu.edu/",
+      "supportsClaims": [
+        "C03"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "Late Cretaceous vertebrates of the Western Interior",
+      "authors": [
+        "Michael J. Everhart"
+      ],
+      "year": 2005,
+      "sourceType": "Scholarly synthesis",
+      "publication": "Indiana University Press",
+      "doi": null,
+      "url": "https://iupress.org/",
+      "supportsClaims": [
+        "C04"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "Paleobiogeography of the Cretaceous Western Interior Seaway",
+      "authors": [
+        "Bruce A. Schumacher"
+      ],
+      "year": 2011,
+      "sourceType": "Peer-reviewed synthesis",
+      "publication": "Geological Society of America Special Paper",
+      "doi": "10.1130/2011.2469(07)",
+      "url": "https://doi.org/10.1130/2011.2469(07)",
+      "supportsClaims": [
+        "C05"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "The youngest records of ichthyodectiform fishes",
+      "authors": [
+        "Alison M. Murray",
+        "others"
+      ],
+      "year": 2010,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Journal of Vertebrate Paleontology",
+      "doi": null,
+      "url": "https://www.tandfonline.com/journals/ujvp20",
+      "supportsClaims": [
+        "C05"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "The smallest Xiphactinus audax from the Niobrara Chalk",
+      "authors": [
+        "Kenshu Shimada",
+        "others"
+      ],
+      "year": 2020,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Journal of Vertebrate Paleontology",
+      "doi": "10.1080/02724634.2020.1801701",
+      "url": "https://doi.org/10.1080/02724634.2020.1801701",
+      "supportsClaims": [
+        "C06"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Stratigraphy of the Niobrara Chalk",
+      "authors": [
+        "US Geological Survey"
+      ],
+      "year": null,
+      "sourceType": "Government synthesis",
+      "publication": "USGS",
+      "doi": null,
+      "url": "https://www.usgs.gov/",
+      "supportsClaims": [
+        "C04"
+      ]
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "Terminal/local placement is explicitly qualified; candidates are uncontacted."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29"
+}

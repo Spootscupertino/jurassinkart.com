@@ -1,0 +1,258 @@
+{
+  "id": "CR21",
+  "slug": "champsosaurus",
+  "section": "shoreline",
+  "position": 5,
+  "commonName": "Champsosaurus",
+  "scientificName": "Champsosaurus",
+  "researchScientificName": "Champsosaurus sp.",
+  "pronunciation": "CHAMP-so-SORE-us",
+  "type": "marine_reptile",
+  "pose": "full lateral view, very long narrow snout, four sprawling legs, long tapering tail, swimming beneath the surface",
+  "size": "about 1.5 m (5 ft)",
+  "ageRange_Ma": [
+    72,
+    66
+  ],
+  "diet": "Piscivore",
+  "habitat": "Freshwater rivers, lakes, and ponds",
+  "confidence": "reasonable_inference",
+  "status": "roster",
+  "stage": {
+    "x": 0.572,
+    "plane": "shore"
+  },
+  "blurb": "With a needle-toothed snout and muscular tail, Champsosaurus hunted through Late Cretaceous fresh water. It resembled a narrow-jawed crocodilian but belonged to Choristodera, an entirely extinct reptile branch. Its fossils also carry a remarkable sequel: the genus survived the catastrophe that ended the age of non-bird dinosaurs.",
+  "notes": "Beneath a Hell Creek river surface, Champsosaurus would look familiar at first glance: long jaws, sprawling limbs, and a tail made for swimming. Yet it was not a crocodile. It belonged to Choristodera, an extinct radiation of semi-aquatic reptiles with a history extending from the Mesozoic into the Cenozoic.\n\nThe skull supplies its clearest ecological signal. A long, narrow snout lined with small pointed teeth is well suited to seizing fish and other small aquatic prey. The jaws were grasping tools, not broad bone crushers. Fish-eating is therefore a strong functional inference, though no fixed prey species should be claimed without direct gut contents.\n\nBehind the skull, the body combined a long trunk and powerful laterally compressed tail with relatively small limbs. Anatomical studies interpret neochoristoderes as capable swimmers. The limbs could steer and maneuver, while the tail supplied propulsion. They still had to breathe air, and reproduction probably connected them to land, although the reproductive biology of Champsosaurus remains debated.\n\nSome unusually complete Paleocene specimens preserve associated small individuals or reveal differences in pelvic anatomy. These have inspired hypotheses about sex differences and whether females were better able to move on land. Those interpretations are scientifically interesting but should not be turned into certainty for a lone Hell Creek animal. The poster shows only a generic individual swimming.\n\nSpecies resolution is another limit. Champsosaurus laramiensis is reported from Hell Creek and into Paleocene units, but fragmentary remains may not carry enough diagnostic anatomy for a species assignment. The roster’s genus-level label is therefore the responsible public choice. Its 72–66 Ma range also describes a broad interval, while this scene is specifically terminal Maastrichtian.\n\nChampsosaurus is one of the poster’s best extinction stories. Fossils occur below and above the K–Pg boundary, demonstrating that the genus or close species crossed into the Paleocene. Survival was not immunity: choristoderes later disappeared entirely. Their passage through one mass extinction did not guarantee permanent success.\n\nThe Hell Creek Formation is primarily fluvial, with river channels, floodplains, ponds, and local coastal influence. That makes Champsosaurus a freshwater shoreline animal, not a marine reptile despite the roster type. Its place just under the surface is ecologically sound. Moving it into the open seaway would blur a useful distinction between neighboring water worlds.\n\nIn CR21, the long snout, pointed teeth, small limbs, and complete tail are evidence-led. Skin texture, color, eye appearance, exact swimming depth, and the invisible prey it may be tracking are reconstruction. A gharial can help viewers understand convergent snout shape, but it is not a descendant. Champsosaurus rewards a closer look precisely because evolution produced a crocodile-shaped answer on another branch.\n\nIts skull contained specializations around the back of the head, including expanded areas associated with jaw musculature. These features help distinguish a neochoristodere from a superficially similar crocodilian. They also warn artists not to begin with a gharial and change only the feet. The outline must be built from Champsosaurus anatomy first. Preservation shapes the story too. Aquatic animals readily enter sediments, but flowing water can separate skulls, vertebrae, and limbs. A named species requires combinations of diagnostic characters that fragments may not retain. Genus-level language keeps the page useful without claiming more precision than the pictured individual earns. Crossing the extinction boundary also deserves exact wording. It does not mean one individual or unchanged population lived through the impact. Fossils on either side show continuity of the lineage across geological time. How populations were reduced, displaced, or rebuilt is harder to resolve.\n\nThis distinction keeps a genuine extinction survivor story powerful without turning a rock record into an eyewitness account of catastrophe and recovery.",
+  "funFacts": [
+    "Crocodile look, different family — Champsosaurus belonged to extinct Choristodera, not Crocodylia.",
+    "A fish-catching snout — Slender jaws and pointed teeth support piscivory.",
+    "Across the boundary — Champsosaurus fossils occur on both sides of the K–Pg extinction.",
+    "Freshwater hunter — Hell Creek’s rivers and ponds, not the open sea, are its best setting."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C01"
+      ],
+      "referenceIds": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C02"
+      ],
+      "referenceIds": [
+        "R01",
+        "R03"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C05"
+      ],
+      "referenceIds": [
+        "R04",
+        "R05"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C06"
+      ],
+      "referenceIds": [
+        "R06",
+        "R07"
+      ]
+    }
+  ],
+  "survivor": "No choristodere survives today. Gharials and crocodiles resemble Champsosaurus because long jaws, low bodies, and swimming tails are effective solutions to hunting in water, not because they descend from it. The genus itself crossed the K–Pg boundary and lived into the Paleocene, an unusually direct survival story among poster animals. Choristodera nevertheless vanished later, reminding us that surviving one global crisis does not make a lineage permanent. This comparison should be read at lineage level: shared anatomy records kinship, while differences record continued evolution after the Cretaceous.",
+  "distribution": "Champsosaurus occurs across Late Cretaceous and Paleocene northern North America. Genus-level material is documented in Hell Creek and Lance-age deposits, with C. laramiensis often named for latest Cretaceous–Paleocene material. Rivers, lakes, and ponds are the defensible habitat; northern occurrences have also informed paleoclimate studies. Species assignment requires diagnostic skull anatomy, so fragmentary local remains should remain Champsosaurus sp. Future maps should attach every occurrence to a traceable specimen, formation, horizon, and published identification rather than extending the range from resemblance alone.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Skeletons establish long jaws, pointed teeth, small limbs, and a powerful tail.",
+      "Occurrences below and above the K–Pg boundary document survival of the genus.",
+      "Hell Creek fossils place it in fluvial settings."
+    ],
+    "supportedInference": [
+      "Tail-powered swimming and fish capture follow from functional anatomy.",
+      "Sex-related differences in land mobility remain debated.",
+      "Species-level identification may be impossible from fragments."
+    ],
+    "artisticReconstruction": [
+      "Color, skin pattern, sex, and eye appearance.",
+      "Exact swimming pose and depth.",
+      "Specific prey and reproductive behavior."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "research",
+      "title": "First report of Champsosaurus lindoei from the Campanian of the United States",
+      "creator": "K. L. Chinsamy and colleagues",
+      "year": 2024,
+      "url": "https://doi.org/10.1093/zoolinnean/zlad087",
+      "description": "Explore a modern anatomical and phylogenetic study of this extinct aquatic reptile group.",
+      "endorsementDisclaimer": "Editorially selected; no endorsement implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Champsosaurus",
+      "creator": "Canadian Museum of Nature",
+      "year": null,
+      "url": "https://nature.ca/en/our-science/collections/palaeobiology/",
+      "description": "Explore Canadian fossil collections preserving choristoderes.",
+      "endorsementDisclaimer": "Editorially selected; no endorsement implied."
+    },
+    {
+      "kind": "public_resource",
+      "title": "The Hell Creek Formation, Montana",
+      "creator": "Denver W. Fowler",
+      "year": 2020,
+      "url": "https://doi.org/10.3390/geosciences10110435",
+      "description": "Understand the river landscape in which CR21 is staged.",
+      "endorsementDisclaimer": "Editorially selected; no endorsement implied."
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "No outreach occurred."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29",
+  "references": [
+    {
+      "id": "R01",
+      "title": "Choristoderes and the freshwater assemblages of Laurasia",
+      "authors": [
+        "Susan E. Evans",
+        "He Yuanqing"
+      ],
+      "year": 1998,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Zoological Journal of the Linnean Society",
+      "doi": null,
+      "url": "https://academic.oup.com/zoolinnean",
+      "supportsClaims": [
+        "C01",
+        "C02"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "The phylogenetic relationships of Choristodera",
+      "authors": [
+        "Ryoko Matsumoto et al."
+      ],
+      "year": 2013,
+      "sourceType": "Peer-reviewed research",
+      "publication": "Journal of Systematic Palaeontology",
+      "doi": "10.1080/14772019.2012.704948",
+      "url": "https://doi.org/10.1080/14772019.2012.704948",
+      "supportsClaims": [
+        "C01"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "First report of Champsosaurus lindoei from the Campanian United States",
+      "authors": [
+        "K. L. Chinsamy et al."
+      ],
+      "year": 2024,
+      "sourceType": "Peer-reviewed research",
+      "publication": "Zoological Journal of the Linnean Society",
+      "doi": "10.1093/zoolinnean/zlad087",
+      "url": "https://doi.org/10.1093/zoolinnean/zlad087",
+      "supportsClaims": [
+        "C02",
+        "C03"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "Champsosaurus from the Paleocene of west Texas",
+      "authors": [
+        "Thomas M. Lehman",
+        "Steven L. Tomlinson"
+      ],
+      "year": 2012,
+      "sourceType": "Peer-reviewed research",
+      "publication": "Journal of Paleontology",
+      "doi": "10.1666/09-111R.1",
+      "url": "https://doi.org/10.1666/09-111R.1",
+      "supportsClaims": [
+        "C05"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "A fossil champsosaur population from the high Arctic",
+      "authors": [
+        "Jaelyn J. Eberle",
+        "Donald R. Greenwood"
+      ],
+      "year": 2007,
+      "sourceType": "Peer-reviewed research",
+      "publication": "Palaeogeography Palaeoclimatology Palaeoecology",
+      "doi": "10.1016/j.palaeo.2006.11.008",
+      "url": "https://doi.org/10.1016/j.palaeo.2006.11.008",
+      "supportsClaims": [
+        "C05"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "The Hell Creek Formation, Montana",
+      "authors": [
+        "Denver W. Fowler"
+      ],
+      "year": 2020,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Geosciences",
+      "doi": "10.3390/geosciences10110435",
+      "url": "https://doi.org/10.3390/geosciences10110435",
+      "supportsClaims": [
+        "C06"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "Comparative taphonomy of Hell Creek microvertebrate sites",
+      "authors": [
+        "L. R. Pearson et al."
+      ],
+      "year": 2008,
+      "sourceType": "Peer-reviewed research",
+      "publication": "PALAIOS",
+      "doi": "10.2110/palo.2007.p07-006r",
+      "url": "https://doi.org/10.2110/palo.2007.p07-006r",
+      "supportsClaims": [
+        "C06"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Vertebrate biostratigraphy of the Hell Creek Formation",
+      "authors": [
+        "John W. Hoganson et al."
+      ],
+      "year": 2004,
+      "sourceType": "Government research",
+      "publication": "North Dakota Geological Survey",
+      "doi": null,
+      "url": "https://pubs.usgs.gov/publication/70221502",
+      "supportsClaims": [
+        "C05",
+        "C06"
+      ]
+    }
+  ]
+}

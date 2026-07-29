@@ -1,0 +1,283 @@
+{
+  "id": "CR03",
+  "slug": "edmontosaurus-annectens",
+  "section": "above",
+  "position": 3,
+  "commonName": "Edmontosaurus",
+  "scientificName": "Edmontosaurus annectens",
+  "pronunciation": "ed-MON-toh-SORE-us an-EK-tenz",
+  "type": "land_animal",
+  "size": "9–12 m (30–39 ft)",
+  "ageRange_Ma": [
+    68.0,
+    66.0
+  ],
+  "diet": "Herbivore",
+  "habitat": "Floodplains and river margins",
+  "confidence": "well_documented",
+  "status": "roster",
+  "stage": {
+    "x": 0.332,
+    "plane": "mid"
+  },
+  "blurb": "Edmontosaurus was no generic “duck-billed dinosaur.” Fossils preserve its pebbled skin, hoof-like forefeet, a fleshy crest, and batteries of hundreds of teeth. In the shadow of Tyrannosaurus, this abundant herbivore succeeded through size, efficient feeding, keen senses, and movement—not helplessness.",
+  "notes": "On the latest Cretaceous coastal plain, Edmontosaurus annectens was one of the large herbivores most likely to cross a muddy channel or feed along wooded floodplain margins. The Hell Creek and Lance formations preserve abundant bones of this species, from isolated elements to nearly complete skeletons and remarkable mummified carcasses. That record makes its presence in this poster unusually secure.\n\nAdults commonly reached about nine to twelve metres in length, though the upper end depends on incomplete large individuals. The body was deep, the hind limbs powerful, and the long tail stiffened by tendons. Edmontosaurus could move on two legs and also bring its hands to the ground. Trackways and anatomy support flexible locomotion rather than a permanently quadrupedal or permanently bipedal animal.\n\nIts broad snout was covered in life by a keratinous beak. Behind that beak sat elaborate dental batteries made from columns of continually replacing teeth. Wear created broad grinding surfaces. Three-dimensional studies show that hadrosaur jaws combined several movements during chewing, allowing the teeth to process fibrous plants far more thoroughly than a simple up-and-down bite would suggest. Fossil gut contents once attributed to a “mummy” are historically important but may include material washed into the carcass, so they should not be treated as an unquestioned last meal.\n\nExceptional soft-tissue fossils replace several old guesses with direct evidence. Skin impressions show a mosaic of scales across large body regions. The famous Dakota specimen preserves a hoof-like keratinous covering around the forefoot and extensive body contours. Other specimens preserve a fleshy midline comb on top of the head—an ornament made from soft tissue rather than bone. Its shape and color varied in life beyond what the fossils can reveal.\n\nThe animal’s back was not necessarily a thin line stretched tightly over tall vertebral spines. Mummified outlines show substantial soft tissue above portions of the backbone and along the tail. This matters for art: a living Edmontosaurus should look well fleshed, not assembled from a museum skeleton with skin pulled over every projection.\n\nEvidence also records danger. Tyrannosaur bite marks occur on hadrosaur bones, including healed injuries that show some animals survived attacks. Other traces record carcass feeding. Edmontosaurus was major prey, but a full-grown individual was enormous, alert, and capable of powerful movement. Fossils do not establish that it lived in permanent herds, though bonebeds and trackways show that hadrosaurs sometimes gathered and moved in groups.\n\nThe skull contained long nasal passages, but Edmontosaurus lacked the hollow bony crest of lambeosaurine hadrosaurs. We therefore should not give it the same resonating-tube claims made for Parasaurolophus. Hearing, smell, and social signaling are reasonable areas of inference; a particular call is not preserved. The soft-tissue head crest could have served display or recognition, but that function remains an interpretation.\n\nTaxonomy matters here. Several large, flat-headed hadrosaur names have shifted over time. Current work generally recognizes the latest Maastrichtian Hell Creek–Lance species as Edmontosaurus annectens, while the somewhat older northern species is E. regalis. Some specimens formerly called Anatosaurus or Anatotitan are now included in E. annectens, though details of growth and species boundaries continue to be studied.\n\nIn the poster, CR03 is a robust adult on the coastal plain, able to alternate between two- and four-legged movement. Its beak, fleshy body outline, scaled skin, and soft-tissue cranial comb are evidence-based. Color, stripe pattern, the size and hue of the comb, and the decision to show it near other individuals are artistic. Its coexistence with Triceratops and Tyrannosaurus is among the best-supported relationships in the scene. Seasonal movement is possible, but long-distance migration routes cannot be traced securely from these fossils. Differences among deposits may reflect habitat, preservation, sampling, or movement, so the poster avoids claiming an annual journey.",
+  "funFacts": [
+    "A crest without a bone — A fossil Edmontosaurus preserves a fleshy comb over the skull. Unlike the hollow crests of some hadrosaurs, this display structure left no large bony support.",
+    "Natural dinosaur “mummies” — Several carcasses preserve broad skin outlines and scales. They show soft tissue around the spine and limbs that skeleton-only reconstructions can easily miss.",
+    "Hundreds of teeth at work — Dental batteries held many replacement teeth, while only a portion formed the active grinding surface. Complex jaw motion processed plants as the teeth wore.",
+    "Two gears, not one — Limb proportions, hands, and track evidence indicate that hadrosaurs could travel on four limbs and rise onto two, rather than being locked into a single stance."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C07"
+      ],
+      "referenceIds": [
+        "R04"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C06"
+      ],
+      "referenceIds": [
+        "R03",
+        "R05"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C04"
+      ],
+      "referenceIds": [
+        "R02"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C05"
+      ],
+      "referenceIds": [
+        "R06"
+      ]
+    }
+  ],
+  "survivor": "Birds are the only living dinosaurs, but no modern bird is a close stand-in for Edmontosaurus. Cattle and horses are sometimes compared with it because they are large plant processors, yet their teeth, hips, feet, and ancestry are entirely different. The better lesson is convergence: unrelated animals can evolve batteries of anatomical solutions for cropping, crushing, and digesting difficult plants. Edmontosaurus solved that challenge with a beak, continually replacing teeth, and complex jaw motion unique to its dinosaur lineage.",
+  "distribution": "Edmontosaurus annectens is characteristic of latest Maastrichtian deposits in western North America, especially the Hell Creek Formation of Montana and the Dakotas and the Lance Formation of Wyoming. These rocks preserve river channels, floodplains, ponds, soils, and low coastal-plain habitats. Reports and older names require taxonomic care, but the species’ presence in the core Hell Creek–Lance setting is well documented and directly fits the poster’s 68–66 Ma frame. Its placement beside contemporary Hell Creek animals is therefore strongly supported.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Skeletons establish the beaked skull, dental batteries, robust body, powerful hind limbs, and supportive tail.",
+      "Mummified specimens preserve extensive scaled skin, body contours, keratin around the forefoot, and a fleshy cranial comb.",
+      "Bite marks and healed injuries record interactions with large tyrannosaurs."
+    ],
+    "supportedInference": [
+      "Jaw models support complex chewing and efficient processing of fibrous vegetation.",
+      "Anatomy and trackways support both bipedal and quadrupedal movement.",
+      "Group living occurred at least sometimes, but permanent herd structure is not demonstrated for every population."
+    ],
+    "artisticReconstruction": [
+      "Body color, pattern, comb color, eye color, and individual scars.",
+      "The exact plants selected in a depicted feeding moment.",
+      "Specific calls, family groups, and coordinated herd behavior."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "research",
+      "title": "Soft-tissue structures in the crest and body of Edmontosaurus",
+      "creator": "Phil R. Bell and colleagues",
+      "year": 2014,
+      "url": "https://doi.org/10.1016/j.cub.2013.11.008",
+      "description": "Read the study describing a soft-tissue cranial comb preserved on a hadrosaur.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Edmontosaurus mummy AMNH 5060",
+      "creator": "American Museum of Natural History",
+      "year": null,
+      "url": "https://www.amnh.org/exhibitions/permanent/ornithischian-dinosaurs/edmontosaurus",
+      "description": "Explore a famous skin-preserving specimen and the history of dinosaur reconstruction.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "public_resource",
+      "title": "Dakota, the dinosaur mummy",
+      "creator": "North Dakota Geological Survey",
+      "year": null,
+      "url": "https://www.dmr.nd.gov/dmr/paleontology/dakota-dinosaur-mummy",
+      "description": "Meet an exceptionally preserved hadrosaur and see what its skin and body outline reveal.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "Research synthesis prepared from cited sources; candidates in dossier have not been contacted."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29",
+  "references": [
+    {
+      "id": "R01",
+      "title": "Osteology of Edmontosaurus annectens",
+      "authors": [
+        "Nicolás E. Campione",
+        "David C. Evans"
+      ],
+      "year": 2011,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Zootaxa",
+      "doi": "10.11646/zootaxa.2765.1.1",
+      "url": "https://doi.org/10.11646/zootaxa.2765.1.1",
+      "supportsClaims": [
+        "C01",
+        "C02",
+        "C09"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "Dental biomechanics in hadrosaurid dinosaurs",
+      "authors": [
+        "Gregory M. Erickson et al."
+      ],
+      "year": 2012,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Science",
+      "doi": "10.1126/science.1224495",
+      "url": "https://doi.org/10.1126/science.1224495",
+      "supportsClaims": [
+        "C04"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "The mummified dinosaur skin of Dakota",
+      "authors": [
+        "Phillip L. Manning et al."
+      ],
+      "year": 2009,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Proceedings of the Royal Society B",
+      "doi": "10.1098/rspb.2008.0775",
+      "url": "https://doi.org/10.1098/rspb.2008.0775",
+      "supportsClaims": [
+        "C06"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "A mummified duck-billed dinosaur with a soft-tissue cock's comb",
+      "authors": [
+        "Phil R. Bell et al."
+      ],
+      "year": 2014,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Current Biology",
+      "doi": "10.1016/j.cub.2013.11.008",
+      "url": "https://doi.org/10.1016/j.cub.2013.11.008",
+      "supportsClaims": [
+        "C07"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "A remarkable specimen of Edmontosaurus",
+      "authors": [
+        "Henry Fairfield Osborn"
+      ],
+      "year": 1912,
+      "sourceType": "Peer-reviewed descriptive research",
+      "publication": "Memoirs AMNH",
+      "doi": null,
+      "url": "https://digitallibrary.amnh.org/handle/2246/49",
+      "supportsClaims": [
+        "C06"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "The locomotion of hadrosaurid dinosaurs",
+      "authors": [
+        "David B. Weishampel",
+        "Jack R. Horner"
+      ],
+      "year": 1990,
+      "sourceType": "Peer-reviewed review",
+      "publication": "The Dinosauria",
+      "doi": null,
+      "url": "https://www.ucpress.edu/book/9780520254084/the-dinosauria",
+      "supportsClaims": [
+        "C05"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "The Hell Creek Formation, Montana",
+      "authors": [
+        "Denver W. Fowler"
+      ],
+      "year": 2020,
+      "sourceType": "Peer-reviewed review",
+      "publication": "Geosciences",
+      "doi": "10.3390/geosciences10110435",
+      "url": "https://doi.org/10.3390/geosciences10110435",
+      "supportsClaims": [
+        "C01",
+        "C10"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Edmontosaurus",
+      "authors": [
+        "American Museum of Natural History"
+      ],
+      "year": null,
+      "sourceType": "Official museum resource",
+      "publication": "AMNH",
+      "doi": null,
+      "url": "https://www.amnh.org/exhibitions/permanent/ornithischian-dinosaurs/edmontosaurus",
+      "supportsClaims": [
+        "C02",
+        "C06"
+      ]
+    },
+    {
+      "id": "R09",
+      "title": "Dakota dinosaur mummy",
+      "authors": [
+        "North Dakota Geological Survey"
+      ],
+      "year": null,
+      "sourceType": "Official government resource",
+      "publication": "NDGS",
+      "doi": null,
+      "url": "https://www.dmr.nd.gov/dmr/paleontology/dakota-dinosaur-mummy",
+      "supportsClaims": [
+        "C06"
+      ]
+    },
+    {
+      "id": "R10",
+      "title": "Dinosaurian soft tissues interpreted as bacterial biofilms",
+      "authors": [
+        "Thomas G. Kaye et al."
+      ],
+      "year": 2008,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "PLOS ONE",
+      "doi": "10.1371/journal.pone.0002808",
+      "url": "https://doi.org/10.1371/journal.pone.0002808",
+      "supportsClaims": [
+        "C06"
+      ]
+    }
+  ]
+}

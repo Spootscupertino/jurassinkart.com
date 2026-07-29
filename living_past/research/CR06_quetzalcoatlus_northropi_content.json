@@ -1,0 +1,276 @@
+{
+  "id": "CR06",
+  "slug": "quetzalcoatlus-northropi",
+  "section": "above",
+  "position": 6,
+  "commonName": "Quetzalcoatlus",
+  "scientificName": "Quetzalcoatlus northropi",
+  "pronunciation": "ket-sal-koh-AT-lus NORTH-roh-pie",
+  "type": "flying_reptile",
+  "size": "About 10 m wingspan",
+  "ageRange_Ma": [
+    68.0,
+    66.0
+  ],
+  "diet": "Carnivore",
+  "habitat": "Inland floodplains; poster occurrence is a regional extrapolation",
+  "confidence": "reasonable_inference",
+  "status": "roster",
+  "stage": {
+    "x": 0.545,
+    "plane": "air"
+  },
+  "blurb": "Quetzalcoatlus northropi was one of the largest animals ever to fly, but it is not a Hell Creek fossil. It lived at roughly the right time in Texas, hundreds of kilometres south. Its flight over this poster is a clearly labeled regional extrapolation, not a documented local sighting.",
+  "notes": "Quetzalcoatlus northropi is known from the Javelina Formation of Big Bend National Park, Texas. It lived late in the Maastrichtian, close in age to the closing chapter represented by this poster, but not in the Hell Creek or Lance formations. That distinction is essential. A giant azhdarchid pterosaur could range widely in life, yet no fossil currently proves that this species flew over the northern coastal plain shown here.\n\nThe animal was extraordinary even without exaggeration. Its type material includes enormous wing bones, and comparative reconstructions commonly place its wingspan near ten metres. Exact figures depend on scaling incomplete remains and on which smaller Quetzalcoatlus material is used to restore missing parts. The species Q. northropi is represented much less completely than the smaller, more abundant animal now named Q. lawsoni.\n\nRecent monographic work separates the two species. Q. lawsoni provides much of the detailed skull, neck, and body anatomy popularly illustrated as “Quetzalcoatlus,” while the giant Q. northropi is based on more limited material. Scaling one species directly into the other is useful but not neutral: giants may not preserve identical proportions. A responsible reconstruction labels the composite basis rather than implying a complete giant skeleton exists.\n\nBoth belonged to Azhdarchidae, long-necked, long-limbed pterosaurs with large heads and toothless jaws. Pterosaurs were flying reptiles, not dinosaurs, and they evolved flight independently of birds and bats. A wing membrane extended along the hugely lengthened fourth finger. Fossil evidence from other pterosaurs shows hairlike pycnofibres over parts of the body, supporting a fuzzy body covering, although the precise distribution on Quetzalcoatlus is not preserved.\n\nHow did such a large animal leave the ground? Biomechanical studies support a quadrupedal launch in which powerful forelimbs helped vault the body airborne. Competing models produce different performance estimates because mass, muscle power, wing shape, and launch posture must be reconstructed. The existence of flight is strongly supported by wing anatomy; a specific leap height, cruising speed, or nonstop range should not be stated as measured fact.\n\nIts feeding ecology is also reconstructed. The Javelina environment was an inland floodplain, not an open-ocean coast, and azhdarchid anatomy has inspired a terrestrial-stalking model: walking on all fours and picking up small vertebrates, invertebrates, or carrion. Earlier images of continuous skim-feeding over water fit the mechanics poorly. Even so, no fossilized meal establishes a fixed diet for Q. northropi, and opportunism is plausible.\n\nOn the ground, Quetzalcoatlus probably stood with folded wings and moved quadrupedally. Trackways from other pterodactyloid pterosaurs confirm that the wing-bearing forelimbs contacted the ground. The neck and skull could make the standing animal as tall as a giraffe, but precise posture and maximum head height depend on restoration. It was not a bird enlarged to impossible scale, nor a bat with reptile skin.\n\nThe geographic mismatch changes how the poster should speak. Big Bend and Hell Creek were parts of western North America during the same broad interval, but they preserve different communities and climates. Long-distance flight makes a northern visitor conceivable; conceivability is not occurrence evidence. The page therefore treats CR06 as an evocative regional cameo. A locally documented Hell Creek pterosaur would be safer, but remains too fragmentary for an equally specific portrait.\n\nIn the scene, CR06 is a giant azhdarchid in flight, with a narrow membrane wing, compact fuzzy torso, long toothless head, and proportions informed partly by Q. lawsoni. Wingspan near ten metres is an estimate. Color, crest tissue, exact membrane outline, flight path, and presence over the northern floodplain are artistic. The deepest truth this reconstruction can offer is not false certainty, but the scale of an animal that really flew elsewhere on the same continent near the end of the Cretaceous.",
+  "funFacts": [
+    "Right time, different place — Q. northropi comes from the Javelina Formation in Texas, not Hell Creek. Its poster appearance is a plausible long-distance visitor, not a locally confirmed species occurrence.",
+    "The giant is incomplete — Most detailed Quetzalcoatlus anatomy comes from the smaller Q. lawsoni. Restoring the roughly ten-metre Q. northropi requires scaling and comparison, with uncertainty in giant proportions.",
+    "A four-limbed launch — Pterosaur biomechanics support using the powerful wing-bearing forelimbs as part of a vault into the air, unlike the mainly hind-limb takeoff of birds.",
+    "Not a dinosaur — Quetzalcoatlus was a pterosaur, a member of the flying-reptile lineage that evolved powered flight separately from birds and bats."
+  ],
+  "funFactSources": [
+    {
+      "index": 0,
+      "claimIds": [
+        "C01",
+        "C09"
+      ],
+      "referenceIds": [
+        "R01",
+        "R02"
+      ]
+    },
+    {
+      "index": 1,
+      "claimIds": [
+        "C03"
+      ],
+      "referenceIds": [
+        "R01",
+        "R03"
+      ]
+    },
+    {
+      "index": 2,
+      "claimIds": [
+        "C06"
+      ],
+      "referenceIds": [
+        "R05",
+        "R06"
+      ]
+    },
+    {
+      "index": 3,
+      "claimIds": [
+        "C04"
+      ],
+      "referenceIds": [
+        "R04"
+      ]
+    }
+  ],
+  "survivor": "No pterosaur survived the end-Cretaceous extinction. Birds and bats are not descendants of pterosaurs; each lineage acquired powered flight independently. That makes comparison especially revealing. A pterosaur wing was supported chiefly by one enormously lengthened fourth finger, a bird wing by feathered arm and hand bones, and a bat wing by skin stretched across several elongated fingers. Similar aerodynamic demands produced wings three different ways. Quetzalcoatlus belongs to a vanished experiment in flight with no exact modern equivalent.",
+  "distribution": "Confirmed Quetzalcoatlus northropi material comes from late Maastrichtian deposits of the Javelina Formation in Big Bend National Park, Texas. The smaller Q. lawsoni occurs in the same regional unit and supplies much comparative anatomy. Neither species is confirmed from the Hell Creek or Lance formations. The poster’s northern coastal-plain setting is therefore outside the documented species range; flight makes visitation biologically possible, but current fossils cannot demonstrate that it occurred. It is the page’s clearest deliberate biogeographic extrapolation.",
+  "fossilEvidence": {
+    "directEvidence": [
+      "Giant wing bones from the Javelina Formation establish an enormous azhdarchid pterosaur named Q. northropi.",
+      "More complete smaller Quetzalcoatlus remains establish much of the genus-level skull, neck, limb, and toothless-jaw anatomy.",
+      "Pterosaur skeletons and trackways establish membrane wings and quadrupedal ground movement for the broader group."
+    ],
+    "supportedInference": [
+      "A wingspan near ten metres follows scaling of incomplete giant material.",
+      "Quadrupedal launch and soaring capability are supported biomechanically, with performance values dependent on assumptions.",
+      "Terrestrial stalking fits azhdarchid anatomy and inland setting; exact diet remains unknown."
+    ],
+    "artisticReconstruction": [
+      "Presence over Hell Creek–Lance, because no local Q. northropi fossil is known.",
+      "Exact giant proportions borrowed partly from Q. lawsoni, plus color, soft crest, and membrane outline.",
+      "A particular prey target, flight altitude, speed, or migratory route."
+    ]
+  },
+  "deeperDive": [
+    {
+      "kind": "research",
+      "title": "The Late Cretaceous pterosaur Quetzalcoatlus Lawson 1975",
+      "creator": "Kevin Padian and colleagues",
+      "year": 2021,
+      "url": "https://doi.org/10.1525/9780520381312",
+      "description": "Explore the major modern monograph separating the giant species from the smaller, better-known one.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "museum",
+      "title": "Quetzalcoatlus and Big Bend",
+      "creator": "Texas Memorial Museum",
+      "year": null,
+      "url": "https://texasnaturalsciencecenter.org/",
+      "description": "Connect the animal with Texas fossils and the landscape in which its remains were found.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    },
+    {
+      "kind": "public_resource",
+      "title": "Quetzalcoatlus northropi",
+      "creator": "National Park Service, Big Bend",
+      "year": null,
+      "url": "https://www.nps.gov/bibe/learn/nature/fossils.htm",
+      "description": "Explore the official park context for Big Bend’s Late Cretaceous fossil record.",
+      "endorsementDisclaimer": "Editorially selected further reading; no endorsement or participation is implied."
+    }
+  ],
+  "scientificReview": {
+    "status": "Not externally reviewed",
+    "reviewedBy": [],
+    "editorialNote": "Geographic mismatch is intentional and disclosed. Candidate reviewers in the dossier have not been contacted."
+  },
+  "contentVersion": "1.0.0-pilot",
+  "lastReviewed": "2026-07-29",
+  "references": [
+    {
+      "id": "R01",
+      "title": "The Late Cretaceous pterosaur Quetzalcoatlus Lawson 1975",
+      "authors": [
+        "Kevin Padian et al."
+      ],
+      "year": 2021,
+      "sourceType": "Peer-reviewed monograph",
+      "publication": "Society of Vertebrate Paleontology Memoir",
+      "doi": "10.1525/9780520381312",
+      "url": "https://doi.org/10.1525/9780520381312",
+      "supportsClaims": [
+        "C01",
+        "C02",
+        "C03",
+        "C05",
+        "C09"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "Stratigraphy and depositional environments of the Javelina Formation",
+      "authors": [
+        "Thomas M. Lehman"
+      ],
+      "year": 1985,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Gulf Coast Association Geological Societies Transactions",
+      "doi": null,
+      "url": "https://www.nps.gov/bibe/learn/nature/fossils.htm",
+      "supportsClaims": [
+        "C01",
+        "C08",
+        "C09"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "A new species of Quetzalcoatlus",
+      "authors": [
+        "Brian Andres",
+        "Wann Langston Jr."
+      ],
+      "year": 2021,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Journal of Vertebrate Paleontology Memoir",
+      "doi": "10.1080/02724634.2020.1907587",
+      "url": "https://doi.org/10.1080/02724634.2020.1907587",
+      "supportsClaims": [
+        "C03"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "The phylogeny and evolutionary history of pterosaurs",
+      "authors": [
+        "Brian Andres et al."
+      ],
+      "year": 2014,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Earth and Environmental Science Transactions",
+      "doi": "10.1017/S1755691013000303",
+      "url": "https://doi.org/10.1017/S1755691013000303",
+      "supportsClaims": [
+        "C04"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "Quadrupedal launch in pterosaurs",
+      "authors": [
+        "Michael B. Habib"
+      ],
+      "year": 2008,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Zitteliana B",
+      "doi": null,
+      "url": "https://www.zobodat.at/pdf/Zitteliana_28_B_0159-0166.pdf",
+      "supportsClaims": [
+        "C06"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "Launch limit for large pterosaurs",
+      "authors": [
+        "Mark P. Witton",
+        "Michael B. Habib"
+      ],
+      "year": 2010,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "PLOS ONE",
+      "doi": "10.1371/journal.pone.0013982",
+      "url": "https://doi.org/10.1371/journal.pone.0013982",
+      "supportsClaims": [
+        "C06"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "A reassessment of azhdarchid pterosaur functional morphology and paleoecology",
+      "authors": [
+        "Mark P. Witton",
+        "Darren Naish"
+      ],
+      "year": 2008,
+      "sourceType": "Peer-reviewed review",
+      "publication": "PLOS ONE",
+      "doi": "10.1371/journal.pone.0002271",
+      "url": "https://doi.org/10.1371/journal.pone.0002271",
+      "supportsClaims": [
+        "C07"
+      ]
+    },
+    {
+      "id": "R08",
+      "title": "Pterosaur terrestrial locomotion",
+      "authors": [
+        "Jean-Michel Mazin et al."
+      ],
+      "year": 2003,
+      "sourceType": "Peer-reviewed primary research",
+      "publication": "Geological Society Special Publication",
+      "doi": null,
+      "url": "https://www.lyellcollection.org/",
+      "supportsClaims": [
+        "C05"
+      ]
+    },
+    {
+      "id": "R09",
+      "title": "Fossils of Big Bend National Park",
+      "authors": [
+        "National Park Service"
+      ],
+      "year": null,
+      "sourceType": "Official government resource",
+      "publication": "National Park Service",
+      "doi": null,
+      "url": "https://www.nps.gov/bibe/learn/nature/fossils.htm",
+      "supportsClaims": [
+        "C01",
+        "C08",
+        "C09"
+      ]
+    }
+  ]
+}
