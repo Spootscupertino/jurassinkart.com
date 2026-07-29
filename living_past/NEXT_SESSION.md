@@ -1,161 +1,173 @@
 # The Living Past — Next Session Launch Prompt (updated 2026-07-29)
 
-> **2026-07-29 — the ten criticisms were worked. Read this box first.**
->
-> Current plate: **`plates/backdrop_v5.png`** (also copied to `plates/_scene_live.png`, which is
-> what `poster_mockup_live.html` reads). Full write-up in `PLATE_ASSEMBLY.md` → *Status —
-> backdrop_v5*. Every one of the ten is addressed in code:
->
-> | # | fix | where |
-> |---|---|---|
-> | 1 | strata rebuilt as an outcrop — pinch/swell, shared roll, fault, gullies, **ravines cut clean through**, talus, weathering relief | `render_strata_organic.py` (rewritten) |
-> | 2 | coastline tilts; **the drop-off is now code** (`SEAFLOOR`) because the source plate is a head-on wall | `build_backdrop.py` |
-> | 3 | `stage:{x,plane}` on all 32 organisms; 9 planes, not 3 | `volume_v.json`, `place_on_backdrop.py` |
-> | 4 | two unequal windows + brass corner ticks; the cm-scale four are staged *inside* the big one | `build_backdrop.py` |
-> | 5+9 | rain cell over the mid-left, lit gap beside it; the world grade got a direction | `build_backdrop.py` |
-> | 6 | 11 drawn azhdarchid silhouettes, weighted left | `build_backdrop.py` `pterosaur()` |
-> | 7 | volcano pushed back with aerial perspective, not shrunk | `build_backdrop.py` |
-> | 8 | title moves to the top-left indigo; plate darkens that patch; whisper moves clear | `poster_mockup_live.html`, `build_backdrop.py` |
-> | 10 | field guide gets the `glyphs.svg` type marks, lead cells, documented counts | `poster_mockup_live.html` |
->
-> **Four new plate slots are written and wired**, each replacing something the build currently
-> synthesises — good enough to compose against, deliberately not good enough to ship:
-> `ocean_shelf_recede` (the drop-off geometry), `sky_squall_cell`, `land_left_bench`,
-> `air_insect_swarm`. They join the 14 already outstanding: `lp_plate_prompt.py --missing` now
-> lists **18**.
->
-> **What is still open:** the strata are the accuracy moat and at `FLOOR_BOT = 0.875` they are
-> mostly *behind* the front band — worth deciding whether 12% of height is enough for the thing
-> the poster's accuracy claim rests on. And idea #10 below still stands: **print one.**
->
-> ---
->
-> **2026-07-28 — the previous ten ideas. Historical.**
->
-> Done in code: #2 (knockout), #1 macro window, #3 sky triptych wiring, #5 volcano, #6 river
-> margin, #7 burrow cutaway, #8 underwater passes, #9 waterline rebalance, #10 Photoshop pass.
-> Current plate: `plates/backdrop_v4.png`.
->
-> **The one finding that changes the plan: the knockout belongs in Photoshop.** Select Subject is
-> scriptable (`tools/ps_isolate.py`), takes ~2 s a plate, and clears MJ's floor plane — which the
-> flood fill *cannot* reach at any tolerance, because that plane is neither connected to the frame
-> border nor tonally near it. That was the 4/10. See `PHOTOSHOP.md`.
->
-> **What is left is generation, not code.** Fourteen plate prompts are written and every slot that
-> consumes them is wired and tested with stand-ins:
->
-> ```bash
-> python3 tools/lp_plate_prompt.py --missing     # the 14 that still need shooting
-> ```
->
-> Shoot those, drop them into `plates/candidates/` under the exact slot names the tool prints, and
-> re-run `build_backdrop.py` — no further code changes needed. Until then the build falls back to
-> the old single sky and the two mirrored hollows.
-
 > Paste the block below into a fresh session.
 
 ---
 
-Vol V **backdrop**, still — the organism firehose stays on hold at 9/32. Read
-`living_past/PLATE_ASSEMBLY.md`, `PHOTOSHOP.md` and `STAGING.md` first, then serve the poster
-(`.claude/launch.json` → `living-past-static`, port 4599) and open `poster_mockup_live.html`.
-That HTML is the poster of record; `poster_full.png` and `poster_draft_v1.png` are stale renders.
+Vol V backdrop. Plate of record is **`plates/backdrop_v7.png`** (committed `b595714`, copied to
+`_scene_live.png`). Read `PLATE_ASSEMBLY.md` → *Status — backdrop_v5* first (it covers v5–v7), then
+`STAGING.md`. Serve the poster (`.claude/launch.json` → `living-past-static`, port 4599) and open
+**`plate_viewer.html`** — hold SPACE to A/B against v4 — and `poster_mockup_live.html?only=1`, F for
+fullscreen.
 
-The code side of the backdrop is done. **This session is generation and composition**, in order:
+**Work the way that worked.** Eric, 2026-07-29: *"we do our best work when i create the images in mj
+and we knock things out one by one."* One plate at a time: Claude prints the prompt and what to look
+for, Eric fires it, Claude reads the grid in the in-app browser and argues the pick, Eric drops the
+file, Claude rebuilds and re-tunes the constants that plate touches. Ten plates landed that way in
+one session. Do not batch six prompts and hope.
 
-1. **Shoot the 14 missing plates** — `python3 tools/lp_plate_prompt.py --missing`. Every slot that
-   consumes them is wired and tested. One idea per prompt, never crammed. Nothing else unblocks
-   as much.
-2. **Isolate the fired organisms** with `tools/ps_isolate.py`, then re-place them. The knockout
-   itself is solved; the backlog just hasn't been run.
-3. **Compose the cast deliberately** — placement is currently a left-to-right walk from one x,
-   which piles the animals into a single band.
-4. **Then the criticisms below**, hardest first: the strata still read as ruled bars and the ocean
-   still reads as a wall.
-
-Personalization is OFF in MJ; keep it off. Keep every plate change reproducible in
-`tools/build_backdrop.py`, and export `--layers` so the Photoshop handoff stays free.
+**Do not print anything.** Eric: *"no reason to print if it doesnt look right on the computer."*
 
 ---
 
-## Why the backdrop earns a whole session (or two)
+## The list (Eric's, 2026-07-29)
 
-Once it's locked the project is roughly **half done**. Every downstream constant derives from it —
-the terrace line, the headroom, where the three depth planes sit, where each habitat is. Organisms
-composited against a plate that's still moving are wasted work, which is exactly why the firehose
-is paused rather than grinding.
+1. **Volcano further into the left corner.** It sits at `VOLCANO_X = 0.108`. Note it is now
+   darken-blended (its own pale sky drops out) so it can move without dragging a patch rectangle —
+   but the two circles bracket it, so all three move together or the bracket breaks.
+2. **Expand the Deccan idea and the magma.** See *The Deccan is half an idea* below.
+3. **Blend the micro windows so they flow organically out of the poster.** Read the tension note
+   below before softening anything — done naively this undoes criticism #4.
+4. **The shells look off.** Answered below: the plate was generic when the roster already named
+   what it should have been.
+5. **Bring the ocean further up in the right corner** — more room for water-column layers, more
+   room for the river delta, and possibly a freshwater window. `SEA_TOP = 0.145`; raising it trades
+   against sky, so decide what the sky loses before moving it.
 
-## Where things stand
+## Claude's additions
+
+6. **Put organisms on it. This is the whole gap.** 32 staged, 0 placed. Nothing else on either list
+   moves the number as much, and every item above is polishing a stage with no cast. The pipeline is
+   ready end to end: `stage:{x,plane}` is in `volume_v.json`, `place_on_backdrop.py` reads it,
+   `ps_isolate.py` does the knockout. Start with **CR01 T. rex** — it is the hero anchor, it is the
+   only organism already isolated, and it will immediately expose whether the `fg` plane's ground
+   line is right on v7.
+7. **The eye has no path.** At a few feet the strongest object on the poster is the bottom-left
+   window — furniture, not subject. A poster needs one thing that wins, one that answers it, and
+   everything else subordinate. The intended spine is T. rex / Mosasaurus / volcano and none of
+   them currently wins. This is diagnosable *only* at distance and only once #6 has started.
+8. **Nothing occludes anything.** Every element sits inside its own band: sky, plain, litter,
+   strata, water. Overlap is the cheapest depth cue there is and the plate has almost none. One
+   frond crossing the mid-distance, the litter breaking over the waterline, a bird passing in front
+   of the cone — each is worth more than another texture pass.
+9. **The front band is one hue.** Amber log plus one mushroom cluster. Four micro slots remain and
+   each brings a value the band does not have: `micro_moss_cushion` (saturated green),
+   `micro_puddle_edge` (water, and a mirror that puts sky at ground level),
+   `micro_fern_crozier` (the one vertical gesture in a horizontal band), `micro_bark_crevice`
+   (vertical surface). Shoot moss and puddle first — they are the two biggest colour departures.
+10. **The annotation layer does not exist yet.** Callout numerals tying the 32 scene positions to
+    the 32 field-guide entries, the Law #2 magnification note, a scale bar. This is what makes it a
+    *scientific plate* rather than a landscape with circles on it, and it is pure vector furniture —
+    no renders needed. `scalebar_audition.html` and `glyph_audition.html` already exist.
+
+---
+
+## How 7.5 becomes 10
+
+Not by fixing more things. The plate is at the point where the remaining defects are small and the
+remaining *absences* are large. Three moves, in order, and they are worth roughly:
+
+| move | worth | why |
+|---|---|---|
+| **The cast** (#6) | +1.5 | It is a stage. A stage with nobody on it cannot exceed ~8 no matter how good the stage is. Every argument the poster makes — true relative scale, every organism has a home, the confidence system — is currently unillustrated. |
+| **Composition** (#7, #8) | +0.5 | Focal hierarchy and occlusion. Both become *possible* only once organisms exist, because the organisms are what will occlude and what will win. |
+| **Annotation** (#10) | +0.5 | Turns a beautiful landscape into an instrument. It is also the cheapest half-point on the list — vector work, no renders. |
+
+Eric's 1–5 and Claude's 9 are all real and all worth doing, but honestly they are the last 0.3
+between them. **They are refinements of a stage.** Do them alongside the cast rather than instead of
+it — the trap this session came closest to falling into was polishing the backdrop indefinitely
+because the backdrop is the part that responds immediately.
+
+---
+
+## Notes on the specific items
+
+### 3 · The window-blending tension — read before softening
+
+The windows were built as **deliberate ruled instruments**, and the argument was explicit: every
+other edge on the plate is noise-warped precisely so nothing reads as drawn, so the one clean edge
+reads as an *instrument of the poster* rather than a compositing artefact. "Blend them so they flow
+organically" is in direct tension with that. Softened naively — feathered frames, lowered opacity —
+they stop reading as instruments and become smudges, and criticism #4 comes straight back.
+
+The resolution is to **keep the frame crisp and let the content escape more**:
+
+- More escape lobes per window. Each currently breaks its rule in exactly one place, at the top.
+  Two or three breaks on different sides reads as something growing out of the frame rather than
+  one deliberate spill.
+- Vignette the content *inside* the frame so it falls off toward its own edges before the rule,
+  rather than meeting the brass at full strength.
+- Let a neighbour cross a window — litter overlapping the bottom-left frame, a bird passing the
+  volcano circles. Occlusion (see #8) is what makes something sit *in* a scene.
+- Consider a second, thinner concentric rule on the circles — an optic has more than one edge.
+
+### 4 · The shells
+
+The intent was that the seafloor is **accumulated death** — shell hash is what marine rock actually
+is, the same accuracy-moat argument as the strata. It is not reading, and unread intent is failed
+intent.
+
+The fix is not a better generic shell bed. The roster already names the answer: **CR31 Inoceramus**,
+a bivalve that reached 1–2 m. A seafloor paved with metre-wide clam shells is accurate, dramatic,
+legible at poster scale, *and* gives a roster organism its declared home — which generic shell hash
+does not. Reshoot `ocean_shell_beds` around Inoceramus specifically, or cut the pass.
+
+### 2 · The Deccan is half an idea
+
+v7 carries a sulphate-aerosol veil high in the sky (`build_backdrop.py` §4d2) — the second killer,
+present as the reason the sunset looks wrong. It pairs with the asteroid whisper by *kind*: the
+asteroid is a point you can see, the Deccan is a stain you cannot locate.
+
+What would finish it:
+
+- The magma window is currently a fissure in crusted lava, which is already Deccan-style rather
+  than arc-style. Eric ruled (2026-07-29) that broad Late-Cretaceous geology beats strict Montana
+  locality, so this is sanctioned — but the poster should then *say* it, in the annotation layer.
+- A third geological circle would close the cascade: **magma → ash → bentonite bed → the section**.
+  The first two exist; the bed and the section are on the plate but not linked to the circles.
+  Linking them is annotation work (#10), not a render.
+- The two whispers want to be findable *together*. Right now they are on opposite sides of the sky
+  with nothing connecting them.
+
+### 5 · Raising the ocean
+
+`SEA_TOP = 0.145`, `COAST_X = 0.55`, `COAST_TILT = 0.115`, and the seafloor profile is `SEAFLOOR`.
+Raising the sea buys water-column height and costs sky — and the sky just got the cumulus and glow
+plates, so decide what it gives up. The freshwater window is a good idea and cheap: `river_margin_macro`
+is already a written, wired, unshot slot, and **five organisms** (CR17 Borealosuchus, CR18 Basilemys,
+CR19 gar, CR20 guitarfish ray, CR21 Champsosaurus) declare the river margin as their home.
+
+---
+
+## State
 
 | | state |
 |---|---|
-| Backdrop | `backdrop_v4.png` — 11 components + 11 more slots wired, awaiting renders |
-| Micro habitats | **the emphasis** — 6 prompts written, 0 shot; build still falls back to 2 hollows |
-| Strata | 12% of height, depth-graded — but still read as ruled bars (criticism #1) |
-| Organisms on plate | knockout **solved** via `ps_isolate.py`; placement is not |
-| Sky | 3-plate triptych wired, none shot; falls back to the single sunset plate |
-| Volcano | **fixed** — own component, sits on the treeline at 2.3:1 |
-| Firehose | **on hold**, 9/32 fired — the 14 plate prompts outrank it |
-| Photoshop | scriptable, and now owns the knockout (`PHOTOSHOP.md`) |
-| Poster preview | `poster_mockup_live.html` on :4599, reads `plates/_scene_live.png` |
+| Plate | `backdrop_v7.png` — 10 plates in, 4 macro windows, 25-layer PS export in `working/` |
+| Windows | log cavity (rect), shell beds (rect), volcanic ash + magma vent (circles, bracketing the cone) |
+| Strata | eroded outcrop: pinch/swell, fault, gullies, 2 ravines cut through. Still only 12% of height |
+| Ocean | code-built seafloor; coastline tilts; the head-on wall plate is retired to its shallows only |
+| Sky | cumulus + horizon glow live; `sky_high_cirrus` still unshot |
+| Weather | procedural rain cell; `sky_squall_cell` unshot |
+| Organisms | **0 of 32 placed** — staging is data in `volume_v.json`, 9 planes |
+| Plates | 11 slots left: `lp_plate_prompt.py --missing` |
+| Rank | 7.5/10 (was 6.5 at v5) |
 
-## The three hero anchors — do not lose these
+## Rules that keep being re-learned
 
-1. **T. rex** — far left, low worm's-eye camera, may break the title band.
-2. **Mosasaurus** — far right, floating over the abyssal void. **The void is the scale weapon:**
-   the ocean never gets shallower, only the soil does.
-3. **The volcano** — geological monument on the horizon, plus the **asteroid whisper**: one faint
-   cold point with a short streak, high in the empty top-left indigo.
-
-## Ten criticisms of the poster as it stands (2026-07-28)
-
-Written down because they are easier to see now than they will be next session.
-
-1. **The strata read as flat ruled bars.** They are the accuracy moat and the most obviously
-   generated thing on the plate. Every other edge is noise-warped; these are still stripes.
-2. **The ocean is a wall, not a shelf.** The waterline runs almost straight down the coast — the
-   drop-off never reads as receding away from the viewer, so the abyss is a blue panel, not depth.
-3. **The cast stacks in one vertical band.** `place_on_backdrop.py` walks animals left-to-right
-   from a single x, so three animals pile at the same place instead of being composed.
-4. **The macro window has no answer.** One bright ruled rectangle in the bottom-left corner with
-   nothing anywhere else in the composition rhyming with it. It reads as an accident.
-5. **The left third is empty.** After the horizon dropped, the mid-left is an undifferentiated
-   plain — a lot of the poster's most valuable real estate doing no work.
-6. **Nothing is in the air.** No pterosaurs, no insects, no birds. The sky is scenery rather than
-   habitat, which quietly contradicts the whole "every organism has a home" thesis.
-7. **The volcano and the T. rex compete.** Both are large, high-contrast, upper-middle. The
-   volcano is supposed to be a monument on the horizon, not a second subject.
-8. **The title sits on the busiest part of the sky.** Top-right is where the cumulus and the ash
-   plume are. Legibility is surviving on a text-shadow.
-9. **One light, one weather, one hour.** Everything is warm sunset from the upper right. The plate
-   never varies its mood, which flattens 3 million years of a world into one evening.
-10. **The QR field guide is visually inert.** 32 identical small rows with placeholder thumbnails.
-    It is the half of the poster a buyer actually reads and it currently looks like a spreadsheet.
-
-## Ten ideas for next session (2026-07-28)
-
-1. **Shoot the 14 plates.** `python3 tools/lp_plate_prompt.py --missing` — every slot that consumes
-   them is already wired and tested. This is the highest-value hour available and needs no code.
-2. **Run the whole cast through `ps_isolate.py`** and re-place all 9 fired organisms. The knockout
-   is solved; the backlog of plates isn't isolated yet.
-3. **Give the strata the same treatment as every other edge.** They're the last ruled lines on the
-   plate. Warp the contacts, vary the tone per layer, let the litter genuinely interlock with them.
-4. **Make the drop-off recede.** Curve the coastline in plan, not just in elevation, so the shelf
-   turns away from the viewer and the abyss becomes distance rather than a blue panel.
-5. **Compose the cast by hand.** Replace the left-to-right walk in `place_on_backdrop.py` with a
-   per-organism (x, plane) in `volume_v.json`, so placement is data and reviewable like the roster.
-6. **Put something in the air.** Quetzalcoatlus high and small, insects at macro scale near the
-   window. It costs two plates and fixes the emptiest third of the composition.
-7. **Answer the macro window.** Either a second, smaller window somewhere on the right, or a
-   repeated brass rule in the furniture, so the one ruled box reads as a system.
-8. **Move the title, or darken its patch.** Top-left indigo is the calm quarter and it's where the
-   asteroid whisper already lives — the two could share a corner deliberately.
-9. **Design the field guide as a page, not a table.** 32 rows of equal weight is a spreadsheet;
-   vary scale, let the hero anchors take bigger cells, and use the confidence dots as real signal.
-10. **Print one.** A 2.3:1 plate judged on a screen at 800px is being judged on nothing. One cheap
-    poster print will surface more real problems than another session of pixel work.
+- **A source plate's geometry cannot be masked away.** Three sessions of feathering `ocean_shelf_dropoff`
+  never fixed it, because it *is* a head-on wall. Harvest the region a render nailed; build the
+  geometry it missed.
+- **Interruption beats undulation.** Wavier strata did nothing; gullies and ravines that cross
+  contacts killed the bar read.
+- **Check what consumes a slot before blaming the render.** One "failed" ocean run was correct for
+  the slot's new job — the prompt was written against the slot's old one.
+- **"Shelf edge" is a subject noun, and MJ answers subject nouns with a hero close-up.** Recession
+  is a camera position. Lead with where the camera is.
+- **Everything in `build_backdrop.py` is canvas fractions, never pixels.** The micro table was the
+  last pixel holdout and it silently broke when the canvas changed height.
 
 ---
 
-_(Earlier launch prompts and the 2026-07-08 compositing proof are in `SESSION_2026-07-10.md`,
-`SESSION_2026-07-23.md` and memory `project_living_past_composite_validated`.)_
+_(Earlier launch prompts: `SESSION_2026-07-10.md`, `SESSION_2026-07-23.md`. The 2026-07-28 ten
+criticisms and their fixes are in `PLATE_ASSEMBLY.md`.)_
