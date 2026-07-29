@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Champsosaurus — Late Cretaceous | The Living Past</title>
-<meta name="description" content="Champsosaurus (Champsosaurus) — Marine Reptile, 72–66 Ma. The Living Past, Vol V: Late Cretaceous.">
+<meta name="description" content="With a needle-toothed snout and muscular tail, Champsosaurus hunted through Late Cretaceous fresh water. It resembled a narrow-jawed crocodilian but belonged to Choristodera, an entirely extinct reptile branch. Its fossils also carry a remarkable sequel: the genus survived the catastrophe that ended the age of non-bird dinosaurs.">
 <meta property="og:title" content="Champsosaurus — The Living Past">
-<meta property="og:description" content="Champsosaurus (Champsosaurus) — Marine Reptile, 72–66 Ma. The Living Past, Vol V: Late Cretaceous.">
+<meta property="og:description" content="With a needle-toothed snout and muscular tail, Champsosaurus hunted through Late Cretaceous fresh water. It resembled a narrow-jawed crocodilian but belonged to Choristodera, an entirely extinct reptile branch. Its fossils also carry a remarkable sequel: the genus survived the catastrophe that ended the age of non-bird dinosaurs.">
 <meta property="og:image" content="../plates/organisms/CR21_isolated.png">
 <meta property="og:type" content="article">
 <link rel="canonical" href="https://jurassinkart.com/late-cretaceous/champsosaurus">
@@ -158,6 +158,87 @@
   .todo{ color:#7c6f52; font-style:italic; }
   .todo::before{ content:"◇ "; color:var(--brass); font-style:normal; }
 
+  /* ============================================================
+     RESEARCH-PASS COMPONENTS (2026-07-29)
+     Added, not redesigned: every one of these is built from the tokens the
+     template already defines (--brass, --panel, --hair, the three fonts). No new
+     colour, face or hierarchy is introduced.
+     ============================================================ */
+
+  /* "What the fossils tell us" — the epistemic spine of the page.
+     It deliberately reuses the CONFIDENCE DOT that SCOPE §4 already locked for
+     well-documented / reasonable-inference / speculative, because
+     direct-evidence / supported-inference / artistic-reconstruction is the same
+     distinction at paragraph scale. Filled, half, open — one vocabulary across
+     the poster card, the hero badge and here, so a reader who learns it once
+     can read it everywhere. */
+  .evidence{ display:grid; gap:1px; background:var(--hair); border:1px solid var(--hair);
+    border-radius:10px; overflow:hidden; margin:6px 0 4px; }
+  .ev{ background:var(--panel); padding:16px 18px; }
+  .ev .evh{ display:flex; align-items:center; gap:9px; margin:0 0 9px; }
+  .ev .evd{ width:11px; height:11px; border-radius:50%; border:1px solid var(--brass); flex:none; }
+  .ev .evd.filled{ background:var(--brass); }
+  .ev .evd.half{ background:linear-gradient(90deg,var(--brass) 0 50%,transparent 50%); }
+  .ev .evd.open{ background:transparent; }
+  .ev .evt{ font-family:var(--sans); font-size:10.5px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--brass-hi); }
+  .ev ul{ list-style:none; margin:0; padding:0; }
+  .ev li{ font-family:var(--sans); font-size:14.5px; line-height:1.62; color:#e4dabf;
+    padding:6px 0 6px 15px; position:relative; letter-spacing:.005em; }
+  .ev li::before{ content:"·"; position:absolute; left:3px; color:var(--brass); }
+  .ev.recon li{ color:#cfc3a6; font-style:italic; }
+
+  /* per-fact citation markers, so a claim and its source are never separated */
+  .cite{ font-family:var(--sans); font-size:10.5px; letter-spacing:.06em; color:var(--brass);
+    vertical-align:super; margin-left:3px; text-decoration:none; }
+  .cite:hover{ color:var(--brass-hi); }
+
+  /* Deeper dive — editorially selected further reading. `kind` is shown so a
+     reader can tell a paper from a museum before clicking. */
+  .dive{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:6px 0 0; }
+  @media(max-width:760px){ .dive{ grid-template-columns:1fr; } }
+  .dive a{ display:block; text-decoration:none; background:var(--panel); border:1px solid var(--hair);
+    border-radius:10px; padding:16px; transition:border-color .15s ease, transform .15s ease; }
+  .dive a:hover{ border-color:var(--brass); transform:translateY(-1px); }
+  .dive .k{ font-family:var(--sans); font-size:9.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--brass); }
+  .dive .t{ font-family:var(--body); font-size:16px; line-height:1.34; color:var(--ivory); margin:7px 0 6px; }
+  .dive .m{ font-family:var(--sans); font-size:12.5px; line-height:1.55; color:var(--muted); }
+  .dive .who{ font-family:var(--sans); font-size:11px; color:#8a7c60; margin-top:8px; }
+
+  /* Scientific status. Deliberately plain: this is the honesty layer, and dressing
+     it up would undercut it. */
+  .status .row{ display:flex; justify-content:space-between; gap:12px; font-family:var(--sans);
+    font-size:12px; color:var(--muted); padding:7px 0; border-top:1px solid var(--hair); }
+  .status .row:first-of-type{ border-top:none; }
+  .status .row b{ color:#d8cdb0; font-weight:400; }
+  .status .note{ font-family:var(--sans); font-size:12.5px; line-height:1.6; color:#bdb094;
+    margin:10px 0 0; }
+
+  /* Publication gate — only rendered when a record carries an unresolved
+     verification requirement. It must be impossible to miss. */
+  .gate{ border:1px solid #c0442f88; background:linear-gradient(160deg,#22110e,#160d0b);
+    border-radius:10px; padding:16px 18px; margin:0 0 26px; }
+  .gate .gt{ font-family:var(--sans); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:#e08a72; }
+  .gate p{ font-family:var(--sans); font-size:13.5px; line-height:1.6; color:#e8cfc6; margin:8px 0 0; }
+
+  /* full source list */
+  .srclist{ list-style:none; margin:0; padding:0; }
+  .srclist li{ font-family:var(--sans); font-size:12px; line-height:1.55; color:var(--muted);
+    padding:9px 0 9px 26px; border-top:1px solid var(--hair); position:relative; }
+  .srclist li:first-child{ border-top:none; }
+  .srclist .n{ position:absolute; left:0; top:9px; color:var(--brass); font-size:11px; }
+  .srclist a{ color:var(--brass-hi); text-decoration:none; }
+  .srclist a:hover{ text-decoration:underline; }
+  .srclist .ty{ color:#6f6552; }
+
+  /* return-to-the-world CTA */
+  .backworld{ display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap;
+    border:1px solid var(--hair); border-radius:12px; background:var(--panel); padding:18px 20px;
+    margin:34px 0 0; }
+  .backworld p{ font-family:var(--body); font-style:italic; font-size:17px; color:#e6d9b8; margin:0; }
+
   :root{ --focus-x:46%; --focus-y:40%; }
 </style>
 </head>
@@ -186,23 +267,65 @@
 
   <div class="wrap">
     <div class="facts">
-      <div class="f"><div class="fl">Size</div><div class="fv">1.5 m</div></div>
+      <div class="f"><div class="fl">Size</div><div class="fv">about 1.5 m (5 ft)</div></div>
       <div class="f"><div class="fl">When</div><div class="fv">72–66 Ma</div></div>
       <div class="f"><div class="fl">Diet</div><div class="fv">Piscivore</div></div>
-      <div class="f"><div class="fl">Habitat</div><div class="fv">Coastal floodplain</div></div>
+      <div class="f"><div class="fl">Habitat</div><div class="fv">Freshwater rivers, lakes, and ponds</div></div>
     </div>
 
     <div class="cols">
       <div class="main">
-        <div class="blurb todo">One-line lede — pending sourced fill for Champsosaurus.</div>
+        
+        <div class="blurb">With a needle-toothed snout and muscular tail, Champsosaurus hunted through Late Cretaceous fresh water. It resembled a narrow-jawed crocodilian but belonged to Choristodera, an entirely extinct reptile branch. Its fossils also carry a remarkable sequel: the genus survived the catastrophe that ended the age of non-bird dinosaurs.</div>
 
         <h2>In this world</h2>
-        <p class="body-copy todo">Extended, sourced anatomy &amp; ecology write-up pending (demoted from the poster per Law #3). Filled from the record's sourced notes; never fabricated.</p>
+        <p class="body-copy">Beneath a Hell Creek river surface, Champsosaurus would look familiar at first glance: long jaws, sprawling limbs, and a tail made for swimming. Yet it was not a crocodile. It belonged to Choristodera, an extinct radiation of semi-aquatic reptiles with a history extending from the Mesozoic into the Cenozoic.</p>
+        <p class="body-copy">The skull supplies its clearest ecological signal. A long, narrow snout lined with small pointed teeth is well suited to seizing fish and other small aquatic prey. The jaws were grasping tools, not broad bone crushers. Fish-eating is therefore a strong functional inference, though no fixed prey species should be claimed without direct gut contents.</p>
+        <p class="body-copy">Behind the skull, the body combined a long trunk and powerful laterally compressed tail with relatively small limbs. Anatomical studies interpret neochoristoderes as capable swimmers. The limbs could steer and maneuver, while the tail supplied propulsion. They still had to breathe air, and reproduction probably connected them to land, although the reproductive biology of Champsosaurus remains debated.</p>
+        <p class="body-copy">Some unusually complete Paleocene specimens preserve associated small individuals or reveal differences in pelvic anatomy. These have inspired hypotheses about sex differences and whether females were better able to move on land. Those interpretations are scientifically interesting but should not be turned into certainty for a lone Hell Creek animal. The poster shows only a generic individual swimming.</p>
+        <p class="body-copy">Species resolution is another limit. Champsosaurus laramiensis is reported from Hell Creek and into Paleocene units, but fragmentary remains may not carry enough diagnostic anatomy for a species assignment. The roster’s genus-level label is therefore the responsible public choice. Its 72–66 Ma range also describes a broad interval, while this scene is specifically terminal Maastrichtian.</p>
+        <p class="body-copy">Champsosaurus is one of the poster’s best extinction stories. Fossils occur below and above the K–Pg boundary, demonstrating that the genus or close species crossed into the Paleocene. Survival was not immunity: choristoderes later disappeared entirely. Their passage through one mass extinction did not guarantee permanent success.</p>
+        <p class="body-copy">The Hell Creek Formation is primarily fluvial, with river channels, floodplains, ponds, and local coastal influence. That makes Champsosaurus a freshwater shoreline animal, not a marine reptile despite the roster type. Its place just under the surface is ecologically sound. Moving it into the open seaway would blur a useful distinction between neighboring water worlds.</p>
+        <p class="body-copy">In CR21, the long snout, pointed teeth, small limbs, and complete tail are evidence-led. Skin texture, color, eye appearance, exact swimming depth, and the invisible prey it may be tracking are reconstruction. A gharial can help viewers understand convergent snout shape, but it is not a descendant. Champsosaurus rewards a closer look precisely because evolution produced a crocodile-shaped answer on another branch.</p>
+        <p class="body-copy">Its skull contained specializations around the back of the head, including expanded areas associated with jaw musculature. These features help distinguish a neochoristodere from a superficially similar crocodilian. They also warn artists not to begin with a gharial and change only the feet. The outline must be built from Champsosaurus anatomy first. Preservation shapes the story too. Aquatic animals readily enter sediments, but flowing water can separate skulls, vertebrae, and limbs. A named species requires combinations of diagnostic characters that fragments may not retain. Genus-level language keeps the page useful without claiming more precision than the pictured individual earns. Crossing the extinction boundary also deserves exact wording. It does not mean one individual or unchanged population lived through the impact. Fossils on either side show continuity of the lineage across geological time. How populations were reduced, displaced, or rebuilt is harder to resolve.</p>
+        <p class="body-copy">This distinction keeps a genuine extinction survivor story powerful without turning a rock record into an eyewitness account of catastrophe and recovery.</p>
 
         <h2 style="margin-top:30px">Field notes</h2>
         <ul class="funfacts">
-          <li class="todo">Field notes pending — source-hunter / ref-curator fill <code>funFacts[]</code> from the record; confidence-appropriate, never invented.</li>
+          <li>Crocodile look, different family — Champsosaurus belonged to extinct Choristodera, not Crocodylia.<a class="cite" href="#ref1">[1]</a><a class="cite" href="#ref2">[2]</a></li>
+          <li>A fish-catching snout — Slender jaws and pointed teeth support piscivory.<a class="cite" href="#ref1">[1]</a><a class="cite" href="#ref3">[3]</a></li>
+          <li>Across the boundary — Champsosaurus fossils occur on both sides of the K–Pg extinction.<a class="cite" href="#ref4">[4]</a><a class="cite" href="#ref5">[5]</a></li>
+          <li>Freshwater hunter — Hell Creek’s rivers and ponds, not the open sea, are its best setting.<a class="cite" href="#ref6">[6]</a><a class="cite" href="#ref7">[7]</a></li>
         </ul>
+
+        <h2 style="margin-top:34px">What the fossils tell us</h2>
+        <div class="evidence">
+          <div class="ev">
+            <div class="evh"><span class="evd filled"></span><span class="evt">Known from fossils</span></div>
+            <ul>
+            <li>Skeletons establish long jaws, pointed teeth, small limbs, and a powerful tail.</li>
+            <li>Occurrences below and above the K–Pg boundary document survival of the genus.</li>
+            <li>Hell Creek fossils place it in fluvial settings.</li>
+            </ul>
+          </div>
+          <div class="ev">
+            <div class="evh"><span class="evd half"></span><span class="evt">Supported inference</span></div>
+            <ul>
+            <li>Tail-powered swimming and fish capture follow from functional anatomy.</li>
+            <li>Sex-related differences in land mobility remain debated.</li>
+            <li>Species-level identification may be impossible from fragments.</li>
+            </ul>
+          </div>
+          <div class="ev recon">
+            <div class="evh"><span class="evd open"></span><span class="evt">Artistic reconstruction</span></div>
+            <ul>
+            <li>Color, skin pattern, sex, and eye appearance.</li>
+            <li>Exact swimming pose and depth.</li>
+            <li>Specific prey and reproductive behavior.</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
 
       <div class="aside">
@@ -215,20 +338,70 @@
 
         <div class="card survivor">
           <div class="tag">Still with us today</div>
-          <p class="todo">Closest-living-relative / survivor note pending — shown when the record has one.</p>
+          <p>No choristodere survives today. Gharials and crocodiles resemble Champsosaurus because long jaws, low bodies, and swimming tails are effective solutions to hunting in water, not because they descend from it. The genus itself crossed the K–Pg boundary and lived into the Paleocene, an unusually direct survival story among poster animals. Choristodera nevertheless vanished later, reminding us that surviving one global crisis does not make a lineage permanent. This comparison should be read at lineage level: shared anatomy records kinship, while differences record continued evolution after the Cretaceous.</p>
         </div>
 
         <div class="card distrib">
           <h2 style="border:none;margin:0 0 4px;padding:0">Where</h2>
           <div class="map"></div>
-          <p class="body-copy" style="font-size:13px;margin:10px 0 0"><span class="todo">Range description pending for Champsosaurus.</span></p>
+          <p class="body-copy" style="font-size:13px;margin:10px 0 0">Champsosaurus occurs across Late Cretaceous and Paleocene northern North America. Genus-level material is documented in Hell Creek and Lance-age deposits, with C. laramiensis often named for latest Cretaceous–Paleocene material. Rivers, lakes, and ponds are the defensible habitat; northern occurrences have also informed paleoclimate studies. Species assignment requires diagnostic skull anatomy, so fragmentary local remains should remain Champsosaurus sp. Future maps should attach every occurrence to a traceable specimen, formation, horizon, and published identification rather than extending the range from resemblance alone.</p>
         </div>
 
         <div class="card">
           <h2 style="border:none;margin:0 0 8px;padding:0">Sources</h2>
-          <div class="refs"><span class="todo">No sources entered yet — <code>references[]</code> empty.</span></div>
+          <div class="refs"><ol class="srclist">
+          <li id="ref1"><span class="n">1</span><a href="https://academic.oup.com/zoolinnean" rel="noopener">Choristoderes and the freshwater assemblages of Laurasia</a><br>Evans et al. · 1998 <span class="ty">· Peer-reviewed review</span></li>
+          <li id="ref2"><span class="n">2</span><a href="https://doi.org/10.1080/14772019.2012.704948" rel="noopener">The phylogenetic relationships of Choristodera</a><br>al. · 2013 <span class="ty">· Peer-reviewed research</span></li>
+          <li id="ref3"><span class="n">3</span><a href="https://doi.org/10.1093/zoolinnean/zlad087" rel="noopener">First report of Champsosaurus lindoei from the Campanian United States</a><br>al. · 2024 <span class="ty">· Peer-reviewed research</span></li>
+          <li id="ref4"><span class="n">4</span><a href="https://doi.org/10.1666/09-111R.1" rel="noopener">Champsosaurus from the Paleocene of west Texas</a><br>Lehman et al. · 2012 <span class="ty">· Peer-reviewed research</span></li>
+          <li id="ref5"><span class="n">5</span><a href="https://doi.org/10.1016/j.palaeo.2006.11.008" rel="noopener">A fossil champsosaur population from the high Arctic</a><br>Eberle et al. · 2007 <span class="ty">· Peer-reviewed research</span></li>
+          <li id="ref6"><span class="n">6</span><a href="https://doi.org/10.3390/geosciences10110435" rel="noopener">The Hell Creek Formation, Montana</a><br>Fowler · 2020 <span class="ty">· Peer-reviewed review</span></li>
+          <li id="ref7"><span class="n">7</span><a href="https://doi.org/10.2110/palo.2007.p07-006r" rel="noopener">Comparative taphonomy of Hell Creek microvertebrate sites</a><br>al. · 2008 <span class="ty">· Peer-reviewed research</span></li>
+          <li id="ref8"><span class="n">8</span><a href="https://pubs.usgs.gov/publication/70221502" rel="noopener">Vertebrate biostratigraphy of the Hell Creek Formation</a><br>al. · 2004 <span class="ty">· Government research</span></li>
+        </ol></div>
+        </div>
+
+        <div class="card status">
+          <h2 style="border:none;margin:0 0 8px;padding:0">Scientific status</h2>
+          <div class="row"><span>Review status</span><b>Not externally reviewed</b></div>
+          <div class="row"><span>Reviewed by</span><b>—</b></div>
+          <div class="row"><span>Content version</span><b>1.0.0-pilot</b></div>
+          <div class="row"><span>Last reviewed</span><b>2026-07-29</b></div>
+          <div class="row"><span>Reconstruction</span><b>Reasonable inference</b></div>
+          <p class="note">No outreach occurred.</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <h2 style="margin-top:40px">Deeper dive</h2>
+    <div class="dive">
+          <a href="https://doi.org/10.1093/zoolinnean/zlad087" rel="noopener">
+            <div class="k">Research</div>
+            <div class="t">First report of Champsosaurus lindoei from the Campanian of the United States</div>
+            <div class="m">Explore a modern anatomical and phylogenetic study of this extinct aquatic reptile group.</div>
+            <div class="who">K. L. Chinsamy and colleagues · 2024</div>
+          </a>
+          <a href="https://nature.ca/en/our-science/collections/palaeobiology/" rel="noopener">
+            <div class="k">Museum</div>
+            <div class="t">Champsosaurus</div>
+            <div class="m">Explore Canadian fossil collections preserving choristoderes.</div>
+            <div class="who">Canadian Museum of Nature</div>
+          </a>
+          <a href="https://doi.org/10.3390/geosciences10110435" rel="noopener">
+            <div class="k">Resource</div>
+            <div class="t">The Hell Creek Formation, Montana</div>
+            <div class="m">Understand the river landscape in which CR21 is staged.</div>
+            <div class="who">Denver W. Fowler · 2020</div>
+          </a>
+        </div>
+  </div>
+
+  <div class="wrap">
+    <div class="backworld">
+      <p>Champsosaurus is one of 32 organisms sharing a single world.</p>
+      <a class="btn s" style="margin:0;min-width:210px" href="../poster_mockup_live.html?only=1">Return to the world ↗</a>
     </div>
   </div>
 

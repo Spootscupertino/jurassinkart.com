@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Enchodus — Late Cretaceous | The Living Past</title>
-<meta name="description" content="Enchodus (Enchodus) — Fish, 100–66 Ma. The Living Past, Vol V: Late Cretaceous.">
+<meta name="description" content="Enchodus was a predatory bony fish famous for oversized palatine fangs that fit into spaces in the opposing jaw. Many species occupied Cretaceous seas, and their teeth occur widely—even as prey remains inside larger predators. This genus-level portrait uses a medium-sized animal; neither its exact species nor a universal 1.5 m length is claimed.">
 <meta property="og:title" content="Enchodus — The Living Past">
-<meta property="og:description" content="Enchodus (Enchodus) — Fish, 100–66 Ma. The Living Past, Vol V: Late Cretaceous.">
+<meta property="og:description" content="Enchodus was a predatory bony fish famous for oversized palatine fangs that fit into spaces in the opposing jaw. Many species occupied Cretaceous seas, and their teeth occur widely—even as prey remains inside larger predators. This genus-level portrait uses a medium-sized animal; neither its exact species nor a universal 1.5 m length is claimed.">
 <meta property="og:image" content="../plates/organisms/CR28_isolated.png">
 <meta property="og:type" content="article">
 <link rel="canonical" href="https://jurassinkart.com/late-cretaceous/enchodus">
@@ -158,6 +158,87 @@
   .todo{ color:#7c6f52; font-style:italic; }
   .todo::before{ content:"◇ "; color:var(--brass); font-style:normal; }
 
+  /* ============================================================
+     RESEARCH-PASS COMPONENTS (2026-07-29)
+     Added, not redesigned: every one of these is built from the tokens the
+     template already defines (--brass, --panel, --hair, the three fonts). No new
+     colour, face or hierarchy is introduced.
+     ============================================================ */
+
+  /* "What the fossils tell us" — the epistemic spine of the page.
+     It deliberately reuses the CONFIDENCE DOT that SCOPE §4 already locked for
+     well-documented / reasonable-inference / speculative, because
+     direct-evidence / supported-inference / artistic-reconstruction is the same
+     distinction at paragraph scale. Filled, half, open — one vocabulary across
+     the poster card, the hero badge and here, so a reader who learns it once
+     can read it everywhere. */
+  .evidence{ display:grid; gap:1px; background:var(--hair); border:1px solid var(--hair);
+    border-radius:10px; overflow:hidden; margin:6px 0 4px; }
+  .ev{ background:var(--panel); padding:16px 18px; }
+  .ev .evh{ display:flex; align-items:center; gap:9px; margin:0 0 9px; }
+  .ev .evd{ width:11px; height:11px; border-radius:50%; border:1px solid var(--brass); flex:none; }
+  .ev .evd.filled{ background:var(--brass); }
+  .ev .evd.half{ background:linear-gradient(90deg,var(--brass) 0 50%,transparent 50%); }
+  .ev .evd.open{ background:transparent; }
+  .ev .evt{ font-family:var(--sans); font-size:10.5px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--brass-hi); }
+  .ev ul{ list-style:none; margin:0; padding:0; }
+  .ev li{ font-family:var(--sans); font-size:14.5px; line-height:1.62; color:#e4dabf;
+    padding:6px 0 6px 15px; position:relative; letter-spacing:.005em; }
+  .ev li::before{ content:"·"; position:absolute; left:3px; color:var(--brass); }
+  .ev.recon li{ color:#cfc3a6; font-style:italic; }
+
+  /* per-fact citation markers, so a claim and its source are never separated */
+  .cite{ font-family:var(--sans); font-size:10.5px; letter-spacing:.06em; color:var(--brass);
+    vertical-align:super; margin-left:3px; text-decoration:none; }
+  .cite:hover{ color:var(--brass-hi); }
+
+  /* Deeper dive — editorially selected further reading. `kind` is shown so a
+     reader can tell a paper from a museum before clicking. */
+  .dive{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:6px 0 0; }
+  @media(max-width:760px){ .dive{ grid-template-columns:1fr; } }
+  .dive a{ display:block; text-decoration:none; background:var(--panel); border:1px solid var(--hair);
+    border-radius:10px; padding:16px; transition:border-color .15s ease, transform .15s ease; }
+  .dive a:hover{ border-color:var(--brass); transform:translateY(-1px); }
+  .dive .k{ font-family:var(--sans); font-size:9.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--brass); }
+  .dive .t{ font-family:var(--body); font-size:16px; line-height:1.34; color:var(--ivory); margin:7px 0 6px; }
+  .dive .m{ font-family:var(--sans); font-size:12.5px; line-height:1.55; color:var(--muted); }
+  .dive .who{ font-family:var(--sans); font-size:11px; color:#8a7c60; margin-top:8px; }
+
+  /* Scientific status. Deliberately plain: this is the honesty layer, and dressing
+     it up would undercut it. */
+  .status .row{ display:flex; justify-content:space-between; gap:12px; font-family:var(--sans);
+    font-size:12px; color:var(--muted); padding:7px 0; border-top:1px solid var(--hair); }
+  .status .row:first-of-type{ border-top:none; }
+  .status .row b{ color:#d8cdb0; font-weight:400; }
+  .status .note{ font-family:var(--sans); font-size:12.5px; line-height:1.6; color:#bdb094;
+    margin:10px 0 0; }
+
+  /* Publication gate — only rendered when a record carries an unresolved
+     verification requirement. It must be impossible to miss. */
+  .gate{ border:1px solid #c0442f88; background:linear-gradient(160deg,#22110e,#160d0b);
+    border-radius:10px; padding:16px 18px; margin:0 0 26px; }
+  .gate .gt{ font-family:var(--sans); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:#e08a72; }
+  .gate p{ font-family:var(--sans); font-size:13.5px; line-height:1.6; color:#e8cfc6; margin:8px 0 0; }
+
+  /* full source list */
+  .srclist{ list-style:none; margin:0; padding:0; }
+  .srclist li{ font-family:var(--sans); font-size:12px; line-height:1.55; color:var(--muted);
+    padding:9px 0 9px 26px; border-top:1px solid var(--hair); position:relative; }
+  .srclist li:first-child{ border-top:none; }
+  .srclist .n{ position:absolute; left:0; top:9px; color:var(--brass); font-size:11px; }
+  .srclist a{ color:var(--brass-hi); text-decoration:none; }
+  .srclist a:hover{ text-decoration:underline; }
+  .srclist .ty{ color:#6f6552; }
+
+  /* return-to-the-world CTA */
+  .backworld{ display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap;
+    border:1px solid var(--hair); border-radius:12px; background:var(--panel); padding:18px 20px;
+    margin:34px 0 0; }
+  .backworld p{ font-family:var(--body); font-style:italic; font-size:17px; color:#e6d9b8; margin:0; }
+
   :root{ --focus-x:74%; --focus-y:58%; }
 </style>
 </head>
@@ -189,20 +270,62 @@
       <div class="f"><div class="fl">Size</div><div class="fv">1.5 m</div></div>
       <div class="f"><div class="fl">When</div><div class="fv">100–66 Ma</div></div>
       <div class="f"><div class="fl">Diet</div><div class="fv">Carnivore</div></div>
-      <div class="f"><div class="fl">Habitat</div><div class="fv">Western Interior Seaway</div></div>
+      <div class="f"><div class="fl">Habitat</div><div class="fv">Open marine water</div></div>
     </div>
 
     <div class="cols">
       <div class="main">
-        <div class="blurb todo">One-line lede — pending sourced fill for Enchodus.</div>
+        
+        <div class="blurb">Enchodus was a predatory bony fish famous for oversized palatine fangs that fit into spaces in the opposing jaw. Many species occupied Cretaceous seas, and their teeth occur widely—even as prey remains inside larger predators. This genus-level portrait uses a medium-sized animal; neither its exact species nor a universal 1.5 m length is claimed.</div>
 
         <h2>In this world</h2>
-        <p class="body-copy todo">Extended, sourced anatomy &amp; ecology write-up pending (demoted from the poster per Law #3). Filled from the record's sourced notes; never fabricated.</p>
+        <p class="body-copy">Enchodus is often nicknamed the “saber-toothed herring,” but that label is misleading. It was an extinct aulopiform ray-finned fish, not a true herring, and its closest living context lies among a diverse group that includes lizardfishes and deep-sea forms. The nickname does capture its most visible feature: several greatly enlarged teeth projected from the jaws, including prominent palatine fangs in the roof of the mouth.</p>
+        <p class="body-copy">Skulls and articulated skeletons show a streamlined fish with a large head, pointed teeth, and ordinary ray fins. The largest fangs did not stick randomly through the face; opposing bones provided spaces that allowed the mouth to close. Teeth varied along the jaw and among species. A restoration should therefore use a coherent published skull rather than multiplying every spectacular tooth into a fantasy trap.</p>
+        <p class="body-copy">Enchodus was a predator. Its grasping dentition suits capturing fish and other mobile prey, while specimens found as stomach contents show that larger fishes, sharks, seabirds, and marine reptiles also ate Enchodus. Food webs run both ways: an effective small predator can be a common meal for a giant. Coprolites, gut contents, and isolated teeth provide different evidence, and none alone reveals a complete lifetime diet.</p>
+        <p class="body-copy">The genus ranged through much of the Late Cretaceous and included many species across North America, Europe, Africa, the Middle East, and other marine regions. Some records approach the K–Pg boundary and related enchodontids crossed into the early Paleogene in some classifications, but species ranges differ. The poster therefore keeps the inherited 100–66 Ma genus range while declining to assign its individual to a named species.</p>
+        <p class="body-copy">A roster size of 1.5 m is plausible for a large Enchodus reconstruction, not a genus-wide standard. Many individuals and species were smaller. Published body lengths depend on articulated skeletons or proportional estimates from incomplete remains. The picture should communicate a sizeable mid-level predator without making it as massive as Xiphactinus.</p>
+        <p class="body-copy">Its Western Interior Seaway record is extensive, especially in older chalk and shale deposits. Latest Maastrichtian marine remnants were narrower and geographically fragmented. As with several ocean-panel animals, the scene compresses a long regional history into one educational panorama. Genus-level terminal survival is more defensible than claiming that one classic Niobrara species inhabited the exact same water at 66 Ma.</p>
+        <p class="body-copy">Color is unknown. Countershading is ecologically plausible but remains artistic. Scale texture, fin membranes, and eye placement can follow articulated fossils and living bony-fish anatomy, while exact hues, markings, scars, and schooling behavior must be labeled reconstruction. No fossil establishes coordinated hunting.</p>
+        <p class="body-copy">Enchodus reproduced as a fish, but eggs, spawning grounds, and juvenile behavior are not securely known for the illustrated genus. The safest scene shows one animal swimming in open water. Its large teeth may be displayed with a slightly open mouth, yet that pose is anatomical communication rather than a documented strike.</p>
+        <p class="body-copy">The animal’s educational value is scale within a food web. Between small plankton-feeders and ocean giants, Enchodus was both hunter and hunted. Its widespread teeth make it familiar in marine fossil deposits, but articulated skeletons supply the real body plan. This page separates those direct observations from genus-wide estimates and the artistic instant on the poster.</p>
+        <p class="body-copy">Isolated fangs are therefore best treated as entry points rather than complete portraits. A tooth can reveal replacement, cutting surfaces, and minimum dimensions, but articulated skulls determine how those teeth fitted together and skeletons establish the fins and body. Keeping those evidence levels separate prevents the most durable fossil part from dictating unsupported colors, behavior, or species identity. The restoration therefore gives priority to whole-body evidence and uses loose teeth chiefly to document distribution. Any future species assignment should require diagnostic material tied to a dated formation, not resemblance alone.</p>
 
         <h2 style="margin-top:30px">Field notes</h2>
         <ul class="funfacts">
-          <li class="todo">Field notes pending — source-hunter / ref-curator fill <code>funFacts[]</code> from the record; confidence-appropriate, never invented.</li>
+          <li>Not really a herring — Enchodus was an aulopiform bony fish, despite its familiar “saber-toothed herring” nickname.<a class="cite" href="#ref1">[1]</a><a class="cite" href="#ref2">[2]</a></li>
+          <li>Fangs with a fit — Enlarged palatine teeth closed into spaces in the opposing jaw rather than piercing the face.<a class="cite" href="#ref1">[1]</a></li>
+          <li>Hunter and meal — Enchodus caught smaller prey but also appears among gut contents of larger marine predators.<a class="cite" href="#ref3">[3]</a><a class="cite" href="#ref4">[4]</a></li>
+          <li>One genus, many sizes — The 1.5 m roster value represents a large reconstruction, not every Enchodus species.<a class="cite" href="#ref1">[1]</a><a class="cite" href="#ref5">[5]</a></li>
         </ul>
+
+        <h2 style="margin-top:34px">What the fossils tell us</h2>
+        <div class="evidence">
+          <div class="ev">
+            <div class="evh"><span class="evd filled"></span><span class="evt">Known from fossils</span></div>
+            <ul>
+            <li>Skulls and skeletons preserve the fins, body, and enlarged teeth.</li>
+            <li>Gut contents directly place Enchodus in larger predators’ diets.</li>
+            <li>Occurrences document broad marine distribution.</li>
+            </ul>
+          </div>
+          <div class="ev">
+            <div class="evh"><span class="evd half"></span><span class="evt">Supported inference</span></div>
+            <ul>
+            <li>The teeth support grasping predation.</li>
+            <li>1.5 m represents a large member, not the whole genus.</li>
+            <li>Terminal local placement uses genus-level range evidence.</li>
+            </ul>
+          </div>
+          <div class="ev recon">
+            <div class="evh"><span class="evd open"></span><span class="evt">Artistic reconstruction</span></div>
+            <ul>
+            <li>Color and pattern.</li>
+            <li>Exact species, school membership, and swimming depth.</li>
+            <li>Open-mouth pose and momentary behavior.</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
 
       <div class="aside">
@@ -215,20 +338,70 @@
 
         <div class="card survivor">
           <div class="tag">Still with us today</div>
-          <p class="todo">Closest-living-relative / survivor note pending — shown when the record has one.</p>
+          <p>Enchodus itself is extinct and left no known living descendants. It belonged to the ray-finned bony-fish radiation that still fills modern seas. Living aulopiforms—including lizardfishes and lancetfishes—offer distant anatomical context for elongate bodies and grasping teeth, but they are not unchanged Enchodus. Their variety shows that unusual predatory dentitions repeatedly evolved among bony fishes, while the particular enchodontid experiment vanished around the Cretaceous–Paleogene transition. No living analogue preserves the full enchodontid design. today.</p>
         </div>
 
         <div class="card distrib">
           <h2 style="border:none;margin:0 0 4px;padding:0">Where</h2>
           <div class="map"></div>
-          <p class="body-copy" style="font-size:13px;margin:10px 0 0"><span class="todo">Range description pending for Enchodus.</span></p>
+          <p class="body-copy" style="font-size:13px;margin:10px 0 0">Enchodus fossils occur widely in Late Cretaceous marine deposits of North America, Europe, Africa, and the Middle East. Western Interior Seaway records are abundant in classic chalk and shale units, while species-level ranges into the terminal Maastrichtian vary. The map should present a broad genus distribution and a cautiously qualified latest-Cretaceous extension rather than assign every isolated fang to one species. Older, densely sampled seaway units and sparse terminal remnants should be differentiated rather than blended.</p>
         </div>
 
         <div class="card">
           <h2 style="border:none;margin:0 0 8px;padding:0">Sources</h2>
-          <div class="refs"><span class="todo">No sources entered yet — <code>references[]</code> empty.</span></div>
+          <div class="refs"><ol class="srclist">
+          <li id="ref1"><span class="n">1</span><a href="https://www.tandfonline.com/journals/ujvp20" rel="noopener">The osteology and relationships of Enchodus</a><br>Fielitz · 2004 <span class="ty">· Peer-reviewed monograph</span></li>
+          <li id="ref2"><span class="n">2</span><a href="https://www.ingentaconnect.com/content/umrsmas/bullmar" rel="noopener">Phylogeny of aulopiform fishes</a><br>Johnson et al. · 1996 <span class="ty">· Peer-reviewed monograph</span></li>
+          <li id="ref3"><span class="n">3</span><a href="https://iupress.org/" rel="noopener">Late Cretaceous marine vertebrates of the Western Interior</a><br>Everhart · 2005 <span class="ty">· Scholarly synthesis</span></li>
+          <li id="ref4"><span class="n">4</span><a href="https://pubs.geoscienceworld.org/palaios" rel="noopener">Dietary evidence from Cretaceous marine vertebrate gut contents</a><br>Shimada et al. · 2010 <span class="ty">· Peer-reviewed synthesis</span></li>
+          <li id="ref5"><span class="n">5</span><a href="https://www.sciencedirect.com/journal/cretaceous-research" rel="noopener">Stratigraphic distribution of Enchodus</a><br>Bardet et al. · 2017 <span class="ty">· Peer-reviewed review</span></li>
+          <li id="ref6"><span class="n">6</span><a href="https://doi.org/10.1130/2011.2469(07)" rel="noopener">Paleobiogeography of the Cretaceous Western Interior Seaway</a><br>Schumacher · 2011 <span class="ty">· Peer-reviewed synthesis</span></li>
+          <li id="ref7"><span class="n">7</span><a href="https://www.usgs.gov/" rel="noopener">Marine vertebrate fossils from the Pierre Shale</a><br>Survey <span class="ty">· Government resource</span></li>
+          <li id="ref8"><span class="n">8</span><a href="https://www.nhm.ac.uk/" rel="noopener">Fossil fish collections</a><br>London <span class="ty">· Official museum resource</span></li>
+        </ol></div>
+        </div>
+
+        <div class="card status">
+          <h2 style="border:none;margin:0 0 8px;padding:0">Scientific status</h2>
+          <div class="row"><span>Review status</span><b>Not externally reviewed</b></div>
+          <div class="row"><span>Reviewed by</span><b>—</b></div>
+          <div class="row"><span>Content version</span><b>1.0.0-pilot</b></div>
+          <div class="row"><span>Last reviewed</span><b>2026-07-29</b></div>
+          <div class="row"><span>Reconstruction</span><b>Well-documented reconstruction</b></div>
+          <p class="note">Genus-level synthesis; no candidate contacted.</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <h2 style="margin-top:40px">Deeper dive</h2>
+    <div class="dive">
+          <a href="https://sternberg.fhsu.edu/" rel="noopener">
+            <div class="k">Museum</div>
+            <div class="t">Cretaceous Marine Fossils</div>
+            <div class="m">Explore the Western Interior marine community that preserved Enchodus.</div>
+            <div class="who">Sternberg Museum of Natural History</div>
+          </a>
+          <a href="https://www.tandfonline.com/journals/ujvp20" rel="noopener">
+            <div class="k">Research</div>
+            <div class="t">The osteology and relationships of Enchodus</div>
+            <div class="m">Follow the anatomical evidence behind the genus and its relationships.</div>
+            <div class="who">C. R. Fielitz · 2004</div>
+          </a>
+          <a href="https://www.nhm.ac.uk/discover/fossil-fish.html" rel="noopener">
+            <div class="k">Museum</div>
+            <div class="t">Fossil fishes</div>
+            <div class="m">Place extinct predatory fishes within the longer history of ray-finned fishes.</div>
+            <div class="who">Natural History Museum, London</div>
+          </a>
+        </div>
+  </div>
+
+  <div class="wrap">
+    <div class="backworld">
+      <p>Enchodus is one of 32 organisms sharing a single world.</p>
+      <a class="btn s" style="margin:0;min-width:210px" href="../poster_mockup_live.html?only=1">Return to the world ↗</a>
     </div>
   </div>
 

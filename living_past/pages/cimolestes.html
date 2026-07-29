@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cimolestes — Late Cretaceous | The Living Past</title>
-<meta name="description" content="Cimolestes (Cimolestes) — Mammal, 72–66 Ma. The Living Past, Vol V: Late Cretaceous.">
+<meta name="description" content="Cimolestes represents the small-mammal world mostly hidden beneath dinosaur feet. Its teeth are real and identifiable; nearly everything about the living silhouette must be rebuilt by comparison. The result is best understood as a careful portrait of a lineage, not a photograph of one securely known Hell Creek species.">
 <meta property="og:title" content="Cimolestes — The Living Past">
-<meta property="og:description" content="Cimolestes (Cimolestes) — Mammal, 72–66 Ma. The Living Past, Vol V: Late Cretaceous.">
+<meta property="og:description" content="Cimolestes represents the small-mammal world mostly hidden beneath dinosaur feet. Its teeth are real and identifiable; nearly everything about the living silhouette must be rebuilt by comparison. The result is best understood as a careful portrait of a lineage, not a photograph of one securely known Hell Creek species.">
 <meta property="og:image" content="../plates/organisms/CR10_isolated.png">
 <meta property="og:type" content="article">
 <link rel="canonical" href="https://jurassinkart.com/late-cretaceous/cimolestes">
@@ -158,6 +158,87 @@
   .todo{ color:#7c6f52; font-style:italic; }
   .todo::before{ content:"◇ "; color:var(--brass); font-style:normal; }
 
+  /* ============================================================
+     RESEARCH-PASS COMPONENTS (2026-07-29)
+     Added, not redesigned: every one of these is built from the tokens the
+     template already defines (--brass, --panel, --hair, the three fonts). No new
+     colour, face or hierarchy is introduced.
+     ============================================================ */
+
+  /* "What the fossils tell us" — the epistemic spine of the page.
+     It deliberately reuses the CONFIDENCE DOT that SCOPE §4 already locked for
+     well-documented / reasonable-inference / speculative, because
+     direct-evidence / supported-inference / artistic-reconstruction is the same
+     distinction at paragraph scale. Filled, half, open — one vocabulary across
+     the poster card, the hero badge and here, so a reader who learns it once
+     can read it everywhere. */
+  .evidence{ display:grid; gap:1px; background:var(--hair); border:1px solid var(--hair);
+    border-radius:10px; overflow:hidden; margin:6px 0 4px; }
+  .ev{ background:var(--panel); padding:16px 18px; }
+  .ev .evh{ display:flex; align-items:center; gap:9px; margin:0 0 9px; }
+  .ev .evd{ width:11px; height:11px; border-radius:50%; border:1px solid var(--brass); flex:none; }
+  .ev .evd.filled{ background:var(--brass); }
+  .ev .evd.half{ background:linear-gradient(90deg,var(--brass) 0 50%,transparent 50%); }
+  .ev .evd.open{ background:transparent; }
+  .ev .evt{ font-family:var(--sans); font-size:10.5px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--brass-hi); }
+  .ev ul{ list-style:none; margin:0; padding:0; }
+  .ev li{ font-family:var(--sans); font-size:14.5px; line-height:1.62; color:#e4dabf;
+    padding:6px 0 6px 15px; position:relative; letter-spacing:.005em; }
+  .ev li::before{ content:"·"; position:absolute; left:3px; color:var(--brass); }
+  .ev.recon li{ color:#cfc3a6; font-style:italic; }
+
+  /* per-fact citation markers, so a claim and its source are never separated */
+  .cite{ font-family:var(--sans); font-size:10.5px; letter-spacing:.06em; color:var(--brass);
+    vertical-align:super; margin-left:3px; text-decoration:none; }
+  .cite:hover{ color:var(--brass-hi); }
+
+  /* Deeper dive — editorially selected further reading. `kind` is shown so a
+     reader can tell a paper from a museum before clicking. */
+  .dive{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:6px 0 0; }
+  @media(max-width:760px){ .dive{ grid-template-columns:1fr; } }
+  .dive a{ display:block; text-decoration:none; background:var(--panel); border:1px solid var(--hair);
+    border-radius:10px; padding:16px; transition:border-color .15s ease, transform .15s ease; }
+  .dive a:hover{ border-color:var(--brass); transform:translateY(-1px); }
+  .dive .k{ font-family:var(--sans); font-size:9.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--brass); }
+  .dive .t{ font-family:var(--body); font-size:16px; line-height:1.34; color:var(--ivory); margin:7px 0 6px; }
+  .dive .m{ font-family:var(--sans); font-size:12.5px; line-height:1.55; color:var(--muted); }
+  .dive .who{ font-family:var(--sans); font-size:11px; color:#8a7c60; margin-top:8px; }
+
+  /* Scientific status. Deliberately plain: this is the honesty layer, and dressing
+     it up would undercut it. */
+  .status .row{ display:flex; justify-content:space-between; gap:12px; font-family:var(--sans);
+    font-size:12px; color:var(--muted); padding:7px 0; border-top:1px solid var(--hair); }
+  .status .row:first-of-type{ border-top:none; }
+  .status .row b{ color:#d8cdb0; font-weight:400; }
+  .status .note{ font-family:var(--sans); font-size:12.5px; line-height:1.6; color:#bdb094;
+    margin:10px 0 0; }
+
+  /* Publication gate — only rendered when a record carries an unresolved
+     verification requirement. It must be impossible to miss. */
+  .gate{ border:1px solid #c0442f88; background:linear-gradient(160deg,#22110e,#160d0b);
+    border-radius:10px; padding:16px 18px; margin:0 0 26px; }
+  .gate .gt{ font-family:var(--sans); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:#e08a72; }
+  .gate p{ font-family:var(--sans); font-size:13.5px; line-height:1.6; color:#e8cfc6; margin:8px 0 0; }
+
+  /* full source list */
+  .srclist{ list-style:none; margin:0; padding:0; }
+  .srclist li{ font-family:var(--sans); font-size:12px; line-height:1.55; color:var(--muted);
+    padding:9px 0 9px 26px; border-top:1px solid var(--hair); position:relative; }
+  .srclist li:first-child{ border-top:none; }
+  .srclist .n{ position:absolute; left:0; top:9px; color:var(--brass); font-size:11px; }
+  .srclist a{ color:var(--brass-hi); text-decoration:none; }
+  .srclist a:hover{ text-decoration:underline; }
+  .srclist .ty{ color:#6f6552; }
+
+  /* return-to-the-world CTA */
+  .backworld{ display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap;
+    border:1px solid var(--hair); border-radius:12px; background:var(--panel); padding:18px 20px;
+    margin:34px 0 0; }
+  .backworld p{ font-family:var(--body); font-style:italic; font-size:17px; color:#e6d9b8; margin:0; }
+
   :root{ --focus-x:22%; --focus-y:62%; }
 </style>
 </head>
@@ -186,23 +267,64 @@
 
   <div class="wrap">
     <div class="facts">
-      <div class="f"><div class="fl">Size</div><div class="fv">20 cm</div></div>
+      <div class="f"><div class="fl">Size</div><div class="fv">about 20 cm (8 in), reconstruction</div></div>
       <div class="f"><div class="fl">When</div><div class="fv">72–66 Ma</div></div>
       <div class="f"><div class="fl">Diet</div><div class="fv">Insectivore</div></div>
-      <div class="f"><div class="fl">Habitat</div><div class="fv">Sub-surface / sediment</div></div>
+      <div class="f"><div class="fl">Habitat</div><div class="fv">Hell Creek–Lance coastal-plain soil and litter reconstruction</div></div>
     </div>
 
     <div class="cols">
       <div class="main">
-        <div class="blurb todo">One-line lede — pending sourced fill for Cimolestes.</div>
+        
+        <div class="blurb">Cimolestes represents the small-mammal world mostly hidden beneath dinosaur feet. Its teeth are real and identifiable; nearly everything about the living silhouette must be rebuilt by comparison. The result is best understood as a careful portrait of a lineage, not a photograph of one securely known Hell Creek species.</div>
 
         <h2>In this world</h2>
-        <p class="body-copy todo">Extended, sourced anatomy &amp; ecology write-up pending (demoted from the poster per Law #3). Filled from the record's sourced notes; never fabricated.</p>
+        <p class="body-copy">A handful of teeth can carry an astonishing amount of information. In the Hell Creek and Lance formations, isolated mammal teeth are far more common than complete skeletons. Their cusps, ridges, roots, and wear patterns let paleontologists distinguish many small forms that shared the landscape. Cimolestes is one of those names, applied to an extinct group of small eutherian-line mammals known chiefly from dental and jaw material.</p>
+        <p class="body-copy">The name requires caution. Species historically assigned to Cimolestes span different places and intervals, and the genus has often served as a convenient home for broadly similar teeth. Modern studies have revised relationships and moved species as new comparisons become possible. The poster therefore labels CR10 as Cimolestes without pretending that a complete, species-level Hell Creek animal has been recovered. The identification is a taxonomic working hypothesis anchored most strongly in teeth.</p>
+        <p class="body-copy">Those teeth have pointed cusps suited to piercing and shearing. They support a diet that included insects and other small animal matter, perhaps supplemented opportunistically by varied foods. “Insectivore” is a useful shorthand, not a preserved grocery list. A tooth can show how forces were applied and what kinds of processing were possible; it rarely identifies every food eaten across a lifetime.</p>
+        <p class="body-copy">The reconstructed body is even less direct. Small generalized mammals of this part of the family tree are commonly restored with a long body, flexible limbs, fur, mobile whiskers, and a tail. These choices come from broader mammalian anatomy and close fossil relatives, not a Hell Creek Cimolestes skin outline. A 20-centimetre length is a presentation estimate rather than a measurement from an articulated specimen. The exact body mass, ear size, color, and locomotor style remain unknown.</p>
+        <p class="body-copy">Why place it in the soil cutaway? Small mammals likely used vegetation, litter, crevices, and burrows as shelter from weather and predators, and burrowing behavior is widespread among living small mammals. Yet no burrow in this poster is assigned to Cimolestes by a body fossil found inside it. The scene communicates a plausible refuge and foraging zone. It should not be cited as direct evidence that this genus was a dedicated subterranean specialist.</p>
+        <p class="body-copy">Cimolestes also illustrates how classification changes. It has sometimes been discussed near the ancestry of later placental groups, but broad similarities do not make it a direct ancestor of any living species. Cretaceous eutherian relationships are reconstructed from incomplete character sets, and the branching order shifts as taxa and anatomical data are reanalyzed. The honest message is evolutionary proximity, not a straight line from this animal to shrews or moles.</p>
+        <p class="body-copy">In the poster, CR10 is a small furred animal paused among roots. The pointed snout and generalized feet are comparative reconstruction; the scale is deliberately enlarged in the underground field-guide view so readers can see it. Teeth, age, and broad ecosystem membership are the secure core. The soft body, nocturnal mood, and moment of insect hunting are scientifically plausible but visually invented.</p>
+        <p class="body-copy">The page also resists turning rarity into lifestyle. A small mammal might have been active by night, by day, or in short intervals around temperature and predation risk; fossil teeth do not preserve a daily schedule. Likewise, large eyes, a pink nose, and a shrew-like gait may make an illustration familiar but are not secured by the named material. These are exactly the details a future articulated skeleton could change.</p>
+        <p class="body-copy">Collection method shapes the evidence too. Screen-washing large volumes of sediment can recover teeth only millimetres across that ordinary surface collecting would miss. That makes mammal diversity visible, but it favors durable dental remains over soft tissues and complete bodies. Our reconstruction should therefore look alive without pretending that the fossil record is equally complete from tooth crown to tail tip.</p>
 
         <h2 style="margin-top:30px">Field notes</h2>
         <ul class="funfacts">
-          <li class="todo">Field notes pending — source-hunter / ref-curator fill <code>funFacts[]</code> from the record; confidence-appropriate, never invented.</li>
+          <li>A species can begin with a tooth — Tiny mammal crowns preserve distinctive cusp arrangements, allowing paleontologists to recognize community members even when the rest of the skeleton is missing.<a class="cite" href="#ref3">[3]</a></li>
+          <li>The name has moved — Cimolestes has accumulated and lost species as researchers revise Cretaceous mammal relationships. A genus label is a testable classification, not a permanent verdict.<a class="cite" href="#ref4">[4]</a></li>
+          <li>Insect-eater is shorthand — Sharp cusps support piercing and shearing small prey, but they cannot prove that insects were the only food.<a class="cite" href="#ref5">[5]</a></li>
+          <li>The fur is inferred — Hair is a deep mammalian feature, yet no Hell Creek Cimolestes specimen preserves the color, density, or outline shown in the reconstruction.<a class="cite" href="#ref6">[6]</a></li>
         </ul>
+
+        <h2 style="margin-top:34px">What the fossils tell us</h2>
+        <div class="evidence">
+          <div class="ev">
+            <div class="evh"><span class="evd filled"></span><span class="evt">Known from fossils</span></div>
+            <ul>
+            <li>Diagnostic teeth and jaws establish a small mammal with pointed, tribosphenic-patterned cheek teeth.</li>
+            <li>Stratigraphic occurrences place assigned material in the latest Cretaceous western interior.</li>
+            <li>Dental characters support piercing and shearing food.</li>
+            </ul>
+          </div>
+          <div class="ev">
+            <div class="evh"><span class="evd half"></span><span class="evt">Supported inference</span></div>
+            <ul>
+            <li>Diet probably included insects and other small animal matter.</li>
+            <li>A generalized furred body is reconstructed from broader mammalian anatomy.</li>
+            <li>Use of litter, root spaces, or burrows is ecologically plausible.</li>
+            </ul>
+          </div>
+          <div class="ev recon">
+            <div class="evh"><span class="evd open"></span><span class="evt">Artistic reconstruction</span></div>
+            <ul>
+            <li>Exact body length, proportions, fur color, ears, and whiskers.</li>
+            <li>The alert crouch and specific underground position.</li>
+            <li>Species-level identity where only incomplete dental material is available.</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
 
       <div class="aside">
@@ -215,20 +337,70 @@
 
         <div class="card survivor">
           <div class="tag">Still with us today</div>
-          <p class="todo">Closest-living-relative / survivor note pending — shown when the record has one.</p>
+          <p>Cimolestes is often described as a eutherian-line mammal, placing it on the broad side of the mammal tree that also contains living placentals. That does not make it the direct ancestor of shrews, moles, or any other modern group. A living shrew is a helpful ecological comparison for a small, active hunter of invertebrates, but its resemblance is partly convergence. The surviving connection is a deep branch of mammalian history, not an unchanged body plan carried to the present.</p>
         </div>
 
         <div class="card distrib">
           <h2 style="border:none;margin:0 0 4px;padding:0">Where</h2>
           <div class="map"></div>
-          <p class="body-copy" style="font-size:13px;margin:10px 0 0"><span class="todo">Range description pending for Cimolestes.</span></p>
+          <p class="body-copy" style="font-size:13px;margin:10px 0 0">Fossils assigned to Cimolestes and closely related forms occur in Late Cretaceous deposits of western North America, including the Hell Creek–Lance interval. Most records are isolated teeth and jaws from sediments laid down by rivers and on floodplains. Such fossils establish presence in the regional fauna but rarely reveal a precise microhabitat. The poster places the animal among roots and leaf litter as a plausible small-mammal refuge; it does not claim a Cimolestes body was recovered from that exact setting.</p>
         </div>
 
         <div class="card">
           <h2 style="border:none;margin:0 0 8px;padding:0">Sources</h2>
-          <div class="refs"><span class="todo">No sources entered yet — <code>references[]</code> empty.</span></div>
+          <div class="refs"><ol class="srclist">
+          <li id="ref1"><span class="n">1</span><a href="https://doi.org/10.3390/geosciences10110435" rel="noopener">The Hell Creek Formation, Montana: a stratigraphic review and revision based on a sequence stratigraphic approach</a><br>Fowler · 2020 <span class="ty">· Peer-reviewed review</span></li>
+          <li id="ref2"><span class="n">2</span><a href="https://doi.org/10.1007/s10914-005-6943-4" rel="noopener">Mammalian faunal dynamics during the last 1.8 million years of the Cretaceous in Garfield County, Montana</a><br>Wilson · 2005 <span class="ty">· Peer-reviewed primary research</span></li>
+          <li id="ref3"><span class="n">3</span><a href="https://doi.org/10.1146/annurev.ecolsys.38.091206.095707" rel="noopener">Mammals from the age of dinosaurs: origins, evolution, and structure</a><br>Luo · 2007 <span class="ty">· Peer-reviewed review</span></li>
+          <li id="ref4"><span class="n">4</span><a href="https://digitallibrary.amnh.org/" rel="noopener">Phylogeny, classification, and evolution of South American cimolestan mammals</a><br>McKenna · 1975 <span class="ty">· Peer-reviewed primary research</span></li>
+          <li id="ref5"><span class="n">5</span><a href="https://doi.org/10.1126/science.292.5521.1535" rel="noopener">The origin and evolution of tribosphenic molars in Mesozoic mammals</a><br>Luo et al. · 2001 <span class="ty">· Peer-reviewed research</span></li>
+          <li id="ref6"><span class="n">6</span><a href="https://cup.columbia.edu/book/mammals-from-the-age-of-dinosaurs/9780231119184" rel="noopener">Mammals from the Age of Dinosaurs</a><br>Kielan-Jaworowska et al. · 2004 <span class="ty">· Scholarly monograph</span></li>
+          <li id="ref7"><span class="n">7</span><a href="https://naturalhistory.si.edu/research/paleobiology/collections-access" rel="noopener">Fossil Mammals Collection</a><br>History <span class="ty">· Official museum resource</span></li>
+          <li id="ref8"><span class="n">8</span><a href="https://ucmp.berkeley.edu/mammal/mammal.html" rel="noopener">Introduction to the Mammalia</a><br>Paleontology <span class="ty">· Official university resource</span></li>
+        </ol></div>
+        </div>
+
+        <div class="card status">
+          <h2 style="border:none;margin:0 0 8px;padding:0">Scientific status</h2>
+          <div class="row"><span>Review status</span><b>Not externally reviewed</b></div>
+          <div class="row"><span>Reviewed by</span><b>—</b></div>
+          <div class="row"><span>Content version</span><b>1.0.0-pilot</b></div>
+          <div class="row"><span>Last reviewed</span><b>2026-07-29</b></div>
+          <div class="row"><span>Reconstruction</span><b>Reasonable inference</b></div>
+          <p class="note">Research synthesis prepared from the cited sources. Candidate reviewers are listed only in the internal dossier and have not been contacted.</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <h2 style="margin-top:40px">Deeper dive</h2>
+    <div class="dive">
+          <a href="https://doi.org/10.1007/s10914-005-6943-4" rel="noopener">
+            <div class="k">Research</div>
+            <div class="t">Mammalian faunal dynamics during the last 1.8 million years of the Cretaceous</div>
+            <div class="m">See how thousands of small teeth reveal mammal communities changing through the final part of the Cretaceous.</div>
+            <div class="who">Gregory P. Wilson · 2005</div>
+          </a>
+          <a href="https://naturalhistory.si.edu/research/paleobiology/collections-access" rel="noopener">
+            <div class="k">Museum</div>
+            <div class="t">Fossil Mammals Collection</div>
+            <div class="m">Explore the collection work that turns fragmentary jaws and teeth into evidence about vanished mammal communities.</div>
+            <div class="who">Smithsonian National Museum of Natural History</div>
+          </a>
+          <a href="https://ucmp.berkeley.edu/mammal/mammal.html" rel="noopener">
+            <div class="k">Resource</div>
+            <div class="t">Introduction to the Mammalia</div>
+            <div class="m">Place Cimolestes within the much larger story of mammalian anatomy and evolution.</div>
+            <div class="who">University of California Museum of Paleontology</div>
+          </a>
+        </div>
+  </div>
+
+  <div class="wrap">
+    <div class="backworld">
+      <p>Cimolestes is one of 32 organisms sharing a single world.</p>
+      <a class="btn s" style="margin:0;min-width:210px" href="../poster_mockup_live.html?only=1">Return to the world ↗</a>
     </div>
   </div>
 

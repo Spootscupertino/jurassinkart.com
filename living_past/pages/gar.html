@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gar — Late Cretaceous | The Living Past</title>
-<meta name="description" content="Gar (Lepisosteus) — Fish, 68–66 Ma. The Living Past, Vol V: Late Cretaceous.">
+<meta name="description" content="Diamond-armored scales flash beneath the muddy water. Gar were already successful predators by the end of the Cretaceous, using long tooth-lined jaws to seize smaller animals in rivers and ponds. Their lineage survives today, making this fish one of the poster’s clearest bridges between Hell Creek and living waters.">
 <meta property="og:title" content="Gar — The Living Past">
-<meta property="og:description" content="Gar (Lepisosteus) — Fish, 68–66 Ma. The Living Past, Vol V: Late Cretaceous.">
+<meta property="og:description" content="Diamond-armored scales flash beneath the muddy water. Gar were already successful predators by the end of the Cretaceous, using long tooth-lined jaws to seize smaller animals in rivers and ponds. Their lineage survives today, making this fish one of the poster’s clearest bridges between Hell Creek and living waters.">
 <meta property="og:image" content="../plates/organisms/CR19_isolated.png">
 <meta property="og:type" content="article">
 <link rel="canonical" href="https://jurassinkart.com/late-cretaceous/gar">
@@ -158,6 +158,87 @@
   .todo{ color:#7c6f52; font-style:italic; }
   .todo::before{ content:"◇ "; color:var(--brass); font-style:normal; }
 
+  /* ============================================================
+     RESEARCH-PASS COMPONENTS (2026-07-29)
+     Added, not redesigned: every one of these is built from the tokens the
+     template already defines (--brass, --panel, --hair, the three fonts). No new
+     colour, face or hierarchy is introduced.
+     ============================================================ */
+
+  /* "What the fossils tell us" — the epistemic spine of the page.
+     It deliberately reuses the CONFIDENCE DOT that SCOPE §4 already locked for
+     well-documented / reasonable-inference / speculative, because
+     direct-evidence / supported-inference / artistic-reconstruction is the same
+     distinction at paragraph scale. Filled, half, open — one vocabulary across
+     the poster card, the hero badge and here, so a reader who learns it once
+     can read it everywhere. */
+  .evidence{ display:grid; gap:1px; background:var(--hair); border:1px solid var(--hair);
+    border-radius:10px; overflow:hidden; margin:6px 0 4px; }
+  .ev{ background:var(--panel); padding:16px 18px; }
+  .ev .evh{ display:flex; align-items:center; gap:9px; margin:0 0 9px; }
+  .ev .evd{ width:11px; height:11px; border-radius:50%; border:1px solid var(--brass); flex:none; }
+  .ev .evd.filled{ background:var(--brass); }
+  .ev .evd.half{ background:linear-gradient(90deg,var(--brass) 0 50%,transparent 50%); }
+  .ev .evd.open{ background:transparent; }
+  .ev .evt{ font-family:var(--sans); font-size:10.5px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--brass-hi); }
+  .ev ul{ list-style:none; margin:0; padding:0; }
+  .ev li{ font-family:var(--sans); font-size:14.5px; line-height:1.62; color:#e4dabf;
+    padding:6px 0 6px 15px; position:relative; letter-spacing:.005em; }
+  .ev li::before{ content:"·"; position:absolute; left:3px; color:var(--brass); }
+  .ev.recon li{ color:#cfc3a6; font-style:italic; }
+
+  /* per-fact citation markers, so a claim and its source are never separated */
+  .cite{ font-family:var(--sans); font-size:10.5px; letter-spacing:.06em; color:var(--brass);
+    vertical-align:super; margin-left:3px; text-decoration:none; }
+  .cite:hover{ color:var(--brass-hi); }
+
+  /* Deeper dive — editorially selected further reading. `kind` is shown so a
+     reader can tell a paper from a museum before clicking. */
+  .dive{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:6px 0 0; }
+  @media(max-width:760px){ .dive{ grid-template-columns:1fr; } }
+  .dive a{ display:block; text-decoration:none; background:var(--panel); border:1px solid var(--hair);
+    border-radius:10px; padding:16px; transition:border-color .15s ease, transform .15s ease; }
+  .dive a:hover{ border-color:var(--brass); transform:translateY(-1px); }
+  .dive .k{ font-family:var(--sans); font-size:9.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--brass); }
+  .dive .t{ font-family:var(--body); font-size:16px; line-height:1.34; color:var(--ivory); margin:7px 0 6px; }
+  .dive .m{ font-family:var(--sans); font-size:12.5px; line-height:1.55; color:var(--muted); }
+  .dive .who{ font-family:var(--sans); font-size:11px; color:#8a7c60; margin-top:8px; }
+
+  /* Scientific status. Deliberately plain: this is the honesty layer, and dressing
+     it up would undercut it. */
+  .status .row{ display:flex; justify-content:space-between; gap:12px; font-family:var(--sans);
+    font-size:12px; color:var(--muted); padding:7px 0; border-top:1px solid var(--hair); }
+  .status .row:first-of-type{ border-top:none; }
+  .status .row b{ color:#d8cdb0; font-weight:400; }
+  .status .note{ font-family:var(--sans); font-size:12.5px; line-height:1.6; color:#bdb094;
+    margin:10px 0 0; }
+
+  /* Publication gate — only rendered when a record carries an unresolved
+     verification requirement. It must be impossible to miss. */
+  .gate{ border:1px solid #c0442f88; background:linear-gradient(160deg,#22110e,#160d0b);
+    border-radius:10px; padding:16px 18px; margin:0 0 26px; }
+  .gate .gt{ font-family:var(--sans); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:#e08a72; }
+  .gate p{ font-family:var(--sans); font-size:13.5px; line-height:1.6; color:#e8cfc6; margin:8px 0 0; }
+
+  /* full source list */
+  .srclist{ list-style:none; margin:0; padding:0; }
+  .srclist li{ font-family:var(--sans); font-size:12px; line-height:1.55; color:var(--muted);
+    padding:9px 0 9px 26px; border-top:1px solid var(--hair); position:relative; }
+  .srclist li:first-child{ border-top:none; }
+  .srclist .n{ position:absolute; left:0; top:9px; color:var(--brass); font-size:11px; }
+  .srclist a{ color:var(--brass-hi); text-decoration:none; }
+  .srclist a:hover{ text-decoration:underline; }
+  .srclist .ty{ color:#6f6552; }
+
+  /* return-to-the-world CTA */
+  .backworld{ display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap;
+    border:1px solid var(--hair); border-radius:12px; background:var(--panel); padding:18px 20px;
+    margin:34px 0 0; }
+  .backworld p{ font-family:var(--body); font-style:italic; font-size:17px; color:#e6d9b8; margin:0; }
+
   :root{ --focus-x:46%; --focus-y:40%; }
 </style>
 </head>
@@ -186,23 +267,64 @@
 
   <div class="wrap">
     <div class="facts">
-      <div class="f"><div class="fl">Size</div><div class="fv">2 m</div></div>
+      <div class="f"><div class="fl">Size</div><div class="fv">up to about 2 m (6.6 ft)</div></div>
       <div class="f"><div class="fl">When</div><div class="fv">68–66 Ma</div></div>
       <div class="f"><div class="fl">Diet</div><div class="fv">Carnivore</div></div>
-      <div class="f"><div class="fl">Habitat</div><div class="fv">Coastal floodplain</div></div>
+      <div class="f"><div class="fl">Habitat</div><div class="fv">Rivers, ponds, and quiet backwaters</div></div>
     </div>
 
     <div class="cols">
       <div class="main">
-        <div class="blurb todo">One-line lede — pending sourced fill for Gar.</div>
+        
+        <div class="blurb">Diamond-armored scales flash beneath the muddy water. Gar were already successful predators by the end of the Cretaceous, using long tooth-lined jaws to seize smaller animals in rivers and ponds. Their lineage survives today, making this fish one of the poster’s clearest bridges between Hell Creek and living waters.</div>
 
         <h2>In this world</h2>
-        <p class="body-copy todo">Extended, sourced anatomy &amp; ecology write-up pending (demoted from the poster per Law #3). Filled from the record's sourced notes; never fabricated.</p>
+        <p class="body-copy">The Hell Creek floodplain was full of fish. Screen-washing sediment through fine mesh recovers thousands of tiny vertebrate fossils, and hard, shiny gar scales are among the most recognizable. Each scale is coated in ganoin, an enamel-like tissue that produces the diamond armor still seen in living gars. Those abundant fragments tell us gar-line fishes were ordinary members of the waterways beneath the dinosaurs.</p>
+        <p class="body-copy">CR19 is labeled Lepisosteus, but that name needs restraint. Isolated scales and teeth can securely identify lepisosteids more often than a particular genus or species. Several fossil gar lineages had similar durable armor, and complete diagnostic skeletons are uncommon in Hell Creek. The page therefore writes “Lepisosteus sp.” as the roster identity while acknowledging that many local fragments are safest at family level, Lepisosteidae.</p>
+        <p class="body-copy">The classic gar body is long and cylindrical, with the dorsal and anal fins placed far back near the tail. A long snout carries rows of pointed teeth. This is a fish built for short acceleration rather than endless high-speed pursuit. Living gars hover or move slowly, then lunge at fish and other small prey. Fossil anatomy supports a similar feeding toolkit, but no Hell Creek scale alone records a hunt. The poster’s poised swimming behavior is a supported ecological reconstruction.</p>
+        <p class="body-copy">Size is another place where genus and species matter. Modern Lepisosteus species range widely, and giant alligator gar belongs to the separate genus Atractosteus. A two-metre roster value should be treated as an upper illustrative size, not the measured length of every latest Maastrichtian Lepisosteus. Without an associated skeleton, scales do not provide a simple total-length ruler.</p>
+        <p class="body-copy">Gar biology offers a remarkable living comparison. Modern gars can gulp air at the surface and use a vascularized swim bladder as an accessory breathing organ, allowing them to tolerate warm or oxygen-poor water. That capability is documented in living lepisosteids; it is plausible for close fossil relatives but not directly preserved in a Hell Creek specimen. We can explain the lineage’s physiology without pretending to watch CR19 breathe.</p>
+        <p class="body-copy">The fossil record also corrects the phrase “living fossil.” Gars retain an ancient-looking body plan, but their lineage has evolved, diversified, and changed its geography. Molecular and anatomical studies place them among holosteans, together with bowfin, on a branch separate from the vast teleost radiation. A modern spotted gar is not a Cretaceous species rescued unchanged from time. It is a living endpoint of continued evolution.</p>
+        <p class="body-copy">Hell Creek rivers flowed across a low coastal plain, and some eastern sections record brackish or marine influence. Gars today are primarily freshwater fishes, though some tolerate brackish water. The strongest staging for CR19 is therefore inside a river, pond, or backwater near shore—not in the open Western Interior Seaway. Its presence helps make the poster’s water ecologically layered rather than treating every aquatic animal as marine.</p>
+        <p class="body-copy">The reconstruction’s diamond scales, long jaws, and rear-set fins are evidence-led. Exact coloration, pattern, sex, and momentary behavior are artistic. The animal’s survival story belongs at the lineage level: recognizable gar anatomy spans deep time, while the species swimming in North American waters today are modern organisms with their own histories. That balance—continuity without pretending stasis—is what makes gar such a powerful guide into the Living Past.</p>
+        <p class="body-copy">Those durable scales also create a sampling lesson. A screen-washed site may contain many gar elements because armor survives transport and weathering better than delicate fish bone. Counts therefore document a common component of the assemblage, but they are not a direct head count of the ancient river. Current, burial, and the distance a carcass traveled all matter. The page uses abundance to describe gar as an established part of Hell Creek waters, not to calculate how many swam past one bank. A final visual restraint concerns the jaws. Living gars often wait almost motionless and strike sideways, yet the exact attack mechanics of a fossil taxon require its own skull and muscle reconstruction. CR19 can be shown poised among plants or suspended in open water. It should not receive an elaborate feeding behavior merely because a modern relative was filmed doing it.</p>
 
         <h2 style="margin-top:30px">Field notes</h2>
         <ul class="funfacts">
-          <li class="todo">Field notes pending — source-hunter / ref-curator fill <code>funFacts[]</code> from the record; confidence-appropriate, never invented.</li>
+          <li>Armor in the sieve — Ganoid scales are hard, shiny, and durable, so isolated gar armor is common at Hell Creek microfossil sites.<a class="cite" href="#ref1">[1]</a><a class="cite" href="#ref2">[2]</a></li>
+          <li>A name with limits — Many fragments identify Lepisosteidae securely but cannot always prove the genus Lepisosteus; the page keeps that uncertainty visible.<a class="cite" href="#ref1">[1]</a><a class="cite" href="#ref3">[3]</a></li>
+          <li>Breathing two ways — Living gars use gills and can gulp air into a vascularized swim bladder, helping them survive oxygen-poor water.<a class="cite" href="#ref4">[4]</a><a class="cite" href="#ref5">[5]</a></li>
+          <li>Ancient does not mean unchanged — Modern gars preserve a long-lived body plan, but genomic research shows an evolving lineage rather than a species frozen in time.<a class="cite" href="#ref5">[5]</a><a class="cite" href="#ref6">[6]</a></li>
         </ul>
+
+        <h2 style="margin-top:34px">What the fossils tell us</h2>
+        <div class="evidence">
+          <div class="ev">
+            <div class="evh"><span class="evd filled"></span><span class="evt">Known from fossils</span></div>
+            <ul>
+            <li>Teeth, jaws, scales, and rarer associated material establish gar-line fishes in latest Cretaceous waterways.</li>
+            <li>Diamond-shaped ganoid scales directly support the armored surface.</li>
+            <li>Skull and fin anatomy in fossil gars establishes the long-jawed, rear-finned body plan.</li>
+            </ul>
+          </div>
+          <div class="ev">
+            <div class="evh"><span class="evd half"></span><span class="evt">Supported inference</span></div>
+            <ul>
+            <li>Ambush predation is supported by feeding anatomy and living gar comparison.</li>
+            <li>Tolerance of low oxygen and air gulping are plausible lineage traits but are documented most directly in living gars.</li>
+            <li>Two metres is an illustrative upper size, not a local specimen measurement.</li>
+            </ul>
+          </div>
+          <div class="ev recon">
+            <div class="evh"><span class="evd open"></span><span class="evt">Artistic reconstruction</span></div>
+            <ul>
+            <li>Color, pattern, eye appearance, and exact body condition.</li>
+            <li>The specific swimming depth and alert pose.</li>
+            <li>The prey it is watching and whether it is about to gulp air.</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
 
       <div class="aside">
@@ -215,20 +337,70 @@
 
         <div class="card survivor">
           <div class="tag">Still with us today</div>
-          <p class="todo">Closest-living-relative / survivor note pending — shown when the record has one.</p>
+          <p>Seven living gar species inhabit North and Central America and Cuba. They share the fossil lineage’s long jaws, rear-set fins, and interlocking ganoid scales, and they can supplement gill breathing by gulping air. Yet they are not unchanged Cretaceous relics. Living Lepisosteus and Atractosteus are branches of an evolutionary history that continued through extinction, climate change, and shifting rivers. Calling them survivors is accurate at the lineage level; calling a modern species identical to CR19 would erase more than 66 million years of evolution.</p>
         </div>
 
         <div class="card distrib">
           <h2 style="border:none;margin:0 0 4px;padding:0">Where</h2>
           <div class="map"></div>
-          <p class="body-copy" style="font-size:13px;margin:10px 0 0"><span class="todo">Range description pending for Gar.</span></p>
+          <p class="body-copy" style="font-size:13px;margin:10px 0 0">Lepisosteid scales and teeth are abundant in latest Maastrichtian Hell Creek microvertebrate sites across Montana and the Dakotas, with related records in Lance-age deposits. They indicate freshwater channel, pond, and backwater communities on the coastal plain. Some sites experienced brackish influence, which gars can tolerate to varying degrees, but the open sea is not the default placement. Because isolated scales may not diagnose Lepisosteus rather than another lepisosteid, the poster identity should retain a visible “sp.” or family-level caveat.</p>
         </div>
 
         <div class="card">
           <h2 style="border:none;margin:0 0 8px;padding:0">Sources</h2>
-          <div class="refs"><span class="todo">No sources entered yet — <code>references[]</code> empty.</span></div>
+          <div class="refs"><ol class="srclist">
+          <li id="ref1"><span class="n">1</span><a href="https://www.naturalhistory.si.edu/sites/default/files/media/file/fossil-id-guide062812-accessible.pdf" rel="noopener">An Illustrated Guide to Latest Cretaceous Vertebrate Microfossils of the Hell Creek Formation</a><br>History · 2012 <span class="ty">· Official museum guide</span></li>
+          <li id="ref2"><span class="n">2</span><a href="https://doi.org/10.2110/palo.2007.p07-006r" rel="noopener">Comparative taphonomy and paleoecological reconstruction of two Hell Creek microvertebrate accumulations</a><br>Pearson et al. · 2008 <span class="ty">· Peer-reviewed research</span></li>
+          <li id="ref3"><span class="n">3</span><a href="https://www.jstor.org/stable/20787261" rel="noopener">Phylogenetic relationships of fossil and Recent gars</a><br>Grande · 2010 <span class="ty">· Peer-reviewed monograph</span></li>
+          <li id="ref4"><span class="n">4</span><a href="https://doi.org/10.1016/B978-0-12-294860-2.X5000-2" rel="noopener">Air-breathing in fishes: evolution, diversity, and adaptation</a><br>Graham · 1997 <span class="ty">· Scholarly monograph</span></li>
+          <li id="ref5"><span class="n">5</span><a href="https://doi.org/10.1038/ng.3526" rel="noopener">The spotted gar genome illuminates vertebrate evolution</a><br>al. · 2016 <span class="ty">· Peer-reviewed primary research</span></li>
+          <li id="ref6"><span class="n">6</span><a href="https://doi.org/10.1038/s41588-021-00914-y" rel="noopener">The bowfin genome illuminates the developmental evolution of ray-finned fishes</a><br>al. · 2021 <span class="ty">· Peer-reviewed primary research</span></li>
+          <li id="ref7"><span class="n">7</span><a href="https://doi.org/10.3390/geosciences10110435" rel="noopener">The Hell Creek Formation, Montana: a stratigraphic review</a><br>Fowler · 2020 <span class="ty">· Peer-reviewed review</span></li>
+          <li id="ref8"><span class="n">8</span><a href="https://doi.org/10.1130/0-8137-2361-2.247" rel="noopener">Marine Breien Member of the Hell Creek Formation</a><br>Hoganson et al. · 2002 <span class="ty">· Peer-reviewed geological study</span></li>
+        </ol></div>
+        </div>
+
+        <div class="card status">
+          <h2 style="border:none;margin:0 0 8px;padding:0">Scientific status</h2>
+          <div class="row"><span>Review status</span><b>Not externally reviewed</b></div>
+          <div class="row"><span>Reviewed by</span><b>—</b></div>
+          <div class="row"><span>Content version</span><b>1.0.0-pilot</b></div>
+          <div class="row"><span>Last reviewed</span><b>2026-07-29</b></div>
+          <div class="row"><span>Reconstruction</span><b>Well-documented reconstruction</b></div>
+          <p class="note">Species/genus resolution is deliberately conservative; no outreach occurred.</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <h2 style="margin-top:40px">Deeper dive</h2>
+    <div class="dive">
+          <a href="https://doi.org/10.1038/ng.3526" rel="noopener">
+            <div class="k">Research</div>
+            <div class="t">The spotted gar genome illuminates vertebrate evolution</div>
+            <div class="m">Explore how a living gar genome helps connect major branches of the vertebrate family tree.</div>
+            <div class="who">Ingo Braasch and colleagues · 2016</div>
+          </a>
+          <a href="https://www.naturalhistory.si.edu/sites/default/files/media/file/fossil-id-guide062812-accessible.pdf" rel="noopener">
+            <div class="k">Museum</div>
+            <div class="t">Latest Cretaceous Vertebrate Microfossils of the Hell Creek Formation</div>
+            <div class="m">Learn to recognize the scales and teeth that reveal Hell Creek’s abundant fishes.</div>
+            <div class="who">Smithsonian National Museum of Natural History · 2012</div>
+          </a>
+          <a href="https://www.garlab.org/" rel="noopener">
+            <div class="k">Resource</div>
+            <div class="t">GarLab</div>
+            <div class="m">Meet living gars through an active research program studying their development, evolution, and conservation.</div>
+            <div class="who">Michigan State University</div>
+          </a>
+        </div>
+  </div>
+
+  <div class="wrap">
+    <div class="backworld">
+      <p>Gar is one of 32 organisms sharing a single world.</p>
+      <a class="btn s" style="margin:0;min-width:210px" href="../poster_mockup_live.html?only=1">Return to the world ↗</a>
     </div>
   </div>
 

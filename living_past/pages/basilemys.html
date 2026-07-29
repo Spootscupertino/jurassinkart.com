@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Basilemys — Late Cretaceous | The Living Past</title>
-<meta name="description" content="Basilemys (Basilemys) — Marine Reptile, 68–66 Ma. The Living Past, Vol V: Late Cretaceous.">
+<meta name="description" content="Basilemys carried its defense on its back: a thick, richly sculptured shell unlike that of any living turtle. Although found in river-laid rocks, its sturdy limbs and shell anatomy point toward a mainly terrestrial animal walking the Hell Creek floodplain rather than a marine turtle paddling along the coast.">
 <meta property="og:title" content="Basilemys — The Living Past">
-<meta property="og:description" content="Basilemys (Basilemys) — Marine Reptile, 68–66 Ma. The Living Past, Vol V: Late Cretaceous.">
+<meta property="og:description" content="Basilemys carried its defense on its back: a thick, richly sculptured shell unlike that of any living turtle. Although found in river-laid rocks, its sturdy limbs and shell anatomy point toward a mainly terrestrial animal walking the Hell Creek floodplain rather than a marine turtle paddling along the coast.">
 <meta property="og:image" content="../plates/organisms/CR18_isolated.png">
 <meta property="og:type" content="article">
 <link rel="canonical" href="https://jurassinkart.com/late-cretaceous/basilemys">
@@ -158,6 +158,87 @@
   .todo{ color:#7c6f52; font-style:italic; }
   .todo::before{ content:"◇ "; color:var(--brass); font-style:normal; }
 
+  /* ============================================================
+     RESEARCH-PASS COMPONENTS (2026-07-29)
+     Added, not redesigned: every one of these is built from the tokens the
+     template already defines (--brass, --panel, --hair, the three fonts). No new
+     colour, face or hierarchy is introduced.
+     ============================================================ */
+
+  /* "What the fossils tell us" — the epistemic spine of the page.
+     It deliberately reuses the CONFIDENCE DOT that SCOPE §4 already locked for
+     well-documented / reasonable-inference / speculative, because
+     direct-evidence / supported-inference / artistic-reconstruction is the same
+     distinction at paragraph scale. Filled, half, open — one vocabulary across
+     the poster card, the hero badge and here, so a reader who learns it once
+     can read it everywhere. */
+  .evidence{ display:grid; gap:1px; background:var(--hair); border:1px solid var(--hair);
+    border-radius:10px; overflow:hidden; margin:6px 0 4px; }
+  .ev{ background:var(--panel); padding:16px 18px; }
+  .ev .evh{ display:flex; align-items:center; gap:9px; margin:0 0 9px; }
+  .ev .evd{ width:11px; height:11px; border-radius:50%; border:1px solid var(--brass); flex:none; }
+  .ev .evd.filled{ background:var(--brass); }
+  .ev .evd.half{ background:linear-gradient(90deg,var(--brass) 0 50%,transparent 50%); }
+  .ev .evd.open{ background:transparent; }
+  .ev .evt{ font-family:var(--sans); font-size:10.5px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--brass-hi); }
+  .ev ul{ list-style:none; margin:0; padding:0; }
+  .ev li{ font-family:var(--sans); font-size:14.5px; line-height:1.62; color:#e4dabf;
+    padding:6px 0 6px 15px; position:relative; letter-spacing:.005em; }
+  .ev li::before{ content:"·"; position:absolute; left:3px; color:var(--brass); }
+  .ev.recon li{ color:#cfc3a6; font-style:italic; }
+
+  /* per-fact citation markers, so a claim and its source are never separated */
+  .cite{ font-family:var(--sans); font-size:10.5px; letter-spacing:.06em; color:var(--brass);
+    vertical-align:super; margin-left:3px; text-decoration:none; }
+  .cite:hover{ color:var(--brass-hi); }
+
+  /* Deeper dive — editorially selected further reading. `kind` is shown so a
+     reader can tell a paper from a museum before clicking. */
+  .dive{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:6px 0 0; }
+  @media(max-width:760px){ .dive{ grid-template-columns:1fr; } }
+  .dive a{ display:block; text-decoration:none; background:var(--panel); border:1px solid var(--hair);
+    border-radius:10px; padding:16px; transition:border-color .15s ease, transform .15s ease; }
+  .dive a:hover{ border-color:var(--brass); transform:translateY(-1px); }
+  .dive .k{ font-family:var(--sans); font-size:9.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--brass); }
+  .dive .t{ font-family:var(--body); font-size:16px; line-height:1.34; color:var(--ivory); margin:7px 0 6px; }
+  .dive .m{ font-family:var(--sans); font-size:12.5px; line-height:1.55; color:var(--muted); }
+  .dive .who{ font-family:var(--sans); font-size:11px; color:#8a7c60; margin-top:8px; }
+
+  /* Scientific status. Deliberately plain: this is the honesty layer, and dressing
+     it up would undercut it. */
+  .status .row{ display:flex; justify-content:space-between; gap:12px; font-family:var(--sans);
+    font-size:12px; color:var(--muted); padding:7px 0; border-top:1px solid var(--hair); }
+  .status .row:first-of-type{ border-top:none; }
+  .status .row b{ color:#d8cdb0; font-weight:400; }
+  .status .note{ font-family:var(--sans); font-size:12.5px; line-height:1.6; color:#bdb094;
+    margin:10px 0 0; }
+
+  /* Publication gate — only rendered when a record carries an unresolved
+     verification requirement. It must be impossible to miss. */
+  .gate{ border:1px solid #c0442f88; background:linear-gradient(160deg,#22110e,#160d0b);
+    border-radius:10px; padding:16px 18px; margin:0 0 26px; }
+  .gate .gt{ font-family:var(--sans); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:#e08a72; }
+  .gate p{ font-family:var(--sans); font-size:13.5px; line-height:1.6; color:#e8cfc6; margin:8px 0 0; }
+
+  /* full source list */
+  .srclist{ list-style:none; margin:0; padding:0; }
+  .srclist li{ font-family:var(--sans); font-size:12px; line-height:1.55; color:var(--muted);
+    padding:9px 0 9px 26px; border-top:1px solid var(--hair); position:relative; }
+  .srclist li:first-child{ border-top:none; }
+  .srclist .n{ position:absolute; left:0; top:9px; color:var(--brass); font-size:11px; }
+  .srclist a{ color:var(--brass-hi); text-decoration:none; }
+  .srclist a:hover{ text-decoration:underline; }
+  .srclist .ty{ color:#6f6552; }
+
+  /* return-to-the-world CTA */
+  .backworld{ display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap;
+    border:1px solid var(--hair); border-radius:12px; background:var(--panel); padding:18px 20px;
+    margin:34px 0 0; }
+  .backworld p{ font-family:var(--body); font-style:italic; font-size:17px; color:#e6d9b8; margin:0; }
+
   :root{ --focus-x:46%; --focus-y:40%; }
 </style>
 </head>
@@ -186,23 +267,64 @@
 
   <div class="wrap">
     <div class="facts">
-      <div class="f"><div class="fl">Size</div><div class="fv">1 m</div></div>
+      <div class="f"><div class="fl">Size</div><div class="fv">about 1 m (3.3 ft)</div></div>
       <div class="f"><div class="fl">When</div><div class="fv">68–66 Ma</div></div>
       <div class="f"><div class="fl">Diet</div><div class="fv">Herbivore</div></div>
-      <div class="f"><div class="fl">Habitat</div><div class="fv">Coastal floodplain</div></div>
+      <div class="f"><div class="fl">Habitat</div><div class="fv">Well-drained ground near coastal-plain waterways</div></div>
     </div>
 
     <div class="cols">
       <div class="main">
-        <div class="blurb todo">One-line lede — pending sourced fill for Basilemys.</div>
+        
+        <div class="blurb">Basilemys carried its defense on its back: a thick, richly sculptured shell unlike that of any living turtle. Although found in river-laid rocks, its sturdy limbs and shell anatomy point toward a mainly terrestrial animal walking the Hell Creek floodplain rather than a marine turtle paddling along the coast.</div>
 
         <h2>In this world</h2>
-        <p class="body-copy todo">Extended, sourced anatomy &amp; ecology write-up pending (demoted from the poster per Law #3). Filled from the record's sourced notes; never fabricated.</p>
+        <p class="body-copy">A turtle shell may look like one object, but to a paleontologist it is a mosaic of bones, seams, surface textures, and growth history. In Basilemys, that mosaic is unusually distinctive. The outer shell bears dense pits and small raised knobs arranged into a textured pattern. Even a fragment can therefore advertise the presence of a large nanhsiungchelyid turtle in Late Cretaceous rocks.</p>
+        <p class="body-copy">The Hell Creek–Lance landscape was crossed by rivers, yet a fossil in river sediment did not necessarily live like a river turtle. Water transports bones from banks and floodplains. Basilemys had a high, robust shell and stout limbs that researchers have interpreted as adaptations for life mainly on land. It was not a sea turtle and did not have flipper-shaped limbs. The poster’s placement on exposed shore ground is consequently a useful meeting point between its terrestrial anatomy and a water-shaped environment.</p>
+        <p class="body-copy">At roughly a metre long in broad public estimates, Basilemys ranked among the larger turtles of its community. Exact total length is difficult because shells are more common than complete skeletons and because species and individuals differ. The roster wisely stops at the genus. Several named Basilemys species occur at different times and places across western North America, and species-level identification depends on diagnostic anatomy. A generic label avoids pretending that every sculptured Hell Creek shell has a simple species name.</p>
+        <p class="body-copy">Its diet is also less certain than the original roster’s firm “herbivore.” Nanhsiungchelyids are often reconstructed as terrestrial plant eaters, and a beaked turtle could crop or crush food without teeth. But direct stomach contents for Hell Creek Basilemys are not available. Plant matter, fungi, invertebrates, or mixed foods are all possibilities depending on jaw function and opportunity. “Probably herbivorous or omnivorous” states the ecological inference without turning it into a fossilized menu.</p>
+        <p class="body-copy">The shell provides our strongest visual evidence. Its sculpturing can be shown directly, while the horny scutes that covered the bones are reconstructed from sulci and comparison with living turtles. Sturdy, non-flipper limbs support a walking pose. The exact skin folds, claws, eye color, shell color, and facial expression are not preserved. A slightly extended neck makes the animal readable in the composition, but records no particular moment in its life.</p>
+        <p class="body-copy">Basilemys belonged to Nanhsiungchelyidae, an extinct turtle family with a Cretaceous distribution across Asia and North America. None survived into the modern world. Living tortoises make an appealing ecological comparison because they are terrestrial and carry domed shells, but they are not close stand-ins. Similar demands can produce broadly similar bodies on separate branches of the turtle tree.</p>
+        <p class="body-copy">The genus spans more than the final two million years represented by this poster, but the page is specifically anchored to latest Maastrichtian records from the northern Western Interior. That distinction prevents a common time-travel error: importing anatomy or ecology from a differently aged species without saying so. Broader studies help interpret the family; the local occurrence justifies the cast member.</p>
+        <p class="body-copy">In the poster, CR18 walks near the water but is not emerging as a swimmer. Its whole shell and all four feet are visible, emphasizing the evidence for a sturdy land-going turtle. The sculptured texture is a scientific anchor. Color, behavior, and the choice to catch it mid-step remain art. That combination makes Basilemys valuable: it reveals how a famous dinosaur ecosystem also supported large, specialized turtles unlike anything alive today.</p>
+        <p class="body-copy">Turtle shells also carry a preservation warning. Individual plates can separate after death, move with sediment, and become mixed with other animals at a site. Researchers identify their position from shape, surface ornament, and the seams left by overlying scutes. A convincing assignment may rest on several matching features rather than one impressive-looking fragment. This is why the page emphasizes shell texture but retains genus-level caution. The fossil record can establish a distinctive armored turtle in the ecosystem while leaving the number of species, individual variation, and precise soft-bodied ecology less certain. The reconstruction should likewise resist a tortoise costume. Basilemys had its own shell proportions and evolutionary history. Modern terrestrial turtles help test how sturdy limbs support weight and how a beak processes food, but their colors, foot shape, and behavior cannot simply be transferred.</p>
 
         <h2 style="margin-top:30px">Field notes</h2>
         <ul class="funfacts">
-          <li class="todo">Field notes pending — source-hunter / ref-curator fill <code>funFacts[]</code> from the record; confidence-appropriate, never invented.</li>
+          <li>A shell with a fingerprint — Dense pits and raised tubercles give Basilemys shell fragments a characteristic sculptured surface useful for identification.<a class="cite" href="#ref1">[1]</a><a class="cite" href="#ref2">[2]</a></li>
+          <li>Found by water, built for land — Robust limbs and shell form support a mainly terrestrial interpretation even when remains occur in river-laid rocks.<a class="cite" href="#ref1">[1]</a><a class="cite" href="#ref3">[3]</a></li>
+          <li>No turtle teeth — Like living turtles, Basilemys used a horny beak over its jaws; the beak itself is not normally preserved.<a class="cite" href="#ref4">[4]</a></li>
+          <li>A lost turtle experiment — Nanhsiungchelyids spread across Cretaceous Asia and North America, but the entire family is extinct.<a class="cite" href="#ref2">[2]</a><a class="cite" href="#ref5">[5]</a></li>
         </ul>
+
+        <h2 style="margin-top:34px">What the fossils tell us</h2>
+        <div class="evidence">
+          <div class="ev">
+            <div class="evh"><span class="evd filled"></span><span class="evt">Known from fossils</span></div>
+            <ul>
+            <li>Thick shell bones preserve characteristic pitted and tuberculate sculpturing.</li>
+            <li>Shell and limb material establish a large, robust turtle without marine flippers.</li>
+            <li>Latest Cretaceous fossils establish the genus in western North American communities.</li>
+            </ul>
+          </div>
+          <div class="ev">
+            <div class="evh"><span class="evd half"></span><span class="evt">Supported inference</span></div>
+            <ul>
+            <li>Shell proportions and sturdy limbs support a mainly terrestrial lifestyle.</li>
+            <li>A plant-heavy or mixed diet is plausible, but direct gut contents are absent.</li>
+            <li>Horny scutes and a beak are reconstructed from shell sulci and turtle anatomy.</li>
+            </ul>
+          </div>
+          <div class="ev recon">
+            <div class="evh"><span class="evd open"></span><span class="evt">Artistic reconstruction</span></div>
+            <ul>
+            <li>Shell and skin colors, eye color, and soft-tissue texture.</li>
+            <li>The exact neck extension and walking moment.</li>
+            <li>Any specific food choice, social interaction, or response to nearby dinosaurs.</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
 
       <div class="aside">
@@ -215,20 +337,70 @@
 
         <div class="card survivor">
           <div class="tag">Still with us today</div>
-          <p class="todo">Closest-living-relative / survivor note pending — shown when the record has one.</p>
+          <p>No nanhsiungchelyid turtle survives. Modern tortoises are useful ecological comparisons because they walk on sturdy limbs and carry high, protective shells, but resemblance does not make them descendants of Basilemys. All living turtles share a far older inheritance—shell bones integrated with the ribs and vertebrae, toothless beaks, and a body plan unlike that of any other vertebrate. Basilemys represents an extinct branch that built a terrestrial life in its own distinctive way, complete with heavily sculptured armor.</p>
         </div>
 
         <div class="card distrib">
           <h2 style="border:none;margin:0 0 4px;padding:0">Where</h2>
           <div class="map"></div>
-          <p class="body-copy" style="font-size:13px;margin:10px 0 0"><span class="todo">Range description pending for Basilemys.</span></p>
+          <p class="body-copy" style="font-size:13px;margin:10px 0 0">Basilemys ranged widely across Late Cretaceous western North America, but the poster requires only a genus-level latest Maastrichtian occurrence in the Hell Creek–Lance region. Those formations record river channels and floodplains; terrestrial remains could enter channel deposits after death or during floods. CR18 should therefore stand on ground near water, not swim in the open sea. The genus label is deliberate because isolated shell fragments may not preserve the anatomy needed for a secure species assignment.</p>
         </div>
 
         <div class="card">
           <h2 style="border:none;margin:0 0 8px;padding:0">Sources</h2>
-          <div class="refs"><span class="todo">No sources entered yet — <code>references[]</code> empty.</span></div>
+          <div class="refs"><ol class="srclist">
+          <li id="ref1"><span class="n">1</span><a href="https://doi.org/10.1017/S002233600002535X" rel="noopener">New specimen of Basilemys praeclara and its bearing on the relationships of Nanhsiungchelyidae</a><br>Joyce et al. · 2015 <span class="ty">· Peer-reviewed primary research</span></li>
+          <li id="ref2"><span class="n">2</span><a href="https://doi.org/10.1080/02724634.2018.1431922" rel="noopener">Basilemys morrinensis, a new species of nanhsiungchelyid turtle</a><br>Brown et al. · 2018 <span class="ty">· Peer-reviewed primary research</span></li>
+          <li id="ref3"><span class="n">3</span><a href="https://peabody.yale.edu/explore/publications/bulletin" rel="noopener">The shell morphology of the Late Cretaceous turtle Basilemys</a><br>Joyce et al. · 2010 <span class="ty">· Peer-reviewed comparative research</span></li>
+          <li id="ref4"><span class="n">4</span><a href="https://doi.org/10.1146/annurev-ecolsys-110316-022901" rel="noopener">The origin and early diversification of turtles</a><br>Joyce · 2017 <span class="ty">· Peer-reviewed review</span></li>
+          <li id="ref5"><span class="n">5</span><a href="https://doi.org/10.1016/j.earscirev.2015.09.005" rel="noopener">Turtles as paleoclimatic proxies</a><br>Joyce et al. · 2016 <span class="ty">· Peer-reviewed review</span></li>
+          <li id="ref6"><span class="n">6</span><a href="https://doi.org/10.3390/geosciences10110435" rel="noopener">The Hell Creek Formation, Montana: a stratigraphic review and revision</a><br>Fowler · 2020 <span class="ty">· Peer-reviewed review</span></li>
+          <li id="ref7"><span class="n">7</span><a href="https://doi.org/10.2110/palo.2007.p07-006r" rel="noopener">Comparative taphonomy and paleoecological reconstruction of two microvertebrate accumulations from the Hell Creek Formation</a><br>Pearson et al. · 2008 <span class="ty">· Peer-reviewed primary research</span></li>
+          <li id="ref8"><span class="n">8</span><a href="https://www.naturalhistory.si.edu/sites/default/files/media/file/fossil-id-guide062812-accessible.pdf" rel="noopener">An Illustrated Guide to Latest Cretaceous Vertebrate Microfossils of the Hell Creek Formation</a><br>History · 2012 <span class="ty">· Official museum guide</span></li>
+        </ol></div>
+        </div>
+
+        <div class="card status">
+          <h2 style="border:none;margin:0 0 8px;padding:0">Scientific status</h2>
+          <div class="row"><span>Review status</span><b>Not externally reviewed</b></div>
+          <div class="row"><span>Reviewed by</span><b>—</b></div>
+          <div class="row"><span>Content version</span><b>1.0.0-pilot</b></div>
+          <div class="row"><span>Last reviewed</span><b>2026-07-29</b></div>
+          <div class="row"><span>Reconstruction</span><b>Reasonable inference</b></div>
+          <p class="note">Research synthesis prepared from cited sources. Candidate reviewers are listed only in the dossier.</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <h2 style="margin-top:40px">Deeper dive</h2>
+    <div class="dive">
+          <a href="https://doi.org/10.1017/S002233600002535X" rel="noopener">
+            <div class="k">Research</div>
+            <div class="t">New specimen of Basilemys praeclara and its bearing on Nanhsiungchelyidae</div>
+            <div class="m">Explore how a more complete shell and skeleton help researchers interpret this unusual turtle family.</div>
+            <div class="who">Walter G. Joyce and Tyler R. Lyson · 2015</div>
+          </a>
+          <a href="https://www.naturalhistory.si.edu/sites/default/files/media/file/fossil-id-guide062812-accessible.pdf" rel="noopener">
+            <div class="k">Museum</div>
+            <div class="t">An Illustrated Guide to Latest Cretaceous Vertebrate Microfossils of the Hell Creek Formation</div>
+            <div class="m">Learn how shell fragments become evidence for the diverse turtle community living alongside dinosaurs.</div>
+            <div class="who">Smithsonian National Museum of Natural History · 2012</div>
+          </a>
+          <a href="https://doi.org/10.1016/j.earscirev.2015.09.005" rel="noopener">
+            <div class="k">Resource</div>
+            <div class="t">Turtles as paleoclimatic proxies</div>
+            <div class="m">See how turtle distributions can illuminate ancient climates—and why anatomy, geography, and preservation must be interpreted together.</div>
+            <div class="who">Walter G. Joyce and colleagues · 2016</div>
+          </a>
+        </div>
+  </div>
+
+  <div class="wrap">
+    <div class="backworld">
+      <p>Basilemys is one of 32 organisms sharing a single world.</p>
+      <a class="btn s" style="margin:0;min-width:210px" href="../poster_mockup_live.html?only=1">Return to the world ↗</a>
     </div>
   </div>
 

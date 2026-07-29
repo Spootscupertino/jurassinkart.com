@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Inoceramus — Late Cretaceous | The Living Past</title>
-<meta name="description" content="Inoceramus (Inoceramus) — Invertebrate, 72–66 Ma. The Living Past, Vol V: Late Cretaceous.">
+<meta name="description" content="Inoceramus represents the great ribbed inoceramid bivalves that carpeted many Cretaceous seafloors. Some grew enormous, and their calcitic shells record growth and seawater chemistry. Yet the group appears to have disappeared roughly 2.5–3.5 million years before the K–Pg boundary, making this a deliberately time-compressed visitor—not a true inhabitant of 68–66 Ma.">
 <meta property="og:title" content="Inoceramus — The Living Past">
-<meta property="og:description" content="Inoceramus (Inoceramus) — Invertebrate, 72–66 Ma. The Living Past, Vol V: Late Cretaceous.">
+<meta property="og:description" content="Inoceramus represents the great ribbed inoceramid bivalves that carpeted many Cretaceous seafloors. Some grew enormous, and their calcitic shells record growth and seawater chemistry. Yet the group appears to have disappeared roughly 2.5–3.5 million years before the K–Pg boundary, making this a deliberately time-compressed visitor—not a true inhabitant of 68–66 Ma.">
 <meta property="og:image" content="../plates/organisms/CR31_isolated.png">
 <meta property="og:type" content="article">
 <link rel="canonical" href="https://jurassinkart.com/late-cretaceous/inoceramus">
@@ -158,6 +158,87 @@
   .todo{ color:#7c6f52; font-style:italic; }
   .todo::before{ content:"◇ "; color:var(--brass); font-style:normal; }
 
+  /* ============================================================
+     RESEARCH-PASS COMPONENTS (2026-07-29)
+     Added, not redesigned: every one of these is built from the tokens the
+     template already defines (--brass, --panel, --hair, the three fonts). No new
+     colour, face or hierarchy is introduced.
+     ============================================================ */
+
+  /* "What the fossils tell us" — the epistemic spine of the page.
+     It deliberately reuses the CONFIDENCE DOT that SCOPE §4 already locked for
+     well-documented / reasonable-inference / speculative, because
+     direct-evidence / supported-inference / artistic-reconstruction is the same
+     distinction at paragraph scale. Filled, half, open — one vocabulary across
+     the poster card, the hero badge and here, so a reader who learns it once
+     can read it everywhere. */
+  .evidence{ display:grid; gap:1px; background:var(--hair); border:1px solid var(--hair);
+    border-radius:10px; overflow:hidden; margin:6px 0 4px; }
+  .ev{ background:var(--panel); padding:16px 18px; }
+  .ev .evh{ display:flex; align-items:center; gap:9px; margin:0 0 9px; }
+  .ev .evd{ width:11px; height:11px; border-radius:50%; border:1px solid var(--brass); flex:none; }
+  .ev .evd.filled{ background:var(--brass); }
+  .ev .evd.half{ background:linear-gradient(90deg,var(--brass) 0 50%,transparent 50%); }
+  .ev .evd.open{ background:transparent; }
+  .ev .evt{ font-family:var(--sans); font-size:10.5px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--brass-hi); }
+  .ev ul{ list-style:none; margin:0; padding:0; }
+  .ev li{ font-family:var(--sans); font-size:14.5px; line-height:1.62; color:#e4dabf;
+    padding:6px 0 6px 15px; position:relative; letter-spacing:.005em; }
+  .ev li::before{ content:"·"; position:absolute; left:3px; color:var(--brass); }
+  .ev.recon li{ color:#cfc3a6; font-style:italic; }
+
+  /* per-fact citation markers, so a claim and its source are never separated */
+  .cite{ font-family:var(--sans); font-size:10.5px; letter-spacing:.06em; color:var(--brass);
+    vertical-align:super; margin-left:3px; text-decoration:none; }
+  .cite:hover{ color:var(--brass-hi); }
+
+  /* Deeper dive — editorially selected further reading. `kind` is shown so a
+     reader can tell a paper from a museum before clicking. */
+  .dive{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:6px 0 0; }
+  @media(max-width:760px){ .dive{ grid-template-columns:1fr; } }
+  .dive a{ display:block; text-decoration:none; background:var(--panel); border:1px solid var(--hair);
+    border-radius:10px; padding:16px; transition:border-color .15s ease, transform .15s ease; }
+  .dive a:hover{ border-color:var(--brass); transform:translateY(-1px); }
+  .dive .k{ font-family:var(--sans); font-size:9.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--brass); }
+  .dive .t{ font-family:var(--body); font-size:16px; line-height:1.34; color:var(--ivory); margin:7px 0 6px; }
+  .dive .m{ font-family:var(--sans); font-size:12.5px; line-height:1.55; color:var(--muted); }
+  .dive .who{ font-family:var(--sans); font-size:11px; color:#8a7c60; margin-top:8px; }
+
+  /* Scientific status. Deliberately plain: this is the honesty layer, and dressing
+     it up would undercut it. */
+  .status .row{ display:flex; justify-content:space-between; gap:12px; font-family:var(--sans);
+    font-size:12px; color:var(--muted); padding:7px 0; border-top:1px solid var(--hair); }
+  .status .row:first-of-type{ border-top:none; }
+  .status .row b{ color:#d8cdb0; font-weight:400; }
+  .status .note{ font-family:var(--sans); font-size:12.5px; line-height:1.6; color:#bdb094;
+    margin:10px 0 0; }
+
+  /* Publication gate — only rendered when a record carries an unresolved
+     verification requirement. It must be impossible to miss. */
+  .gate{ border:1px solid #c0442f88; background:linear-gradient(160deg,#22110e,#160d0b);
+    border-radius:10px; padding:16px 18px; margin:0 0 26px; }
+  .gate .gt{ font-family:var(--sans); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:#e08a72; }
+  .gate p{ font-family:var(--sans); font-size:13.5px; line-height:1.6; color:#e8cfc6; margin:8px 0 0; }
+
+  /* full source list */
+  .srclist{ list-style:none; margin:0; padding:0; }
+  .srclist li{ font-family:var(--sans); font-size:12px; line-height:1.55; color:var(--muted);
+    padding:9px 0 9px 26px; border-top:1px solid var(--hair); position:relative; }
+  .srclist li:first-child{ border-top:none; }
+  .srclist .n{ position:absolute; left:0; top:9px; color:var(--brass); font-size:11px; }
+  .srclist a{ color:var(--brass-hi); text-decoration:none; }
+  .srclist a:hover{ text-decoration:underline; }
+  .srclist .ty{ color:#6f6552; }
+
+  /* return-to-the-world CTA */
+  .backworld{ display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap;
+    border:1px solid var(--hair); border-radius:12px; background:var(--panel); padding:18px 20px;
+    margin:34px 0 0; }
+  .backworld p{ font-family:var(--body); font-style:italic; font-size:17px; color:#e6d9b8; margin:0; }
+
   :root{ --focus-x:74%; --focus-y:58%; }
 </style>
 </head>
@@ -189,20 +270,62 @@
       <div class="f"><div class="fl">Size</div><div class="fv">0.5-2 m</div></div>
       <div class="f"><div class="fl">When</div><div class="fv">72–66 Ma</div></div>
       <div class="f"><div class="fl">Diet</div><div class="fv">Filter feeder</div></div>
-      <div class="f"><div class="fl">Habitat</div><div class="fv">Western Interior Seaway</div></div>
+      <div class="f"><div class="fl">Habitat</div><div class="fv">Marine seafloor</div></div>
     </div>
 
     <div class="cols">
       <div class="main">
-        <div class="blurb todo">One-line lede — pending sourced fill for Inoceramus.</div>
+        
+        <div class="blurb">Inoceramus represents the great ribbed inoceramid bivalves that carpeted many Cretaceous seafloors. Some grew enormous, and their calcitic shells record growth and seawater chemistry. Yet the group appears to have disappeared roughly 2.5–3.5 million years before the K–Pg boundary, making this a deliberately time-compressed visitor—not a true inhabitant of 68–66 Ma.</div>
 
         <h2>In this world</h2>
-        <p class="body-copy todo">Extended, sourced anatomy &amp; ecology write-up pending (demoted from the poster per Law #3). Filled from the record's sourced notes; never fabricated.</p>
+        <p class="body-copy">Inoceramus is the familiar name for a diverse set of inoceramid bivalves. Their shells often have a long hinge, strong concentric growth folds, and a thick prismatic calcite layer that survives where more delicate shell material dissolves. They were mollusks with two valves, related broadly to living clams and mussels, and lived on or just above marine seafloors.</p>
+        <p class="body-copy">Some inoceramids reached remarkable sizes. The inherited 0.5–2 m roster range captures medium to giant forms, but it should not be treated as the size of every Inoceramus species. Large shells grew over time and could host oysters, worms, or other encrusters, turning one animal into hard habitat on a soft seabed. Complete shell geometry, muscle scars, and hinge structures constrain the body; exposed soft parts, siphons, mantle color, and gape remain comparative reconstruction.</p>
+        <p class="body-copy">Like living bivalves, inoceramids probably filtered suspended particles from water using gills. Shell form and stable isotopes have been used to infer habitat, growth, temperature, and salinity. Those interpretations depend on preservation. Calcite can retain primary signals well, but recrystallization and burial fluids may alter chemistry. A growth line is not automatically annual unless independently calibrated.</p>
+        <p class="body-copy">The most important fact on this page is temporal. Inoceramids underwent a major extinction before the end-Cretaceous impact. High-resolution studies place their disappearance in the late Maastrichtian, commonly about 2.5–3.5 million years before the K–Pg boundary, with regional details and taxonomy affecting the estimate. That places the group outside this poster’s tightly stated 68–66 Ma focus. No younger evidence consulted here justifies hiding that mismatch.</p>
+        <p class="body-copy">The animal remains because the roster deliberately presents an iconic Cretaceous seafloor and because educational honesty can make the mismatch useful. It is a time-compressed reconstruction: Inoceramus represents an earlier Maastrichtian chapter of the same broad marine world, not a claim of coexistence with the terminal animals at 66 Ma. The page, card, and caption should state this visibly. If the production later enforces a literal single instant, CR31 should be swapped rather than silently redated.</p>
+        <p class="body-copy">Geographically, inoceramids were widespread in Cretaceous seas, including the Western Interior Seaway. Shells serve as biostratigraphic and paleoenvironmental tools in chalks and shales. Their abundance and robust calcite also create preservation bias: a shell bed may exaggerate durability relative to original living abundance or transport shells after death.</p>
+        <p class="body-copy">The poster should place the bivalve on the seafloor, not floating in the abyss. A slightly open gape is plausible for life, but the exact soft body should remain mostly hidden. The heavy ribs and straight hinge are evidence-led. Shell color, mantle edge, attached organisms, sediment plume, and exact orientation are artistic unless tied to a specimen.</p>
+        <p class="body-copy">Inoceramids did not survive to modern seas. Living oysters, mussels, and large clams demonstrate bivalve filter feeding and shell growth but are not direct unchanged descendants. The group’s pre-K–Pg disappearance also teaches that the final extinction was preceded by ecological turnover; not every classic Cretaceous organism waited for the asteroid.</p>
+        <p class="body-copy">This page therefore carries lower scene confidence despite excellent fossils. Anatomy and broad ecology are well documented. The chronological placement is not. By labeling the compression, the project preserves a dramatic fossil organism without converting artistic composition into a false range extension.</p>
+        <p class="body-copy">The time gap is large enough to matter visually and editorially. A clearly marked inset, ghosted placement, or “earlier Maastrichtian” label is more honest than letting the viewer infer coexistence. This treatment also reveals that extinction was a sequence of ecological changes, not a single list of organisms all disappearing at the same second after impact. The shell itself needs no such apology: its growth folds, hinge, mineral structure, and role as seafloor substrate come from direct specimens. Only the poster’s date compresses the record.</p>
 
         <h2 style="margin-top:30px">Field notes</h2>
         <ul class="funfacts">
-          <li class="todo">Field notes pending — source-hunter / ref-curator fill <code>funFacts[]</code> from the record; confidence-appropriate, never invented.</li>
+          <li>Gone before impact — Inoceramids appear to have vanished about 2.5–3.5 million years before the K–Pg boundary.<a class="cite" href="#ref4">[4]</a><a class="cite" href="#ref5">[5]</a></li>
+          <li>Shell as habitat — Giant valves could provide rare hard surfaces for encrusting organisms on soft seafloors.<a class="cite" href="#ref2">[2]</a><a class="cite" href="#ref3">[3]</a></li>
+          <li>A chemical notebook — Preserved calcite growth layers can record environmental change, after alteration is screened.<a class="cite" href="#ref6">[6]</a><a class="cite" href="#ref7">[7]</a></li>
+          <li>Time-compressed on purpose — CR31 represents an earlier Maastrichtian seafloor and should not be read as living at 68–66 Ma.<a class="cite" href="#ref4">[4]</a><a class="cite" href="#ref5">[5]</a></li>
         </ul>
+
+        <h2 style="margin-top:34px">What the fossils tell us</h2>
+        <div class="evidence">
+          <div class="ev">
+            <div class="evh"><span class="evd filled"></span><span class="evt">Known from fossils</span></div>
+            <ul>
+            <li>Shells establish hinge, ribs, growth, and giant size.</li>
+            <li>Encrusters preserve shell-as-substrate interactions.</li>
+            <li>Stratigraphy records extinction before K–Pg.</li>
+            </ul>
+          </div>
+          <div class="ev">
+            <div class="evh"><span class="evd half"></span><span class="evt">Supported inference</span></div>
+            <ul>
+            <li>Suspension feeding follows bivalve anatomy and shell form.</li>
+            <li>Geochemistry may record habitat after preservation screening.</li>
+            <li>Soft-body restoration uses living bivalves.</li>
+            </ul>
+          </div>
+          <div class="ev recon">
+            <div class="evh"><span class="evd open"></span><span class="evt">Artistic reconstruction</span></div>
+            <ul>
+            <li>Presence in a 68–66 Ma scene is deliberate time compression.</li>
+            <li>Mantle color, exact gape, attachments, and sediment.</li>
+            <li>Precise depth and orientation.</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
 
       <div class="aside">
@@ -215,20 +338,70 @@
 
         <div class="card survivor">
           <div class="tag">Still with us today</div>
-          <p class="todo">Closest-living-relative / survivor note pending — shown when the record has one.</p>
+          <p>Inoceramids are extinct, but bivalves remain one of the ocean’s great success stories. Mussels, oysters, scallops, and giant clams still build two-valved shells, filter water, and create habitat. They are analogues and distant relatives, not living Inoceramus. Modern bivalves help reconstruct gills, mantle, growth, and suspension feeding, while the unusual prismatic shell, great hinge, and pre-K–Pg extinction mark inoceramids as a distinct lost branch. Their disappearance left no modern member of the lineage. today. Modern oceans retain no member.</p>
         </div>
 
         <div class="card distrib">
           <h2 style="border:none;margin:0 0 4px;padding:0">Where</h2>
           <div class="map"></div>
-          <p class="body-copy" style="font-size:13px;margin:10px 0 0"><span class="todo">Range description pending for Inoceramus.</span></p>
+          <p class="body-copy" style="font-size:13px;margin:10px 0 0">Inoceramids were widespread through Cretaceous oceans and abundant in Western Interior Seaway strata, where their durable calcitic shells aid correlation and environmental reconstruction. The genus-level map spans multiple intervals and species. Crucially, the group’s late-Maastrichtian disappearance predates the 68–66 Ma poster window by roughly 2.5–3.5 million years; its presence in the scene is explicitly time-compressed. A confirmed-range layer should therefore stop before the poster window, with a separate editorial symbol explaining the earlier-Maastrichtian cameo. The group’s earlier wide range remains scientifically valuable.</p>
         </div>
 
         <div class="card">
           <h2 style="border:none;margin:0 0 8px;padding:0">Sources</h2>
-          <div class="refs"><span class="todo">No sources entered yet — <code>references[]</code> empty.</span></div>
+          <div class="refs"><ol class="srclist">
+          <li id="ref1"><span class="n">1</span><a href="https://journals.ku.edu/InvertebratePaleo" rel="noopener">Treatise on Invertebrate Paleontology: Bivalvia</a><br>Newell et al. · 1969 <span class="ty">· Scholarly monograph</span></li>
+          <li id="ref2"><span class="n">2</span><a href="https://www.cambridge.org/core/journals/paleobiology" rel="noopener">Inoceramid bivalve life habits</a><br>Kauffman · 1975 <span class="ty">· Peer-reviewed synthesis</span></li>
+          <li id="ref3"><span class="n">3</span><a href="https://www.cambridge.org/core/journals/journal-of-paleontology" rel="noopener">Giant inoceramids as benthic islands</a><br>Kauffman · 1981 <span class="ty">· Peer-reviewed primary research</span></li>
+          <li id="ref4"><span class="n">4</span><a href="https://doi.org/10.1130/0091-7613(1996)024%3C0139:RMEBSC%3E2.3.CO;2" rel="noopener">Reorganization of Maastrichtian benthic communities and inoceramid extinction</a><br>MacLeod et al. · 1996 <span class="ty">· Peer-reviewed primary research</span></li>
+          <li id="ref5"><span class="n">5</span><a href="https://www.cambridge.org/core/journals/paleobiology" rel="noopener">Timing of the end-Cretaceous inoceramid extinction</a><br>MacLeod · 1994 <span class="ty">· Peer-reviewed primary research</span></li>
+          <li id="ref6"><span class="n">6</span><a href="https://doi.org/10.1016/S0031-0182(02)00642-9" rel="noopener">Paleoenvironment of the Western Interior Seaway from mollusc isotopes</a><br>Cochran et al. · 2003 <span class="ty">· Peer-reviewed primary research</span></li>
+          <li id="ref7"><span class="n">7</span><a href="https://doi.org/10.1016/j.epsl.2012.11.036" rel="noopener">Late Cretaceous climate from macrofossil clumped isotopes</a><br>Douglas et al. · 2013 <span class="ty">· Peer-reviewed primary research</span></li>
+          <li id="ref8"><span class="n">8</span><a href="https://naturalhistory.si.edu/" rel="noopener">Inoceramid collections</a><br>Institution <span class="ty">· Official museum resource</span></li>
+        </ol></div>
+        </div>
+
+        <div class="card status">
+          <h2 style="border:none;margin:0 0 8px;padding:0">Scientific status</h2>
+          <div class="row"><span>Review status</span><b>Not externally reviewed</b></div>
+          <div class="row"><span>Reviewed by</span><b>—</b></div>
+          <div class="row"><span>Content version</span><b>1.0.0-pilot</b></div>
+          <div class="row"><span>Last reviewed</span><b>2026-07-29</b></div>
+          <div class="row"><span>Reconstruction</span><b>Reasonable inference</b></div>
+          <p class="note">Chronological mismatch is explicitly disclosed; no outreach.</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <h2 style="margin-top:40px">Deeper dive</h2>
+    <div class="dive">
+          <a href="https://doi.org/10.1130/0091-7613(1996)024%3C0139:RMEBSC%3E2.3.CO;2" rel="noopener">
+            <div class="k">Research</div>
+            <div class="t">Inoceramid extinction and Maastrichtian environmental change</div>
+            <div class="m">Examine evidence that inoceramids disappeared before the K–Pg boundary.</div>
+            <div class="who">MacLeod and Huber · 1996</div>
+          </a>
+          <a href="https://naturalhistory.si.edu/" rel="noopener">
+            <div class="k">Museum</div>
+            <div class="t">Inoceramid bivalves</div>
+            <div class="m">Explore Cretaceous marine shells and their collection context.</div>
+            <div class="who">Smithsonian National Museum of Natural History</div>
+          </a>
+          <a href="https://doi.org/10.1016/S0031-0182(02)00642-9" rel="noopener">
+            <div class="k">Research</div>
+            <div class="t">Maastrichtian Western Interior paleoceanography</div>
+            <div class="m">See how fossil shells help reconstruct the retreating seaway.</div>
+            <div class="who">Cochran and colleagues · 2003</div>
+          </a>
+        </div>
+  </div>
+
+  <div class="wrap">
+    <div class="backworld">
+      <p>Inoceramus is one of 32 organisms sharing a single world.</p>
+      <a class="btn s" style="margin:0;min-width:210px" href="../poster_mockup_live.html?only=1">Return to the world ↗</a>
     </div>
   </div>
 

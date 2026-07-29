@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Horseshoe crab — Late Cretaceous | The Living Past</title>
-<meta name="description" content="Horseshoe crab (Xiphosura (indet.)) — Invertebrate, 72–66 Ma. The Living Past, Vol V: Late Cretaceous.">
+<meta name="description" content="Horseshoe crabs are genuine deep-time survivors—but that does not automatically place one in every Cretaceous river delta. CR23 represents an indeterminate xiphosuran at a marine-influenced shore. Its anatomy is defensible from the lineage; its exact presence in terminal Hell Creek requires a local specimen or citation before publication.">
 <meta property="og:title" content="Horseshoe crab — The Living Past">
-<meta property="og:description" content="Horseshoe crab (Xiphosura (indet.)) — Invertebrate, 72–66 Ma. The Living Past, Vol V: Late Cretaceous.">
+<meta property="og:description" content="Horseshoe crabs are genuine deep-time survivors—but that does not automatically place one in every Cretaceous river delta. CR23 represents an indeterminate xiphosuran at a marine-influenced shore. Its anatomy is defensible from the lineage; its exact presence in terminal Hell Creek requires a local specimen or citation before publication.">
 <meta property="og:image" content="../plates/organisms/CR23_isolated.png">
 <meta property="og:type" content="article">
 <link rel="canonical" href="https://jurassinkart.com/late-cretaceous/horseshoe-crab">
@@ -158,6 +158,87 @@
   .todo{ color:#7c6f52; font-style:italic; }
   .todo::before{ content:"◇ "; color:var(--brass); font-style:normal; }
 
+  /* ============================================================
+     RESEARCH-PASS COMPONENTS (2026-07-29)
+     Added, not redesigned: every one of these is built from the tokens the
+     template already defines (--brass, --panel, --hair, the three fonts). No new
+     colour, face or hierarchy is introduced.
+     ============================================================ */
+
+  /* "What the fossils tell us" — the epistemic spine of the page.
+     It deliberately reuses the CONFIDENCE DOT that SCOPE §4 already locked for
+     well-documented / reasonable-inference / speculative, because
+     direct-evidence / supported-inference / artistic-reconstruction is the same
+     distinction at paragraph scale. Filled, half, open — one vocabulary across
+     the poster card, the hero badge and here, so a reader who learns it once
+     can read it everywhere. */
+  .evidence{ display:grid; gap:1px; background:var(--hair); border:1px solid var(--hair);
+    border-radius:10px; overflow:hidden; margin:6px 0 4px; }
+  .ev{ background:var(--panel); padding:16px 18px; }
+  .ev .evh{ display:flex; align-items:center; gap:9px; margin:0 0 9px; }
+  .ev .evd{ width:11px; height:11px; border-radius:50%; border:1px solid var(--brass); flex:none; }
+  .ev .evd.filled{ background:var(--brass); }
+  .ev .evd.half{ background:linear-gradient(90deg,var(--brass) 0 50%,transparent 50%); }
+  .ev .evd.open{ background:transparent; }
+  .ev .evt{ font-family:var(--sans); font-size:10.5px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--brass-hi); }
+  .ev ul{ list-style:none; margin:0; padding:0; }
+  .ev li{ font-family:var(--sans); font-size:14.5px; line-height:1.62; color:#e4dabf;
+    padding:6px 0 6px 15px; position:relative; letter-spacing:.005em; }
+  .ev li::before{ content:"·"; position:absolute; left:3px; color:var(--brass); }
+  .ev.recon li{ color:#cfc3a6; font-style:italic; }
+
+  /* per-fact citation markers, so a claim and its source are never separated */
+  .cite{ font-family:var(--sans); font-size:10.5px; letter-spacing:.06em; color:var(--brass);
+    vertical-align:super; margin-left:3px; text-decoration:none; }
+  .cite:hover{ color:var(--brass-hi); }
+
+  /* Deeper dive — editorially selected further reading. `kind` is shown so a
+     reader can tell a paper from a museum before clicking. */
+  .dive{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:6px 0 0; }
+  @media(max-width:760px){ .dive{ grid-template-columns:1fr; } }
+  .dive a{ display:block; text-decoration:none; background:var(--panel); border:1px solid var(--hair);
+    border-radius:10px; padding:16px; transition:border-color .15s ease, transform .15s ease; }
+  .dive a:hover{ border-color:var(--brass); transform:translateY(-1px); }
+  .dive .k{ font-family:var(--sans); font-size:9.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--brass); }
+  .dive .t{ font-family:var(--body); font-size:16px; line-height:1.34; color:var(--ivory); margin:7px 0 6px; }
+  .dive .m{ font-family:var(--sans); font-size:12.5px; line-height:1.55; color:var(--muted); }
+  .dive .who{ font-family:var(--sans); font-size:11px; color:#8a7c60; margin-top:8px; }
+
+  /* Scientific status. Deliberately plain: this is the honesty layer, and dressing
+     it up would undercut it. */
+  .status .row{ display:flex; justify-content:space-between; gap:12px; font-family:var(--sans);
+    font-size:12px; color:var(--muted); padding:7px 0; border-top:1px solid var(--hair); }
+  .status .row:first-of-type{ border-top:none; }
+  .status .row b{ color:#d8cdb0; font-weight:400; }
+  .status .note{ font-family:var(--sans); font-size:12.5px; line-height:1.6; color:#bdb094;
+    margin:10px 0 0; }
+
+  /* Publication gate — only rendered when a record carries an unresolved
+     verification requirement. It must be impossible to miss. */
+  .gate{ border:1px solid #c0442f88; background:linear-gradient(160deg,#22110e,#160d0b);
+    border-radius:10px; padding:16px 18px; margin:0 0 26px; }
+  .gate .gt{ font-family:var(--sans); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:#e08a72; }
+  .gate p{ font-family:var(--sans); font-size:13.5px; line-height:1.6; color:#e8cfc6; margin:8px 0 0; }
+
+  /* full source list */
+  .srclist{ list-style:none; margin:0; padding:0; }
+  .srclist li{ font-family:var(--sans); font-size:12px; line-height:1.55; color:var(--muted);
+    padding:9px 0 9px 26px; border-top:1px solid var(--hair); position:relative; }
+  .srclist li:first-child{ border-top:none; }
+  .srclist .n{ position:absolute; left:0; top:9px; color:var(--brass); font-size:11px; }
+  .srclist a{ color:var(--brass-hi); text-decoration:none; }
+  .srclist a:hover{ text-decoration:underline; }
+  .srclist .ty{ color:#6f6552; }
+
+  /* return-to-the-world CTA */
+  .backworld{ display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap;
+    border:1px solid var(--hair); border-radius:12px; background:var(--panel); padding:18px 20px;
+    margin:34px 0 0; }
+  .backworld p{ font-family:var(--body); font-style:italic; font-size:17px; color:#e6d9b8; margin:0; }
+
   :root{ --focus-x:46%; --focus-y:40%; }
 </style>
 </head>
@@ -186,23 +267,68 @@
 
   <div class="wrap">
     <div class="facts">
-      <div class="f"><div class="fl">Size</div><div class="fv">30 cm</div></div>
+      <div class="f"><div class="fl">Size</div><div class="fv">about 30 cm (12 in)</div></div>
       <div class="f"><div class="fl">When</div><div class="fv">72–66 Ma</div></div>
       <div class="f"><div class="fl">Diet</div><div class="fv">Detritivore</div></div>
-      <div class="f"><div class="fl">Habitat</div><div class="fv">Coastal floodplain</div></div>
+      <div class="f"><div class="fl">Habitat</div><div class="fv">Marine or brackish shore, if locally present</div></div>
     </div>
 
     <div class="cols">
       <div class="main">
-        <div class="blurb todo">One-line lede — pending sourced fill for Horseshoe crab.</div>
+        <div class="gate">
+          <div class="gt">Editorial hold · Taxon-locality verification required</div>
+          <p>Do not publish as documented Hell Creek fauna until verified.</p>
+        </div>
+        <div class="blurb">Horseshoe crabs are genuine deep-time survivors—but that does not automatically place one in every Cretaceous river delta. CR23 represents an indeterminate xiphosuran at a marine-influenced shore. Its anatomy is defensible from the lineage; its exact presence in terminal Hell Creek requires a local specimen or citation before publication.</div>
 
         <h2>In this world</h2>
-        <p class="body-copy todo">Extended, sourced anatomy &amp; ecology write-up pending (demoted from the poster per Law #3). Filled from the record's sourced notes; never fabricated.</p>
+        <p class="body-copy">The horseshoe-shaped shield, hinged rear body, and long tail spine make xiphosurans instantly recognizable. They are chelicerate arthropods, more closely related to arachnids than to true crabs. Their lineage reaches far back into the Paleozoic, but its history includes many extinct forms, ecological shifts, and anatomical experiments.</p>
+        <p class="body-copy">CR23 is deliberately labeled Xiphosura indeterminate. That means the poster is not claiming a named genus or species. It should also not imply that a modern Limulus has been copied unchanged into the Maastrichtian. A generic xiphosuran silhouette is reasonable for the clade, while exact proportions and ornament require a local fossil.</p>
+        <p class="body-copy">Placement is the central problem. Modern horseshoe crabs are marine and coastal, often using shallow water and beaches. Some fossil xiphosurans entered brackish or freshwater settings. Most Hell Creek deposits are fluvial, although the Breien Member and related eastern facies record marine influence. A horseshoe crab belongs only in that transitional or marine-influenced part of the reconstructed world—not in an ordinary inland pond by default.</p>
+        <p class="body-copy">At present, this dossier does not verify a diagnostic terminal Maastrichtian Hell Creek–Lance xiphosuran body fossil. That is a material gap, not a reason to invent certainty. The cast member can remain as an explicitly provisional representative of the nearby coast, or it can later be replaced if a locality-specific source cannot be produced.</p>
+        <p class="body-copy">The tail spine, or telson, is not a weapon in the ordinary sense. Living horseshoe crabs use it mainly to help right themselves when overturned. Their walking legs and mouthparts handle worms, mollusks, and other bottom food. Using living behavior to interpret an indeterminate fossil is an analogy, not direct evidence of CR23’s meal.</p>
+        <p class="body-copy">Horseshoe crabs molt an external skeleton, and their lightly mineralized bodies preserve less readily than shells or bone. Exceptional burial can capture complete outlines, while ordinary deposits may leave little. Absence is therefore difficult to interpret, but poor preservation cannot substitute for a positive occurrence.</p>
+        <p class="body-copy">Four living species survive in Asia and eastern North America. They are often called living fossils because the broad body plan is ancient. Genomic and fossil research instead reveals continued evolution, including ancient genome duplications and extinct lineages unlike living forms.</p>
+        <p class="body-copy">In the poster, show CR23 at the marine-influenced waterline with no species-level label. The dorsal shield, articulated rear section, walking appendages, and telson are evidence-led at clade level. Color, size, sex, exact spine count, and behavior are artistic until tied to a specimen. This page’s most important fact is therefore editorial honesty: deep-time plausibility is not the same as local proof.</p>
+        <p class="body-copy">The body itself is divided into functional regions. The broad prosomal shield covers the front, the opisthosoma carries additional appendages including book gills, and the telson projects behind. Living animals use multiple pairs of limbs for walking, handling food, and moving water across respiratory surfaces. Those details provide a clade-level framework, but marginal spines vary and should not be guessed from a modern species. Reproduction is equally tempting to overborrow. Living horseshoe crabs gather in shallow coastal water and lay eggs in sediment, sometimes in spectacular seasonal events. Nothing in the current local evidence establishes a nesting aggregation for CR23. Until a specimen citation is found, this page functions as a transparent candidate profile rather than a finished local biography. That status lets buyers see science operating as verification, including the possibility that a beautiful and plausible cast member may need to move or leave.</p>
+        <p class="body-copy">A further caution concerns the word survivor. The xiphosuran lineage passed through the end-Cretaceous crisis, but without a local CR23 specimen we cannot narrate its population at the boundary. Modern persistence documents the broader branch, not this provisional individual, its species, or a continuous residence in the Western Interior.</p>
 
         <h2 style="margin-top:30px">Field notes</h2>
         <ul class="funfacts">
-          <li class="todo">Field notes pending — source-hunter / ref-curator fill <code>funFacts[]</code> from the record; confidence-appropriate, never invented.</li>
+          <li>Not a crab — Horseshoe crabs are chelicerates, closer to spiders and scorpions than true crabs.<a class="cite" href="#ref1">[1]</a><a class="cite" href="#ref2">[2]</a></li>
+          <li>A righting pole — The telson helps living animals turn over; it is not primarily a stinger.<a class="cite" href="#ref3">[3]</a></li>
+          <li>Ancient, not unchanged — Xiphosurans evolved many extinct forms while only four species survive today.<a class="cite" href="#ref1">[1]</a><a class="cite" href="#ref4">[4]</a></li>
+          <li>Local proof pending — A terminal Hell Creek–Lance occurrence must be verified before CR23 is presented as a documented local animal.<a class="cite" href="#ref5">[5]</a><a class="cite" href="#ref6">[6]</a></li>
         </ul>
+
+        <h2 style="margin-top:34px">What the fossils tell us</h2>
+        <div class="evidence">
+          <div class="ev">
+            <div class="evh"><span class="evd filled"></span><span class="evt">Known from fossils</span></div>
+            <ul>
+            <li>The xiphosuran fossil record establishes the clade long before the Late Cretaceous.</li>
+            <li>Living and fossil anatomy supports shield, opisthosoma, limbs, and telson.</li>
+            <li>Marine-influenced Hell Creek facies are geologically documented.</li>
+            </ul>
+          </div>
+          <div class="ev">
+            <div class="evh"><span class="evd half"></span><span class="evt">Supported inference</span></div>
+            <ul>
+            <li>A coastal representative is biogeographically plausible but not yet locally verified.</li>
+            <li>Bottom feeding and righting behavior derive mainly from living analogues.</li>
+            <li>Thirty centimetres is illustrative.</li>
+            </ul>
+          </div>
+          <div class="ev recon">
+            <div class="evh"><span class="evd open"></span><span class="evt">Artistic reconstruction</span></div>
+            <ul>
+            <li>Exact taxon, color, ornament, size, and sex.</li>
+            <li>Specific feeding or crawling behavior.</li>
+            <li>Presence at this exact time and locality pending a specimen citation.</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
 
       <div class="aside">
@@ -215,20 +341,70 @@
 
         <div class="card survivor">
           <div class="tag">Still with us today</div>
-          <p class="todo">Closest-living-relative / survivor note pending — shown when the record has one.</p>
+          <p>Four horseshoe crab species live today: one along the Atlantic and Gulf coasts of North America and three in Asia. Their broad shields and telsons echo ancient xiphosurans, but they are not unchanged fossils. The surviving species carry their own evolutionary histories and face modern pressures including harvest, habitat loss, and shoreline change. They connect the poster to living seas while reminding us that a lineage can be ancient and still vulnerable. This comparison should be read at lineage level: shared anatomy records kinship, while differences record continued evolution after the Cretaceous.</p>
         </div>
 
         <div class="card distrib">
           <h2 style="border:none;margin:0 0 4px;padding:0">Where</h2>
           <div class="map"></div>
-          <p class="body-copy" style="font-size:13px;margin:10px 0 0"><span class="todo">Range description pending for Horseshoe crab.</span></p>
+          <p class="body-copy" style="font-size:13px;margin:10px 0 0">Xiphosurans have a long global fossil record in marine, brackish, and sometimes freshwater settings. For this poster, the only defensible position is a marine-influenced shoreline such as environments represented by the Breien incursion—not the generic inland Hell Creek floodplain. A diagnostic terminal Maastrichtian local occurrence has not yet been verified in this dossier; CR23 must remain provisional until one is documented. Future maps should attach every occurrence to a traceable specimen, formation, horizon, and published identification rather than extending the range from resemblance alone.</p>
         </div>
 
         <div class="card">
           <h2 style="border:none;margin:0 0 8px;padding:0">Sources</h2>
-          <div class="refs"><span class="todo">No sources entered yet — <code>references[]</code> empty.</span></div>
+          <div class="refs"><ol class="srclist">
+          <li id="ref1"><span class="n">1</span><a href="https://doi.org/10.7717/peerj.1049" rel="noopener">Horseshoe crab phylogeny and classification</a><br>Lamsdell · 2016 <span class="ty">· Peer-reviewed research</span></li>
+          <li id="ref2"><span class="n">2</span><a href="https://doi.org/10.3389/feart.2020.00098" rel="noopener">Evolutionary history of Xiphosura</a><br>Bicknell et al. · 2020 <span class="ty">· Peer-reviewed review</span></li>
+          <li id="ref3"><span class="n">3</span><a href="https://ocean.si.edu/ocean-life/invertebrates/horseshoe-crabs" rel="noopener">Horseshoe Crabs</a><br>Ocean <span class="ty">· Official museum resource</span></li>
+          <li id="ref4"><span class="n">4</span><a href="https://doi.org/10.1186/2047-217X-3-9" rel="noopener">Joint assembly and genetic mapping of the Atlantic horseshoe crab genome</a><br>al. · 2014 <span class="ty">· Peer-reviewed research</span></li>
+          <li id="ref5"><span class="n">5</span><a href="https://doi.org/10.1130/0-8137-2361-2.247" rel="noopener">Marine Breien Member of the Hell Creek Formation</a><br>Hoganson et al. · 2002 <span class="ty">· Peer-reviewed geology</span></li>
+          <li id="ref6"><span class="n">6</span><a href="https://doi.org/10.3390/geosciences10110435" rel="noopener">The Hell Creek Formation, Montana</a><br>Fowler · 2020 <span class="ty">· Peer-reviewed review</span></li>
+          <li id="ref7"><span class="n">7</span><a href="https://link.springer.com/journal/10531" rel="noopener">Conservation of Asian horseshoe crabs</a><br>al. · 2009 <span class="ty">· Peer-reviewed review</span></li>
+          <li id="ref8"><span class="n">8</span><a href="https://www.hup.harvard.edu/books/9780674011595" rel="noopener">The American horseshoe crab</a><br>al. · 2003 <span class="ty">· Scholarly monograph</span></li>
+        </ol></div>
+        </div>
+
+        <div class="card status">
+          <h2 style="border:none;margin:0 0 8px;padding:0">Scientific status</h2>
+          <div class="row"><span>Review status</span><b>Taxon-locality verification required</b></div>
+          <div class="row"><span>Reviewed by</span><b>—</b></div>
+          <div class="row"><span>Content version</span><b>0.9.0-provisional</b></div>
+          <div class="row"><span>Last reviewed</span><b>2026-07-29</b></div>
+          <div class="row"><span>Reconstruction</span><b>Well-documented reconstruction</b></div>
+          <p class="note">Do not publish as documented Hell Creek fauna until verified.</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <h2 style="margin-top:40px">Deeper dive</h2>
+    <div class="dive">
+          <a href="https://doi.org/10.7717/peerj.1049" rel="noopener">
+            <div class="k">Research</div>
+            <div class="t">Horseshoe crab phylogeny and classification</div>
+            <div class="m">Explore the diversity hidden behind the familiar horseshoe shape.</div>
+            <div class="who">James C. Lamsdell · 2016</div>
+          </a>
+          <a href="https://ocean.si.edu/ocean-life/invertebrates/horseshoe-crabs" rel="noopener">
+            <div class="k">Museum</div>
+            <div class="t">Horseshoe Crabs</div>
+            <div class="m">Meet living species and their coastal ecology.</div>
+            <div class="who">Smithsonian Ocean</div>
+          </a>
+          <a href="https://doi.org/10.1130/0-8137-2361-2.247" rel="noopener">
+            <div class="k">Resource</div>
+            <div class="t">Marine Breien Member of Hell Creek</div>
+            <div class="m">Understand the marine incursion required by CR23’s placement.</div>
+            <div class="who">Hoganson and Murphy · 2002</div>
+          </a>
+        </div>
+  </div>
+
+  <div class="wrap">
+    <div class="backworld">
+      <p>Horseshoe crab is one of 32 organisms sharing a single world.</p>
+      <a class="btn s" style="margin:0;min-width:210px" href="../poster_mockup_live.html?only=1">Return to the world ↗</a>
     </div>
   </div>
 

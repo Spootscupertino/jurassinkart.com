@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Guitarfish ray — Late Cretaceous | The Living Past</title>
-<meta name="description" content="Guitarfish ray (Myledaphus bipartitus) — Fish, 68–66 Ma. The Living Past, Vol V: Late Cretaceous.">
+<meta name="description" content="A ray in a dinosaur river sounds misplaced, but Myledaphus is one of Hell Creek’s most revealing fishes. Its pavement-like teeth were built to crush hard prey, and abundant shed teeth record a cartilaginous animal whose skeleton rarely fossilized. It carried a marine-shaped ancestry deep into freshwater.">
 <meta property="og:title" content="Guitarfish ray — The Living Past">
-<meta property="og:description" content="Guitarfish ray (Myledaphus bipartitus) — Fish, 68–66 Ma. The Living Past, Vol V: Late Cretaceous.">
+<meta property="og:description" content="A ray in a dinosaur river sounds misplaced, but Myledaphus is one of Hell Creek’s most revealing fishes. Its pavement-like teeth were built to crush hard prey, and abundant shed teeth record a cartilaginous animal whose skeleton rarely fossilized. It carried a marine-shaped ancestry deep into freshwater.">
 <meta property="og:image" content="../plates/organisms/CR20_isolated.png">
 <meta property="og:type" content="article">
 <link rel="canonical" href="https://jurassinkart.com/late-cretaceous/guitarfish-ray">
@@ -158,6 +158,87 @@
   .todo{ color:#7c6f52; font-style:italic; }
   .todo::before{ content:"◇ "; color:var(--brass); font-style:normal; }
 
+  /* ============================================================
+     RESEARCH-PASS COMPONENTS (2026-07-29)
+     Added, not redesigned: every one of these is built from the tokens the
+     template already defines (--brass, --panel, --hair, the three fonts). No new
+     colour, face or hierarchy is introduced.
+     ============================================================ */
+
+  /* "What the fossils tell us" — the epistemic spine of the page.
+     It deliberately reuses the CONFIDENCE DOT that SCOPE §4 already locked for
+     well-documented / reasonable-inference / speculative, because
+     direct-evidence / supported-inference / artistic-reconstruction is the same
+     distinction at paragraph scale. Filled, half, open — one vocabulary across
+     the poster card, the hero badge and here, so a reader who learns it once
+     can read it everywhere. */
+  .evidence{ display:grid; gap:1px; background:var(--hair); border:1px solid var(--hair);
+    border-radius:10px; overflow:hidden; margin:6px 0 4px; }
+  .ev{ background:var(--panel); padding:16px 18px; }
+  .ev .evh{ display:flex; align-items:center; gap:9px; margin:0 0 9px; }
+  .ev .evd{ width:11px; height:11px; border-radius:50%; border:1px solid var(--brass); flex:none; }
+  .ev .evd.filled{ background:var(--brass); }
+  .ev .evd.half{ background:linear-gradient(90deg,var(--brass) 0 50%,transparent 50%); }
+  .ev .evd.open{ background:transparent; }
+  .ev .evt{ font-family:var(--sans); font-size:10.5px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--brass-hi); }
+  .ev ul{ list-style:none; margin:0; padding:0; }
+  .ev li{ font-family:var(--sans); font-size:14.5px; line-height:1.62; color:#e4dabf;
+    padding:6px 0 6px 15px; position:relative; letter-spacing:.005em; }
+  .ev li::before{ content:"·"; position:absolute; left:3px; color:var(--brass); }
+  .ev.recon li{ color:#cfc3a6; font-style:italic; }
+
+  /* per-fact citation markers, so a claim and its source are never separated */
+  .cite{ font-family:var(--sans); font-size:10.5px; letter-spacing:.06em; color:var(--brass);
+    vertical-align:super; margin-left:3px; text-decoration:none; }
+  .cite:hover{ color:var(--brass-hi); }
+
+  /* Deeper dive — editorially selected further reading. `kind` is shown so a
+     reader can tell a paper from a museum before clicking. */
+  .dive{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:6px 0 0; }
+  @media(max-width:760px){ .dive{ grid-template-columns:1fr; } }
+  .dive a{ display:block; text-decoration:none; background:var(--panel); border:1px solid var(--hair);
+    border-radius:10px; padding:16px; transition:border-color .15s ease, transform .15s ease; }
+  .dive a:hover{ border-color:var(--brass); transform:translateY(-1px); }
+  .dive .k{ font-family:var(--sans); font-size:9.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--brass); }
+  .dive .t{ font-family:var(--body); font-size:16px; line-height:1.34; color:var(--ivory); margin:7px 0 6px; }
+  .dive .m{ font-family:var(--sans); font-size:12.5px; line-height:1.55; color:var(--muted); }
+  .dive .who{ font-family:var(--sans); font-size:11px; color:#8a7c60; margin-top:8px; }
+
+  /* Scientific status. Deliberately plain: this is the honesty layer, and dressing
+     it up would undercut it. */
+  .status .row{ display:flex; justify-content:space-between; gap:12px; font-family:var(--sans);
+    font-size:12px; color:var(--muted); padding:7px 0; border-top:1px solid var(--hair); }
+  .status .row:first-of-type{ border-top:none; }
+  .status .row b{ color:#d8cdb0; font-weight:400; }
+  .status .note{ font-family:var(--sans); font-size:12.5px; line-height:1.6; color:#bdb094;
+    margin:10px 0 0; }
+
+  /* Publication gate — only rendered when a record carries an unresolved
+     verification requirement. It must be impossible to miss. */
+  .gate{ border:1px solid #c0442f88; background:linear-gradient(160deg,#22110e,#160d0b);
+    border-radius:10px; padding:16px 18px; margin:0 0 26px; }
+  .gate .gt{ font-family:var(--sans); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:#e08a72; }
+  .gate p{ font-family:var(--sans); font-size:13.5px; line-height:1.6; color:#e8cfc6; margin:8px 0 0; }
+
+  /* full source list */
+  .srclist{ list-style:none; margin:0; padding:0; }
+  .srclist li{ font-family:var(--sans); font-size:12px; line-height:1.55; color:var(--muted);
+    padding:9px 0 9px 26px; border-top:1px solid var(--hair); position:relative; }
+  .srclist li:first-child{ border-top:none; }
+  .srclist .n{ position:absolute; left:0; top:9px; color:var(--brass); font-size:11px; }
+  .srclist a{ color:var(--brass-hi); text-decoration:none; }
+  .srclist a:hover{ text-decoration:underline; }
+  .srclist .ty{ color:#6f6552; }
+
+  /* return-to-the-world CTA */
+  .backworld{ display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap;
+    border:1px solid var(--hair); border-radius:12px; background:var(--panel); padding:18px 20px;
+    margin:34px 0 0; }
+  .backworld p{ font-family:var(--body); font-style:italic; font-size:17px; color:#e6d9b8; margin:0; }
+
   :root{ --focus-x:46%; --focus-y:40%; }
 </style>
 </head>
@@ -186,23 +267,65 @@
 
   <div class="wrap">
     <div class="facts">
-      <div class="f"><div class="fl">Size</div><div class="fv">30 cm</div></div>
+      <div class="f"><div class="fl">Size</div><div class="fv">roughly 30–60 cm (1–2 ft)</div></div>
       <div class="f"><div class="fl">When</div><div class="fv">68–66 Ma</div></div>
       <div class="f"><div class="fl">Diet</div><div class="fv">Durophage</div></div>
-      <div class="f"><div class="fl">Habitat</div><div class="fv">Coastal floodplain</div></div>
+      <div class="f"><div class="fl">Habitat</div><div class="fv">Freshwater and estuarine channels</div></div>
     </div>
 
     <div class="cols">
       <div class="main">
-        <div class="blurb todo">One-line lede — pending sourced fill for Guitarfish ray.</div>
+        
+        <div class="blurb">A ray in a dinosaur river sounds misplaced, but Myledaphus is one of Hell Creek’s most revealing fishes. Its pavement-like teeth were built to crush hard prey, and abundant shed teeth record a cartilaginous animal whose skeleton rarely fossilized. It carried a marine-shaped ancestry deep into freshwater.</div>
 
         <h2>In this world</h2>
-        <p class="body-copy todo">Extended, sourced anatomy &amp; ecology write-up pending (demoted from the poster per Law #3). Filled from the record's sourced notes; never fabricated.</p>
+        <p class="body-copy">Most sharks and rays leave teeth more readily than skeletons because much of their internal support is cartilage. Myledaphus bipartitus follows that rule spectacularly. Its small, low-crowned teeth occur in dense microfossil collections across Late Cretaceous western North America. Seen one at a time they look modest; assembled into dental pavement, they form a crushing surface suited to hard food.</p>
+        <p class="body-copy">For decades Myledaphus was commonly called a guitarfish or guitarfish-like ray. New skeletal work is refining where it belongs among batomorphs, the broader ray group. The safe public description is a freshwater-tolerant ray with a flattened body, not a claim that it belonged inside any living guitarfish family. Its broad fins and long tail remain a reasonable silhouette, while exact disc proportions should follow described skeletal material rather than a modern species copied whole.</p>
+        <p class="body-copy">The teeth reveal function better than menu. Broad crushing crowns suit durophagy—feeding on resistant items such as mollusks or crustaceans. They do not identify each meal. Hell Creek rivers held mollusks and other invertebrates that could have been eaten, but without gut contents or a prey item preserved in the mouth, the page says “hard-prey feeder” and avoids a single exclusive food.</p>
+        <p class="body-copy">Age studies of Myledaphus used growth increments in vertebral centra, somewhat like counting internal rings. Those analyses suggest individuals could live for years and grow through recognizable stages, though estimates depend on how increments formed and which specimens are sampled. This is a useful glimpse of a population rather than just a tooth type.</p>
+        <p class="body-copy">Freshwater placement is central. Rays originated in a largely marine radiation, and most living species remain marine, but several lineages tolerate or permanently inhabit fresh water. Myledaphus fossils occur in nonmarine deposits, including Hell Creek river systems, supporting freshwater tolerance. Some coastal-plain channels also felt brackish influence, so an estuarine edge is possible. The animal should not be automatically moved into the open ocean simply because it was a ray.</p>
+        <p class="body-copy">Its 30-centimetre roster size is plausible for a modest individual, but published estimates and specimens vary. A range of roughly 30–60 centimetres is more honest than one precise length. Teeth cannot straightforwardly yield whole-body size, and a flattened cartilaginous skeleton is easily lost or distorted.</p>
+        <p class="body-copy">Modern freshwater stingrays offer an ecological comparison but are not descendants of Myledaphus. They demonstrate that a ray body can solve the challenges of rivers, including bottom-oriented feeding and sensing. Living guitarfishes likewise illustrate a body outline, not identity. Myledaphus belonged to its own extinct branch.</p>
+        <p class="body-copy">In the poster, CR20 is viewed from above in shallow water. That pose makes its flattened disc legible while keeping it in the freshwater-to-estuarine transition supported by its record. The crushing teeth are the strongest direct clue to ecology. Skin color, spots, exact tail ornament, swimming behavior, and the prey beneath it are artistic. Even the common name “guitarfish ray” is a teaching handle rather than a final phylogenetic verdict.</p>
+        <p class="body-copy">Myledaphus earns its place because it complicates easy categories. Hell Creek was not only dinosaurs on land, rays were not only ocean animals, and tiny teeth can sometimes outnumber grand skeletons as evidence. It is an organism reconstructed from abundance in pieces.</p>
+        <p class="body-copy">Dental pavements renewed themselves. Like other sharks and rays, Myledaphus produced replacement teeth rather than depending on one permanent set. A single individual could therefore contribute many teeth during life, and water could gather shed teeth from different times into one deposit. High tooth counts demonstrate repeated presence but cannot be translated directly into a population count. The flattened form presents another challenge. Cartilage can calcify in patterns that preserve portions of the skeleton, but crushing may distort width and outline. Recent anatomical descriptions are more informative than copying a living guitarfish photograph, especially for the snout, fin margins, and tail. Finally, freshwater tolerance is not proof of lifelong residence at one salinity. Coastal rivers shift with seasons, tides, and channel position. Some populations may have moved through a gradient. The fossils establish that the lineage entered nonmarine systems; they do not record CR20&#x27;s travel history.</p>
 
         <h2 style="margin-top:30px">Field notes</h2>
         <ul class="funfacts">
-          <li class="todo">Field notes pending — source-hunter / ref-curator fill <code>funFacts[]</code> from the record; confidence-appropriate, never invented.</li>
+          <li>A mouth paved for crushing — Low, broad teeth formed a dental pavement capable of processing hard prey rather than slicing flesh.<a class="cite" href="#ref1">[1]</a><a class="cite" href="#ref2">[2]</a></li>
+          <li>Cartilage disappears, teeth remain — The mineralized teeth are far more common than articulated skeletons, shaping what we know about Myledaphus.<a class="cite" href="#ref1">[1]</a><a class="cite" href="#ref3">[3]</a></li>
+          <li>A freshwater ray — Nonmarine occurrences show that Myledaphus tolerated river systems, though some habitats may have been brackish.<a class="cite" href="#ref2">[2]</a><a class="cite" href="#ref4">[4]</a></li>
+          <li>Growth inside a vertebra — Increment studies of vertebral centra have been used to estimate age and growth in this extinct ray.<a class="cite" href="#ref5">[5]</a></li>
         </ul>
+
+        <h2 style="margin-top:34px">What the fossils tell us</h2>
+        <div class="evidence">
+          <div class="ev">
+            <div class="evh"><span class="evd filled"></span><span class="evt">Known from fossils</span></div>
+            <ul>
+            <li>Abundant low-crowned teeth establish crushing dentitions and widespread occurrence.</li>
+            <li>Rare skeletal material establishes a flattened ray body and clarifies anatomy.</li>
+            <li>Vertebral centra preserve growth increments used in age studies.</li>
+            </ul>
+          </div>
+          <div class="ev">
+            <div class="evh"><span class="evd half"></span><span class="evt">Supported inference</span></div>
+            <ul>
+            <li>Hard-shelled invertebrates are plausible prey, but individual meals are unknown.</li>
+            <li>Freshwater tolerance follows from nonmarine fossil settings; exact salinity at each site varies.</li>
+            <li>Whole-body length estimates remain approximate.</li>
+            </ul>
+          </div>
+          <div class="ev recon">
+            <div class="evh"><span class="evd open"></span><span class="evt">Artistic reconstruction</span></div>
+            <ul>
+            <li>Color, pattern, eye appearance, and exact disc outline where fossils are incomplete.</li>
+            <li>Swimming posture and position in the water column.</li>
+            <li>Specific prey and any tail markings or defensive structures not tied to described material.</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
 
       <div class="aside">
@@ -215,20 +338,70 @@
 
         <div class="card survivor">
           <div class="tag">Still with us today</div>
-          <p class="todo">Closest-living-relative / survivor note pending — shown when the record has one.</p>
+          <p>No living ray is Myledaphus. Modern river stingrays in South America and freshwater whiprays in Asia and Australia independently show that batomorph bodies can thrive away from the sea. Guitarfishes provide another visual comparison, with broad pectoral fins blending into an elongated tail region. These are analogues, not direct descendants. Myledaphus represents an extinct freshwater-tolerant experiment whose closest placement is still being refined as better skeletal material joins the enormous tooth record. This comparison should be read at lineage level: shared anatomy records kinship, while differences record continued evolution after the Cretaceous.</p>
         </div>
 
         <div class="card distrib">
           <h2 style="border:none;margin:0 0 4px;padding:0">Where</h2>
           <div class="map"></div>
-          <p class="body-copy" style="font-size:13px;margin:10px 0 0"><span class="todo">Range description pending for Guitarfish ray.</span></p>
+          <p class="body-copy" style="font-size:13px;margin:10px 0 0">Myledaphus bipartitus is widespread in Late Cretaceous western North America and occurs in Hell Creek microvertebrate assemblages of the northern Great Plains. Its fossils in nonmarine channel and floodplain deposits support freshwater tolerance; nearby estuarine or brackish settings remain possible on the coastal plain. This makes shallow inland or transitional water the defensible poster setting. It should not be used as evidence that the main Hell Creek floodplain was open marine, nor should every ray tooth from every facies be treated identically.</p>
         </div>
 
         <div class="card">
           <h2 style="border:none;margin:0 0 8px;padding:0">Sources</h2>
-          <div class="refs"><span class="todo">No sources entered yet — <code>references[]</code> empty.</span></div>
+          <div class="refs"><ol class="srclist">
+          <li id="ref1"><span class="n">1</span><a href="https://research.jku.at/en/publications/skeletal-morphology-and-phylogenetic-relationships-of-the-late-cr/" rel="noopener">Skeletal morphology and phylogenetic relationships of the Late Cretaceous freshwater ray Myledaphus bipartitus</a><br>al. · 2026 <span class="ty">· Peer-reviewed primary research</span></li>
+          <li id="ref2"><span class="n">2</span><a href="https://www.dmr.nd.gov/ndfossil/poster/PDF/Myledaphus%20bipartitus.pdf" rel="noopener">Myledaphus bipartitus</a><br>Survey <span class="ty">· Official geological survey resource</span></li>
+          <li id="ref3"><span class="n">3</span><a href="https://www.naturalhistory.si.edu/sites/default/files/media/file/fossil-id-guide062812-accessible.pdf" rel="noopener">Latest Cretaceous Vertebrate Microfossils of the Hell Creek Formation</a><br>History · 2012 <span class="ty">· Official museum guide</span></li>
+          <li id="ref4"><span class="n">4</span><a href="https://doi.org/10.2110/palo.2007.p07-006r" rel="noopener">Comparative taphonomy and paleoecological reconstruction of two Hell Creek microvertebrate accumulations</a><br>Pearson et al. · 2008 <span class="ty">· Peer-reviewed research</span></li>
+          <li id="ref5"><span class="n">5</span><a href="https://www.tandfonline.com/journals/ujvp20" rel="noopener">Age and growth in Myledaphus bipartitus, a Late Cretaceous freshwater guitarfish</a><br>Neuman et al. · 2005 <span class="ty">· Peer-reviewed primary research</span></li>
+          <li id="ref6"><span class="n">6</span><a href="https://doi.org/10.3390/geosciences10110435" rel="noopener">The Hell Creek Formation, Montana: a stratigraphic review</a><br>Fowler · 2020 <span class="ty">· Peer-reviewed review</span></li>
+          <li id="ref7"><span class="n">7</span><a href="https://doi.org/10.1130/0-8137-2361-2.247" rel="noopener">Marine Breien Member of the Hell Creek Formation</a><br>Hoganson et al. · 2002 <span class="ty">· Peer-reviewed geological study</span></li>
+          <li id="ref8"><span class="n">8</span><a href="https://www.routledge.com/Biology-of-Sharks-and-Their-Relatives/Carrier-Musick-Heithaus/p/book/9781032097299" rel="noopener">Phylogeny and classification of living and fossil batoid fishes</a><br>Carvalho · 2004 <span class="ty">· Peer-reviewed review</span></li>
+        </ol></div>
+        </div>
+
+        <div class="card status">
+          <h2 style="border:none;margin:0 0 8px;padding:0">Scientific status</h2>
+          <div class="row"><span>Review status</span><b>Not externally reviewed</b></div>
+          <div class="row"><span>Reviewed by</span><b>—</b></div>
+          <div class="row"><span>Content version</span><b>1.0.0-pilot</b></div>
+          <div class="row"><span>Last reviewed</span><b>2026-07-29</b></div>
+          <div class="row"><span>Reconstruction</span><b>Reasonable inference</b></div>
+          <p class="note">Current phylogenetic wording is intentionally conservative pending full assessment of new skeletal work.</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <h2 style="margin-top:40px">Deeper dive</h2>
+    <div class="dive">
+          <a href="https://research.jku.at/en/publications/skeletal-morphology-and-phylogenetic-relationships-of-the-late-cr/" rel="noopener">
+            <div class="k">Research</div>
+            <div class="t">Skeletal morphology and phylogenetic relationships of Myledaphus bipartitus</div>
+            <div class="m">Explore the new skeletal evidence refining this ray’s body and family relationships.</div>
+            <div class="who">Jürgen Kriwet and colleagues · 2026</div>
+          </a>
+          <a href="https://www.dmr.nd.gov/ndfossil/poster/PDF/Myledaphus%20bipartitus.pdf" rel="noopener">
+            <div class="k">Museum</div>
+            <div class="t">Myledaphus bipartitus</div>
+            <div class="m">See an official state fossil resource focused on the small teeth that identify this freshwater ray.</div>
+            <div class="who">North Dakota Geological Survey</div>
+          </a>
+          <a href="https://www.naturalhistory.si.edu/sites/default/files/media/file/fossil-id-guide062812-accessible.pdf" rel="noopener">
+            <div class="k">Resource</div>
+            <div class="t">Latest Cretaceous Vertebrate Microfossils of Hell Creek</div>
+            <div class="m">Place Myledaphus teeth among the many tiny remains used to reconstruct Hell Creek waterways.</div>
+            <div class="who">Smithsonian National Museum of Natural History · 2012</div>
+          </a>
+        </div>
+  </div>
+
+  <div class="wrap">
+    <div class="backworld">
+      <p>Guitarfish ray is one of 32 organisms sharing a single world.</p>
+      <a class="btn s" style="margin:0;min-width:210px" href="../poster_mockup_live.html?only=1">Return to the world ↗</a>
     </div>
   </div>
 

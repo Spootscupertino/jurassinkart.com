@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mycorrhizal fungi — Late Cretaceous | The Living Past</title>
-<meta name="description" content="Mycorrhizal fungi (Glomeromycota (indet.)) — Plant, 72–66 Ma. The Living Past, Vol V: Late Cretaceous.">
+<meta name="description" content="The underground world cannot be reconstructed from skeletons alone. Fossils show that root–fungus partnerships are hundreds of millions of years old and therefore predate Hell Creek. CR16 therefore shows a mycorrhizal fungal network as a transparent ecosystem hypothesis: biologically plausible, useful for understanding soil life, but not a claim that this exact organism has been recovered from Hell Creek.">
 <meta property="og:title" content="Mycorrhizal fungi — The Living Past">
-<meta property="og:description" content="Mycorrhizal fungi (Glomeromycota (indet.)) — Plant, 72–66 Ma. The Living Past, Vol V: Late Cretaceous.">
+<meta property="og:description" content="The underground world cannot be reconstructed from skeletons alone. Fossils show that root–fungus partnerships are hundreds of millions of years old and therefore predate Hell Creek. CR16 therefore shows a mycorrhizal fungal network as a transparent ecosystem hypothesis: biologically plausible, useful for understanding soil life, but not a claim that this exact organism has been recovered from Hell Creek.">
 <meta property="og:image" content="../plates/organisms/CR16_isolated.png">
 <meta property="og:type" content="article">
 <link rel="canonical" href="https://jurassinkart.com/late-cretaceous/mycorrhizal-fungi">
@@ -158,6 +158,87 @@
   .todo{ color:#7c6f52; font-style:italic; }
   .todo::before{ content:"◇ "; color:var(--brass); font-style:normal; }
 
+  /* ============================================================
+     RESEARCH-PASS COMPONENTS (2026-07-29)
+     Added, not redesigned: every one of these is built from the tokens the
+     template already defines (--brass, --panel, --hair, the three fonts). No new
+     colour, face or hierarchy is introduced.
+     ============================================================ */
+
+  /* "What the fossils tell us" — the epistemic spine of the page.
+     It deliberately reuses the CONFIDENCE DOT that SCOPE §4 already locked for
+     well-documented / reasonable-inference / speculative, because
+     direct-evidence / supported-inference / artistic-reconstruction is the same
+     distinction at paragraph scale. Filled, half, open — one vocabulary across
+     the poster card, the hero badge and here, so a reader who learns it once
+     can read it everywhere. */
+  .evidence{ display:grid; gap:1px; background:var(--hair); border:1px solid var(--hair);
+    border-radius:10px; overflow:hidden; margin:6px 0 4px; }
+  .ev{ background:var(--panel); padding:16px 18px; }
+  .ev .evh{ display:flex; align-items:center; gap:9px; margin:0 0 9px; }
+  .ev .evd{ width:11px; height:11px; border-radius:50%; border:1px solid var(--brass); flex:none; }
+  .ev .evd.filled{ background:var(--brass); }
+  .ev .evd.half{ background:linear-gradient(90deg,var(--brass) 0 50%,transparent 50%); }
+  .ev .evd.open{ background:transparent; }
+  .ev .evt{ font-family:var(--sans); font-size:10.5px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--brass-hi); }
+  .ev ul{ list-style:none; margin:0; padding:0; }
+  .ev li{ font-family:var(--sans); font-size:14.5px; line-height:1.62; color:#e4dabf;
+    padding:6px 0 6px 15px; position:relative; letter-spacing:.005em; }
+  .ev li::before{ content:"·"; position:absolute; left:3px; color:var(--brass); }
+  .ev.recon li{ color:#cfc3a6; font-style:italic; }
+
+  /* per-fact citation markers, so a claim and its source are never separated */
+  .cite{ font-family:var(--sans); font-size:10.5px; letter-spacing:.06em; color:var(--brass);
+    vertical-align:super; margin-left:3px; text-decoration:none; }
+  .cite:hover{ color:var(--brass-hi); }
+
+  /* Deeper dive — editorially selected further reading. `kind` is shown so a
+     reader can tell a paper from a museum before clicking. */
+  .dive{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:6px 0 0; }
+  @media(max-width:760px){ .dive{ grid-template-columns:1fr; } }
+  .dive a{ display:block; text-decoration:none; background:var(--panel); border:1px solid var(--hair);
+    border-radius:10px; padding:16px; transition:border-color .15s ease, transform .15s ease; }
+  .dive a:hover{ border-color:var(--brass); transform:translateY(-1px); }
+  .dive .k{ font-family:var(--sans); font-size:9.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--brass); }
+  .dive .t{ font-family:var(--body); font-size:16px; line-height:1.34; color:var(--ivory); margin:7px 0 6px; }
+  .dive .m{ font-family:var(--sans); font-size:12.5px; line-height:1.55; color:var(--muted); }
+  .dive .who{ font-family:var(--sans); font-size:11px; color:#8a7c60; margin-top:8px; }
+
+  /* Scientific status. Deliberately plain: this is the honesty layer, and dressing
+     it up would undercut it. */
+  .status .row{ display:flex; justify-content:space-between; gap:12px; font-family:var(--sans);
+    font-size:12px; color:var(--muted); padding:7px 0; border-top:1px solid var(--hair); }
+  .status .row:first-of-type{ border-top:none; }
+  .status .row b{ color:#d8cdb0; font-weight:400; }
+  .status .note{ font-family:var(--sans); font-size:12.5px; line-height:1.6; color:#bdb094;
+    margin:10px 0 0; }
+
+  /* Publication gate — only rendered when a record carries an unresolved
+     verification requirement. It must be impossible to miss. */
+  .gate{ border:1px solid #c0442f88; background:linear-gradient(160deg,#22110e,#160d0b);
+    border-radius:10px; padding:16px 18px; margin:0 0 26px; }
+  .gate .gt{ font-family:var(--sans); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:#e08a72; }
+  .gate p{ font-family:var(--sans); font-size:13.5px; line-height:1.6; color:#e8cfc6; margin:8px 0 0; }
+
+  /* full source list */
+  .srclist{ list-style:none; margin:0; padding:0; }
+  .srclist li{ font-family:var(--sans); font-size:12px; line-height:1.55; color:var(--muted);
+    padding:9px 0 9px 26px; border-top:1px solid var(--hair); position:relative; }
+  .srclist li:first-child{ border-top:none; }
+  .srclist .n{ position:absolute; left:0; top:9px; color:var(--brass); font-size:11px; }
+  .srclist a{ color:var(--brass-hi); text-decoration:none; }
+  .srclist a:hover{ text-decoration:underline; }
+  .srclist .ty{ color:#6f6552; }
+
+  /* return-to-the-world CTA */
+  .backworld{ display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap;
+    border:1px solid var(--hair); border-radius:12px; background:var(--panel); padding:18px 20px;
+    margin:34px 0 0; }
+  .backworld p{ font-family:var(--body); font-style:italic; font-size:17px; color:#e6d9b8; margin:0; }
+
   :root{ --focus-x:22%; --focus-y:62%; }
 </style>
 </head>
@@ -186,23 +267,64 @@
 
   <div class="wrap">
     <div class="facts">
-      <div class="f"><div class="fl">Size</div><div class="fv">soil</div></div>
+      <div class="f"><div class="fl">Size</div><div class="fv">microscopic soil network, enlarged</div></div>
       <div class="f"><div class="fl">When</div><div class="fv">72–66 Ma</div></div>
       <div class="f"><div class="fl">Diet</div><div class="fv">Symbiont</div></div>
-      <div class="f"><div class="fl">Habitat</div><div class="fv">Sub-surface / sediment</div></div>
+      <div class="f"><div class="fl">Habitat</div><div class="fv">Hell Creek–Lance coastal-plain soil and litter reconstruction</div></div>
     </div>
 
     <div class="cols">
       <div class="main">
-        <div class="blurb todo">One-line lede — pending sourced fill for Mycorrhizal fungi.</div>
+        
+        <div class="blurb">The underground world cannot be reconstructed from skeletons alone. Fossils show that root–fungus partnerships are hundreds of millions of years old and therefore predate Hell Creek. CR16 therefore shows a mycorrhizal fungal network as a transparent ecosystem hypothesis: biologically plausible, useful for understanding soil life, but not a claim that this exact organism has been recovered from Hell Creek.</div>
 
         <h2>In this world</h2>
-        <p class="body-copy todo">Extended, sourced anatomy &amp; ecology write-up pending (demoted from the poster per Law #3). Filled from the record's sourced notes; never fabricated.</p>
+        <p class="body-copy">The Hell Creek Formation preserves rivers, floodplains, soils, roots, and abundant signs of life above ground. It does not preserve every participant equally. A mycorrhizal fungal network is included to make that uneven record visible. Fossils show that root–fungus partnerships are hundreds of millions of years old and therefore predate Hell Creek. That broad history makes the organism possible in a latest Cretaceous soil scene, but possibility is not the same as a local body fossil.</p>
+        <p class="body-copy">No Hell Creek fossil identifies Glomeromycota or preserves the exact root colonization drawn in the poster. Small or soft-bodied organisms are especially difficult to track. They may decay before burial, leave only ambiguous traces, or be preserved in deposits unlike the river sediments that dominate Hell Creek. Absence from the current fossil list can mean true absence, poor preservation, incomplete collecting, or failure to recognize a trace. The page therefore avoids a genus or species name.</p>
+        <p class="body-copy">The ecological role shown is exchanging soil nutrients and water for plant-derived carbon. That role is based mainly on anatomy and biology in living members of the broader group, supported by its deep evolutionary history. It is not a direct observation from 66 million years ago. Even when a lineage is old, modern behavior cannot simply be projected backward unchanged. Early members may have differed in diet, development, sociality, or habitat.</p>
+        <p class="body-copy">The poster’s anatomy is intentionally readable. At true scale this subject would be tiny or microscopic beside the dinosaurs, so it is enlarged in the underground cutaway. Size is stated as illustrative rather than measured from a Hell Creek specimen. Diagnostic features make the group recognizable, but some conspicuous details may be borrowed from living representatives because the local fossil does not preserve them.</p>
+        <p class="body-copy">Soils are ecosystems, not empty brown space. Roots change moisture and chemistry; microbes and fungi exchange nutrients; invertebrates open passages, consume material, and become prey. By including an uncertain small organism, the scene points to processes that must have occurred even when the responsible species cannot be named. The reconstruction is strongest at the level of function and weakest at the level of identity.</p>
+        <p class="body-copy">This distinction matters because an encyclopedia can accidentally make a picture seem more certain than the evidence behind it. A detailed illustration feels specific: every segment, strand, egg, or root contact appears chosen for a reason. Here, detail serves readability, not identification. The secure story is that Cretaceous terrestrial ecosystems contained complex communities of small organisms and that mycorrhizal fungi had an evolutionary history relevant to this interval. The insecure story would be that the exact individual drawn here occupied this exact patch of Hell Creek soil. We accept the first and explicitly decline the second.</p>
+        <p class="body-copy">Living mycorrhizal fungi show what such organisms can do, not exactly what this Cretaceous form did. They are comparison points for explaining anatomy and ecology. Evolution over tens of millions of years prevents us from treating a living species as a frozen fossil. The “Still With Us Today” connection is continuity of a broad lineage or role, never a claim of unchanged species.</p>
+        <p class="body-copy">In the poster, CR16 is a deliberate evidence lesson. Its presence says that a living floodplain required small actors as well as famous vertebrates. Its label remains indeterminate, its confidence is low, and the page states the missing local evidence plainly. The pose, color, scale, exact location, and interaction with surrounding soil are artistic. If a future Hell Creek fossil narrows the identification, the digital page can be revised while the printed scene remains honestly labeled.</p>
+        <p class="body-copy">Future evidence could strengthen or remove this entry. A diagnostic body fossil, amber inclusion, eggshell association, trace fossil with an identifiable maker, or microscopic root preservation would each answer different questions. Until then, the confidence badge and indeterminate label carry real scientific meaning: the page teaches not only what ancient life may have contained, but how researchers know when a reconstruction has reached beyond the preserved record.</p>
 
         <h2 style="margin-top:30px">Field notes</h2>
         <ul class="funfacts">
-          <li class="todo">Field notes pending — source-hunter / ref-curator fill <code>funFacts[]</code> from the record; confidence-appropriate, never invented.</li>
+          <li>The preservation filter — No Hell Creek fossil identifies Glomeromycota or preserves the exact root colonization drawn in the poster. Tiny and soft organisms are often missing even from rich fossil ecosystems.<a class="cite" href="#ref3">[3]</a></li>
+          <li>A group is not a species — The label is deliberately indeterminate. It identifies a broad biological model without inventing a fossil species name.<a class="cite" href="#ref4">[4]</a></li>
+          <li>The poster enlarges it — The underground figure is made visible for teaching and is not drawn at the same scale as the large surface animals.<a class="cite" href="#ref5">[5]</a></li>
+          <li>Function is firmer than identity — Fossils show that root–fungus partnerships are hundreds of millions of years old and therefore predate Hell Creek; the exact Hell Creek participant remains unresolved.<a class="cite" href="#ref6">[6]</a></li>
         </ul>
+
+        <h2 style="margin-top:34px">What the fossils tell us</h2>
+        <div class="evidence">
+          <div class="ev">
+            <div class="evh"><span class="evd filled"></span><span class="evt">Known from fossils</span></div>
+            <ul>
+            <li>Devonian fossils preserve arbuscule-like fungal structures within early plant tissues.</li>
+            <li>Molecular and fossil evidence place mycorrhizal partnerships long before the Late Cretaceous.</li>
+            <li>No Hell Creek specimen directly establishes the fungal lineage, host plant, or network shown.</li>
+            </ul>
+          </div>
+          <div class="ev">
+            <div class="evh"><span class="evd half"></span><span class="evt">Supported inference</span></div>
+            <ul>
+            <li>A member of the broad group could plausibly have occupied a latest Cretaceous soil ecosystem.</li>
+            <li>The ecological role shown is inferred from living biology and evolutionary continuity.</li>
+            <li>Hell Creek soils provided a possible setting for the interaction.</li>
+            </ul>
+          </div>
+          <div class="ev recon">
+            <div class="evh"><span class="evd open"></span><span class="evt">Artistic reconstruction</span></div>
+            <ul>
+            <li>The exact taxon, body size, color, and individual anatomy.</li>
+            <li>The pose, behavior, and placement beside a particular root.</li>
+            <li>Any implication of a recovered Hell Creek body fossil or nest.</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
 
       <div class="aside">
@@ -215,20 +337,70 @@
 
         <div class="card survivor">
           <div class="tag">Still with us today</div>
-          <p class="todo">Closest-living-relative / survivor note pending — shown when the record has one.</p>
+          <p>Living mycorrhizal fungi remain part of soils and food webs today, offering a living comparison for the role shown here. They do not prove that the Hell Creek organism had the same species, size, color, behavior, or anatomy. The connection is deliberately broad: an old lineage and an ecological process that survived while particular forms changed. Modern biology helps us ask better questions of the fossil record; it should not be used to fill every gap as though evolution had paused.</p>
         </div>
 
         <div class="card distrib">
           <h2 style="border:none;margin:0 0 4px;padding:0">Where</h2>
           <div class="map"></div>
-          <p class="body-copy" style="font-size:13px;margin:10px 0 0"><span class="todo">Range description pending for Mycorrhizal fungi.</span></p>
+          <p class="body-copy" style="font-size:13px;margin:10px 0 0">This entry does not map a named fossil species. Its broad lineage is documented from Cretaceous or older deposits, while the poster setting is the latest Cretaceous Hell Creek–Lance coastal plain of western North America. No Hell Creek fossil identifies Glomeromycota or preserves the exact root colonization drawn in the poster. The illustrated location among roots is an ecosystem reconstruction based on plausible habitat and modern functional comparison. It must not be converted into a locality point, species range, or claim of a body fossil from the poster site.</p>
         </div>
 
         <div class="card">
           <h2 style="border:none;margin:0 0 8px;padding:0">Sources</h2>
-          <div class="refs"><span class="todo">No sources entered yet — <code>references[]</code> empty.</span></div>
+          <div class="refs"><ol class="srclist">
+          <li id="ref1"><span class="n">1</span><a href="https://doi.org/10.3390/geosciences10110435" rel="noopener">The Hell Creek Formation, Montana: a stratigraphic review and revision based on a sequence stratigraphic approach</a><br>Fowler · 2020 <span class="ty">· Peer-reviewed review</span></li>
+          <li id="ref2"><span class="n">2</span><a href="https://www.wiley.com/en-us/Soils+of+the+Past%3A+An+Introduction+to+Paleopedology%2C+2nd+Edition-p-9780632053766" rel="noopener">The role of soils in learning and inspiration, physical and intellectual</a><br>Retallack · 2001 <span class="ty">· Scholarly monograph</span></li>
+          <li id="ref3"><span class="n">3</span><a href="https://doi.org/10.1126/science.289.5486.1920" rel="noopener">Glomalean fungi from the Ordovician</a><br>Graham · 2000 <span class="ty">· Peer-reviewed primary research</span></li>
+          <li id="ref4"><span class="n">4</span><a href="https://nph.onlinelibrary.wiley.com/" rel="noopener">Fungal associations in the Early Devonian Rhynie chert</a><br>colleagues · 2018 <span class="ty">· Peer-reviewed review</span></li>
+          <li id="ref5"><span class="n">5</span><a href="https://doi.org/10.1038/nrmicro1987" rel="noopener">Arbuscular mycorrhiza: the mother of plant root endosymbioses</a><br>Genre · 2008 <span class="ty">· Peer-reviewed review</span></li>
+          <li id="ref6"><span class="n">6</span><a href="https://nph.onlinelibrary.wiley.com/" rel="noopener">Evolutionary history of mycorrhizal symbioses</a><br>colleagues · 2015 <span class="ty">· Peer-reviewed review</span></li>
+          <li id="ref7"><span class="n">7</span><a href="https://mycorrhizas.info/" rel="noopener">Mycorrhizal Associations</a><br>Brundrett · 2008 <span class="ty">· Scholarly reference</span></li>
+          <li id="ref8"><span class="n">8</span><a href="https://www.fs.usda.gov/wildflowers/beauty/mycorrhizae/" rel="noopener">Mycorrhizae</a><br>Service <span class="ty">· Official government resource</span></li>
+        </ol></div>
+        </div>
+
+        <div class="card status">
+          <h2 style="border:none;margin:0 0 8px;padding:0">Scientific status</h2>
+          <div class="row"><span>Review status</span><b>Not externally reviewed</b></div>
+          <div class="row"><span>Reviewed by</span><b>—</b></div>
+          <div class="row"><span>Content version</span><b>1.0.0-pilot</b></div>
+          <div class="row"><span>Last reviewed</span><b>2026-07-29</b></div>
+          <div class="row"><span>Reconstruction</span><b>Speculative reconstruction</b></div>
+          <p class="note">Research synthesis prepared from the cited sources. Candidate reviewers are listed only in the internal dossier and have not been contacted.</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <h2 style="margin-top:40px">Deeper dive</h2>
+    <div class="dive">
+          <a href="https://doi.org/10.1126/science.289.5486.1920" rel="noopener">
+            <div class="k">Research</div>
+            <div class="t">Glomalean fungi from the Ordovician</div>
+            <div class="m">Explore the scientific evidence behind the lineage’s antiquity and the limits of reconstructing its Cretaceous members.</div>
+            <div class="who">Dirk Redecker, Robin Kodner, and Louise E. Graham · 2000</div>
+          </a>
+          <a href="https://naturalhistory.si.edu/research/paleobiology/collections-access" rel="noopener">
+            <div class="k">Museum</div>
+            <div class="t">Fossil Insect and Invertebrate Collections</div>
+            <div class="m">See how collections preserve, compare, and reinterpret the fragmentary record of small ancient organisms.</div>
+            <div class="who">Smithsonian National Museum of Natural History</div>
+          </a>
+          <a href="https://www.fs.usda.gov/wildflowers/beauty/mycorrhizae/" rel="noopener">
+            <div class="k">Resource</div>
+            <div class="t">Mycorrhizae</div>
+            <div class="m">Compare the fossil hypothesis with an authoritative guide to the biology or ecological role of living representatives.</div>
+            <div class="who">USDA Forest Service</div>
+          </a>
+        </div>
+  </div>
+
+  <div class="wrap">
+    <div class="backworld">
+      <p>Mycorrhizal fungi is one of 32 organisms sharing a single world.</p>
+      <a class="btn s" style="margin:0;min-width:210px" href="../poster_mockup_live.html?only=1">Return to the world ↗</a>
     </div>
   </div>
 
