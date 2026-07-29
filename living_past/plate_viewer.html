@@ -35,16 +35,16 @@
 
 <div class="bar">
   <span class="name" id="label"></span>
-  <button id="btnA">v8 · now</button>
-  <button id="btnB">v7 · before</button>
+  <button id="btnA">cast</button>
+  <button id="btnB">stage only</button>
   <button id="btnPoster">poster</button>
   <span class="spacer"></span>
   <span class="keys"><b>F</b> fullscreen · <b>SPACE</b> hold to compare · <b>Z</b> 1:1 · <b>H</b> hide UI</span>
 </div>
 
 <script>
-const A = { src:'plates/backdrop_v8.png', name:'backdrop v8 — the monster, borderless windows, ocean zones' };
-const B = { src:'plates/backdrop_v7.png', name:'backdrop v7 — start of this session' };
+const A = { src:'plates/_scene_cast.png', name:'v8 + cast — T. rex on the rise, Mosasaurus in the deep' };
+const B = { src:'plates/backdrop_v8.png', name:'v8 backdrop — no cast' };
 const img = document.getElementById('plate'), label = document.getElementById('label');
 let cur = A;
 

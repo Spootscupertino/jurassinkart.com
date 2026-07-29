@@ -119,6 +119,10 @@ VOLCANO_W = 0.300
 # eats contrast long before it eats scale. So the cone is composited through the same aerial
 # perspective the far plain already gets — flattened toward the haze colour and desaturated — and
 # only trimmed slightly. It stays a monument; it stops being a rival.
+# How much sky is held off the monument, and how far. The column is flat-topped across the cone and
+# plume and only falls off beyond them — see the sky triptych for why a blob was the wrong shape.
+VOLCANO_KEEP_W = 0.205      # half-width of full protection, from the cone's centre
+VOLCANO_KEEP = 0.96         # how completely the cloud is held out of it
 VOLCANO_HAZE = 0.17         # how far the cone is mixed toward the horizon haze
 VOLCANO_FLATTEN = 0.20      # contrast pulled toward its own mean
 
@@ -147,7 +151,7 @@ MACRO_WINS = [
     # is". A shared shape is the thing that made four windows read as four crops of one instrument.
     # The big litter window stays the squarest (a lozenge, so the wide box still fills) and bulges
     # most, because it is the one the reader is closest to and the Law #2 exemplar.
-    dict(box=(0.006, 0.580, 0.196, 0.960), slots=("micro_log_cavity",),
+    dict(box=(0.006, 0.680, 0.196, 0.980), slots=("micro_log_cavity",),
          lobe_x=0.68, lift=1.22, over=0.30, seed=181, warm=0.12, dissolve=0.55,
          roundness=2.8, wobble=0.09, barrel=0.18,
          crop=(0.22, 0.22, 0.78, 0.78), flip=False),
@@ -520,9 +524,23 @@ def main(argv=None) -> int:
             # Hold every band out of the volcano's airspace. This protection previously lived only
             # in the single-plate fallback, so switching to the triptych silently removed it and
             # the monument came back hovering in a sky that had been painted over it.
-            keep = np.asarray(blob_mask((round(W * 0.46), rh_sky), seed=13, softness=0.72), np.float32)
-            vx = max(0, round(W * (VOLCANO_X - 0.02)))
-            a[:, vx:vx + keep.shape[1]] *= 1.0 - keep / 255.0 * 0.85
+            # Eric, 2026-07-29: "remove the cloud that is blocking the volcano on the right, too much
+            # clouds and not enough volcano." A stale constant, not a taste call. The hold-out used to
+            # place a blob_mask at `vx = (VOLCANO_X - 0.02) * W`; once the volcano moved to X = 0.0 that
+            # clamped to 0, so the blob's CENTRE sat at x 0.23 — to the right of a cone whose summit is
+            # at 0.141 — and a blob is weakest at its own edges. It was over-protecting empty sky in the
+            # middle and under-protecting the plume, which drifts right to 0.30. So the cloud won
+            # exactly where the eruption is.
+            #
+            # Replaced with a flat-topped column keyed to the volcano's real extent, so the protection
+            # is full strength across the whole cone and plume and only falls off past them. Held at
+            # 0.96 rather than 0.85: the plume is the loudest thing the monument has and a 15% cloud
+            # wash over it was reading as haze on the one feature that must not recede.
+            gxk = (np.arange(W, dtype=np.float32) / W)[None, :]
+            dk = np.abs(gxk - (VOLCANO_X + VOLCANO_W * 0.5))
+            keep = np.clip((VOLCANO_KEEP_W + 0.10 - dk) / 0.10, 0, 1)
+            keep = keep * (0.80 + 0.35 * noise((rh_sky, W), octaves=(2, 4, 9), seed=13))
+            a *= 1.0 - np.clip(keep, 0, 1) * VOLCANO_KEEP
             _bm = Image.fromarray((np.clip(a, 0, 1) * 255).astype(np.uint8), "L") \
                        .filter(ImageFilter.GaussianBlur(8))
             paste(scene, band, (0, 0), _bm)

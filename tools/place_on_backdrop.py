@@ -12,6 +12,7 @@ the whole cast fits without faking any sizes.
 from __future__ import annotations
 
 import argparse
+import math
 import pathlib
 import sys
 
@@ -22,7 +23,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from compose_organism import ORGS, isolate, parse_width_m
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-BACKDROP = ROOT / "living_past/plates/backdrop_v7.png"
+BACKDROP = ROOT / "living_past/plates/backdrop_v8.png"
 
 # plane -> (scale multiplier, y as fraction of canvas height, anchor)
 #
@@ -39,12 +40,22 @@ PLANES = {
     "fg":    (1.00, 0.640, "ground"),
     "mid":   (0.55, 0.505, "ground"),
     "far":   (0.30, 0.452, "ground"),
+    # `rise` — the central rocky bluff, measured at y 0.435 (tools measured the terrain crest, it was
+    # not eyeballed). Eric, 2026-07-29: "the t rex should be in the center on the high point there."
+    #
+    # It needs its own plane because ELEVATION DECOUPLES SCREEN-Y FROM DISTANCE, which is the one
+    # assumption the other land planes are built on. On flat ground a higher y means nearer, so the
+    # multiplier can be read straight off the ground line — that is why `far` at 0.452 is 0.30. But an
+    # animal standing on top of a raised feature is high in frame because the GROUND is high there,
+    # not because it is far away. Forcing the bluff onto the flat-ground curve would have made a 13 m
+    # titan 180 px, and the reason would have been a coordinate system, not a fact about the world.
+    "rise":  (0.95, 0.435, "ground"),
     # air — criticism #6. Quetzalcoatlus was always on the roster; it just had nowhere to be.
     "air":   (0.42, 0.232, "centre"),
     # water, three depths. `deep` is where the Mosasaurus hangs, over the void.
     "shore": (0.72, 0.338, "ground"),
     "shelf": (0.60, 0.300, "centre"),
-    "deep":  (0.88, 0.520, "centre"),
+    "deep":  (0.88, 0.615, "centre"),
     "abyss": (0.52, 0.815, "centre"),
     # the soil ribbon, and the macro band in front of it
     "soil":  (1.00, 0.925, "centre"),
@@ -58,6 +69,13 @@ MACRO_PLANES = {"macro"}
 # the reference animal spans this fraction of canvas width on the FOREGROUND plane
 REF_FRAC = 0.20
 REF_M = 13.0          # T. rex, the volume's land titan
+
+# Where the sea surface sits, and how much of a submerged animal the water takes. SEA_SURFACE is
+# measured, not chosen: the land horizon and the waterline both fall at y 0.30 on backdrop_v8.
+# WATER_TINT matches build_backdrop.py exactly — one ocean, one colour.
+SEA_SURFACE = 0.30
+WATER_TINT = np.array([26, 74, 84], np.float32)
+WET_MIN, WET_MAX = 0.12, 0.42
 
 
 def contact_shadow(size, strength=150):
@@ -121,11 +139,30 @@ def main(argv=None) -> int:
         # absorption in the water. An underwater animal given the sunset haze reads as cut out and
         # pasted over the sea rather than as being in it, which is exactly the tell the whole
         # compositing method exists to avoid.
-        if mul < 1.0:
+        wet = plane in ("shelf", "deep", "abyss")
+        if wet:
+            # Eric, 2026-07-29: "the mosasaur should be deeper in the water, make it look a little
+            # more blended into the water as well." Those are one fix, not two, and the old code could
+            # not do either: it derived the water blend from the PLANE MULTIPLIER, so `deep` at ×0.88
+            # got 7% absorption and a 17 m animal hanging over the abyss was crisper than the water
+            # around it. Distance across the frame is not what dims a submerged animal — DEPTH is.
+            #
+            # So it is read off the ground line instead, on the same exponential extinction curve
+            # build_backdrop.py grades the water column with. The two now agree by construction: an
+            # animal at a given depth takes exactly the absorption the water at that depth carries,
+            # which is the only way a composited organism and a graded column can look like one scene.
+            lt = min(max((gy - SEA_SURFACE) / (1.0 - SEA_SURFACE), 0.0), 1.0)
+            k = (1.0 - math.exp(-3.1 * lt)) / (1.0 - math.exp(-3.1))
+            absorb = WET_MIN + (WET_MAX - WET_MIN) * k
             a = np.asarray(subj.convert("RGBA"), np.float32)
-            wet = plane in ("shelf", "deep", "abyss")
-            haze = (1.0 - mul) * (0.62 if wet else 0.42)
-            tint = np.array([26, 74, 84] if wet else [228, 205, 176], np.float32)
+            a[..., :3] = a[..., :3] * (1 - absorb) + WATER_TINT * absorb
+            a[..., :3] *= 1.0 - 0.30 * k          # and light dies going down, so it darkens too
+            subj = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8), "RGBA")
+            print(f"       water: depth {lt:.2f} of column -> absorb {absorb:.2f}, dim {0.30*k:.2f}")
+        elif mul < 1.0:
+            a = np.asarray(subj.convert("RGBA"), np.float32)
+            haze = (1.0 - mul) * 0.42
+            tint = np.array([228, 205, 176], np.float32)
             a[..., :3] = a[..., :3] * (1 - haze) + tint * haze
             subj = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8), "RGBA")
 

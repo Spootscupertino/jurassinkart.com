@@ -31,9 +31,10 @@
       "confidence": "well_documented",
       "status": "roster",
       "stage": {
-        "x": 0.105,
-        "plane": "fg"
-      }
+        "x": 0.37,
+        "plane": "rise"
+      },
+      "stageNote": "Eric 2026-07-29: centre, on the high point. The rocky bluff crest measures y 0.435; see the `rise` plane in place_on_backdrop.py for why elevated ground needs its own multiplier instead of the flat-ground curve."
     },
     {
       "id": "CR02",
