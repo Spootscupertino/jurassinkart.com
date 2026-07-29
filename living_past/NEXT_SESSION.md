@@ -30,8 +30,24 @@ front of him — a crop of the change plus a step-back. Never a text-only report
 | Windows | 4, all borderless: log cavity, Inoceramus shell bed at the strata/ocean contact, ash-fall, magma vent |
 | Ocean | zoned by exponential extinction + a step at each SCOPE boundary; floor 14.5 → 8.1 |
 | Front band | 4 micro plates — log, moss, puddle, mushrooms. Fern crozier + bark crevice still unshot |
-| Research | 67 dossier files now tracked (~22 organisms, sourced claim ledgers) |
+| Research | 32 content records + 32 dossiers, all tracked |
+| Encyclopedia | **32 pages live** in `pages/` from one template — `python3 tools/build_organism_pages.py` |
 | Rank | ~8/10 (Eric, "i like where all this is at") |
+
+## The loop, per organism
+
+Eric, 2026-07-29: *"as we do it one by one we will put them in their respective pages."* So each
+organism is finished across all outputs before the next one starts — build the atom, not the molecule
+(SCOPE §10):
+
+1. Eric fires the prompt in MJ (`python3 tools/lp_organism_prompt.py CR##`); Claude reads the grid in
+   the in-app browser and argues the pick.
+2. Knockout: `python3 tools/ps_isolate.py working/mj_pull/CR##_name.png` (Photoshop Select Subject,
+   ~2 s, removes the floor plane that flood fill cannot reach).
+3. **Check the knockout touches no frame edge.** A truncated plate silently corrupts scale — see CR04.
+4. Place: `python3 tools/place_on_backdrop.py CR##:living_past/plates/organisms/CR##_isolated.png …`
+5. Rebuild its page: `python3 tools/build_organism_pages.py CR##`
+6. Show Eric the result — crop plus step-back.
 
 ## The queue, in order
 
@@ -52,7 +68,16 @@ front of him — a crop of the change plus a step-back. Never a text-only report
    field-guide entries, the Law #2 magnification note, the scale bar. Pure vector furniture, no
    renders needed, and it is what makes this a *scientific plate* rather than a landscape.
    `scalebar_audition.html` and `glyph_audition.html` already exist.
-5. **CR03's feathering vs. its confidence badge.** It is shaggy-feathered along the neck and back;
+5. **Two confidence badges over-claim, and they print.** CR23 horseshoe crab is `well_documented` in
+   the roster and `speculative` in its own research; CR24 Baculites is `well_documented` vs
+   `reasonable_inference`. The research carries the claim ledgers and postdates the roster values, so
+   the roster is very likely wrong. Needs Eric's decision — the build reports it and changes nothing.
+   CR09's age range also disagrees ([69,66] roster vs [72,66] research), which feeds
+   `roster_audit.py`'s Law #1 check.
+6. **Seven records describe their own poster placement in prose**, and CR01/CR16 already disagree with
+   current staging — CR01 says "crossing the foreground" and he now stands on the central rise. The
+   durable fix is generating that sentence from `stage` data instead of hand-writing it.
+7. **CR03's feathering vs. its confidence badge.** It is shaggy-feathered along the neck and back;
    hadrosaur skin impressions show scales, and the roster marks it `well_documented`. The badge and
    the reconstruction disagree. Disclosure is meant to be the trust signal.
 
