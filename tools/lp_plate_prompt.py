@@ -95,11 +95,18 @@ PLATES: dict[str, dict] = {
         no=NO_FLOOR),
     "micro_mushroom_cluster": dict(
         group="micro", ar="3:2",
-        idea="mushroom cluster — gives the decomposer/fungi roster entries a real home",
+        idea="mushroom cluster — the decomposers' home, and the front band's tonal relief",
+        # Amended 2026-07-29 after micro_log_interior landed: the log plate is magnificent and
+        # relentlessly amber, and three more like it would make the whole front band one hue. This
+        # is the slot with the best claim on cool, pale and dark values — bone-white caps, wet black
+        # earth, blue-grey shade — so it asks for them explicitly. The key light is unchanged; only
+        # the SUBJECT's own colour is being steered, which keeps "one world, one light" intact.
         prompt=(
-            "extreme macro photograph of a tight cluster of small pale mushrooms erupting from "
-            "the base of a rotting stump, gills visible beneath the caps, wet earth and dark leaf "
-            f"litter around the stems, one cap broken open, {WARM}, shallow depth "
+            "extreme macro photograph of a tight cluster of small pale bone-white and cream "
+            "mushrooms erupting from the base of a rotting stump, gills visible beneath the caps, "
+            "wet almost-black earth and dark sodden leaf litter around the stems, deep cool "
+            "blue-grey shade under the cluster, one cap broken open, "
+            f"{WARM} skimming only the tops of the caps, shallow depth "
             "of field, natural color, photographic, nothing stylised"),
         no=NO_FLOOR),
     "micro_puddle_edge": dict(
@@ -214,9 +221,128 @@ PLATES: dict[str, dict] = {
             "suspended at every distance, a single faint shaft of light from far above dying out "
             "into black, immense empty water, natural color, photographic, nothing stylised"),
         no=f"{NO_LIFE}, fish, jellyfish, seafloor, ground, coral, submarine, sky, surface"),
+
+    # ---- the 2026-07-28 criticisms, where code got us most of the way but a plate gets us all --
+    # Each of these replaces something the build currently synthesises. The synthesised version is
+    # good enough to compose against and deliberately not good enough to ship.
+
+    "ocean_shelf_recede": dict(
+        group="ocean", ar="3:2",
+        idea="the sunlit shallow zone — NOT the drop-off; that moved into code (build_backdrop SEAFLOOR)",
+        # Worth being explicit about why this one exists. The plate we have is a beautiful render of
+        # a sheer cliff face seen straight on, dropping into black across the whole frame. There is
+        # no mask, grade or crop that turns that into a shelf receding away from the viewer, because
+        # the geometry is baked into the pixels — build_backdrop.py now harvests only its sunlit
+        # shallows and builds the drop-off in code. This prompt asks for the geometry directly:
+        # oblique, converging, with the far end of the shelf edge visibly smaller than the near end.
+        # Rewritten 2026-07-29, twice, and the second rewrite taught the more useful lesson.
+        #
+        # First version asked for a shelf edge and got eight close-up underwater sand dunes:
+        # **"shelf edge" is a subject noun and MJ answers subject nouns with a hero close-up.**
+        # Recession is not a subject, it is a camera position — so this version leads with where
+        # the camera is and how far away everything is.
+        #
+        # That worked, and produced open receding water with no drop-off in it at all, which looked
+        # like a second failure and was not: **this slot no longer feeds the drop-off.** The build
+        # cover-fits it into the TOP two-thirds of the water column and fades it downward, so it is
+        # the sunlit shallow zone, and `SEAFLOOR` builds the break and the slope underneath it in
+        # code. The prompt had been written against the slot's old job. Check what consumes a slot
+        # before blaming the render.
+        prompt=(
+            "wide angle underwater photograph taken from high above the seafloor looking far out "
+            "across it, a vast pale sandy plain stretching away from the camera into the distance "
+            "and finally dropping out of sight over a low distant edge into deep blue darkness, "
+            "the far edge thin and small with distance, enormous empty open water above the plain, "
+            "shafts of sunlight coming down from a surface far overhead, everything sharp from "
+            "near to far, immense sense of scale and distance, clear water grading from pale "
+            "turquoise in the shallows to navy at the horizon, natural color, photographic, "
+            "nothing stylised"),
+        no=f"{NO_LIFE}, sand dune, close-up, macro, steep slope, ridge, diagonal crest, wave, "
+           f"vertical cliff face, fish, coral reef, divers, boats, sky, land, beach"),
+    "sky_squall_cell": dict(
+        group="sky", ar="3:2",
+        idea="a second weather — the plate never varies its hour (criticism #9)",
+        prompt=(
+            "photograph of a distant rain squall crossing an open plain, one discrete storm cell "
+            "with a dark flat cloud base and a visible grey curtain of rain trailing beneath it and "
+            "leaning with the wind, the ground under it in shadow and desaturated, clear warm "
+            "sunlit air on either side of the cell, the rest of the sky untouched, natural color, "
+            "photographic, nothing stylised"),
+        no=f"{NO_LIFE}, lightning, tornado, rainbow, mountains, trees, buildings, overcast sky"),
+    "land_left_bench": dict(
+        group="land", ar="3:2",
+        idea="mid-distance terrain incident for the empty left third (criticism #5)",
+        prompt=(
+            "photograph of the middle distance of a broad open floodplain, a low eroded bench or "
+            "terrace stepping up out of the flat ground and running away obliquely, its edge cut "
+            "into shallow bays by run-off, scattered boulders and low scrub along the lip, soft "
+            f"aerial haze thickening behind it, {WARM}, natural color, photographic, "
+            "nothing stylised"),
+        no=f"{NO_LIFE}, {NO_MODERN}, mountains, volcano, water, sky filling the frame, roads"),
+    "volcano_monument": dict(
+        group="land", ar="3:2",
+        idea="the cone as an ISOLATED subject — cropping it out of a landscape brings its sky with it",
+        # Why this slot exists (2026-07-29): the monument has been harvested out of
+        # `v5_volcano_terraces`, which means the patch carries that render's own sky. At mid-frame
+        # that was survivable. Moved to the left corner against the new sky triptych it is not:
+        # haze it enough to hide the patch edges and the cone vanishes, clear it enough to see the
+        # cone and the rectangle shows. There is no setting that wins, because the source is a crop
+        # of a landscape rather than a subject. So: shoot the cone against plain sky, so it can be
+        # knocked out and composited like an organism instead of blended like a region.
+        prompt=(
+            "photograph of a single large volcanic cone seen from far away across flat ground, the "
+            "whole mountain isolated against clean empty pale sky with nothing else in the frame, "
+            "a tall dark ash column rising straight from the summit and drifting sideways at "
+            "altitude, steep symmetrical flanks streaked with old lava scars, soft distance haze "
+            "at the base, low warm sunlight raking the left flank, natural color, photographic, "
+            "nothing stylised"),
+        no=f"{NO_LIFE}, foreground, trees, rocks in front, lava flow, fire, glowing crater, "
+           f"city, roads, lake, ocean, other mountains, mountain range"),
+    "geo_volcanic_ash": dict(
+        group="land", ar="3:2",
+        idea="the geological window's subject — the ash that becomes bed L06 in the cutaway",
+        # Eric's idea, and the content is the argument: this is bentonite, and bentonite IS L06 in
+        # geology_hellcreek.json — "ash fall from the scene's volcano, the datable marker". The
+        # window on the cone shows the material that becomes a named layer at the other end of the
+        # plate. The existing `tex_bentonite` tile cannot do it: a window has to look INTO
+        # something, and a flat texture swatch composites as a floating slab.
+        prompt=(
+            "extreme close photograph looking into a freshly fallen bed of pale grey volcanic ash, "
+            "deep soft drifts of fine ash with a cracked crusted surface, one broken edge showing "
+            "the delicate layering beneath, scattered dark angular lapilli and one larger volcanic "
+            "bomb half buried, fine ash still settling in the air, real depth into the drift, "
+            "raking low warm light picking out the ripples, natural color, photographic, "
+            "nothing stylised"),
+        no=f"{NO_WORLD}, snow, ice, sand dune, flat texture swatch, powder, flour, smoke"),
+    "geo_magma_vent": dict(
+        group="land", ar="3:2",
+        idea="the magma window — the volcano's own interior, at the top of the Law #2 cascade",
+        # Eric, 2026-07-29: a magma window on the cone, like the underground ones. It completes a
+        # cascade the poster can now show in one glance: molten rock in the vent, the ash it throws,
+        # the bentonite bed that ash becomes, and the section that bed sits in — four windows onto
+        # one material at four points in its life. That is the accuracy moat as *composition*.
+        prompt=(
+            "extreme close photograph looking down into a crack in a crusted lava surface, "
+            "brilliant incandescent orange and yellow molten rock glowing deep inside the fissure, "
+            "black cooled crust broken into plates at the surface with the glow showing between "
+            "them, intense heat shimmer above the crack, fine sparks, the molten interior clearly "
+            "far brighter than the dark crust, real depth down into the fissure, natural color, "
+            "photographic, nothing stylised"),
+        no=f"{NO_WORLD}, fire, flames, campfire, forge, furnace, metal, molten steel, "
+           f"fireworks, sun, illustration"),
+    "air_insect_swarm": dict(
+        group="air", ar="3:2",
+        idea="macro-scale insects near the window — the sky as habitat at the OTHER end of Law #2",
+        prompt=(
+            "extreme macro photograph of a swarm of small flying insects caught against warm "
+            "backlight, dozens of tiny bodies at every distance with translucent wings blurred by "
+            "motion, dense in the middle of the frame and thinning outward, deep bokeh behind "
+            f"them, {WARM} rimming each one, shallow depth of field, natural color, photographic, "
+            "nothing stylised"),
+        no=f"{NO_WORLD}, butterflies, bees on flowers, birds, people"),
 }
 
-GROUPS = ("micro", "sky", "river", "burrow", "ocean")
+GROUPS = ("micro", "sky", "river", "burrow", "ocean", "land", "air")
 
 
 def build(slot: str) -> str:

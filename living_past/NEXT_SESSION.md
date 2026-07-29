@@ -1,6 +1,36 @@
-# The Living Past — Next Session Launch Prompt (updated 2026-07-28)
+# The Living Past — Next Session Launch Prompt (updated 2026-07-29)
 
-> **2026-07-28 — the ten ideas below were worked. Read this box first, then the launch prompt.**
+> **2026-07-29 — the ten criticisms were worked. Read this box first.**
+>
+> Current plate: **`plates/backdrop_v5.png`** (also copied to `plates/_scene_live.png`, which is
+> what `poster_mockup_live.html` reads). Full write-up in `PLATE_ASSEMBLY.md` → *Status —
+> backdrop_v5*. Every one of the ten is addressed in code:
+>
+> | # | fix | where |
+> |---|---|---|
+> | 1 | strata rebuilt as an outcrop — pinch/swell, shared roll, fault, gullies, **ravines cut clean through**, talus, weathering relief | `render_strata_organic.py` (rewritten) |
+> | 2 | coastline tilts; **the drop-off is now code** (`SEAFLOOR`) because the source plate is a head-on wall | `build_backdrop.py` |
+> | 3 | `stage:{x,plane}` on all 32 organisms; 9 planes, not 3 | `volume_v.json`, `place_on_backdrop.py` |
+> | 4 | two unequal windows + brass corner ticks; the cm-scale four are staged *inside* the big one | `build_backdrop.py` |
+> | 5+9 | rain cell over the mid-left, lit gap beside it; the world grade got a direction | `build_backdrop.py` |
+> | 6 | 11 drawn azhdarchid silhouettes, weighted left | `build_backdrop.py` `pterosaur()` |
+> | 7 | volcano pushed back with aerial perspective, not shrunk | `build_backdrop.py` |
+> | 8 | title moves to the top-left indigo; plate darkens that patch; whisper moves clear | `poster_mockup_live.html`, `build_backdrop.py` |
+> | 10 | field guide gets the `glyphs.svg` type marks, lead cells, documented counts | `poster_mockup_live.html` |
+>
+> **Four new plate slots are written and wired**, each replacing something the build currently
+> synthesises — good enough to compose against, deliberately not good enough to ship:
+> `ocean_shelf_recede` (the drop-off geometry), `sky_squall_cell`, `land_left_bench`,
+> `air_insect_swarm`. They join the 14 already outstanding: `lp_plate_prompt.py --missing` now
+> lists **18**.
+>
+> **What is still open:** the strata are the accuracy moat and at `FLOOR_BOT = 0.875` they are
+> mostly *behind* the front band — worth deciding whether 12% of height is enough for the thing
+> the poster's accuracy claim rests on. And idea #10 below still stands: **print one.**
+>
+> ---
+>
+> **2026-07-28 — the previous ten ideas. Historical.**
 >
 > Done in code: #2 (knockout), #1 macro window, #3 sky triptych wiring, #5 volcano, #6 river
 > margin, #7 burrow cutaway, #8 underwater passes, #9 waterline rebalance, #10 Photoshop pass.

@@ -2,15 +2,16 @@
   "$meta": {
     "volume": "V",
     "title": "Late Cretaceous",
-    "status": "ROSTER LOCKED 2026-07-09 — tight terminal-Maastrichtian community; 0 temporal fails (tools/roster_audit.py). Factual fields locked; blurb/funFacts/references pending sourced fill (source-hunter / ref-curator).",
+    "status": "ROSTER LOCKED 2026-07-09 \u2014 tight terminal-Maastrichtian community; 0 temporal fails (tools/roster_audit.py). Factual fields locked; blurb/funFacts/references pending sourced fill (source-hunter / ref-curator).",
     "interval_Ma": [
       68.0,
       66.0
     ],
-    "interval_label": "Terminal Maastrichtian (~68–66 Ma), western North America — land & freshwater: Hell Creek / Lance Formation; sea: Fox Hills / retreating Western Interior Seaway & European Maastrichtian type area (Mosasaurus hoffmannii).",
+    "interval_label": "Terminal Maastrichtian (~68\u201366 Ma), western North America \u2014 land & freshwater: Hell Creek / Lance Formation; sea: Fox Hills / retreating Western Interior Seaway & European Maastrichtian type area (Mosasaurus hoffmannii).",
     "law_1_note": "Each organism's ageRange_Ma must overlap interval_Ma (SCOPE Law #1). Verified by tools/roster_audit.py.",
-    "schema": "SCOPE §5. Factual fields filled where confident; blurb/funFacts/references left for sourced fill (do not fabricate — Law #4). `needsRefs:true` flags swapped-in taxa awaiting the ref pipeline. Glyph note: all `type` values map to the 7 locked glyphs; no birds/amphibians in V1 (avoids a glyph gap — candidates for a later volume).",
-    "roster_changes_2026-07-09": "Swapped 7 temporal fails + 2 tightenings for genuine terminal-Maastrichtian taxa: Pteranodon→Dakotaraptor; Struthiomimus→Ornithomimus; Dracorex renamed to Pachycephalosaurus (juvenile synonym); Deinosuchus→Borealosuchus; Archelon→Basilemys; Hesperornis→Lepisosteus (gar); Ichthyornis→Myledaphus (ray); Protostega→Palaeosaniwa (monitor lizard); Elasmosaurus→Prognathodon. Kept borderline Xiphactinus/Enchodus/Squalicorax/Baculites (ranges overlap 66 Ma); Inoceramus kept with a decline note."
+    "schema": "SCOPE \u00a75. Factual fields filled where confident; blurb/funFacts/references left for sourced fill (do not fabricate \u2014 Law #4). `needsRefs:true` flags swapped-in taxa awaiting the ref pipeline. Glyph note: all `type` values map to the 7 locked glyphs; no birds/amphibians in V1 (avoids a glyph gap \u2014 candidates for a later volume).",
+    "roster_changes_2026-07-09": "Swapped 7 temporal fails + 2 tightenings for genuine terminal-Maastrichtian taxa: Pteranodon\u2192Dakotaraptor; Struthiomimus\u2192Ornithomimus; Dracorex renamed to Pachycephalosaurus (juvenile synonym); Deinosuchus\u2192Borealosuchus; Archelon\u2192Basilemys; Hesperornis\u2192Lepisosteus (gar); Ichthyornis\u2192Myledaphus (ray); Protostega\u2192Palaeosaniwa (monitor lizard); Elasmosaurus\u2192Prognathodon. Kept borderline Xiphactinus/Enchodus/Squalicorax/Baculites (ranges overlap 66 Ma); Inoceramus kept with a decline note.",
+    "stage": "Each organism carries stage.x (fraction of canvas width) and stage.plane. Placement is data, reviewable in this file exactly like the roster is \u2014 it is not derived by walking left to right from one x, which piled three animals into the same band (criticism #3, 2026-07-28). Plane definitions and their distance multipliers live in tools/place_on_backdrop.py."
   },
   "organisms": [
     {
@@ -28,7 +29,11 @@
         66.0
       ],
       "confidence": "well_documented",
-      "status": "roster"
+      "status": "roster",
+      "stage": {
+        "x": 0.105,
+        "plane": "fg"
+      }
     },
     {
       "id": "CR02",
@@ -44,7 +49,11 @@
         66.0
       ],
       "confidence": "well_documented",
-      "status": "roster"
+      "status": "roster",
+      "stage": {
+        "x": 0.472,
+        "plane": "mid"
+      }
     },
     {
       "id": "CR03",
@@ -60,7 +69,11 @@
         66.0
       ],
       "confidence": "well_documented",
-      "status": "roster"
+      "status": "roster",
+      "stage": {
+        "x": 0.332,
+        "plane": "mid"
+      }
     },
     {
       "id": "CR04",
@@ -76,7 +89,11 @@
         66.0
       ],
       "confidence": "well_documented",
-      "status": "roster"
+      "status": "roster",
+      "stage": {
+        "x": 0.078,
+        "plane": "mid"
+      }
     },
     {
       "id": "CR05",
@@ -94,7 +111,11 @@
       "confidence": "reasonable_inference",
       "status": "roster",
       "needsRefs": true,
-      "swapReason": "replaces Pteranodon (86 Ma, out of interval); large feathered Hell Creek dromaeosaur."
+      "swapReason": "replaces Pteranodon (86 Ma, out of interval); large feathered Hell Creek dromaeosaur.",
+      "stage": {
+        "x": 0.258,
+        "plane": "fg"
+      }
     },
     {
       "id": "CR06",
@@ -110,7 +131,11 @@
         66.0
       ],
       "confidence": "reasonable_inference",
-      "status": "roster"
+      "status": "roster",
+      "stage": {
+        "x": 0.545,
+        "plane": "air"
+      }
     },
     {
       "id": "CR07",
@@ -128,7 +153,11 @@
       "confidence": "reasonable_inference",
       "status": "roster",
       "needsRefs": true,
-      "swapReason": "replaces Struthiomimus (Campanian); the Hell Creek ornithomimid."
+      "swapReason": "replaces Struthiomimus (Campanian); the Hell Creek ornithomimid.",
+      "stage": {
+        "x": 0.402,
+        "plane": "far"
+      }
     },
     {
       "id": "CR08",
@@ -145,7 +174,11 @@
       ],
       "confidence": "reasonable_inference",
       "status": "roster",
-      "notes": "'Dracorex' and 'Stygimoloch' are now regarded as juveniles of this taxon."
+      "notes": "'Dracorex' and 'Stygimoloch' are now regarded as juveniles of this taxon.",
+      "stage": {
+        "x": 0.196,
+        "plane": "far"
+      }
     },
     {
       "id": "CR09",
@@ -161,7 +194,11 @@
         66.0
       ],
       "confidence": "reasonable_inference",
-      "status": "roster"
+      "status": "roster",
+      "stage": {
+        "x": 0.152,
+        "plane": "soil"
+      }
     },
     {
       "id": "CR10",
@@ -177,7 +214,11 @@
         66.0
       ],
       "confidence": "reasonable_inference",
-      "status": "roster"
+      "status": "roster",
+      "stage": {
+        "x": 0.238,
+        "plane": "soil"
+      }
     },
     {
       "id": "CR11",
@@ -195,7 +236,11 @@
       "confidence": "speculative",
       "status": "roster",
       "pose": "a plump C-curved pale grub lying on its side, three-quarter view, body segments, head capsule and three pairs of small thoracic legs clearly shown",
-      "surface": "cleanly detailed soft translucent cuticle and segmentation"
+      "surface": "cleanly detailed soft translucent cuticle and segmentation",
+      "stage": {
+        "x": 0.058,
+        "plane": "macro"
+      }
     },
     {
       "id": "CR12",
@@ -212,7 +257,11 @@
       ],
       "confidence": "reasonable_inference",
       "status": "roster",
-      "pose": "full lateral profile, all six legs planted, elbowed antennae, narrow waist and petiole clearly shown, mandibles visible"
+      "pose": "full lateral profile, all six legs planted, elbowed antennae, narrow waist and petiole clearly shown, mandibles visible",
+      "stage": {
+        "x": 0.128,
+        "plane": "macro"
+      }
     },
     {
       "id": "CR13",
@@ -232,7 +281,11 @@
       "pose": "a long soft-bodied annelid worm laid out in a gentle S-curve, full length from mouth to tail, fine ring segmentation and the raised clitellum clearly shown",
       "complete": "the entire length of the worm from end to end within the frame",
       "surface": "cleanly detailed moist ringed cuticle",
-      "ar": "3:2"
+      "ar": "3:2",
+      "stage": {
+        "x": 0.196,
+        "plane": "macro"
+      }
     },
     {
       "id": "CR14",
@@ -249,7 +302,11 @@
       ],
       "confidence": "speculative",
       "status": "roster",
-      "pose": "a stout pale burrowing nymph in three-quarter view, enlarged raptorial digging forelegs and stubby wing buds clearly shown"
+      "pose": "a stout pale burrowing nymph in three-quarter view, enlarged raptorial digging forelegs and stubby wing buds clearly shown",
+      "stage": {
+        "x": 0.222,
+        "plane": "macro"
+      }
     },
     {
       "id": "CR15",
@@ -259,7 +316,7 @@
       "scientificName": "Dinosaur egg clutch",
       "type": "land_animal",
       "size": "17 cm egg",
-      "diet": "—",
+      "diet": "\u2014",
       "ageRange_Ma": [
         72.0,
         66.0
@@ -271,7 +328,11 @@
       "complete": "the whole clutch and the full nest bowl within the frame",
       "surface": "cleanly detailed pebbled and pitted eggshell texture",
       "recon": "accurate scientific reconstruction",
-      "ar": "1:1"
+      "ar": "1:1",
+      "stage": {
+        "x": 0.332,
+        "plane": "soil"
+      }
     },
     {
       "id": "CR16",
@@ -291,7 +352,11 @@
       "pose": "a fine branching network of pale fungal hyphae threading through soil and sheathing a plant root tip, delicate filaments radiating outward, microscopic view",
       "complete": "the whole root tip and the surrounding hyphal network visible",
       "surface": "cleanly detailed translucent filament texture",
-      "ar": "1:1"
+      "ar": "1:1",
+      "stage": {
+        "x": 0.075,
+        "plane": "soil"
+      }
     },
     {
       "id": "CR17",
@@ -314,7 +379,11 @@
       "pose": "full lateral three-quarter view, low-slung crocodilian sprawl on four splayed legs, long armoured tail extended straight behind, jaws slightly parted",
       "complete": "full body, all four legs, every foot and the entire tail visible",
       "surface": "cleanly detailed osteoderm-armoured scaly hide",
-      "ar": "3:2"
+      "ar": "3:2",
+      "stage": {
+        "x": 0.535,
+        "plane": "shore"
+      }
     },
     {
       "id": "CR18",
@@ -337,7 +406,11 @@
       "pose": "three-quarter view from slightly above, walking on four sturdy elephantine feet, low domed sculptured shell, head and neck extended forward",
       "complete": "the whole shell, all four limbs, the head and the tail visible",
       "surface": "cleanly detailed sculptured shell scutes and coarse scaly skin",
-      "ar": "3:2"
+      "ar": "3:2",
+      "stage": {
+        "x": 0.492,
+        "plane": "shore"
+      }
     },
     {
       "id": "CR19",
@@ -355,7 +428,11 @@
       "confidence": "well_documented",
       "status": "roster",
       "needsRefs": true,
-      "swapReason": "replaces Hesperornis; Hell Creek gar — a 'still with us today' survivor for the web panel."
+      "swapReason": "replaces Hesperornis; Hell Creek gar \u2014 a 'still with us today' survivor for the web panel.",
+      "stage": {
+        "x": 0.612,
+        "plane": "shore"
+      }
     },
     {
       "id": "CR20",
@@ -377,7 +454,11 @@
       "pose": "seen from directly above in flat dorsal view, broad flattened pectoral disc spread wide, blunt rounded snout, long slender tail extended straight behind",
       "complete": "whole body, the full pectoral disc, both pelvic fins and the entire tail visible",
       "surface": "cleanly detailed shagreen skin and fine denticles",
-      "ar": "2:3"
+      "ar": "2:3",
+      "stage": {
+        "x": 0.648,
+        "plane": "shore"
+      }
     },
     {
       "id": "CR21",
@@ -398,7 +479,11 @@
       "pose": "full lateral view, very long narrow gharial-like snout, four sprawling legs, long tapering tail, mid-swim just beneath the surface",
       "complete": "full body, all four limbs, the whole snout and the entire tail visible",
       "surface": "cleanly detailed fine scaly skin",
-      "ar": "3:2"
+      "ar": "3:2",
+      "stage": {
+        "x": 0.572,
+        "plane": "shore"
+      }
     },
     {
       "id": "CR22",
@@ -416,7 +501,11 @@
       "confidence": "speculative",
       "status": "roster",
       "needsRefs": true,
-      "swapReason": "replaces Protostega (Campanian); large Hell Creek monitor-grade lizard, shore predator."
+      "swapReason": "replaces Protostega (Campanian); large Hell Creek monitor-grade lizard, shore predator.",
+      "stage": {
+        "x": 0.452,
+        "plane": "fg"
+      }
     },
     {
       "id": "CR23",
@@ -437,7 +526,11 @@
       "pose": "seen from directly above in dorsal view, domed horseshoe-shaped carapace, hinged rear abdomen with marginal spines, long straight tail spine fully extended",
       "complete": "the whole animal from the front of the carapace to the tip of the tail spine",
       "surface": "cleanly detailed hard chitinous carapace",
-      "ar": "2:3"
+      "ar": "2:3",
+      "stage": {
+        "x": 0.668,
+        "plane": "shore"
+      }
     },
     {
       "id": "CR24",
@@ -458,7 +551,11 @@
       "pose": "a long straight slender tapering conical ammonite shell held horizontally, the soft-bodied cephalopod head and short tentacles emerging from the wide open aperture",
       "complete": "the entire shell from pointed apex to aperture plus the whole head and tentacles",
       "surface": "cleanly detailed nacreous shell with fine growth ribs and suture lines",
-      "ar": "3:2"
+      "ar": "3:2",
+      "stage": {
+        "x": 0.702,
+        "plane": "shelf"
+      }
     },
     {
       "id": "CR25",
@@ -474,7 +571,11 @@
         66.0
       ],
       "confidence": "well_documented",
-      "status": "roster"
+      "status": "roster",
+      "stage": {
+        "x": 0.815,
+        "plane": "deep"
+      }
     },
     {
       "id": "CR26",
@@ -492,7 +593,11 @@
       "confidence": "reasonable_inference",
       "status": "roster",
       "needsRefs": true,
-      "swapReason": "replaces Elasmosaurus (Campanian; Seaway retreated by 66 Ma); large durophagous Maastrichtian mosasaur, coexisted with Mosasaurus."
+      "swapReason": "replaces Elasmosaurus (Campanian; Seaway retreated by 66 Ma); large durophagous Maastrichtian mosasaur, coexisted with Mosasaurus.",
+      "stage": {
+        "x": 0.662,
+        "plane": "deep"
+      }
     },
     {
       "id": "CR27",
@@ -509,7 +614,11 @@
       ],
       "confidence": "well_documented",
       "status": "roster",
-      "notes": "range extends to ~66 Ma; borderline, kept."
+      "notes": "range extends to ~66 Ma; borderline, kept.",
+      "stage": {
+        "x": 0.905,
+        "plane": "shelf"
+      }
     },
     {
       "id": "CR28",
@@ -525,7 +634,11 @@
         66.0
       ],
       "confidence": "well_documented",
-      "status": "roster"
+      "status": "roster",
+      "stage": {
+        "x": 0.758,
+        "plane": "shelf"
+      }
     },
     {
       "id": "CR29",
@@ -541,7 +654,11 @@
         66.0
       ],
       "confidence": "reasonable_inference",
-      "status": "roster"
+      "status": "roster",
+      "stage": {
+        "x": 0.948,
+        "plane": "deep"
+      }
     },
     {
       "id": "CR30",
@@ -563,7 +680,11 @@
       "pose": "squid-like cephalopod in full lateral view, streamlined mantle tapering to a pointed internal guard at the rear, ten arms bearing small hooks extended forward, mid-swim",
       "complete": "the whole animal from arm tips to the pointed tail guard visible",
       "surface": "cleanly detailed smooth mantle, fins and arm hooks",
-      "ar": "3:2"
+      "ar": "3:2",
+      "stage": {
+        "x": 0.688,
+        "plane": "shelf"
+      }
     },
     {
       "id": "CR31",
@@ -584,7 +705,11 @@
       "pose": "a single large thick-shelled bivalve resting slightly agape, three-quarter angle showing the strongly concentric ribbed shell, the growth rings and the straight hinge",
       "complete": "the whole shell, both valves and the hinge within the frame",
       "surface": "cleanly detailed heavy concentric shell ribbing and prismatic nacre",
-      "ar": "1:1"
+      "ar": "1:1",
+      "stage": {
+        "x": 0.722,
+        "plane": "abyss"
+      }
     },
     {
       "id": "CR32",
@@ -605,7 +730,11 @@
       "pose": "a stalked sea lily anchored upright, long segmented stalk topped by a small cup and a crown of feathery arms fanned open for filter feeding",
       "complete": "the whole organism from root-like holdfast through the stalk to every feathery arm tip",
       "surface": "cleanly detailed calcite plating and fine feathery pinnules",
-      "ar": "2:3"
+      "ar": "2:3",
+      "stage": {
+        "x": 0.878,
+        "plane": "abyss"
+      }
     }
   ]
 }

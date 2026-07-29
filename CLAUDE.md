@@ -15,6 +15,7 @@ This is the *index file*. It points at five domains, each with its own CLAUDE.md
 | [`tools/`](./tools/CLAUDE.md) | (shared infra) | Gallery sync watcher pipeline: `sync_gallery.py`, `sync_and_deploy.sh`, `install_watcher.sh`. |
 | [`printify/`](./printify/CLAUDE.md) | `printify-publisher` | Printify → Etsy product publishing pipeline. |
 | [`site/`](./site/CLAUDE.md) | `site-custodian` | Astro frontend at jurassinkart.com. |
+| [`living_past/`](./living_past/SCOPE.md) 🏛 | (none yet) | **The Living Past** — the 7-volume cross-section poster series. Its own product line, deliberately **outside** the gallery pipeline below. |
 
 ## Cross-domain contracts
 
@@ -36,6 +37,24 @@ Every handoff is a **file or DB row**, never a Python import across domains.
 - `printify/printify_publisher.py` reads `site/src/data/products.json` + gallery images → writes `printify/printify_ledger.json`
 - `site/` reads `printify/printify_ledger.json` to deep-link Buy buttons
 - `db/dino_art.db` is shared SQLite; one agent owns writes per table
+
+## The Living Past is not part of the gallery pipeline
+
+Eric, 2026-07-29: *"we just need to save this poster as its own series, its not like the bulk other
+posters we fly through."*
+
+Everything above is a **throughput** pipeline: drop an image in a gallery folder, a watcher syncs
+it, Printify drafts it, Vercel ships it — many images, each cheap. `living_past/` is the opposite:
+one poster is months of work, 32 individually-composited organisms, and a plate assembled slot by
+slot. Running it through the same machinery would be actively wrong — `sync_gallery.py` would strip
+its metadata and `printify_publisher.py` would draft a 2.3:1 panoramic as if it were a 3:2 print.
+
+So it is wired to nothing:
+- **No watcher touches it.** All four launchd agents watch `site/` only — verified 2026-07-29.
+- **Nothing in `site/` or `printify/` reads from it**, and it reads from neither.
+- Its own build chain is self-contained: `tools/build_backdrop.py` →
+  `living_past/plates/backdrop_vN.png` → `_scene_live.png` → `poster_mockup_live.html`.
+- When a volume is ready to sell, that is a **deliberate, manual** hand-off — not an automatic one.
 
 ## Migration status
 

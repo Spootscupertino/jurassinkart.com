@@ -58,10 +58,97 @@ It also flagged `treeline` and `drop_off` as decorative — nothing in the roste
 | River margin close-up | MJ — `--group river` | wired, **to shoot** |
 | Burrow cutaway + occupant chamber | MJ — `--group burrow` | wired, **to shoot** |
 | Underwater passes ×3 (algae / shells / snow) | MJ — `--group ocean` | wired, **to shoot** |
-| Macro window (rule + overflow) | code — `build_backdrop.py`, `MACRO_WIN` | **have** |
+| Macro windows ×2 + registration ticks | code — `build_backdrop.py`, `MACRO_WINS` | **have** |
+| **Seafloor: shelf → break → abyssal plain** | **code** — `build_backdrop.py`, `SEAFLOOR` | **have** |
+| Receding drop-off | MJ — `ocean_shelf_recede` | wired, **to shoot** |
+| Squall cell | MJ — `sky_squall_cell` | wired, **to shoot** (code stand-in) |
+| Left bench (mid-distance terrace) | MJ — `land_left_bench` | wired, **to shoot** |
+| Macro insect swarm | MJ — `air_insect_swarm` | wired, **to shoot** |
+| Air traffic (distant azhdarchids) | code — `build_backdrop.py`, `pterosaur()` | **have** |
 
 The strata row is the moat. MJ must never invent layer order or thickness; it only supplies the
 per-lithology texture tiles listed in `geology_hellcreek.json → mjTexture`.
+
+## Status — `backdrop_v5` (2026-07-29) — the ten criticisms
+
+Built by the same `tools/build_backdrop.py`. Every one of the 2026-07-28 criticisms is addressed in
+code; four of them additionally want a plate that is now written and wired (see the slot table).
+
+**#1 The strata were ruled bars.** `render_strata_organic.py` was rewritten. The first pass had
+fixed the *texture* and left the *geometry* alone — eleven full-width bands of constant thickness —
+and no texture rescues that, because what the eye reads as "drawn" is the parallel constant-thickness
+stripe, not the pixels inside it. Now: per-column **pinch and swell** (channels get the most, marker
+beds the least, and column totals renormalise so a swell here thins a bed there); **one shared
+structural roll plus regional dip**, because real beds roll together rather than waving
+independently; **a normal fault** with drag; **differential weathering** driven by a per-lithology
+`RESIST` table, lit from the upper right so sandstones stand as ledges and the bentonite cuts back
+into a shadowed notch — which is how you find the ash bed in the field, so the recession is
+accuracy; **talus** shed by every soft bed, draping over and interrupting the contacts below;
+**six gullies**, the only feature that crosses contacts; and **two ravines that cut clean through**,
+returned in the ribbon's own alpha, so the section is spurs rather than a band. A band with holes in
+it cannot read as a bar.
+
+**#2 The ocean was a wall.** Two causes, and the second one is the lesson. First, the coastline ran
+straight down the frame — `organic_mask` gained a `tilt` so the shore leans and its plan position
+changes with distance. Second and much larger: **`ocean_shelf_dropoff.png` is itself a sheer wall
+seen head-on.** No mask, grade or feather turns that into a receding shelf, because the geometry is
+in the pixels — which is the harvesting thesis restated as a warning. The build now takes only the
+sunlit shallows out of that render and builds the drop-off in code: `SEAFLOOR` runs a profile from
+the shore across a shelf, over a break, down a slope and out onto an abyssal plain, textured from
+the same Fox Hills and Pierre tiles the cutaway uses (the section already said those beds continue
+offshore) and seen through depth-dependent water absorption. The void is deep because you can watch
+the floor fall away into it.
+
+**#3 The cast stacked in one band.** Placement is now data: every organism carries
+`stage: {x, plane}` in `volume_v.json`, reviewable exactly like the roster. `place_on_backdrop.py`
+reads it, and grew six planes beyond the original three — `air`, `shore`, `shelf`, `deep`, `abyss`,
+`soil`, `macro` — because an ocean animal has no ground line and a 1 cm ant has no legible size on
+any land plane. Ground planes get a contact shadow; swimming and flying ones do not.
+
+**#4 The macro window had no answer.** There are two windows now, deliberately unequal, both
+breaking their frame at the top edge — same grammar, different sentence — plus **brass registration
+ticks at the four corners**, so the ruled line is established as the poster's vocabulary before
+either window uses it. The windows also gained a *function*: the four cm-scale organisms are staged
+on the `macro` plane, inside the big one. The window is where they live.
+
+**#5 / #9 The left third was empty; one light, one hour.** Same hole, same fix: a **rain cell** over
+the mid-left plain — dark base, leaning curtain of fallout, the ground beneath robbed of the warm
+key, and a lit gap immediately to its right to read against. The world grade also stopped being a
+pure vertical ramp, which is not a key light at all; it now falls off across the frame as well as
+down it, so the far left is genuinely in the blue end of the evening.
+
+**#6 Nothing in the air.** Eleven azhdarchid silhouettes, drawn not harvested (`pterosaur()`).
+At 20–90 px an MJ plate spends a thousand pixels on something the viewer resolves as a shape, and
+MJ's pterosaurs are wrong in exactly the ways this project exists to avoid — a silhouette can be
+*right*: long narrow wings cranked forward at the wrist, neck as long as the body, stub tail. They
+are weighted left, so they also work on #5.
+
+**#7 The volcano competed with the T. rex.** What puts a landmark behind a subject is not size, it
+is air — distance eats contrast long before it eats scale. The cone is composited through the same
+aerial perspective the far plain gets (`VOLCANO_HAZE`, `VOLCANO_FLATTEN`) and only slightly trimmed.
+
+**#8 The title sat on the busiest sky.** It moves to the top-left indigo and the plate meets it
+halfway with a soft, off-centre darkening where the type lands, so legibility comes from the art
+rather than a drop shadow. The asteroid whisper moved right and down to share that corner
+deliberately rather than collide with the words.
+
+**#10 The field guide was inert.** `poster_mockup_live.html`: every entry now carries its **type
+glyph** from `glyphs.svg` (the set has mapped 1:1 onto the roster's `type` field since 2026-07-09
+and was never used) — 32 varying marks instead of 32 identical grey squares, for no new art. Each
+section leads with its position-1 organism in a double-height cell, which drops two of the three
+hero anchors out for free. Column heads carry the section's documented count, so the confidence dots
+resolve into a statistic. The per-item QR stays (SCOPE §8) but drops in contrast.
+
+### Two traps worth keeping
+
+> **A source plate's geometry cannot be masked away.** `ocean_shelf_dropoff` was a beautiful render
+> of the wrong thing, and three sessions of feathering it were three sessions of trying to fix
+> composition with alpha. Harvest the region it nailed; build the geometry it missed.
+
+> **`noise()` is isotropic and cannot make rain.** It is built from square grids, so asking it for
+> vertical streaks returns speckle that composites as sensor grain. Falling water is white noise
+> across the wind and correlated along the fall — one row of noise smeared down the frame, then
+> sheared. Any anisotropic feature (rain, rills, fibres, grain) needs the same treatment.
 
 ## Status — `backdrop_v4` (2026-07-28)
 

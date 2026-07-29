@@ -1,0 +1,78 @@
+<meta charset="utf-8">
+<title>The Living Past — plate viewer</title>
+<style>
+  :root{ --ui:#c9a35c; }
+  *{ box-sizing:border-box; }
+  html,body{ height:100%; }
+  body{ margin:0; background:#07080a; color:#e6dcc2; overflow:hidden;
+        font-family:"Optima","Avenir Next",sans-serif; }
+
+  /* The plate is the whole page. `contain` so nothing is ever cropped without being asked —
+     judging a 2.3:1 composition on a silently cropped view is judging a different picture. */
+  .stage{ position:fixed; inset:0; display:grid; place-items:center; }
+  .stage img{ max-width:100%; max-height:100%; width:auto; height:auto; display:block;
+              image-rendering:auto; }
+  body.zoom .stage{ place-items:start; overflow:auto; }
+  body.zoom .stage img{ max-width:none; max-height:none; width:auto; height:auto; }
+
+  /* Chrome fades out after a moment and on any keypress, so it never colours your read of the
+     plate. Move the mouse to bring it back. */
+  .bar{ position:fixed; left:0; right:0; bottom:0; padding:14px 20px;
+        display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+        background:linear-gradient(180deg,#0000,#000000d0); transition:opacity .35s; }
+  body.hide .bar{ opacity:0; pointer-events:none; }
+  .name{ font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--ui); }
+  .keys{ font-size:11px; color:#8a7c60; letter-spacing:.10em; }
+  .keys b{ color:#cdbf9f; font-weight:600; }
+  button{ font:inherit; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+          background:#0d0f10; color:#cdbf9f; border:1px solid #b98f4e55; padding:7px 13px;
+          cursor:pointer; }
+  button.on{ background:#b98f4e; color:#14120c; border-color:#b98f4e; }
+  .spacer{ flex:1; }
+</style>
+
+<div class="stage"><img id="plate" alt="Living Past plate"></div>
+
+<div class="bar">
+  <span class="name" id="label"></span>
+  <button id="btnA">v7 · now</button>
+  <button id="btnB">v4 · before</button>
+  <button id="btnPoster">poster</button>
+  <span class="spacer"></span>
+  <span class="keys"><b>F</b> fullscreen · <b>SPACE</b> hold to compare · <b>Z</b> 1:1 · <b>H</b> hide UI</span>
+</div>
+
+<script>
+const A = { src:'plates/backdrop_v7.png', name:'backdrop v7 — ten plates, four windows' };
+const B = { src:'plates/backdrop_v4.png', name:'backdrop v4 — before this session' };
+const img = document.getElementById('plate'), label = document.getElementById('label');
+let cur = A;
+
+function show(v){ cur = v; img.src = v.src; label.textContent = v.name;
+  btnA.classList.toggle('on', v===A); btnB.classList.toggle('on', v===B); }
+
+btnA.onclick = ()=>show(A);
+btnB.onclick = ()=>show(B);
+btnPoster.onclick = ()=>location.href = 'poster_mockup_live.html?only=1';
+
+// Hold SPACE to flip to the old plate and release to come back. A/B by holding beats A/B by
+// clicking: the eye compares two states far better across ~200 ms than across a deliberate click,
+// and you keep your attention on the same part of the frame instead of on the button.
+let held = false;
+addEventListener('keydown', e=>{
+  if(e.code==='Space'){ e.preventDefault(); if(!held){ held=true; const k=cur; show(k===A?B:A); cur=k; } return; }
+  const k = e.key.toLowerCase();
+  if(k==='f'){ document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen(); }
+  if(k==='z'){ document.body.classList.toggle('zoom'); }
+  if(k==='h'){ document.body.classList.toggle('hide'); }
+  if(k==='1'){ show(A); } if(k==='2'){ show(B); }
+});
+addEventListener('keyup', e=>{ if(e.code==='Space'){ held=false; show(cur); } });
+
+// idle-hide the chrome
+let t; const idle = ()=>{ document.body.classList.remove('hide');
+  clearTimeout(t); t=setTimeout(()=>document.body.classList.add('hide'), 2600); };
+addEventListener('mousemove', idle); idle();
+
+show(A);
+</script>

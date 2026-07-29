@@ -4,7 +4,7 @@
   @font-face{ font-family:"Cinzel"; src:url("fonts/Cinzel-SemiBold.ttf") format("truetype"); font-weight:600; }
   @font-face{ font-family:"EB Garamond"; src:url("fonts/EBGaramond-Regular.ttf") format("truetype"); font-weight:400; font-style:normal; }
   @font-face{ font-family:"EB Garamond"; src:url("fonts/EBGaramond-Italic.ttf") format("truetype"); font-weight:400; font-style:italic; }
-  :root{ --bg:#14120c; --sub:#9A9078; }
+  :root{ --bg:#14120c; --sub:#9A9078; --ground:#1a1912; }
   *{ box-sizing:border-box; } body{ margin:0; background:var(--bg); }
   .cap{ width:min(1180px,96vw); margin:22px auto 8px; font-family:"Optima",sans-serif; color:var(--sub); }
   .cap .eyebrow{ font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:#c9a35c; }
@@ -14,35 +14,67 @@
   .poster{
     width:min(1180px,96vw); margin:0 auto 40px; aspect-ratio:3/2; container-type:inline-size;
     background:#0b0d0e; box-shadow:0 30px 70px -20px #000a, 0 4px 14px #0006;
-    display:grid; grid-template-rows:65% 21% 10% 4%; overflow:hidden; color:#EDE3CE; position:relative;
+    display:grid; grid-template-rows:69% 17% 10% 4%; overflow:hidden; color:#EDE3CE; position:relative;
     font-family:"Optima","Avenir Next",sans-serif; border:1px solid #00000060;
   }
   /* SCENE = the real composited plate */
   .scene{ position:relative; overflow:hidden; }
   .scene img{ width:100%; height:100%; object-fit:cover; display:block; }
-  .titleover{ position:absolute; inset:2.2cqw 2.6cqw auto auto; text-align:right; pointer-events:none; }
-  .titleover .place{ font-family:"Cinzel",serif; font-weight:600; font-size:1.85cqw; letter-spacing:.14em; color:#f6ecd4; line-height:1; text-shadow:0 2px 8px #0009; }
-  .titleover .when{ font-family:"Optima",sans-serif; font-size:.9cqw; letter-spacing:.26em; text-transform:uppercase; color:#e6d3a8; margin-top:.5cqw; text-shadow:0 1px 4px #0008; }
+  /* Criticism #8 was that the title sat on the busiest sky and survived on a drop shadow. The fix
+     is the DARKENED PATCH the plate now carries under it (build_backdrop.py §4g), not the corner
+     itself — so when the volcano moved to the left corner on 2026-07-29 the type simply follows
+     the patch back to the right. That corner is defensible again for the same reason it was bad
+     before: the ash plume is what made it busy, and the plume left with the cone. */
+  .titleover{ position:absolute; inset:2.4cqw 2.8cqw auto auto; text-align:right; pointer-events:none; }
+  .titleover .place{ font-family:"Cinzel",serif; font-weight:600; font-size:1.85cqw; letter-spacing:.14em; color:#f6ecd4; line-height:1; text-shadow:0 1px 3px #0006; }
+  .titleover .when{ font-family:"Optima",sans-serif; font-size:.9cqw; letter-spacing:.26em; text-transform:uppercase; color:#e6d3a8; margin-top:.5cqw; text-shadow:0 1px 2px #0005; }
+  .titleover .rule{ width:6.2cqw; height:1px; background:linear-gradient(270deg,#b98f4e,transparent); margin-top:.75cqw; margin-left:auto; }
 
   .ground{ background:linear-gradient(90deg,#241A10 0%, #1a1912 46%, #0d1a20 62%, #08151C 100%); }
 
-  /* FIELD GUIDE */
-  .guide{ padding:.7cqw 2.0cqw .5cqw; display:grid; grid-template-columns:repeat(4,1fr); gap:2.2cqw; min-height:0; position:relative; z-index:2; }
+  /* FIELD GUIDE — criticism #10.
+     32 identical rows with placeholder thumbnails is a spreadsheet, and it is the half of the
+     poster a buyer actually reads. Four things change, and all four are data-driven rather than
+     decorative:
+       1. Every entry gets its TYPE GLYPH from glyphs.svg — the set has been sitting there since
+          2026-07-09 and maps 1:1 onto the roster's `type` field. 32 varying marks instead of 32
+          identical grey squares is the single biggest difference, and it costs no new art.
+       2. All 32 rows stay UNIFORM and the band shrank 21%->17% of the poster. An earlier pass
+          gave each section a double-height lead cell; that bought variety with poster, which is
+          the wrong currency — the band is the sacrifice zone and the scene is the product.
+       3. The confidence dots become signal instead of ornament — the column head carries the
+          section's documented count, so the dots resolve into a statistic you can read at a
+          glance rather than 32 unrelated pips.
+       4. The QR stays on every entry (SCOPE §8: per-item codes are the product) but drops in
+          contrast, so it stops being the loudest thing in a row about an animal. */
+  .guide{ padding:.5cqw 2.0cqw .35cqw; display:grid; grid-template-columns:repeat(4,1fr); gap:1.9cqw; min-height:0; position:relative; z-index:2; }
   .col{ display:flex; flex-direction:column; min-height:0; }
-  .colhead{ display:flex; align-items:center; gap:.5cqw; margin-bottom:.15cqw; }
-  .colhead span{ font-family:"Cinzel",serif; font-weight:600; font-size:.66cqw; letter-spacing:.2em; text-transform:uppercase; color:#d8b57a; white-space:nowrap; }
-  .colhead .ln{ flex:1; height:1px; background:linear-gradient(90deg,#b98f4e88,transparent); }
+  .colhead{ display:flex; align-items:baseline; gap:.5cqw; margin-bottom:.15cqw; }
+  .colhead span.nm{ font-family:"Cinzel",serif; font-weight:600; font-size:.66cqw; letter-spacing:.2em; text-transform:uppercase; color:#d8b57a; white-space:nowrap; }
+  .colhead .ln{ flex:1; height:1px; background:linear-gradient(90deg,#b98f4e88,transparent); align-self:center; }
+  .colhead .cnt{ font-family:"Optima",sans-serif; font-size:.44cqw; letter-spacing:.14em; text-transform:uppercase; color:#8a7c60; white-space:nowrap; }
   .entries{ flex:1; display:flex; flex-direction:column; min-height:0; }
-  .entry{ flex:1; min-height:0; display:grid; grid-template-columns:1.0cqw 1.7cqw 1fr auto 1.5cqw; align-items:center; gap:.4cqw; border-top:1px solid #ffffff0d; }
-  .entry .num{ font-family:"Cinzel",serif; font-weight:600; font-size:.78cqw; color:#d8b57a; line-height:1; }
-  .entry .ethumb{ width:1.7cqw; height:1.7cqw; border-radius:1px; border:1px solid #ffffff12; background:linear-gradient(160deg,#3b4a3a,#26302a); }
-  .entry .ecn{ font-family:"EB Garamond",serif; font-style:italic; font-size:.66cqw; color:#f0e7d2; line-height:1.05; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .entry .emeta{ font-family:"Optima",sans-serif; font-size:.46cqw; color:#a99c7f; line-height:1.1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .entry .dot{ width:.6cqw; height:.6cqw; border-radius:50%; border:1px solid #b98f4e; }
+  .glyph{ fill:#cdb182; }
+
+  .entry{ flex:1; min-height:0; display:grid; grid-template-columns:.92cqw 1.30cqw 1fr auto 1.40cqw; align-items:center; gap:.34cqw; border-top:1px solid #ffffff0d; }
+  .entry .num{ font-family:"Cinzel",serif; font-weight:600; font-size:.66cqw; color:#d8b57a; line-height:1; }
+  .entry .ethumb{ width:1.30cqw; height:1.30cqw; display:block; }
+  .entry .ecn{ font-family:"EB Garamond",serif; font-style:italic; font-size:.60cqw; color:#f0e7d2; line-height:1.05; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .entry .emeta{ font-family:"Optima",sans-serif; font-size:.42cqw; color:#a99c7f; line-height:1.1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .entry .dot{ width:.52cqw; height:.52cqw; border-radius:50%; border:1px solid #b98f4e; }
   .dot.well_documented{ background:#b98f4e; }
   .dot.reasonable_inference{ background:linear-gradient(90deg,#b98f4e 50%, transparent 50%); }
   .dot.speculative{ background:transparent; }
-  .entry .eqr{ width:1.5cqw; height:1.5cqw; border:1px solid #b98f4e55; padding:.06cqw; background:#0d0f10; }
+  .entry .eqr{ width:1.40cqw; height:1.40cqw; border:1px solid #b98f4e33; padding:.05cqw; background:#0d0f10; opacity:.78; }
+
+  /* Eric, 2026-07-29: no lead cells. All 32 entries uniform, and the whole band as small as it
+     can be while the QR still scans.
+     That reverses this morning's fix for criticism #10, and he is right on the constraint I got
+     wrong: I made the guide less inert by spending POSTER on it, when the band is the sacrifice
+     zone (SCOPE §3) and the scene is the product. The variety now comes entirely from the type
+     glyphs, which cost no height at all. Row height is therefore set BY the QR — SCOPE §8 locks it
+     at ~0.5in, and at a 36in print 1cqw = 0.36in, so 1.40cqw = 0.50in exactly. Everything else in
+     the row sizes around that number rather than the other way round. */
 
   /* FACTS BAND */
   .facts{ display:flex; align-items:stretch; padding:.8cqw 2.0cqw; border-top:1px solid #b98f4e44; position:relative; z-index:2; }
@@ -72,7 +104,17 @@
   body.only .cap{ display:none; }
   body.only .poster{ width:100vw; margin:0; box-shadow:none; border:none; }
 </style>
-<script>if(location.search.includes('only'))document.addEventListener('DOMContentLoaded',()=>document.body.classList.add('only'));</script>
+<script>
+if(location.search.includes('only'))document.addEventListener('DOMContentLoaded',()=>document.body.classList.add('only'));
+// F for true fullscreen, and it implies full-bleed: judging a poster inside a browser chrome with
+// a caption above it is judging a web page. Escape exits, as browsers already guarantee.
+addEventListener('keydown', e=>{
+  if(e.key.toLowerCase()!=='f') return;
+  if(document.fullscreenElement){ document.exitFullscreen(); return; }
+  document.body.classList.add('only');
+  document.documentElement.requestFullscreen();
+});
+</script>
 
 <div class="cap">
   <div class="eyebrow">The Living Past · Vol V · full poster mockup (real scene + real fonts)</div>
@@ -86,6 +128,7 @@
     <div class="titleover">
       <div class="place">LATE CRETACEOUS</div>
       <div class="when">66 million years ago</div>
+      <div class="rule"></div>
     </div>
   </div>
 
@@ -144,6 +187,11 @@
 
 <script>
   const SECTIONS = { above:"Above Ground", underground:"Underground", shoreline:"Shoreline", ocean:"Ocean" };
+  // `<use href="#g-land">` only resolves against symbols in the SAME document, so the locked glyph
+  // sheet has to be inlined rather than linked. Injected at the top of <body> where it is inert
+  // (the file's own <svg> is width/height 0).
+  fetch('glyphs.svg').then(r=>r.text())
+    .then(t=>document.body.insertAdjacentHTML('afterbegin', t.replace(/<\?xml[^>]*\?>/, '')));
   function qr(el){
     let r="",s=42;
     for(let y=0;y<12;y++)for(let x=0;x<12;x++){s=(s*1103515245+12345)&0x7fffffff;if((s>>7)&1)r+=`<rect x="${x*8+2}" y="${y*8+2}" width="7" height="7" fill="#d8b57a"/>`;}
@@ -152,23 +200,32 @@
       `<rect x="76" y="2" width="22" height="22" fill="none" stroke="#d8b57a" stroke-width="4"/>`+
       `<rect x="2" y="76" width="22" height="22" fill="none" stroke="#d8b57a" stroke-width="4"/></svg>`;
   }
+  // roster `type` maps 1:1 onto the glyph symbols locked in glyphs.svg (2026-07-09)
+  const GLYPH={ land_animal:'g-land', flying_reptile:'g-fly', marine_reptile:'g-marine',
+                fish:'g-fish', invertebrate:'g-invert', plant:'g-plant', mammal:'g-mammal' };
+  const g=(o,lead)=>`<svg class="ethumb" viewBox="0 0 48 48" aria-hidden="true">`+
+    `<use href="#${GLYPH[o.type]||'g-invert'}" class="glyph${lead?' lead':''}"/></svg>`;
+
   fetch('volume_v.json').then(r=>r.json()).then(data=>{
     const guide=document.getElementById('guide');
     const bySec={above:[],underground:[],shoreline:[],ocean:[]};
     data.organisms.forEach(o=>bySec[o.section].push(o));
     for(const key of ['above','underground','shoreline','ocean']){
+      const list=bySec[key].sort((a,b)=>a.position-b.position);
+      const doc=list.filter(o=>o.confidence==='well_documented').length;
       const col=document.createElement('div'); col.className='col';
-      col.innerHTML=`<div class="colhead"><span>${SECTIONS[key]}</span><div class="ln"></div></div>`;
+      col.innerHTML=`<div class="colhead"><span class="nm">${SECTIONS[key]}</span>`+
+        `<div class="ln"></div><span class="cnt">${list.length} · ${doc} documented</span></div>`;
       const ents=document.createElement('div'); ents.className='entries';
-      for(const o of bySec[key]){
+      list.forEach((o,i)=>{
         const num=o.id.replace(/^\D+/,'');
         const meta=`${o.size} · ${o.diet}`;
         const e=document.createElement('div'); e.className='entry';
-        e.innerHTML=`<span class="num">${num}</span><div class="ethumb"></div>`+
-          `<div class="etxt"><div class="ecn">${o.scientificName}</div><div class="emeta">${meta}</div></div>`+
-          `<span class="dot ${o.confidence}"></span><div class="eqr"></div>`;
+        e.innerHTML=`<span class="num">${num}</span>${g(o,false)}`+
+          `<div class="etxt"><div class="ecn">${o.scientificName}</div><div class="emeta">${meta}</div>`+
+          `</div><span class="dot ${o.confidence}"></span><div class="eqr"></div>`;
         ents.appendChild(e); qr(e.querySelector('.eqr'));
-      }
+      });
       col.appendChild(ents); guide.appendChild(col);
     }
   });
